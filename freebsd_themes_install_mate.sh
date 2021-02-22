@@ -1,8 +1,8 @@
 #!/usr/local/bin/bash
 cd
 # Install the Arc and Materia GTK theme.
-echo "Installing the Arc and Materia GTK themes..."
-sudo pkg install -y gtk-arc-themes materia-gtk-theme
+echo "Installing the Arc GTK theme..."
+sudo pkg install -y gtk-arc-themes
 # Install Kvantum Qt5 theme manager.
 echo "Installing the Kvantun Qt5 theme manager..."
 sudo pkg install -y Kvantum-qt5

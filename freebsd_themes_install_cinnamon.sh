@@ -7,8 +7,8 @@ git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
 sudo make install
 cd
 rm -rf vertex-theme/
-# Install the Materia GTK theme.
-sudo pkg install -y materia-gtk-theme
+# Install the Arc GTK theme.
+sudo pkg install -y gtk-arc-themes
 # Install Kvantum Qt5 theme manager.
 sudo pkg install -y Kvantum-qt5
 # Install Qogir icon theme.
