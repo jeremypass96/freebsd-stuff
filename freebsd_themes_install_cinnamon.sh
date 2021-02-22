@@ -3,12 +3,11 @@ cd
 # Install the Vertex GTK theme.
 sudo pkg install -y gnome-themes-extra gtk-murrine-engine autoconf automake pkgconf gtk3
 git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
-./autogen.sh --prefix=/usr --disable-gnome-shell --disable-light --disable-unity --disable-xfwm --with-gnome=3.22
+./autogen.sh --prefix=/usr --disable-gnome-shell --disable-light --disable-unity --disable-xfwm
 sudo make install
 cd
 rm -rf vertex-theme/
-# Install the Arc GTK theme.
-sudo pkg install -y gtk-arc-themes
+#
 # Install Kvantum Qt5 theme manager.
 sudo pkg install -y Kvantum-qt5
 # Install Qogir icon theme.
@@ -17,3 +16,22 @@ tar -xvf Qogir-ubuntu.tar.xz
 cp -rv Qogir-ubuntu /usr/share/themes
 cp -rv Qogir-ubuntu-dark /usr/share/themes
 rm Qogir-ubuntu.tar.xz
+#
+# Install the Yaru GTK/sound theme.
+sudo pkg install -y meson sassc python3
+git clone https://github.com/ubuntu/yaru.git
+cd yaru/
+echo "option('icons', type: 'boolean', value: false, description:'build icons component')" > meson_options.txt
+echo "option('gnome-shell', type: 'boolean', value: false, description:'build gnome-shell component')" >> meson_options.txt
+echo "option('gnome-shell-gresource', type: 'boolean', value: false, description: 'build gnome-shell component in gresources')" >> meson_options.txt
+echo "option('gtk', type: 'boolean', value: true, description:'build gtk component')" >> meson_options.txt
+echo "option('gtksourceview', type: 'boolean', value: false, description:'build gtksourceview component')" >> meson_options.txt
+echo "option('sounds', type: 'boolean', value: true, description:'build sounds component')" >> meson_options.txt
+echo "option('sessions', type: 'boolean', value: false, description:'build sessions component')" >> meson_options.txt
+echo "option('communitheme_compat', type: 'boolean', value: false, description:'build communitheme-compact')" >> meson_options.txt
+echo "" >> meson_options.txt
+echo "option('default', type: 'boolean', value: true, description:'build Yaru gtk default flavour')" >> meson_options.txt
+echo "option('dark', type: 'boolean', value: false, description:'build Yaru gtk dark flavour')" >> meson_options.txt
+echo "option('light', type: 'boolean', value: false, description:'build Yaru gtk light flavour')" >> meson_options.txt
+echo "option('ubuntu-unity', type: 'boolean', value: false, description:'build Yaru with Unity assets')" >> meson_options.txt
+sudo ninja -C "build" install
