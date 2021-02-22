@@ -26,3 +26,8 @@ git clone https://github.com/vinceliuice/Qogir-icon-theme.git && cd Qogir-icon-t
 sudo ./install.sh
 cd
 rm -rf Qogir-icon-theme/
+# Install the Vimix theme (for window borders ony).
+git clone https://github.com/vinceliuice/vimix-gtk-themes.git && cd vimix-gtk-themes/
+sudo ./install.sh -d /usr/share/themes -s standard
+cd
+rm -rf vimix-gtk-themes/
