@@ -35,4 +35,5 @@ echo "option('dark', type: 'boolean', value: false, description:'build Yaru gtk 
 echo "option('light', type: 'boolean', value: false, description:'build Yaru gtk light flavour')" >> meson_options.txt
 echo "option('ubuntu-unity', type: 'boolean', value: false, description:'build Yaru with Unity assets')" >> meson_options.txt
 sudo ninja -C "build" install
-cd
+# Install fonts.
+sudo pkg install -y ubuntu-font sourcecodepro-ttf
