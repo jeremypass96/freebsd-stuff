@@ -37,3 +37,5 @@ git clone https://github.com/vinceliuice/vimix-gtk-themes.git && cd vimix-gtk-th
 sudo ./install.sh -d /usr/share/themes -s standard
 cd
 rm -rf vimix-gtk-themes/
+# Installing fonts.
+sudo pkg install -y ubuntu-font sourcecodepro-ttf
