@@ -20,8 +20,9 @@ sudo cp -v freebsd.png /usr/local/share/icons/Tango/32x32/places/start-here.png
 sudo cp -v freebsd.svg /usr/local/share/icons/Tango/scalable/places/start-here.svg
 sudo gtk-update-icon-cache /usr/local/share/icons/Tango/
 cd
-rm -rf Newaita/
 echo "Icon is now fixed!"
+echo "Removing source icon folders..."
+rm -rf Newaita/ && rm -rf /usr/local/share/icons/Newaita
 #
 # Install Qogir mouse cursors.
 echo "Installing Qogir mouse cursors..."
@@ -36,22 +37,3 @@ git clone https://github.com/vinceliuice/vimix-gtk-themes.git && cd vimix-gtk-th
 sudo ./install.sh -d /usr/share/themes -s standard
 cd
 rm -rf vimix-gtk-themes/
-#
-# Install the Yaru sound theme. GTK theme doesn't work with MATE properly.
-sudo pkg install -y meson sassc python3
-git clone https://github.com/ubuntu/yaru.git
-cd yaru/
-echo "option('icons', type: 'boolean', value: false, description:'build icons component')" > meson_options.txt
-echo "option('gnome-shell', type: 'boolean', value: false, description:'build gnome-shell component')" >> meson_options.txt
-echo "option('gnome-shell-gresource', type: 'boolean', value: false, description: 'build gnome-shell component in gresources')" >> meson_options.txt
-echo "option('gtk', type: 'boolean', value: false, description:'build gtk component')" >> meson_options.txt
-echo "option('gtksourceview', type: 'boolean', value: false, description:'build gtksourceview component')" >> meson_options.txt
-echo "option('sounds', type: 'boolean', value: true, description:'build sounds component')" >> meson_options.txt
-echo "option('sessions', type: 'boolean', value: false, description:'build sessions component')" >> meson_options.txt
-echo "option('communitheme_compat', type: 'boolean', value: false, description:'build communitheme-compact')" >> meson_options.txt
-echo "" >> meson_options.txt
-echo "option('default', type: 'boolean', value: false, description:'build Yaru gtk default flavour')" >> meson_options.txt
-echo "option('dark', type: 'boolean', value: false, description:'build Yaru gtk dark flavour')" >> meson_options.txt
-echo "option('light', type: 'boolean', value: false, description:'build Yaru gtk light flavour')" >> meson_options.txt
-echo "option('ubuntu-unity', type: 'boolean', value: false, description:'build Yaru with Unity assets')" >> meson_options.txt
-sudo ninja -C "build" install
