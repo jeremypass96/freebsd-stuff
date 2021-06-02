@@ -2,7 +2,7 @@
 You'll need to install sudo, git, and the bash shell, if not already installed, for these scripts to work. Most is for colored man pages output.
 
 Binary packages:
-<code>pkg install sudo git bash bash-completion most micro zsh ohmyzsh</code>
+<code>pkg install sudo git bash bash-completion most micro zsh ohmyzsh neofetch</code>
 
 From Ports (copy make.conf to /etc first):
 
@@ -21,3 +21,5 @@ From Ports (copy make.conf to /etc first):
 **Zsh**: <code>cd /usr/ports/shells/zsh/ && make install clean</code>
 
 **Oh-My-Zsh**: <code>cd /usr/ports/shells/ohmyzsh/ && make install clean</code>
+
+**Neofetch**: <code>cd /usr/ports/sysutils/neofetch/ && make install clean</code>
