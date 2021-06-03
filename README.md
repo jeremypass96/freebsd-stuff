@@ -6,6 +6,8 @@ Binary packages:
 
 From Ports (copy make.conf to /etc first):
 
+**Synth** : cd /usr/ports/ports-mgmt/synth/ && make install clean
+
 **Sudo**: <code>cd /usr/ports/security/sudo/ && make install clean</code>
 
 **Bash**: <code>cd /usr/ports/shells/bash/ && make install clean</code>
