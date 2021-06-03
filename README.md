@@ -25,3 +25,6 @@ From Ports (copy make.conf to /etc first):
 **Oh-My-Zsh**: <code>cd /usr/ports/shells/ohmyzsh/ && make install clean</code>
 
 **Neofetch**: <code>cd /usr/ports/sysutils/neofetch/ && make install clean</code>
+
+Or, install above ports with Synth with:
+<code>synth upgrade-system && synth install sudo bash bash-completion git most micro zsh ohmyzsh neofetch</code>
