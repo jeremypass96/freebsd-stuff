@@ -6,7 +6,7 @@ clear
 echo "Installing the Vertex GTK theme (for LightDM login screen)..."
 sudo pkg install -y gnome-themes-extra gtk-murrine-engine autoconf automake pkgconf gtk3
 git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
-./autogen.sh --prefix=/usr --disable-gnome-shell --disable-light --disable-unity --disable-xfwm --with-gnome=3.22
+./autogen.sh --prefix=/usr/local --disable-gnome-shell --disable-light --disable-unity --disable-xfwm --with-gnome=3.22
 sudo make install
 cd && rm -rf vertex-theme/
 #
@@ -30,9 +30,19 @@ echo "Installing the Newaita icon theme with FreeBSD logo for Applications menu.
 cd
 git clone https://github.com/cbrnix/Newaita.git
 cd Newaita/
-sudo cp -rv Newaita /usr/local/share/themes/
-cd /usr/local/share/themes/Newaita/
+sudo cp -rv Newaita /usr/local/share/icons/
+cd /usr/local/share/icons/Newaita/
+clear
+## Change "rm -f" to "rm -rf"
+echo "Changing "rm -f" to "rm -rf" first before we can execute."
+sudo micro FV.sh
+##
 sudo ./FV.sh
+## Change "rm -f" to "rm -rf"
+echo "Changing "rm -f" to "rm -rf" first before we can execute."
+sudo micro PV.sh
+##
+sudo ./PV.sh
 cd places/24
 sudo rm -rf start-here.svg
 sudo ln -s distributor-logo-freebsd.svg start-here.svg
@@ -45,8 +55,7 @@ sudo ln -s distributor-logo-freebsd.svg start-here.svg
 cd ../64
 sudo rm -rf start-here.svg
 sudo ln -s distributor-logo-freebsd.svg start-here.svg
-cd
-rm -rf Newaita
+cd && rm -rf Newaita
 #
 clear
 # Install Qogir mouse cursors.
@@ -64,4 +73,4 @@ sudo pkg install -y mojave-gtk-themes
 clear
 # Installing fonts.
 echo "Installing fonts..."
-sudo pkg install -y ubuntu-font sourcecodepro-ttf
+sudo pkg install -y ubuntu-font sourcecodepro-ttf roboto-fonts-ttf
