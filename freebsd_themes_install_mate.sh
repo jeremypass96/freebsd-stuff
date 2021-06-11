@@ -8,23 +8,45 @@ sudo pkg install -y gnome-themes-extra gtk-murrine-engine autoconf automake pkgc
 git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
 ./autogen.sh --prefix=/usr --disable-gnome-shell --disable-light --disable-unity --disable-xfwm --with-gnome=3.22
 sudo make install
-cd
-rm -rf vertex-theme/
+cd && rm -rf vertex-theme/
 #
 clear
-# Install the Canta GTK theme.
-echo "Installing the Canta GTK theme..."
-sudo pkg install -y canta-gtk-themes
+# Install the Greybird GTK theme.
+echo "Installing the Greybird GTK theme..."
+sudo pkg install -y greybird-theme
 #
 clear
 # Install Kvantum Qt5 theme manager.
 echo "Installing the Kvantun Qt5 theme manager..."
 sudo pkg install -y Kvantum-qt5
+git clone https://github.com/varlesh/greybird-kde.git
+cd greybird-kde/Kvantum
+sudo cp -rv Greybird /usr/local/share/Kvantum/
+cd && rm -rf greybird-kde
 #
 clear
-# Install Numix circle icon theme.
-echo "Installing the Numix circle icon theme..."
-sudo pkg install -y numix-icon-theme-circle numix-icon-theme
+# Install Newaita icon theme with FreeBSD logo for Applications menu.
+echo "Installing the Newaita icon theme with FreeBSD logo for Applications menu..."
+cd
+git clone https://github.com/cbrnix/Newaita.git
+cd Newaita/
+sudo cp -rv Newaita /usr/local/share/themes/
+cd /usr/local/share/themes/Newaita/
+sudo ./FV.sh
+cd places/24
+sudo rm -rf start-here.svg
+sudo ln -s distributor-logo-freebsd.svg start-here.svg
+cd ../32
+sudo rm -rf start-here.svg
+sudo ln -s distributor-logo-freebsd.svg start-here.svg
+cd ../48
+sudo rm -rf start-here.svg
+sudo ln -s distributor-logo-freebsd.svg start-here.svg
+cd ../64
+sudo rm -rf start-here.svg
+sudo ln -s distributor-logo-freebsd.svg start-here.svg
+cd
+rm -rf Newaita
 #
 clear
 # Install Qogir mouse cursors.
@@ -35,12 +57,9 @@ cd
 rm -rf Qogir-icon-theme/
 #
 clear
-# Install the Vimix GTK theme (for window borders ony).
-echo "Installing Vimix GTK theme (for window borders only)..."
-git clone https://github.com/vinceliuice/vimix-gtk-themes.git && cd vimix-gtk-themes/
-sudo ./install.sh -d /usr/share/themes -s standard
-cd
-rm -rf vimix-gtk-themes/
+# Install the Mojave GTK theme (for window borders ony).
+echo "Installing Mojave GTK theme (for window borders only)..."
+sudo pkg install -y mojave-gtk-themes
 #
 clear
 # Installing fonts.
