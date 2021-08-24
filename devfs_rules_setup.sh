@@ -22,4 +22,5 @@ echo 'devfs_system_ruleset="devfsrules_common"' >> /etc/rc.conf
 # Install automount via ports.
 cd /usr/ports/sysutils/automount
 make && make install clean ; cd
+service devd enable
 service devd restart
