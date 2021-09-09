@@ -4,12 +4,12 @@ cd
 clear
 # Install the Greybird GTK theme.
 echo "Installing the Greybird GTK theme..."
-cd /usr/ports/x11-themes/greybird-theme && sudo make install clean
+sud portmaster x11-themes/greybird-theme
 #
 clear
 # Install Kvantum Qt5 theme manager.
 echo "Installing the Kvantun Qt5 theme manager..."
-cd /usr/ports/x11-themes/Kvantum && sudo make install clean
+sudo portmaster x11-themes/Kvantum
 cd
 git clone https://github.com/varlesh/greybird-kde.git
 cd greybird-kde/Kvantum
@@ -59,11 +59,21 @@ cd && rm -rf Qogir-icon-theme/
 clear
 # Install the Mojave GTK theme (for window borders ony).
 echo "Installing Mojave GTK theme (for window borders only)..."
-cd /usr/ports/x11-themes/mojave-gtk-themes && sudo make install clean
+sudo portmaster x11-themes/mojave-gtk-themes
 #
 clear
 # Installing fonts.
 echo "Installing fonts..."
-cd /usr/ports/x11-fonts/ubuntu-font/ && sudo make install clean
-cd /usr/ports/x11-fonts/sourcecodepro-ttf/ && sudo make install clean
-cd /usr/ports/x11-fonts/webfonts/ && sudo make install clean
+sudo portmaster x11-fonts/ubuntu-font
+sudo portmaster x11-fonts/sourcecodepro-ttf
+sudo portmaster x11-fonts/webfonts
+#
+# Install the Vertex GTK theme.
+echo "Installing the Vertex GTK theme (for LightDM login screen)..."
+sudo portmaster x11-themes/gnome-themes-extra x11-themes/gtk-murrine-engine devel/autoconf devel/automake devel/pkgconf x11-toolkits/tk30
+git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
+./autogen.sh --prefix=/usr/local --disable-gnome-shell --disable-light --disable-unity --disable-xfwm --with-gnome=3.22
+sudo make install
+cd
+rm -rf vertex-theme/
+#
