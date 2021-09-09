@@ -10,6 +10,7 @@ clear
 # Install Kvantum Qt5 theme manager.
 echo "Installing the Kvantun Qt5 theme manager..."
 cd /usr/ports/x11-themes/Kvantum && sudo make install clean
+cd
 git clone https://github.com/varlesh/greybird-kde.git
 cd greybird-kde/Kvantum
 sudo cp -rv Greybird /usr/local/share/Kvantum/
