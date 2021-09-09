@@ -4,12 +4,12 @@ cd
 clear
 # Install the Greybird GTK theme.
 echo "Installing the Greybird GTK theme..."
-sudo pkg install -y greybird-theme
+cd /usr/ports/x11-themes/greybird-theme && sudo make install clean
 #
 clear
 # Install Kvantum Qt5 theme manager.
 echo "Installing the Kvantun Qt5 theme manager..."
-sudo pkg install -y Kvantum-qt5
+cd /usr/ports/x11-themes/Kvantum && sudo make install clean
 git clone https://github.com/varlesh/greybird-kde.git
 cd greybird-kde/Kvantum
 sudo cp -rv Greybird /usr/local/share/Kvantum/
@@ -58,9 +58,11 @@ cd && rm -rf Qogir-icon-theme/
 clear
 # Install the Mojave GTK theme (for window borders ony).
 echo "Installing Mojave GTK theme (for window borders only)..."
-sudo pkg install -y mojave-gtk-themes
+cd /usr/ports/x11-themes/mojave-gtk-themes && sudo make install clean
 #
 clear
 # Installing fonts.
 echo "Installing fonts..."
-sudo pkg install -y ubuntu-font sourcecodepro-ttf
+cd /usr/ports/x11-fonts/ubuntu-font/ && sudo make install clean
+cd /usr/ports/x11-fonts/sourcecodepro-ttf/ && sudo make install clean
+cd /usr/ports/x11-fonts/webfonts/ && sudo make install clean
