@@ -20,6 +20,6 @@ echo "add path 'video*' mode 0666 group operator" >> /etc/devfs.rules
 echo "add path 'dvb/*' mode 0666 group operator" >> /etc/devfs.rules
 echo 'devfs_system_ruleset="devfsrules_common"' >> /etc/rc.conf
 # Install automount via ports.
-pkg install automount
+portmaster sysutils/automount
 service devd enable
 service devd restart
