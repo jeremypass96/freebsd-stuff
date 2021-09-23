@@ -14,4 +14,4 @@ To install via ports:
 
 <code>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting</code>
 
-<code>git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions</code>
+<code>git clone https://github.com/zsh-users/zsh-completions $ZSH_CUSTOM/plugins/zsh-completions ; autoload -U compinit && compinit</code>
