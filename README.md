@@ -11,4 +11,5 @@ To install via ports:
 IMPORTANT! To use the .zshrc file correctly with ZSH, you MUST have these two plugins installed!
 
 <code>git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions</code>
+
 <code>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting</code>
