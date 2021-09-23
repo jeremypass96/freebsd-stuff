@@ -8,7 +8,7 @@ To install via ports:
 
 <code>portmaster security/sudo devel/git shells/bash shells/bash-completion editors/micro shells/zsh shells/ohmyzsh sysutils/neofetch</code>
 
-<b>IMPORTANT!</b> To use the .zshrc file correctly with zsh, you <b>MUST</b> have these two plugins installed!
+<b>IMPORTANT!</b> To use the .zshrc file correctly with zsh, you <b>MUST</b> have these 3 plugins installed!
 
 <code>git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions</code>
 
