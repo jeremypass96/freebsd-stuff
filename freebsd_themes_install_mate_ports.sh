@@ -34,5 +34,4 @@ sudo portmaster x11-themes/gnome-themes-extra x11-themes/gtk-murrine-engine deve
 git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
 ./autogen.sh --prefix=/usr/local --disable-gnome-shell --disable-light --disable-unity --disable-xfwm --with-gnome=3.22
 sudo make install clean
-cd
-rm -rf vertex-theme/
+cd && rm -rf vertex-theme
