@@ -38,4 +38,3 @@ git clone https://github.com/horst3180/vertex-theme --depth 1 && cd vertex-theme
 sudo make install clean
 cd
 rm -rf vertex-theme/
-#
