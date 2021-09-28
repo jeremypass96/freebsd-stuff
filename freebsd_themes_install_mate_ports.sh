@@ -2,24 +2,19 @@
 cd
 #
 clear
-# Install the Greybird GTK theme.
-echo "Installing the Greybird GTK theme..."
-sud portmaster x11-themes/greybird-theme
+# Install the Canta GTK theme with icon theme.
+echo "Installing the Canta GTK theme with icon theme"
+sud portmaster x11-themes/canta-gtk-themes x11-themes/canta-icon-theme x11-themes/numix-icon-theme
 #
 clear
-# Install Kvantum Qt5 theme manager.
-echo "Installing the Kvantun Qt5 theme manager..."
+# Install Kvantum Qt5 theme manager with theme.
+echo "Installing the Kvantun Qt5 theme manager with theme..."
 sudo portmaster x11-themes/Kvantum
 cd
-git clone https://github.com/varlesh/greybird-kde.git
-cd greybird-kde/Kvantum
-sudo cp -rv Greybird /usr/local/share/Kvantum/
-cd && rm -rf greybird-kde
-#
-clear
-# Install Faenza icon theme (MATE version).
-echo "Installing the Faenza icon theme (MATE version)..."
-sudo portmaster x11-themes/mate-icon-theme-faenza
+git clone https://github.com/vinceliuice/Canta-kde.git
+cd Canta-kde/Kvantum
+sudo cp -rv Canta-light /usr/local/share/Kvantum/
+cd && rm -rf Canta-kde
 #
 clear
 # Install Qogir mouse cursors.
@@ -27,11 +22,6 @@ echo "Installing Qogir mouse cursors..."
 git clone https://github.com/vinceliuice/Qogir-icon-theme.git && cd Qogir-icon-theme/src/cursors/
 sudo ./install.sh
 cd && rm -rf Qogir-icon-theme/
-#
-clear
-# Install the Mojave GTK theme (for window borders ony).
-echo "Installing Mojave GTK theme (for window borders only)..."
-sudo portmaster x11-themes/mojave-gtk-themes
 #
 clear
 # Installing fonts.
