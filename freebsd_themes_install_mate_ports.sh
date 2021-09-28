@@ -26,7 +26,7 @@ cd && rm -rf Qogir-icon-theme/
 clear
 # Installing fonts.
 echo "Installing fonts..."
-sudo portmaster x11-fonts/ubuntu-font x11-fonts/sourcecodepro-ttf x11-fonts/webfonts x11-fonts/droid-fonts-ttf x11-fonts/materialdesign-ttf
+sudo portmaster x11-fonts/ubuntu-font x11-fonts/office-code-pro x11-fonts/webfonts x11-fonts/droid-fonts-ttf x11-fonts/materialdesign-ttf
 #
 # Install the Vertex GTK theme.
 echo "Installing the Vertex GTK theme (for LightDM login screen)..."
