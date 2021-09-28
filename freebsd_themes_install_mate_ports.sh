@@ -2,9 +2,9 @@
 cd
 #
 clear
-# Install the Canta GTK theme with icon theme. The Numix icon theme is needed, otherwise the icon theme is incomplete.
-echo "Installing the Canta GTK theme with icon theme..."
-sud portmaster x11-themes/canta-gtk-themes x11-themes/canta-icon-theme x11-themes/numix-icon-theme
+# Install the Canta GTK theme. The Numix icon theme is needed, otherwise the icon theme is incomplete.
+echo "Installing the Canta GTK theme..."
+sud portmaster x11-themes/canta-gtk-themes x11-themes/mate-icon-theme-faenza
 #
 clear
 # Install Kvantum Qt5 theme manager with theme.
@@ -15,13 +15,6 @@ git clone https://github.com/vinceliuice/Canta-kde.git
 cd Canta-kde/Kvantum
 sudo cp -rv Canta-light /usr/local/share/Kvantum/
 cd && rm -rf Canta-kde
-#
-clear
-# Install Qogir mouse cursors.
-echo "Installing Qogir mouse cursors..."
-git clone https://github.com/vinceliuice/Qogir-icon-theme.git && cd Qogir-icon-theme/src/cursors/
-sudo ./install.sh
-cd && rm -rf Qogir-icon-theme/
 #
 clear
 # Installing fonts.
