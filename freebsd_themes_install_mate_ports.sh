@@ -2,7 +2,7 @@
 cd
 #
 clear
-# Install the Canta GTK theme with icon theme.
+# Install the Canta GTK theme with icon theme. The Numix icon theme is needed, otherwise the icon theme is incomplete.
 echo "Installing the Canta GTK theme with icon theme..."
 sud portmaster x11-themes/canta-gtk-themes x11-themes/canta-icon-theme x11-themes/numix-icon-theme
 #
