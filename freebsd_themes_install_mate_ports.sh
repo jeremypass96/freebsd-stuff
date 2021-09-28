@@ -3,7 +3,7 @@ cd
 #
 clear
 # Install the Canta GTK theme with icon theme.
-echo "Installing the Canta GTK theme with icon theme"
+echo "Installing the Canta GTK theme with icon theme..."
 sud portmaster x11-themes/canta-gtk-themes x11-themes/canta-icon-theme x11-themes/numix-icon-theme
 #
 clear
