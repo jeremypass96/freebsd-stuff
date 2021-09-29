@@ -2,19 +2,13 @@
 cd
 #
 clear
-# Install the Canta GTK theme. The Numix icon theme is needed, otherwise the icon theme is incomplete.
-echo "Installing the Canta GTK theme..."
-sud portmaster x11-themes/canta-gtk-themes x11-themes/mate-icon-theme-faenza
-#
-clear
-# Install Kvantum Qt5 theme manager with theme.
-echo "Installing the Kvantun Qt5 theme manager with theme..."
-sudo portmaster x11-themes/Kvantum
+# Install the ClassicLooks GTK themes.
+echo "Installing the ClassicLooks GTK themes..."
+sud portmaster x11-themes/classiclooks x11-themes/mate-icon-theme-faenza
 cd
-git clone https://github.com/vinceliuice/Canta-kde.git
-cd Canta-kde/Kvantum
-sudo cp -rv Canta-light /usr/local/share/Kvantum/
-cd && rm -rf Canta-kde
+git clone https://github.com/vinceliuice/vimix-gtk-themes.git
+cd vimix-gtk-themes
+sudo ./install.sh --dest /usr/local/share/themes --color light
 #
 clear
 # Installing fonts.
