@@ -18,24 +18,24 @@ echo "kern.ipc.shmseg=10000" >> /boot/loader.conf
 echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
 echo "kern.maxproc=100000" >> /boot/loader.conf
 echo "#####################################" >> /boot/loader.conf
-echo "#### Custom VT Colors - Dracula+ ####" >> /boot/loader.conf
+echo "#### Custom VT Colors - Andromeda ###" >> /boot/loader.conf
 echo "#####################################" >> /boot/loader.conf
-echo 'kern.vt.color.0.rgb="#21222c"' >> /boot/loader.conf
-echo 'kern.vt.color.1.rgb="#ff5555"' >> /boot/loader.conf
-echo 'kern.vt.color.2.rgb="#50fa7b"' >> /boot/loader.conf
-echo 'kern.vt.color.3.rgb="#ffcb6b"' >> /boot/loader.conf
-echo 'kern.vt.color.4.rgb="#82aaff"' >> /boot/loader.conf
-echo 'kern.vt.color.5.rgb="#c792ea"' >> /boot/loader.conf
-echo 'kern.vt.color.6.rgb="#8be9fd"' >> /boot/loader.conf
-echo 'kern.vt.color.7.rgb="#f8f8f2"' >> /boot/loader.conf
-echo 'kern.vt.color.8.rgb="#545454"' >> /boot/loader.conf
-echo 'kern.vt.color.9.rgb="#ff6e6e"' >> /boot/loader.conf
-echo 'kern.vt.color.10.rgb="#69ff94"' >> /boot/loader.conf
-echo 'kern.vt.color.11.rgb="#ffcb6b"' >> /boot/loader.conf
-echo 'kern.vt.color.12.rgb="#d6acff"' >> /boot/loader.conf
-echo 'kern.vt.color.13.rgb="#ff92df"' >> /boot/loader.conf
-echo 'kern.vt.color.14.rgb="#a4ffff"' >> /boot/loader.conf
-echo 'kern.vt.color.15.rgb="#f8f8f2"' >> /boot/loader.conf
+echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
+echo 'kern.vt.color.1.rgb="#cd3131"' >> /boot/loader.conf
+echo 'kern.vt.color.2.rgb="#05bc79"' >> /boot/loader.conf
+echo 'kern.vt.color.3.rgb="#e5e512"' >> /boot/loader.conf
+echo 'kern.vt.color.4.rgb="#2472c8"' >> /boot/loader.conf
+echo 'kern.vt.color.5.rgb="#bc3fbc"' >> /boot/loader.conf
+echo 'kern.vt.color.6.rgb="#0fa8cd"' >> /boot/loader.conf
+echo 'kern.vt.color.7.rgb="#e5e5e5"' >> /boot/loader.conf
+echo 'kern.vt.color.8.rgb="#666666"' >> /boot/loader.conf
+echo 'kern.vt.color.9.rgb="#cd3131"' >> /boot/loader.conf
+echo 'kern.vt.color.10.rgb="#05bc79"' >> /boot/loader.conf
+echo 'kern.vt.color.11.rgb="#e5e512"' >> /boot/loader.conf
+echo 'kern.vt.color.12.rgb="#2472c8"' >> /boot/loader.conf
+echo 'kern.vt.color.13.rgb="#bc3fbc"' >> /boot/loader.conf
+echo 'kern.vt.color.14.rgb="#0fa8cd"' >> /boot/loader.conf
+echo 'kern.vt.color.15.rgb="#e5e5e5"' >> /boot/loader.conf
 echo "#####################################" >> /boot/loader.conf
 
 # Setting up microcode CPU updates firmware.
