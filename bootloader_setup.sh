@@ -41,5 +41,5 @@ echo "#####################################" >> /boot/loader.conf
 # Setting up microcode CPU updates firmware.
 cd /usr/ports/sysutils/devcpu-data && make install clean
 
-# Rebooting to apply changes.
+# Reboot to apply changes.
 reboot
