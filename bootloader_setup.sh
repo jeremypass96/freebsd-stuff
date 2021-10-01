@@ -18,7 +18,7 @@ echo "kern.ipc.shmseg=10000" >> /boot/loader.conf
 echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
 echo "kern.maxproc=100000" >> /boot/loader.conf
 echo "#####################################" >> /boot/loader.conf
-echo "#### Custom VT Colors - Andromeda ###" >> /boot/loader.conf
+echo "### Custom VT Colors - Andromeda ###" >> /boot/loader.conf
 echo "#####################################" >> /boot/loader.conf
 echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
 echo 'kern.vt.color.1.rgb="#cd3131"' >> /boot/loader.conf
