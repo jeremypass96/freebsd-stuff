@@ -6,7 +6,7 @@ To install via binary packages: <code>pkg install sudo git-lite bash bash-comple
 To install via ports:
 <code>cd /usr/ports/ports-mgmt/portmaster && make install clean</code>
 
-<code>portmaster security/sudo devel/git shells/bash shells/bash-completion editors/micro shells/zsh shells/ohmyzsh sysutils/neofetch/code>
+<code>portmaster security/sudo devel/git shells/bash shells/bash-completion editors/micro shells/zsh shells/ohmyzsh sysutils/neofetch</code>
 
 <b>IMPORTANT!</b> To use the .zshrc file correctly with zsh, you <b>MUST</b> have these 2 plugins installed!
 
