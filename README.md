@@ -1,4 +1,4 @@
-# FreeBSD Stuff
+# FreeBSD Setup Scripts
 You'll need to install sudo, git, portmaster (for installing ports), devcpu-data (for CPU microcode updates), and the bash shell, if not already installed, for these scripts to work.
 
 To install via binary packages: <code>pkg install sudo git-lite bash bash-completion micro zsh ohmyzsh neofetch devcpu-data</code>
