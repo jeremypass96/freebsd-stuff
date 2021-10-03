@@ -1,5 +1,6 @@
 #!/bin/sh
 # This shell script sets up FreeBSD's loader.conf bootloader variables for desktop use. Run this script as root.
+echo 'cuse_load="YES"' >> /boot/loader.conf
 echo 'cc_cubic_load="YES"' >> /boot/loader.conf
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
 echo 'amdsbwd_load="YES"' >> /boot/loader.conf
