@@ -39,7 +39,7 @@ echo 'kern.vt.color.14.rgb="#0fa8cd"' >> /boot/loader.conf
 echo 'kern.vt.color.15.rgb="#e5e5e5"' >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
 
-# Setting up microcode CPU updates firmware.
+# Setting up CPU microcode updates.
 cd /usr/ports/sysutils/devcpu-data && make install clean
 
 # Reboot to apply changes.
