@@ -15,6 +15,8 @@ clear
 # Install fonts.
 echo "Installing fonts..."
 sudo portmaster x11-fonts/ubuntu-font x11-fonts/office-code-pro x11-fonts/webfonts x11-fonts/droid-fonts-ttf x11-fonts/materialdesign-ttf
+#
+clear
 # Install cursor theme.
 echo "Installing the macOS Big Sur cursor theme..."
 cd
@@ -26,3 +28,4 @@ echo "Setting proper file permissions..."
 cd /usr/local/share/icons && sudo chown root:wheel macOSBigSur/*
 cd && rm -rf macOSBigSur.tar.gz
 #
+clear
