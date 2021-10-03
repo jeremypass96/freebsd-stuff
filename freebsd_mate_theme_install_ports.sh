@@ -19,7 +19,6 @@ sudo portmaster x11-fonts/ubuntu-font x11-fonts/office-code-pro x11-fonts/webfon
 clear
 # Install cursor theme.
 echo "Installing the macOS Big Sur cursor theme..."
-cd
 fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
 tar -xvf macOSBigSur.tar.gz
 echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
