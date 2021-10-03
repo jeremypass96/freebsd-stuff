@@ -4,7 +4,7 @@ cd
 clear
 # Install the ClassicLooks GTK themes.
 echo "Installing the ClassicLooks GTK themes..."
-sud portmaster x11-themes/classiclooks x11-themes/mate-icon-theme-faenza
+sudo portmaster x11-themes/classiclooks x11-themes/mate-icon-theme-faenza
 cd
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git
 cd vimix-gtk-themes
