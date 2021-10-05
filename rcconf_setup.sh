@@ -1,6 +1,5 @@
 #!/bin/sh
 # This shell script sets up FreeBSD rc.conf variables for desktop use. Run this script as root.
-echo 'kld_list="amdgpu"' >> /etc/rc.conf
 echo 'sendmail_msp_queue_enable="NO"' >> /etc/rc.conf
 echo 'sendmail_outbound_enable="NO"' >> /etc/rc.conf
 echo 'sendmail_submit_enable="NO"' >> /etc/rc.conf
@@ -36,3 +35,24 @@ echo 'savecore_enable="NO"' >> /etc/rc.conf
 echo 'virecover_enable="NO"' >> /etc/rc.conf
 echo 'vboxnet_enable="YES"' >> /etc/rc.conf
 echo 'webcamd_enable="YES"' >> /etc/rc.conf
+
+# Set up DRM kmod support for graphics cards.
+cd /usr/ports/graphics/drm-kmod && make install clean
+echo "FreeBSD DRM kmod graphics support has been installed. What kind of grpahics card do you have?"
+echo "1.) AMD GPU"
+echo "2.) ATI Radeon"
+echo "3.) NVIDIA"
+echo "4.) Intel"
+read number
+if [ $number = "1" ] ; then
+sysrc kld_list+=amdgpu
+fi
+if [ $number = "2" ] ; then
+sysrc kld_list+=radeon
+fi
+if [ $number = "3" ] ; then
+cd /usr/ports/x11/nvidia-driver && make install clean && sysrc kld_list+=nvidia-modeset && cd
+fi
+if [ $number = "4" ] ; then
+sysrc kld_list+=i915kms
+fi
