@@ -1,6 +1,5 @@
 #!/bin/sh
 # This shell script sets up FreeBSD rc.conf variables for desktop use. Run this script as root.
-
 echo 'kld_list="amdgpu"' >> /etc/rc.conf
 echo 'sendmail_msp_queue_enable="NO"' >> /etc/rc.conf
 echo 'sendmail_outbound_enable="NO"' >> /etc/rc.conf
