@@ -1,6 +1,5 @@
 #!/bin/sh
 # This shell script sets up FreeBSD's sysctl.conf kernel variables for desktop use. Run this script as root.
-
 echo "kern.elf32.aslr.enable=1" >> /etc/sysctl.conf
 echo "kern.elf32.aslr.honor_sbrk=0" >> /etc/sysctl.conf
 echo "kern.elf64.aslr.enable=1" >> /etc/sysctl.conf
@@ -12,8 +11,6 @@ echo "vfs.read_max=128" >> /etc/sysctl.conf
 echo "kern.coredump=0" >> /etc/sysctl.conf
 echo "kern.shutdown.poweroff_delay=2000" >> /etc/sysctl.conf
 echo "kern.shutdown.kproc_shutdown_wait=20" >> /etc/sysctl.conf
-echo "hw.usb.no_boot_wait=1" >> /etc/sysctl.conf
-echo "hw.usb.no_shutdown_wait=1" >> /etc/sysctl.conf
 echo "net.inet.ip.maxfragpackets=0" >> /etc/sysctl.conf
 echo "net.inet.ip.maxfragsperpacket=0" >> /etc/sysctl.conf
 echo "net.local.stream.recvspace=65536" >> /etc/sysctl.conf
