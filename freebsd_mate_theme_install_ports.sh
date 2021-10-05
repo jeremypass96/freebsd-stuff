@@ -4,7 +4,8 @@ cd
 clear
 # Install the ClassicLooks GTK themes.
 echo "Installing the ClassicLooks GTK themes..."
-sudo portmaster x11-themes/classiclooks x11-themes/mate-icon-theme-faenza
+cd /usr/ports/x11-themes/classiclooks && sudo make install clean 
+cd /usr/ports/x11-themes/mate-icon-theme-faenza && sudo make install clean
 cd
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git
 cd vimix-gtk-themes
@@ -14,7 +15,11 @@ cd && rm -rf vimix-gtk-themes
 clear
 # Install fonts.
 echo "Installing fonts..."
-sudo portmaster x11-fonts/ubuntu-font x11-fonts/office-code-pro x11-fonts/webfonts x11-fonts/droid-fonts-ttf x11-fonts/materialdesign-ttf
+cd /usr/ports/x11-fonts/ubuntu-font && sudo make install clean
+cd /usr/ports/x11-fonts/office-code-pro && sudo make install clean
+cd /usr/ports/x11-fonts/webfonts && sudo make install clean
+cd /usr/ports/x11-fonts/droid-fonts-ttf && sudo make install clean
+cd /usr/ports/x11-fonts/materialdesign-ttf && sudo make install clean
 #
 clear
 # Install cursor theme.
