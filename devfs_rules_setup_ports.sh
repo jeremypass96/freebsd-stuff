@@ -19,6 +19,7 @@ echo "add path 'uscan*' mode 0660 group operator" >> /etc/devfs.rules
 echo "add path 'video*' mode 0660 group operator" >> /etc/devfs.rules
 echo "add path 'dvb/*' mode 0660 group operator" >> /etc/devfs.rules
 echo 'devfs_system_ruleset="devfsrules_common"' >> /etc/rc.conf
+
 # Install automount via ports.
 cd /usr/ports/sysutils/automount && make install clean
 service devd enable
