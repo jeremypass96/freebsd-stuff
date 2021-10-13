@@ -43,6 +43,8 @@ echo "1.) AMD GPU"
 echo "2.) ATI Radeon"
 echo "3.) NVIDIA"
 echo "4.) Intel"
+echo "5.) VirtualBox"
+echo "6.) VMware"
 read number
 if [ $number = "1" ] ; then
 sysrc kld_list+=amdgpu
@@ -58,4 +60,12 @@ fi
 #
 if [ $number = "4" ] ; then
 sysrc kld_list+=i915kms
+fi
+#
+if [ $number = "5" ] ; then
+pkg install -y virtualbox-ose-additions && service vboxguest enable && service vboxservice enable
+fi
+#
+if [ $number = "6" ] ; then
+pkg install -y xf86-video-vmware open-vm-tools
 fi
