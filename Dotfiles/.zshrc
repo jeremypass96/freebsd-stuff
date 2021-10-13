@@ -90,6 +90,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias portinfo="cat pkg-descr"
+alias df="df -h"
 neofetch
-fortune bofh
