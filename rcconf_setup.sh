@@ -35,9 +35,9 @@ echo 'savecore_enable="NO"' >> /etc/rc.conf
 echo 'virecover_enable="NO"' >> /etc/rc.conf
 echo 'vboxnet_enable="YES"' >> /etc/rc.conf
 echo 'webcamd_enable="YES"' >> /etc/rc.conf
-
+clear
 # Set up DRM kmod support for graphics cards.
-pkg install drm-kmod
+pkg install -y drm-kmod
 echo "FreeBSD DRM kmod graphics support has been installed. What kind of grpahics card do you have?"
 echo "1.) AMD GPU"
 echo "2.) ATI Radeon"
@@ -55,7 +55,7 @@ sysrc kld_list+=radeon
 fi
 #
 if [ $number = "3" ] ; then
-pkg install nvidia-driver && sysrc kld_list+=nvidia-modeset
+pkg install -y nvidia-driver && sysrc kld_list+=nvidia-modeset
 fi
 #
 if [ $number = "4" ] ; then
