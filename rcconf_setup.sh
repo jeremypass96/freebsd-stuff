@@ -47,12 +47,15 @@ read number
 if [ $number = "1" ] ; then
 sysrc kld_list+=amdgpu
 fi
+#
 if [ $number = "2" ] ; then
 sysrc kld_list+=radeon
 fi
+#
 if [ $number = "3" ] ; then
 cd /usr/ports/x11/nvidia-driver && make install clean && sysrc kld_list+=nvidia-modeset && cd
 fi
+#
 if [ $number = "4" ] ; then
 sysrc kld_list+=i915kms
 fi
