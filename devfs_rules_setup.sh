@@ -21,5 +21,8 @@ echo "add path 'dvb/*' mode 0660 group operator" >> /etc/devfs.rules
 echo 'devfs_system_ruleset="devfsrules_common"' >> /etc/rc.conf
 
 # Install automount.
-pkg install automount
+pkg install -y automount
 service devd restart
+
+# Reboot
+reboot

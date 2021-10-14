@@ -35,14 +35,16 @@ echo 'savecore_enable="NO"' >> /etc/rc.conf
 echo 'virecover_enable="NO"' >> /etc/rc.conf
 echo 'vboxnet_enable="YES"' >> /etc/rc.conf
 echo 'webcamd_enable="YES"' >> /etc/rc.conf
-
+clear
 # Set up DRM kmod support for graphics cards.
-pkg install drm-kmod
+pkg install -y drm-kmod
 echo "FreeBSD DRM kmod graphics support has been installed. What kind of grpahics card do you have?"
 echo "1.) AMD GPU"
 echo "2.) ATI Radeon"
 echo "3.) NVIDIA"
 echo "4.) Intel"
+echo "5.) VirtualBox"
+echo "6.) VMware"
 read number
 if [ $number = "1" ] ; then
 sysrc kld_list+=amdgpu
@@ -53,9 +55,17 @@ sysrc kld_list+=radeon
 fi
 #
 if [ $number = "3" ] ; then
-pkg install nvidia-driver && sysrc kld_list+=nvidia-modeset
+pkg install -y nvidia-driver && sysrc kld_list+=nvidia-modeset
 fi
 #
 if [ $number = "4" ] ; then
 sysrc kld_list+=i915kms
+fi
+#
+if [ $number = "5" ] ; then
+pkg install -y virtualbox-ose-additions && service vboxguest enable && service vboxservice enable
+fi
+#
+if [ $number = "6" ] ; then
+pkg install -y xf86-video-vmware open-vm-tools
 fi
