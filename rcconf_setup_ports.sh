@@ -43,6 +43,8 @@ echo "1.) AMD GPU"
 echo "2.) ATI Radeon"
 echo "3.) NVIDIA"
 echo "4.) Intel"
+echo "5.) VirtualBox"
+echo "6.) VMware"
 read number
 if [ $number = "1" ] ; then
 sysrc kld_list+=amdgpu
@@ -53,9 +55,19 @@ sysrc kld_list+=radeon
 fi
 #
 if [ $number = "3" ] ; then
-cd /usr/ports/x11/nvidia-driver && make install clean && sysrc kld_list+=nvidia-modeset && cd
+cd /usr/ports/x11/nvidia-driver && make install clean ; sysrc kld_list+=nvidia-modeset ; cd
 fi
 #
 if [ $number = "4" ] ; then
 sysrc kld_list+=i915kms
+fi
+#
+if [ $number = "5" ] ; then
+cd /usr/ports/emulators/virtualbox-ose-additions-legacy && make install clean
+cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean ; service vboxguest enable && service vboxservice enable
+fi
+#
+if [ $number = "6" ] ; then
+cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
+cd /usr/ports/emulators/open-vm-tools && make install clean
 fi
