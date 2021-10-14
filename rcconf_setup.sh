@@ -63,7 +63,7 @@ sysrc kld_list+=i915kms
 fi
 #
 if [ $number = "5" ] ; then
-pkg install -y virtualbox-ose-additions && service vboxguest enable && service vboxservice enable
+pkg install -y virtualbox-ose-additions xf86-video-vmware && service vboxguest enable && service vboxservice enable
 fi
 #
 if [ $number = "6" ] ; then
