@@ -59,4 +59,5 @@ gsettings set org.mate.interface show-input-method-menu false
 gsettings set org.mate.interface show-unicode-menu false
 # Set mouse cursor.
 gsettings set org.mate.peripherals-mouse cursor-theme macOSBigSur
-clear
+#
+echo "Your FreeBSD MATE desktop has been set up for you automatically! Enjoy."
