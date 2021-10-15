@@ -28,8 +28,9 @@ cd && rm -rf macOSBigSur.tar.gz
 # Get extra wallpapers!
 echo "Getting extra wallpapers..."
 sudo git clone https://gitlab.com/dwt1/wallpapers.git
-cd wallpapers/ && cp -v *.jpg /usr/local/share/backgrounds/
+cd wallpapers && mv -v *.jpg /usr/local/share/backgrounds/
 cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
+rm -rf wallpapers
 clear
 # Set up common folders in users home directory.
 sudo pkg install -y xdg-user-dirs
