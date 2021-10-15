@@ -38,7 +38,7 @@ echo 'webcamd_enable="YES"' >> /etc/rc.conf
 clear
 # Set up DRM kmod support for graphics cards.
 pkg install -y drm-kmod
-echo "FreeBSD DRM kmod graphics support has been installed. What kind of grpahics card do you have?"
+echo "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?"
 echo "1.) AMD GPU"
 echo "2.) ATI Radeon"
 echo "3.) NVIDIA"
