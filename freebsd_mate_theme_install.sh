@@ -25,10 +25,8 @@ sudo mv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
 cd /usr/local/share/icons && sudo chown root:wheel macOSBigSur/*
 cd && rm -rf macOSBigSur.tar.gz
-#
-clear
 # Get extra wallpapers!
-echo "Getting extra wallpapers."
+echo "Getting extra wallpapers..."
 sudo git clone https://gitlab.com/dwt1/wallpapers.git
 cd wallpapers/ && cp -v *.jpg /usr/local/share/backgrounds/
 cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
