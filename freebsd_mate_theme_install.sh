@@ -4,8 +4,7 @@ cd
 clear
 # Install the ClassicLooks GTK themes.
 echo "Installing the ClassicLooks GTK themes..."
-pkg install -y classiclooks
-pkg isntall -y mate-icon-theme-faenza
+pkg install -y classiclooks mate-icon-theme-faenza
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git
 cd vimix-gtk-themes
 sudo ./install.sh --dest /usr/local/share/themes --color light
