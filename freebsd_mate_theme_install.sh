@@ -31,6 +31,9 @@ sudo git clone https://gitlab.com/dwt1/wallpapers.git
 cd wallpapers/ && cp -v *.jpg /usr/local/share/backgrounds/
 cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
 clear
+# Set up common folders in users home directory.
+sudo pkg install -y xdg-user-dirs
+xdg-user-dirs-update
 # Set wallpaper.
 gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/0188.jpg
 # Set window titlebar font.
