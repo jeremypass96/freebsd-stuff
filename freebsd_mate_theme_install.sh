@@ -29,6 +29,7 @@ cd && rm -rf macOSBigSur.tar.gz
 clear
 # Get extra wallpapers!
 echo "Getting extra wallpapers. Who doesn't love wallpapers?"
-sudo git clone https://gitlab.com/dwt1/wallpapers.git /usr/local/share/wallpapers
-cd /usr/local/share/wallpapers && sudo chown root:wheel * && cd
+sudo git clone https://gitlab.com/dwt1/wallpapers.git
+cd wallpapers/ && cp -v *.jpg /usr/local/share/backgrounds/
+cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
 clear
