@@ -13,7 +13,7 @@ cd && rm -rf vimix-gtk-themes
 clear
 # Install fonts.
 echo "Installing fonts..."
-pkg install -y ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf
+pkg install -y ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf
 #
 clear
 # Install cursor theme.
