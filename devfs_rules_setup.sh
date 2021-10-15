@@ -22,7 +22,6 @@ echo 'devfs_system_ruleset="devfsrules_common"' >> /etc/rc.conf
 
 # Install automount.
 pkg install -y automount
-service devd restart
 
 # Reboot
 reboot
