@@ -23,7 +23,7 @@ tar -xvf macOSBigSur.tar.gz
 echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
 sudo mv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
-cd /usr/local/share/icons && sudo chown root:wheel macOSBigSur/*
+sudo chown root:wheel /usr/local/share/icons/macOSBigSur/*
 cd && rm -rf macOSBigSur.tar.gz
 # Get extra wallpapers!
 echo "Getting extra wallpapers..."
