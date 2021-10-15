@@ -56,5 +56,10 @@ gsettings set org.mate.interface show-input-method-menu false
 gsettings set org.mate.interface show-unicode-menu false
 # Set mouse cursor.
 gsettings set org.mate.peripherals-mouse cursor-theme macOSBigSur
+# Set up FreeDesktop sound theme.
+sudo pkg install -y freedesktop-sound-theme
+gsettings set org.mate.sound enable-esd true
+gsettings set org.mate.sound event-sounds true
+gsettings set org.mate.sound input-feedback-sounds true
 #
 echo "Your FreeBSD MATE desktop has been set up for you automatically! Enjoy."
