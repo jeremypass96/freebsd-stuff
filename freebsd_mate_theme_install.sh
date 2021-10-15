@@ -4,8 +4,8 @@ cd
 clear
 # Install the ClassicLooks GTK themes.
 echo "Installing the ClassicLooks GTK themes..."
-pkg install classiclooks
-pkg isntall mate-icon-theme-faenza
+pkg install -y classiclooks
+pkg isntall -y mate-icon-theme-faenza
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git
 cd vimix-gtk-themes
 sudo ./install.sh --dest /usr/local/share/themes --color light
@@ -14,11 +14,7 @@ cd && rm -rf vimix-gtk-themes
 clear
 # Install fonts.
 echo "Installing fonts..."
-pkg install ubuntu-font
-pkg install office-code-pro
-pkg install webfonts
-pkg install droid-fonts-ttf
-pkg install materialdesign-ttf
+pkg install -y ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf
 #
 clear
 # Install cursor theme.
