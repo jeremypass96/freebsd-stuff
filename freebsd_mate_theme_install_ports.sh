@@ -28,7 +28,7 @@ echo "Installing the macOS Big Sur cursor theme..."
 fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
 sudo tar -xvf macOSBigSur.tar.gz -C /usr/local/share/icons/
 echo "Setting proper file permissions..."
-cd /usr/local/share/icons && sudo chown root:wheel macOSBigSur/*
+sudo chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 cd && rm -rf macOSBigSur.tar.gz
 # Get extra wallpapers!
 echo "Getting extra wallpapers..."
