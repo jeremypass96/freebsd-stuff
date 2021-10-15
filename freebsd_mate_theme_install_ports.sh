@@ -36,7 +36,7 @@ sudo git clone https://gitlab.com/dwt1/wallpapers.git
 cd wallpapers/ && cp -v *.jpg /usr/local/share/backgrounds/
 cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
 clear
-# Set up common folders in a users home directory.
+# Set up common folders in users home directory.
 cd /usr/ports/devel/xdg-user-dirs && sudo make install clean
 xdg-user-dirs-update
 # Set wallpaper.
