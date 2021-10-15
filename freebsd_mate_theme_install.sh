@@ -49,5 +49,9 @@ gsettings set org.mate.interface icon-theme matefaenza
 gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
 gsettings set org.mate.interface font-name "Roboto 10"
 gsettings set org.mate.caja.desktop font "Roboto 10"
-#
+# Turn off a couple useless menus.
+gsettings set org.mate.interface show-input-method-menu false
+gsettings set org.mate.interface show-unicode-menu false
+# Set mouse cursor.
+gsettings set org.mate.peripherals-mouse cursor-theme macOSBigSur
 clear
