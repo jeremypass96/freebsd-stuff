@@ -44,6 +44,3 @@ echo "########################################################################" 
 
 # Set up CPU microcode updates.
 cd /usr/ports/sysutils/devcpu-data && make install clean
-
-# Reboot to apply changes.
-reboot

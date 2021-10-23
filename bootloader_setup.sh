@@ -44,6 +44,3 @@ echo "########################################################################" 
 
 # Set up CPU microcode updates.
 pkg install -y devcpu-data
-
-# Reboot to apply changes.
-reboot
