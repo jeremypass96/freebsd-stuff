@@ -7,8 +7,8 @@ echo "Installing the ClassicLooks GTK themes..."
 cd /usr/ports/x11-themes/classiclooks && sudo make install clean 
 cd /usr/ports/x11-themes/mate-icon-theme-faenza && sudo make install clean
 cd
-git clone https://github.com/vinceliuice/vimix-gtk-themes.git
-cd vimix-gtk-themes
+git clone https://github.com/vinceliuice/vimix-gtk-themes.git ~/
+cd ~/vimix-gtk-themes
 sudo ./install.sh --dest /usr/local/share/themes --color light
 cd && rm -rf vimix-gtk-themes
 #
@@ -32,8 +32,8 @@ sudo chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 cd && rm -rf macOSBigSur.tar.gz
 # Get extra wallpapers!
 echo "Getting extra wallpapers..."
-sudo git clone https://gitlab.com/dwt1/wallpapers.git
-cd wallpapers && mv -v *.jpg /usr/local/share/backgrounds/
+git clone https://gitlab.com/dwt1/wallpapers.git ~/
+cd ~/wallpapers && sudo mv -v *.jpg /usr/local/share/backgrounds/
 cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
 rm -rf wallpapers
 clear
@@ -66,5 +66,6 @@ cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
 gsettings set org.mate.sound enable-esd true
 gsettings set org.mate.sound event-sounds true
 gsettings set org.mate.sound input-feedback-sounds true
+cd
 #
 echo "Your FreeBSD MATE desktop has been set up for you automatically! Enjoy."

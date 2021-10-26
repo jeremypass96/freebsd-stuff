@@ -19,6 +19,21 @@ echo "add path 'uscan*' mode 0660 group operator" >> /etc/devfs.rules
 echo "add path 'video*' mode 0660 group operator" >> /etc/devfs.rules
 echo "add path 'dvb/*' mode 0660 group operator" >> /etc/devfs.rules
 echo 'devfs_system_ruleset="devfsrules_common"' >> /etc/rc.conf
-
+#
+sed -i '' s/#link	cd0	cdrom/link	cd0	cdrom/g /etc/devfs.conf
+sed -i '' s/#link	cd0	dvd/link	cd0	dvd/g /etc/devfs.conf
+echo "own cd0 root:operator" >> /etc/devfs.conf
+echo "perm cd0 0660" >> /etc/devfs.conf
+echo "own pass0 root:operator" >> /etc/devfs.conf
+echo "perm pass0 0660" >> /etc/devfs.conf
+echo "own pass1 root:operator" >> /etc/devfs.conf
+echo "perm pass1 0660" >> /etc/devfs.conf
+echo "own pass2 root:operator" >> /etc/devfs.conf
+echo "perm pass2 0660" >> /etc/devfs.conf
+echo "own xpt0 root:operator" >> /etc/devfs.conf
+echo "perm xpt0 0660" >> /etc/devfs.conf
+echo "" >> /etc/devfs.conf
+echo "own   /dev/da*    root:operator" >> /etc/devfs.conf
+echo "perm  /dev/da*    0660" >> /etc/devfs.conf
 # Install automount.
 pkg install -y automount
