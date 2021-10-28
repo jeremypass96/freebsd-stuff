@@ -66,6 +66,9 @@ cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
 gsettings set org.mate.sound enable-esd true
 gsettings set org.mate.sound event-sounds true
 gsettings set org.mate.sound input-feedback-sounds true
+# Setup Caja preferences.
+gsettings set org.mate.caja.preferences enable-delete true
+gsettings set org.mate.caja.preferences preview-sound never
 cd
 #
 echo "Your FreeBSD MATE desktop has been set up for you automatically! Enjoy."
