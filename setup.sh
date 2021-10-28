@@ -7,7 +7,7 @@ read answer
 if [ $answer = "pkg" ] ; then
 pkg update
 pkg upgrade -y
-pkg install -y devcpu-data automount sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx devcpu-data automount
 sudo ./rcconf_setup.sh
 fi
 #
@@ -40,15 +40,14 @@ sudo ./sysctl_setup.sh
 sudo ./bootloader_setup.sh
 sudo ./devfs_setup.sh
 # Setup LightDM/Slick Greeter.
-cd /usr/local/etc/lightdm
-sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g lightdm.conf
-sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g lightdm.conf
-sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g lightdm.conf
-sed -i '' s/#allow-guest=true/allow-guest=false/g lightdm.conf
-sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g lightdm.conf
-sed -i '' s/#autologin-user=/autologin-user=$USER/g lightdm.conf
-sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g lightdm.conf
-cat << EOF >slick-greeter.conf
+sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
+cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
 background = /usr/local/share/backgrounds/0062.jpg
 draw-user-backgrounds = true
