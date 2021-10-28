@@ -5,7 +5,7 @@ clear
 # Install the ClassicLooks GTK themes.
 echo "Installing the ClassicLooks GTK themes..."
 cd /usr/ports/x11-themes/classiclooks && sudo make install clean 
-cd /usr/ports/x11-themes/mate-icon-theme-faenza && sudo make install clean
+cd /usr/ports/x11-themes/flatery-icon-themes && sudo make install clean
 cd
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git ~/
 cd ~/vimix-gtk-themes
@@ -51,7 +51,7 @@ gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
 gsettings set org.mate.interface gtk-theme "ClassicLooks Solaris"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme matefaenza
+gsettings set org.mate.interface icon-theme Flatery-Sky
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
 gsettings set org.mate.interface font-name "Roboto 10"
