@@ -1,6 +1,6 @@
 #!/bin/sh
+# Final setup stage. Run as non-root user!
 cd Dotfiles/
-
 # Copy over .profile & fix system profile file.
 cp -v .profile ~
 sudo cp -v .profile /usr/share/skel/dot.profile
