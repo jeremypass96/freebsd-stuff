@@ -34,8 +34,7 @@ echo 'scrnmap="NO"' >> /etc/rc.conf
 echo 'savecore_enable="NO"' >> /etc/rc.conf
 echo 'virecover_enable="NO"' >> /etc/rc.conf
 echo 'vboxnet_enable="YES"' >> /etc/rc.conf
-echo 'webcamd_enable="YES"' >> /etc/rc.conf
-
+clear
 # Set up DRM kmod support for graphics cards.
 cd /usr/ports/graphics/drm-kmod && make install clean
 echo "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?"

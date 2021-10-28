@@ -34,7 +34,6 @@ echo 'scrnmap="NO"' >> /etc/rc.conf
 echo 'savecore_enable="NO"' >> /etc/rc.conf
 echo 'virecover_enable="NO"' >> /etc/rc.conf
 echo 'vboxnet_enable="YES"' >> /etc/rc.conf
-echo 'webcamd_enable="YES"' >> /etc/rc.conf
 clear
 # Set up DRM kmod support for graphics cards.
 pkg install -y drm-kmod
