@@ -49,7 +49,7 @@ gsettings set org.mate.Marco.general theme vimix-light-doder
 # Turn off middle click on window titlebar.
 gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
-gsettings set org.mate.interface gtk-theme "ClassicLooks Solaris"
+gsettings set org.mate.interface gtk-theme "ClassicLooks Rainyday"
 # Set icon theme.
 gsettings set org.mate.interface icon-theme Flatery-Sky
 # Set fonts.
