@@ -1,40 +1,40 @@
 #!/bin/sh
 # This shell script sets up FreeBSD rc.conf variables for desktop use. Run this script as root.
-echo 'sendmail_msp_queue_enable="NO"' >> /etc/rc.conf
-echo 'sendmail_outbound_enable="NO"' >> /etc/rc.conf
-echo 'sendmail_submit_enable="NO"' >> /etc/rc.conf
+sysrc sendmail_msp_queueenable="NO"
+sysrc sendmail_outbound_enable="NO"
+sysrc sendmail_submit_enable="NO"
+sysrc ntpd_enable="YES"
+sysrc ntpd_sync_on_start="YES"
+sysrc inetd_enable="NO"
+sysrc icmp_drop_redirect="YES"
+sysrc icmp_log_redirect="YES"
+sysrc nfs_server_enable="NO"
+sysrc nfs_client_enable="NO"
+sysrc sshd_enable="NO"
+sysrc portmap_enable="NO"
+sysrc mixer_enable="YES"
+sysrc allscreens_flags="-f vgarom-8x16.fnt"
+sysrc keyrate="fast"
+sysrc service_delete_empty="YES"
+sysrc firewall_enable="YES"
+sysrc firewall_type="workstation"
+sysrc firewall_quiet="YES"
+sysrc firewall_logging="YES"
+sysrc autoboot="YES"
+sysrc rc_fast="YES"
+sysrc dbus_enable="YES"
+sysrc rc_startmsgs="NO"
+sysrc cupsd_enable="YES"
+sysrc saned_enable="YES"
+sysrc lightdm_enable="YES"
+sysrc blanktime="1200"
+sysrc scrnmap="NO"
+sysrc savecore_enable="NO"
+sysrc virecover_enable="NO"
+sysrc vboxnet_enable="YES"
+sysrc smartd_enable="YES"
+sysrc dumpdev="NO"
 service ntpdate delete
-echo 'ntpd_enable="YES"' >> /etc/rc.conf
-echo 'ntpd_sync_on_start="YES"' >> /etc/rc.conf
-sed -i '' s/dumpdev="AUTO"/dumpdev="NO"/g /etc/rc.conf
-echo 'inetd_enable="NO"' >> /etc/rc.conf
-echo 'icmp_drop_redirect="YES"' >> /etc/rc.conf
-echo 'icmp_log_redirect="YES"' >> /etc/rc.conf
-echo 'nfs_server_enable="NO"' >> /etc/rc.conf
-echo 'nfs_client_enable="NO"' >> /etc/rc.conf
-echo 'sshd_enable="NO"' >> /etc/rc.conf
-echo 'portmap_enable="NO"' >> /etc/rc.conf
-echo 'mixer_enable="YES"' >> /etc/rc.conf
-echo 'allscreens_flags="-f vgarom-8x16.fnt"' >> /etc/rc.conf
-echo 'keyrate="fast"' >> /etc/rc.conf
-echo 'service_delete_empty="YES"' >> /etc/rc.conf
-echo 'firewall_enable="YES"' >> /etc/rc.conf
-echo 'firewall_type="workstation"' >> /etc/rc.conf
-echo 'firewall_quiet="YES"' >> /etc/rc.conf
-echo 'firewall_logging="YES"' >> /etc/rc.conf
-echo 'autoboot="YES"' >> /etc/rc.conf
-echo 'rc_fast="YES"' >> /etc/rc.conf
-echo 'dbus_enable="YES"' >> /etc/rc.conf
-echo 'rc_startmsgs="NO"' >> /etc/rc.conf
-echo 'cupsd_enable="YES"' >> /etc/rc.conf
-echo 'saned_enable="YES"' >> /etc/rc.conf
-echo 'lightdm_enable="YES"' >> /etc/rc.conf
-echo 'blanktime="1200"' >> /etc/rc.conf
-echo 'scrnmap="NO"' >> /etc/rc.conf
-echo 'savecore_enable="NO"' >> /etc/rc.conf
-echo 'virecover_enable="NO"' >> /etc/rc.conf
-echo 'vboxnet_enable="YES"' >> /etc/rc.conf
-clear
 # Set up DRM kmod support for graphics cards.
 cd /usr/ports/graphics/drm-kmod && make install clean
 echo "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?"

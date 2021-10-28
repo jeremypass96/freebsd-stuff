@@ -41,6 +41,3 @@ echo 'kern.vt.color.13.rgb="#bc3fbc"' >> /boot/loader.conf
 echo 'kern.vt.color.14.rgb="#0fa8cd"' >> /boot/loader.conf
 echo 'kern.vt.color.15.rgb="#e5e5e5"' >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
-
-# Set up CPU microcode updates.
-pkg install -y devcpu-data

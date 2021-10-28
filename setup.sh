@@ -7,7 +7,8 @@ read answer
 if [ $answer = "pkg" ] ; then
 pkg update
 pkg upgrade -y
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx
+pkg install -y devcpu-data automount sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx
+sudo ./rcconf_setup.sh
 fi
 #
 if [ $answer = "ports" ] ; then
@@ -31,7 +32,13 @@ cd /usr/ports/emulators/virtualbox-ose && make install clean
 cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/x11/numlockx && make install clean
+cd /usr/ports/sysutils/devcpu-data && make install clean
+cd /usr/ports/sysutils/automount && make install clean
+sudo ./rcconf_setup_ports.sh
 fi
+sudo ./sysctl_setup.sh
+sudo ./bootloader_setup.sh
+sudo ./devfs_setup.sh
 # Setup LightDM/Slick Greeter.
 cd /usr/local/etc/lightdm
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g lightdm.conf
@@ -41,15 +48,17 @@ sed -i '' s/#allow-guest=true/allow-guest=false/g lightdm.conf
 sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g lightdm.conf
 sed -i '' s/#autologin-user=/autologin-user=$USER/g lightdm.conf
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g lightdm.conf
-echo "[Greeter]" > slick-greeter.conf
-echo "background = /usr/local/share/backgrounds/0062.jpg" >> slick-greeter.conf
-echo "draw-user-backgrounds = true" >> slick-greeter.conf
-echo "draw-grid = false" >> slick-greeter.conf
-echo "show-hostname = true" >> slick-greeter.conf
-echo "show-a11y = false" >> slick-greeter.conf
-echo "show-keyboard = false" >> slick-greeter.conf
-echo "clock-format = %I:%M %p" >> slick-greeter.conf
-echo "theme-name = ClassicLooks Irix" >> slick-greeter.conf
-echo "icon-theme-name = matefaenza" >> slick-greeter.conf
+cat << EOF >slick-greeter.conf
+[Greeter]
+background = /usr/local/share/backgrounds/0062.jpg
+draw-user-backgrounds = true
+draw-grid = false
+show-hostname = true
+show-a11y = false
+show-keyboard = false
+clock-format = %I:%M %p
+theme-name = ClassicLooks Irix
+icon-theme-name = matefaenza
+EOF
 # Reboot
 shutdown -r now
