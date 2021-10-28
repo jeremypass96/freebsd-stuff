@@ -7,15 +7,7 @@ read answer
 if [ $answer = "pkg" ] ; then
 pkg update
 pkg upgrade -y
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups xfburn firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx
-echo "Do you want to use MATE or Xfce as your desktop?"
-read answer
-if [ $answer = "mate" ] ; then
-pkg install -y mate
-fi
-if [ $answer = "xfce" ] ; then
-pkg install -y xfce
-fi
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx
 fi
 #
 if [ $answer = "ports" ] ; then
@@ -27,7 +19,9 @@ cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
+cd /usr/ports/x11/mate && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
+cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/www/firefox && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/print/cups && make install clean
@@ -37,14 +31,6 @@ cd /usr/ports/emulators/virtualbox-ose && make install clean
 cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/x11/numlockx && make install clean
-echo "Do you want to use MATE or Xfce as your desktop?"
-read answer
-if [ $answer = "mate" ] ; then
-cd /usr/ports/x11/mate && make install clean
-fi
-if [ $answer = "xfce" ] ; then
-cd /usr/ports/x11-wm/xfce4 && make install clean
-fi
 fi
 # Setup LightDM/Slick Greeter.
 cd /usr/local/etc/lightdm
