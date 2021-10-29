@@ -92,3 +92,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias df="df -h"
 neofetch
+QT_QPA_PLATFORMTHEME=qt5ct;   export QT_QPA_PLATFORMTHEME
