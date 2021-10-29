@@ -7,8 +7,7 @@ sudo cp -v .profile /usr/share/skel/dot.profile
 sudo echo "EDITOR=micro;    export EDITOR" >> /etc/profile
 sudo echo "PAGER=less;   export PAGER" >> /etc/profile
 sudo echo "MANPAGER=less;    export MANPAGER" >> /etc/profile
-sudo echo "QT_QPA_PLATFORMTHEME=qt5ct;   export QT_QPA_PLATFORMTHEME" >> /etc/profile
-echo "export QT_QPA_PLATFORMTHEME=qt5ct" > ~/.xinitrc
+sudo echo 'QT_QPA_PLATFORMTHEME="qt5ct";   export QT_QPA_PLATFORMTHEME' >> /etc/profile
 
 # Copy over zsh config.
 cp -v .zshrc ~
