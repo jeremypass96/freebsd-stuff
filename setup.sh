@@ -1,14 +1,24 @@
 #!/bin/sh
-# This script will set up a complete FreeBSD desktop for you, ready to go when you reboot. Run as root!
+# This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
+if [ $(id -u) -ne 0 ] ; then
+	echo "Please run this setup script as root via 'su'! Thanks."
+	exit
+fi
+#
 clear
-echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg and MATE (or Xfce) for you, along with system files being tweaked for desktop use."
+echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg, MATE, and useful software for you, along with system files being tweaked for desktop use."
 echo "Do you plan to install software via pkg (binary packages) or ports? After answering this question, the required packages/ports will automatically start installing! (pkg/ports)"
 read answer
 if [ $answer = "pkg" ] ; then
+# Update repo to use latest packages.
+mkdir -p /usr/local/etc/pkg/repos
+cat << EOF >/usr/local/etc/pkg/repos/FreeBSD.conf
+FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}/latest" }
+EOF
 pkg update
-pkg upgrade -y
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx devcpu-data automount
-sudo ./rcconf_setup.sh
+# Install packages.
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter numlockx devcpu-data automount
+./rcconf_setup.sh
 fi
 #
 if [ $answer = "ports" ] ; then
@@ -24,6 +34,17 @@ cd /usr/ports/x11/mate && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/www/firefox && make install clean
+cd /usr/ports/audio/audacity && make install clean
+cd /usr/ports/multimedia/handbrake && make install clean
+cd /usr/ports/sysutils/isomaster && make install clean
+cd /usr/ports/editors/abiword && make install clean
+cd /usr/ports/math/gnumeric && make install clean
+cd /usr/ports/net-p2p/transmission-gtk && make install clean
+cd /usr/ports/audio/asunder && make install clean
+cd /usr/ports/graphics/gimp && make install clean
+cd /usr/ports/graphics/inkscape && make install clean
+cd /usr/ports/graphics/pinta && make install clean
+cd /usr/ports/graphics/shotwell && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
@@ -34,11 +55,11 @@ cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
-sudo ./rcconf_setup_ports.sh
+./rcconf_setup_ports.sh
 fi
-sudo ./sysctl_setup.sh
-sudo ./bootloader_setup.sh
-sudo ./devfs_setup.sh
+./sysctl_setup.sh
+./bootloader_setup.sh
+./devfs_setup.sh
 # Setup LightDM/Slick Greeter.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
@@ -56,8 +77,10 @@ show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = ClassicLooks Irix
-icon-theme-name = matefaenza
+theme-name = ClassicLooks Solaris
+icon-theme-name = Flatery-Black
 EOF
+# Update FreeBSD base.
+freebsd-update fetch install
 # Reboot
 shutdown -r now
