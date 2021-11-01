@@ -6,8 +6,8 @@ if [ $(id -u) -ne 0 ] ; then
 fi
 #
 clear
-echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg, MATE, and useful software for you, along with system files being tweaked for desktop use."
-echo "Do you plan to install software via pkg (binary packages) or ports? After answering this question, the required packages/ports will automatically start installing! (pkg/ports)"
+echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg, MATE, some useful software for you, along with system files being tweaked for desktop use."
+echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
 read answer
 if [ $answer = "pkg" ] ; then
 # Update repo to use latest packages.
