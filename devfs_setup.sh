@@ -1,5 +1,5 @@
 #!/bin/sh
-# Sets up a devfs.rules/.conf file on FreeBSD for FreeBSD desktop use. Run this script as root!
+# Sets up a devfs.rules/.conf file on FreeBSD for FreeBSD desktop use.
 cat << EOF >/etc/devfs.rules
 [devfsrules_common=7]
 add path 'ad*' mode 0660 group operator
