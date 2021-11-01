@@ -60,6 +60,12 @@ fi
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
+# Setup automoumt.
+cat << EOF >/usr/local/etc/automount.conf
+USERUMOUNT=YES
+REMOVEDIRS=YES
+ATIME="NO"
+EOF
 # Setup LightDM/Slick Greeter.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
