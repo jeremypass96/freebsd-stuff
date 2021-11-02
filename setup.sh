@@ -65,7 +65,7 @@ fi
 cat << EOF >/usr/local/etc/automount.conf
 USERUMOUNT=YES
 REMOVEDIRS=YES
-ATIME="NO"
+ATIME=NO
 EOF
 # Setup LightDM/Slick Greeter.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
