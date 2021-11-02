@@ -17,6 +17,10 @@ sudo cp -v .zshrc /usr/share/skel/dot.zshrc
 mkdir -p ~/.config/neofetch
 cp -v config/neofetch/config.conf ~/.config/neofetch/
 
+# Copy over micro config.
+mkdir -p ~/.config/micro
+cp -v config/micro/settings.json ~/.config/micro/
+
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
 
