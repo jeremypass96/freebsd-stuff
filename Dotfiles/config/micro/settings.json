@@ -1,0 +1,12 @@
+{
+    "autosu": true,
+    "backup": false,
+    "colorscheme": "dukelight-tc",
+    "keymenu": true,
+    "mkparents": true,
+    "rmtrailingws": true,
+    "savehistory": false,
+    "scrollbar": true,
+    "softwrap": true,
+    "wordwrap": true
+}
