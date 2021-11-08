@@ -3,9 +3,9 @@ You'll need to install sudo, git, portmaster (for installing ports), and devcpu-
 
 Dependencies required to download these scripts:
 
-Binary packages: <code>pkg install -y sudo git-lite</code>
+Binary packages: <code>pkg install git-lite</code>
 
 Ports:
 <code>cd /usr/ports/ports-mgmt/portmaster && make install clean</code>
 
-<code>portmaster security/sudo devel/git</code>
+<code>portmaster devel/git</code>
