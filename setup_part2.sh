@@ -3,10 +3,10 @@
 echo "Are you installing software via ports or packages?"
 read answer
 if [ $answer = "ports" ] ; then
-sudo ./freebsd_mate_theme_install_ports.sh
+./freebsd_mate_theme_install_ports.sh
 fi
 #
 if [ $answer = "pkg" ] ; then
-sudo ./freebsd_mate_theme_install.sh
+./freebsd_mate_theme_install.sh
 fi
-sudo ./dotfiles_setup.sh
+./dotfiles_setup.sh
