@@ -17,7 +17,7 @@ FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}/latest" }
 EOF
 pkg update
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries cups mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount
 ./rcconf_setup.sh
 fi
 #
@@ -34,6 +34,7 @@ cd /usr/ports/x11/mate && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/www/firefox && make install clean
+cd /usr/ports/mail/thunderbird && make install clean
 cd /usr/ports/audio/audacity && make install clean
 cd /usr/ports/multimedia/handbrake && make install clean
 cd /usr/ports/sysutils/isomaster && make install clean
