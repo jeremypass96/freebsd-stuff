@@ -2,9 +2,7 @@
 cd
 #
 clear
-# Install the ClassicLooks GTK themes.
-echo "Installing the ClassicLooks GTK themes..."
-sudo pkg install -y classiclooks flatery-icon-themes
+# Install Vimix theme (for window border use only!)
 git clone https://github.com/vinceliuice/vimix-gtk-themes.git ~/
 cd ~/vimix-gtk-themes
 sudo ./install.sh --dest /usr/local/share/themes --color light
