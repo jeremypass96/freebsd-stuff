@@ -6,6 +6,4 @@ Dependencies required to download these scripts:
 Binary packages: <code>pkg install git-lite</code>
 
 Ports:
-<code>cd /usr/ports/ports-mgmt/portmaster && make install clean</code>
-
-<code>portmaster devel/git</code>
+<code>cd /usr/ports/devel/git && make install clean</code>
