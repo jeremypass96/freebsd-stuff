@@ -1,8 +1,8 @@
 #!/bin/sh
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 if [ $(id -u) -ne 0 ] ; then
-	echo "Please run this setup script as root via 'su'! Thanks."
-	exit
+echo "Please run this setup script as root via 'su'! Thanks."
+exit
 fi
 #
 clear
