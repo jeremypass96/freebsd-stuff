@@ -33,6 +33,7 @@ sysrc virecover_enable="NO"
 sysrc vboxnet_enable="YES"
 sysrc smartd_enable="YES"
 sysrc dumpdev="NO"
+sysrc apm_enable="YES"
 service ntpdate delete
 # Set up DRM kmod support for graphics cards.
 cd /usr/ports/graphics/drm-kmod && make install clean
