@@ -23,12 +23,10 @@ sudo mv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
 sudo chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 cd && rm -rf macOSBigSur.tar.gz
-# Get extra wallpapers!
-echo "Getting extra wallpapers..."
-git clone https://gitlab.com/dwt1/wallpapers.git ~/
-cd ~/wallpapers && sudo mv -v *.jpg /usr/local/share/backgrounds/
-cd /usr/local/share/backgrounds && sudo chown root:wheel *.jpg && cd
-rm -rf wallpapers
+# Get wallpaper!
+echo "Getting wallpaper..."
+fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg?inline=false -o /usr/local/share/backgrounds/0188.jpg
+sudo chown root:wheel /usr/local/share/backgrounds/0188.jpg
 clear
 # Set up common folders in users home directory.
 sudo pkg install -y xdg-user-dirs

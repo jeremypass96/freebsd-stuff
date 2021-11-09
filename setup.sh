@@ -54,7 +54,7 @@ cd /usr/ports/emulators/virtualbox-ose && make install clean
 cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2/ && make install clean
-cd /usr/ports/x11-themes/classiclooks && make install clean 
+cd /usr/ports/x11-themes/classiclooks && make install clean
 cd /usr/ports/x11-themes/flatery-icon-themes && make install clean
 cd /usr/ports/emulators/wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
@@ -80,9 +80,12 @@ sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm
 sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
+mkdir /usr/local/etc/lightdm/wallpaper
+fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
+sudo chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
 cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
-background = /usr/local/share/backgrounds/0062.jpg
+background = /usr/local/etc/lightdm/wallpaper/0062.jpg
 draw-user-backgrounds = true
 draw-grid = false
 show-hostname = true
