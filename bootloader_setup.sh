@@ -20,7 +20,9 @@ echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
 echo "kern.maxproc=100000" >> /boot/loader.conf
 echo "hw.usb.no_boot_wait=1" >> /boot/loader.conf
 echo "hw.usb.no_shutdown_wait=1" >> /boot/loader.conf
-echo "hw.spec_store_bypass_disable=2" >> /boot/loader.conf
+echo "machdep.syscall_ret_flush_l1d=1" >> /boot/loader.conf
+echo "hw.spec_store_bypass_disable=1" >> /boot/loader.conf
+echo "hw.mds_disable=3" >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
 echo "### Custom VT Colors - Andromeda (from iTerm2 Color Schemes project) ###" >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
