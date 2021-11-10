@@ -17,7 +17,6 @@ echo 'cd9660_iconv_load="YES"' >> /boot/loader.conf
 echo 'msdosfs_iconv_load="YES"' >> /boot/loader.conf
 echo "kern.ipc.shmseg=10000" >> /boot/loader.conf
 echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
-echo "kern.maxproc=100000" >> /boot/loader.conf
 echo "hw.usb.no_boot_wait=1" >> /boot/loader.conf
 echo "hw.usb.no_shutdown_wait=1" >> /boot/loader.conf
 echo "machdep.syscall_ret_flush_l1d=1" >> /boot/loader.conf
