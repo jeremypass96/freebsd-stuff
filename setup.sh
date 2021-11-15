@@ -17,7 +17,7 @@ FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}/latest" }
 EOF
 pkg update
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes wine wine-mono wine-gecko numlockx devcpu-data automount
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos
 ./rcconf_setup.sh
 fi
 #
@@ -61,6 +61,7 @@ cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
+cd /usr/ports/converters/unix2dos/ && make install clean
 ./rcconf_setup_ports.sh
 fi
 ./sysctl_setup.sh
