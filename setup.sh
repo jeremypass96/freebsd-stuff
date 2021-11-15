@@ -17,8 +17,10 @@ FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}/latest" }
 EOF
 pkg update
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos
 ./rcconf_setup.sh
+cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
+echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 fi
 #
 if [ $answer = "ports" ] ; then
@@ -50,6 +52,7 @@ cd /usr/ports/graphics/pinta && make install clean
 cd /usr/ports/graphics/shotwell && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/print/cups && make install clean
+cd /usr/ports/print/papersize-default-letter && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
 cd /usr/ports/emulators/virtualbox-ose && make install clean
