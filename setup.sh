@@ -23,6 +23,8 @@ fi
 #
 if [ $answer = "ports" ] ; then
 cp -v make.conf /etc/
+sed -i '' s/#REFUSE arabic chinese french german hebrew hungarian japanese/REFUSE arabic chinese french german hebrew hungarian japanese/g /etc/portsnap.conf
+sed -i '' s/#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUSE korean polish portuguese russian ukrainian vietnamese/g /etc/portsnap.conf
 portsnap auto
 cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
