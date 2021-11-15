@@ -17,7 +17,7 @@ FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}/latest" }
 EOF
 pkg update
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos
 ./rcconf_setup.sh
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
@@ -61,7 +61,7 @@ cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2/ && make install clean
 cd /usr/ports/x11-themes/classiclooks && make install clean
 cd /usr/ports/x11-themes/flatery-icon-themes && make install clean
-cd /usr/ports/emulators/wine && make install clean
+cd /usr/ports/emulators/i386-wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
