@@ -1,5 +1,12 @@
 #!/bin/sh
-# This shell script sets up FreeBSD's loader.conf bootloader variables for desktop use. Run this script as root.
+# This shell script sets up FreeBSD's loader.conf bootloader variables for desktop use.
+
+# Checking to see if we're running as root.
+if [ $(id -u) -ne 0 ] ; then
+echo "Please run this setup script as root! Thanks."
+exit
+fi
+
 echo 'cuse_load="YES"' >> /boot/loader.conf
 echo 'cc_cubic_load="YES"' >> /boot/loader.conf
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
