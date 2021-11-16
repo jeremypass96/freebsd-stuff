@@ -1,5 +1,4 @@
 #!/bin/sh
-clear
 
 # Symlink bash executable to /bin/bash so that scripts written on/for Linux can run properly.
 echo "Making a bash symlink to /bin/bash for Linux shell script compatability..."
