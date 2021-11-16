@@ -53,6 +53,9 @@ echo "hw.snd.default_auto=0" >> /etc/sysctl.conf
 echo "hw.snd.vpc_0db=1" >> /etc/sysctl.conf
 echo "hw.snd.latency=5" >> /etc/sysctl.conf
 echo "hw.snd.feeder_rate_quality=4" >> /etc/sysctl.conf
+echo "machdep.syscall_ret_flush_l1d=1" >> /etc/sysctl.conf
+echo "hw.spec_store_bypass_disable=1" >> /etc/sysctl.conf
+echo "hw.mds_disable=3" >> /etc/sysctl.conf
 echo "" >> /etc/sysctl.conf
 echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
 echo "vfs.aio.max_buf_aio=8192" >> /etc/sysctl.conf
