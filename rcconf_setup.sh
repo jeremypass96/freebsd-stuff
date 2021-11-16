@@ -1,8 +1,16 @@
 #!/bin/sh
-# This shell script sets up FreeBSD rc.conf variables for desktop use. Run this script as root.
+# This shell script sets up FreeBSD rc.conf variables for desktop use.
+
+# Checking to see if we're running as root.
+if [ $(id -u) -ne 0 ] ; then
+echo "Please run this script as root! Thanks."
+exit
+fi
+
 sysrc sendmail_msp_queueenable="NO"
 sysrc sendmail_outbound_enable="NO"
 sysrc sendmail_submit_enable="NO"
+service ntpdate delete
 sysrc ntpd_enable="YES"
 sysrc ntpd_sync_on_start="YES"
 sysrc inetd_enable="NO"
@@ -34,8 +42,8 @@ sysrc vboxnet_enable="YES"
 sysrc smartd_enable="YES"
 sysrc dumpdev="NO"
 sysrc apm_enable="YES"
-service ntpdate delete
-# Set up DRM kmod support for graphics cards.
+
+# Setup DRM kmod support for graphics cards.
 pkg install -y drm-kmod
 echo "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?"
 echo "1.) AMD GPU"
