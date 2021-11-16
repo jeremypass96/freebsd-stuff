@@ -47,7 +47,6 @@ echo "kern.cam.scsi_delay=2000" >> /etc/sysctl.conf
 echo "kern.ipc.shmmax=1000000000" >> /etc/sysctl.conf
 echo "kern.ipc.shm_use_phys=1" >> /etc/sysctl.conf
 echo "kern.ipc.shmall=256000" >> /etc/sysctl.conf
-echo "kern.maxvnodes=1000000" >> /etc/sysctl.conf
 echo "kern.maxfilesperproc=500000" >> /etc/sysctl.conf
 echo "kern.maxprocperuid=500000" >> /etc/sysctl.conf
 echo "hw.snd.default_auto=0" >> /etc/sysctl.conf
