@@ -53,6 +53,7 @@ echo "hw.snd.default_auto=0" >> /etc/sysctl.conf
 echo "hw.snd.vpc_0db=1" >> /etc/sysctl.conf
 echo "hw.snd.latency=5" >> /etc/sysctl.conf
 echo "hw.snd.feeder_rate_quality=4" >> /etc/sysctl.conf
+echo "" >> /etc/sysctl.conf
 echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
 echo "vfs.aio.max_buf_aio=8192" >> /etc/sysctl.conf
 echo "vfs.aio.max_aio_queue_per_proc=65536" >> /etc/sysctl.conf
