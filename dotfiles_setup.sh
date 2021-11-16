@@ -30,5 +30,6 @@ cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
 
+# Get "zsh-autosuggestions" and "zsh-syntax-highlighting" Oh My Zsh plugins.
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
