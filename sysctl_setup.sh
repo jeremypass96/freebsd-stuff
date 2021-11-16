@@ -1,5 +1,12 @@
 #!/bin/sh
-# This shell script sets up FreeBSD's sysctl.conf kernel variables for desktop use. Run this script as root.
+# This shell script sets up FreeBSD's sysctl.conf kernel variables for desktop use.
+
+# Checking to see if we're running as root.
+if [ $(id -u) -ne 0 ] ; then
+echo "Please run this script as root! Thanks."
+exit
+fi
+
 echo "kern.elf32.aslr.enable=1" >> /etc/sysctl.conf
 echo "kern.elf32.aslr.honor_sbrk=0" >> /etc/sysctl.conf
 echo "kern.elf64.aslr.enable=1" >> /etc/sysctl.conf
