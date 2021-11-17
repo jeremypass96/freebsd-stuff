@@ -22,10 +22,8 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
-cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
-echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 fi
 
 if [ $answer = "ports" ] ; then
@@ -81,6 +79,7 @@ cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
 cd /usr/ports/converters/unix2dos/ && make install clean
+cd /usr/ports/sysutils/smartmontools && make install clean
 
 # Setup rc.conf file.
 ./rcconf_setup_ports.sh
@@ -90,6 +89,10 @@ fi
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
+
+# Configure S.M.A.R.T. disk monitoring daemon.
+cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
+echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 
 # Setup automoumt.
 cat << EOF >/usr/local/etc/automount.conf
