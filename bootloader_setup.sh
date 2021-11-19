@@ -26,6 +26,7 @@ echo "kern.ipc.shmseg=10000" >> /boot/loader.conf
 echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
 echo "hw.usb.no_boot_wait=1" >> /boot/loader.conf
 echo "hw.usb.no_shutdown_wait=1" >> /boot/loader.conf
+echo "hw.ibrs_active=1" >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
 echo "### Custom VT Colors - Andromeda (from iTerm2 Color Schemes project) ###" >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
