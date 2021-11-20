@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -41,6 +41,7 @@ portsnap auto
 # Install Ports.
 cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
+cd /usr/ports/x11/xclip && make install clean
 cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
