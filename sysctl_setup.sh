@@ -54,6 +54,7 @@ sysctl hw.snd.feeder_rate_quality=4
 sysctl machdep.syscall_ret_flush_l1d=1
 sysctl hw.spec_store_bypass_disable=1
 sysctl hw.mds_disable=3
+sysctl hw.ibrs_disable=0
 echo "" >> /etc/sysctl.conf
 echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
 sysctl vfs.aio.max_buf_aio=8192
