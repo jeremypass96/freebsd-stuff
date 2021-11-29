@@ -79,7 +79,7 @@ cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
-cd /usr/ports/converters/unix2dos/ && make install clean
+cd /usr/ports/converters/unix2dos && make install clean
 cd /usr/ports/sysutils/smartmontools && make install clean
 
 # Setup rc.conf file.
