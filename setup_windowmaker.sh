@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmcpuload wmmemload wmupmon wmclock thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin alacritty xfburn parole chromium thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmmemload wmupmon wmclock thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin alacritty xfburn parole chromium thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -47,6 +47,7 @@ cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11-wm/windowmaker && make install clean
+cd /usr/ports/x11-wm/wmakerconf && make install clean
 cd /usr/ports/sysutils/wmcpuload && make install clean
 cd /usr/ports/sysutils/wmmemload && make install clean
 cd /usr/ports/sysutils/wmupmon && make install clean
