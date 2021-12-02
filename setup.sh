@@ -112,7 +112,7 @@ sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/light
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
 mkdir /usr/local/etc/lightdm/wallpaper
 fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
-sudo chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
+chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
 
 # Setup slick greeter.
 cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
