@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmupmon wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal lxappearance xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmupmon wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal lxappearance xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -113,11 +113,6 @@ USERUMOUNT=YES
 REMOVEDIRS=YES
 ATIME=NO
 EOF
-
-# Setup NineIcons (icon theme)
-git clone https://github.com/grassmunk/Platinum9.git /home/$USER/
-cd /home/$USER/Platinum9 && cp -rv NineIcons /usr/local/share/icons/
-cd && rm -rf Platinum9
 
 # Setup Xfce4 Terminal colors.
 mkdir -p ~/.config/xfce4/terminal/colorschemes
