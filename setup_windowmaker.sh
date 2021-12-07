@@ -122,8 +122,11 @@ cd && rm -rf Platinum9
 # Setup Alacritty
 mkdir ~/.config/alacritty
 fetch https://raw.githubusercontent.com/alacritty/alacritty/master/alacritty.yml -o alacritty.yml
-sed -i '' s/#size: 11.0/size: 12.0/g ~/.config/alacritty/alacritty.yml
-sed -i '' s/#draw_bold_text_with_bright_colors: false/draw_bold_text_with_bright_colors: true/g ~/.config/alacritty/alacritty.yml
+sed -i '' s/"#TERM: alacritty/TERM: alacritty"/g ~/.config/alacritty/alacritty.yml
+sed -i '# Window position (changes require restart)' s/"#  x: 0/x: 155"/g ~/.config/alacritty/alacritty.yml
+sed -i '# Window position (changes require restart)' s/"#  y: 0/y: 42"/g ~/.config/alacritty/alacritty.yml
+sed -i '' s/"#size: 11.0/size: 12.0"/g ~/.config/alacritty/alacritty.yml
+sed -i '' s/"#draw_bold_text_with_bright_colors: false/draw_bold_text_with_bright_colors: true"/g ~/.config/alacritty/alacritty.yml
 echo "# Colors (Andromeda)
 colors:
   bright:
