@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmmemload wmupmon wmsmixer wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmmemload wmupmon wmsmixer wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -82,9 +82,9 @@ cd /usr/ports/print/hplip && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
 cd /usr/ports/emulators/virtualbox-ose && make install clean
-cd /usr/ports/x11/lightdm && make install clean
-cd /usr/ports/x11/slick-greeter && make install clean
-cd /usr/ports/multimedia/mp4v2/ && make install clean
+cd /usr/ports/x11/slim && make install clean
+cd /usr/ports/x11/slim-freebsd-dark-theme && make install clean
+cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11-themes/classiclooks && make install clean
 cd /usr/ports/emulators/i386-wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
@@ -160,32 +160,12 @@ FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
 
-# Setup LightDM.
-sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
-mkdir /usr/local/etc/lightdm/wallpaper
-cd /usr/local/etc/lightdm/wallpaper
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg\?inline\=false -o 0188.jpg
-chown root:wheel 0188.jpg
-
-# Setup slick greeter.
-cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
-[Greeter]
-background = /usr/local/etc/lightdm/wallpaper/0062.jpg
-draw-user-backgrounds = true
-draw-grid = false
-show-hostname = true
-show-a11y = false
-show-keyboard = false
-clock-format = %I:%M %p
-theme-name = ClassicLooks Solaris
-icon-theme-name = NineIcons
-EOF
+# Setup SLiM.
+sed -i '' s/#^numlock/numlock/g /usr/local/etc/slim.conf
+sed -i '' s/#default_user^simone/default_user^$USER/g /usr/local/etc/slim.conf
+sed -i '' s/#focus_password^no/focus_password^yes/g /usr/local/etc/slim.conf
+sed -i '' s/#auto_login^no/auto_login^yes/g /usr/local/etc/slim.conf
+sed -i '' s/current_theme^default/current_theme^slim-freebsd-dark-theme/g /usr/local/etc/slim.conf
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
