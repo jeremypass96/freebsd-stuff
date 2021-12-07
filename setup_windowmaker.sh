@@ -167,6 +167,10 @@ sed -i '' s/#focus_password^no/focus_password^yes/g /usr/local/etc/slim.conf
 sed -i '' s/#auto_login^no/auto_login^yes/g /usr/local/etc/slim.conf
 sed -i '' s/current_theme^default/current_theme^slim-freebsd-dark-theme/g /usr/local/etc/slim.conf
 
+# Replace LightDM in rc.conf with SLiM.
+service delete lightdm
+service add slim
+
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
 sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
