@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmmemload wmupmon wmsmixer wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmupmon wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal lxappearance xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -51,7 +51,6 @@ cd /usr/ports/x11-wm/wmakerconf && make install clean
 cd /usr/ports/sysutils/wmcpuload && make install clean
 cd /usr/ports/sysutils/wmmemload && make install clean
 cd /usr/ports/sysutils/wmupmon && make install clean
-cd /usr/ports/audio/wmsmixer && make install clean
 cd /usr/ports/x11-clocks/wmclock && make install clean
 cd /usr/ports/net/wmnd && make install clean
 cd /usr/ports/x11-fm/thunar && make install clean
@@ -59,6 +58,7 @@ cd /usr/ports/archivers/thunar-archive-plugin && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/audio/thunar-media-tags-plugin && make install clean
 cd /usr/ports/x11/xfce4-terminal && make install clean
+cd /usr/ports/x11-themes/lxappearance && make install clean
 cd /usr/ports/x11/xfce4-screensaver && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/multimedia/parole && make install clean
@@ -115,8 +115,8 @@ ATIME=NO
 EOF
 
 # Setup NineIcons (icon theme)
-git clone https://github.com/grassmunk/Platinum9.git ~
-cd ~/Platinum9 && cp -rv NineIcons /usr/local/share/icons/
+git clone https://github.com/grassmunk/Platinum9.git /home/$USER/
+cd /home/$USER/Platinum9 && cp -rv NineIcons /usr/local/share/icons/
 cd && rm -rf Platinum9
 
 # Setup Xfce4 Terminal colors.
