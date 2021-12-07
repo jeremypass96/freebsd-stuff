@@ -119,6 +119,41 @@ git clone https://github.com/grassmunk/Platinum9.git ~
 cd ~/Platinum9 && cp -rv NineIcons /usr/local/share/icons/
 cd && rm -rf Platinum9
 
+# Setup Alacritty
+mkdir ~/.config/alacritty
+fetch https://raw.githubusercontent.com/alacritty/alacritty/master/alacritty.yml -o alacritty.yml
+sed -i '' s/#size: 11.0/size: 12.0/g ~/.config/alacritty/alacritty.yml
+sed -i '' s/#draw_bold_text_with_bright_colors: false/draw_bold_text_with_bright_colors: true/g ~/.config/alacritty/alacritty.yml
+echo "# Colors (Andromeda)
+colors:
+  bright:
+    black: '#666666'
+    blue: '#2472c8'
+    cyan: '#0fa8cd'
+    green: '#05bc79'
+    magenta: '#bc3fbc'
+    red: '#cd3131'
+    white: '#e5e5e5'
+    yellow: '#e5e512'
+  cursor:
+    cursor: '#f8f8f0'
+    text: '#cfcfc2'
+  normal:
+    black: '#000000'
+    blue: '#2472c8'
+    cyan: '#0fa8cd'
+    green: '#05bc79'
+    magenta: '#bc3fbc'
+    red: '#cd3131'
+    white: '#e5e5e5'
+    yellow: '#e5e512'
+  primary:
+    background: '#262a33'
+    foreground: '#e5e5e5'
+  selection:
+    background: '#5a5c62'
+    text: '#ece7e7'" >> ~/.config/alacritty/alacritty.yml
+
 # Setup LightDM.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
