@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmmemload wmupmon wmsmixer wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin alacritty xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmmemload wmupmon wmsmixer wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -58,7 +58,7 @@ cd /usr/ports/x11-fm/thunar && make install clean
 cd /usr/ports/archivers/thunar-archive-plugin && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/audio/thunar-media-tags-plugin && make install clean
-cd /usr/ports/x11/alacritty && make install clean
+cd /usr/ports/x11/xfce4-terminal && make install clean
 cd /usr/ports/x11/xfce4-screensaver && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/multimedia/parole && make install clean
@@ -119,43 +119,46 @@ git clone https://github.com/grassmunk/Platinum9.git ~
 cd ~/Platinum9 && cp -rv NineIcons /usr/local/share/icons/
 cd && rm -rf Platinum9
 
-# Setup Alacritty
-mkdir ~/.config/alacritty
-fetch https://raw.githubusercontent.com/alacritty/alacritty/master/alacritty.yml -o alacritty.yml
-sed -i '' s/"#TERM: alacritty/TERM: alacritty"/g ~/.config/alacritty/alacritty.yml
-sed -i '# Window position (changes require restart)' s/"#  x: 0/x: 155"/g ~/.config/alacritty/alacritty.yml
-sed -i '# Window position (changes require restart)' s/"#  y: 0/y: 42"/g ~/.config/alacritty/alacritty.yml
-sed -i '' s/"#size: 11.0/size: 12.0"/g ~/.config/alacritty/alacritty.yml
-sed -i '' s/"#draw_bold_text_with_bright_colors: false/draw_bold_text_with_bright_colors: true"/g ~/.config/alacritty/alacritty.yml
-echo "# Colors (Andromeda)
-colors:
-  bright:
-    black: '#666666'
-    blue: '#2472c8'
-    cyan: '#0fa8cd'
-    green: '#05bc79'
-    magenta: '#bc3fbc'
-    red: '#cd3131'
-    white: '#e5e5e5'
-    yellow: '#e5e512'
-  cursor:
-    cursor: '#f8f8f0'
-    text: '#cfcfc2'
-  normal:
-    black: '#000000'
-    blue: '#2472c8'
-    cyan: '#0fa8cd'
-    green: '#05bc79'
-    magenta: '#bc3fbc'
-    red: '#cd3131'
-    white: '#e5e5e5'
-    yellow: '#e5e512'
-  primary:
-    background: '#262a33'
-    foreground: '#e5e5e5'
-  selection:
-    background: '#5a5c62'
-    text: '#ece7e7'" >> ~/.config/alacritty/alacritty.yml
+# Setup Xfce4 Terminal colors.
+mkdir -p ~/.config/xfce4/terminal/colorschemes
+cd ~/.config/xfce4/terminal/colorschemes
+fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Andromeda.theme -o Andromeda.theme && cd
+cat << EOF >~/.config/xfce4/terminal/terminalrc
+[Configuration]
+ColorForeground=#e5e5e5
+ColorBackground=#262a33
+ColorCursor=#f8f8f0
+ColorPalette=#000000;#cd3131;#05bc79;#e5e512;#2472c8;#bc3fbc;#0fa8cd;#e5e5e5;#666666;#cd3131;#05bc79;#e5e512;#2472c8;#bc3fbc;#0fa8cd;#e5e5e5
+MiscAlwaysShowTabs=FALSE
+MiscBell=TRUE
+MiscBellUrgent=TRUE
+MiscBordersDefault=TRUE
+MiscCursorBlinks=FALSE
+MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
+MiscDefaultGeometry=155x42
+MiscInheritGeometry=FALSE
+MiscMenubarDefault=TRUE
+MiscMouseAutohide=FALSE
+MiscMouseWheelZoom=TRUE
+MiscToolbarDefault=FALSE
+MiscConfirmClose=TRUE
+MiscCycleTabs=TRUE
+MiscTabCloseButtons=TRUE
+MiscTabCloseMiddleClick=TRUE
+MiscTabPosition=GTK_POS_TOP
+MiscHighlightUrls=TRUE
+MiscMiddleClickOpensUri=TRUE
+MiscCopyOnSelect=FALSE
+MiscShowRelaunchDialog=TRUE
+MiscRewrapOnResize=TRUE
+MiscUseShiftArrowsToScroll=FALSE
+MiscSlimTabs=FALSE
+MiscNewTabAdjacent=TRUE
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=TRUE
+FontUseSystem=TRUE
+ShortcutsNoMenukey=TRUE
+EOF
 
 # Setup LightDM.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
@@ -166,8 +169,9 @@ sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx 
 sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
 mkdir /usr/local/etc/lightdm/wallpaper
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
-chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
+cd /usr/local/etc/lightdm/wallpaper
+fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg\?inline\=false -o 0188.jpg
+chown root:wheel 0188.jpg
 
 # Setup slick greeter.
 cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
