@@ -166,6 +166,9 @@ sed -i '' s/#default_user^simone/default_user^$USER/g /usr/local/etc/slim.conf
 sed -i '' s/#focus_password^no/focus_password^yes/g /usr/local/etc/slim.conf
 sed -i '' s/#auto_login^no/auto_login^yes/g /usr/local/etc/slim.conf
 sed -i '' s/current_theme^default/current_theme^slim-freebsd-dark-theme/g /usr/local/etc/slim.conf
+cat << EOF >~/.xinitrc
+exec wmaker
+EOF
 
 # Add SLiM to rc.conf.
 service slim enable
