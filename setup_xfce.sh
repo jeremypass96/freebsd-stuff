@@ -141,6 +141,7 @@ MiscShowUnsafePasteDialog=TRUE
 FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
+chown $USER ~/.config/xfce4/terminal/terminalrc
 
 # Setup LightDM.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
