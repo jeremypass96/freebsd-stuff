@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip xfce4 xfce4-goodies xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip xfce4 xfce4-goodies xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -69,8 +69,8 @@ cd /usr/ports/print/hplip && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
 cd /usr/ports/emulators/virtualbox-ose && make install clean
-cd /usr/ports/x11/slim && make install clean
-cd /usr/ports/x11/slim-freebsd-dark-theme && make install clean
+cd /usr/ports/x11/lightdm && make install clean
+cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11-themes/classiclooks && make install clean
 cd /usr/ports/emulators/i386-wine && make install clean
