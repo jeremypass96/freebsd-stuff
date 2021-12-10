@@ -9,7 +9,7 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg, WindowMaker, some useful software for you, along with system files being tweaked for desktop use."
+echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg, Xfce, some useful software for you, along with system files being tweaked for desktop use."
 echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
 read answer
 if [ $answer = "pkg" ] ; then
@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip windowmaker wmakerconf wmcpuload wmupmon wmclock wmnd thunar thunar-archive-plugin xarchiver thunar-media-tags-plugin xfce4-terminal lxappearance xfce4-screensaver xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip xfce4 xfce4-goodies xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch slim slim-freebsd-dark-theme mp4v2 classiclooks flatery-icon-themes i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
 ./rcconf_setup.sh
 fi
 
@@ -46,22 +46,9 @@ cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
-cd /usr/ports/x11-wm/windowmaker && make install clean
-cd /usr/ports/x11-wm/wmakerconf && make install clean
-cd /usr/ports/sysutils/wmcpuload && make install clean
-cd /usr/ports/sysutils/wmmemload && make install clean
-cd /usr/ports/sysutils/wmupmon && make install clean
-cd /usr/ports/x11-clocks/wmclock && make install clean
-cd /usr/ports/net/wmnd && make install clean
-cd /usr/ports/x11-fm/thunar && make install clean
-cd /usr/ports/archivers/thunar-archive-plugin && make install clean
+cd /usr/ports/x11-wm/xfce4 && make install clean
+cd /usr/ports/x11/xfce4-goodies && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
-cd /usr/ports/audio/thunar-media-tags-plugin && make install clean
-cd /usr/ports/x11/xfce4-terminal && make install clean
-cd /usr/ports/x11-themes/lxappearance && make install clean
-cd /usr/ports/x11/xfce4-screensaver && make install clean
-cd /usr/ports/sysutils/xfburn && make install clean
-cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/www/firefox && make install clean
 cd /usr/ports/mail/thunderbird && make install clean
 cd /usr/ports/audio/audacity && make install clean
@@ -155,18 +142,31 @@ FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
 
-# Setup SLiM.
-sed -i '' s/#^numlock/numlock/g /usr/local/etc/slim.conf
-sed -i '' s/#default_user^simone/default_user^$USER/g /usr/local/etc/slim.conf
-sed -i '' s/#focus_password^no/focus_password^yes/g /usr/local/etc/slim.conf
-sed -i '' s/#auto_login^no/auto_login^yes/g /usr/local/etc/slim.conf
-sed -i '' s/current_theme^default/current_theme^slim-freebsd-dark-theme/g /usr/local/etc/slim.conf
-cat << EOF >~/.xinitrc
-exec wmaker
-EOF
+# Setup LightDM.
+sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
+mkdir /usr/local/etc/lightdm/wallpaper
+fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
+chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
 
-# Add SLiM to rc.conf.
-service slim enable
+# Setup slick greeter.
+cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
+[Greeter]
+background = /usr/local/etc/lightdm/wallpaper/0062.jpg
+draw-user-backgrounds = true
+draw-grid = false
+show-hostname = true
+show-a11y = false
+show-keyboard = false
+clock-format = %I:%M %p
+theme-name = ClassicLooks Solaris
+icon-theme-name = Flatery-Black
+EOF
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
