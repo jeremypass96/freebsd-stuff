@@ -9,28 +9,11 @@ sudo ./install.sh --dest /usr/local/share/themes --color light
 cd && rm -rf vimix-gtk-themes
 #
 clear
-# Install fonts.
-echo "Installing fonts..."
-sudo pkg install -y ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf
-#
-clear
-# Install cursor theme.
-echo "Installing the macOS Big Sur cursor theme..."
-fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
-tar -xvf macOSBigSur.tar.gz
-echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
-sudo mv macOSBigSur /usr/local/share/icons/
-echo "Setting proper file permissions..."
-sudo chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
-cd && rm -rf macOSBigSur.tar.gz
 # Get wallpaper!
 echo "Getting wallpaper..."
 fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg?inline=false -o /usr/local/share/backgrounds/0188.jpg
 sudo chown root:wheel /usr/local/share/backgrounds/0188.jpg
 clear
-# Set up common folders in users home directory.
-sudo pkg install -y xdg-user-dirs
-xdg-user-dirs-update
 # Set wallpaper.
 gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/0188.jpg
 # Set window titlebar font.
