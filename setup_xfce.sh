@@ -247,6 +247,8 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-1" type="string" value="applicationsmenu"/>
+    <property name="show-tooltips" type="bool" value="true"/>
+    </property>
     <property name="plugin-2" type="string" value="tasklist">
       <property name="grouping" type="uint" value="1"/>
     </property>
