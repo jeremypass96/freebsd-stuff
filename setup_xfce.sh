@@ -214,7 +214,9 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.x
   </property>
 EOF
 chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+
 #####
+
 cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -284,7 +286,9 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 </channel>
 EOF
 chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+
 #####
+
 cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -379,7 +383,9 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 </channel>
 EOF
 chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+
 #####
+
 cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -427,7 +433,9 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 </channel>
 EOF
 chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+
 #####
+
 cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
