@@ -143,6 +143,28 @@ ShortcutsNoMenukey=TRUE
 EOF
 chown $USER ~/.config/xfce4/terminal/terminalrc
 
+# Setup shutdown/sleep rules for Xfce.
+cat << EOF >/usr/local/etc/polkit-1/rules.d/60-shutdown.rules
+polkit.addRule(function (action, subject) {
+  if ((action.id == "org.freedesktop.consolekit.system.restart" ||
+      action.id == "org.freedesktop.consolekit.system.stop")
+      && subject.isInGroup("operator")) {
+    return polkit.Result.YES;
+  }
+});
+EOF
+#####
+cat << EOF >/usr/local/etc/polkit-1/rules.d/70-sleep.rules
+polkit.addRule(function (action, subject) {
+  if (action.id == "org.freedesktop.consolekit.system.suspend"
+      && subject.isInGroup("operator")) {
+    return polkit.Result.YES;
+  }
+});
+EOF
+#####
+pw group mod operator -m $USER
+
 # Setup LightDM.
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
