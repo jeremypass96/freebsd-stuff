@@ -22,7 +22,7 @@ EOF
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip xfce xfce4-goodies xfce-icons-elementary xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip xfce xfce4-goodies xfce-icons-elementary xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
 ./rcconf_setup.sh
 fi
 
@@ -80,6 +80,13 @@ cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
 cd /usr/ports/converters/unix2dos && make install clean
 cd /usr/ports/sysutils/smartmontools && make install clean
+cd /usr/ports/x11-fonts/ubuntu-font && sudo make install clean
+cd /usr/ports/x11-fonts/office-code-pro && sudo make install clean
+cd /usr/ports/x11-fonts/webfonts && sudo make install clean
+cd /usr/ports/x11-fonts/droid-fonts-ttf && sudo make install clean
+cd /usr/ports/x11-fonts/materialdesign-ttf && sudo make install clean
+cd /usr/ports/x11-fonts/roboto-fonts-ttf && sudo make install clean
+cd /usr/ports/devel/xdg-user-dirs && sudo make install clean
 
 # Setup rc.conf file.
 ./rcconf_setup_ports.sh
@@ -164,6 +171,19 @@ polkit.addRule(function (action, subject) {
 EOF
 #####
 pw group mod operator -m $USER
+
+# Install cursor theme.
+echo "Installing the macOS Big Sur cursor theme..."
+cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
+tar -xvf macOSBigSur.tar.gz
+echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
+mv macOSBigSur /usr/local/share/icons/
+echo "Setting proper file permissions..."
+chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
+rm -rf macOSBigSur.tar.gz
+
+# Setup user's home directory with common folders.
+xdg-user-dirs-update /home/$USER
 
 # Setup Xfce preferences.
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/
