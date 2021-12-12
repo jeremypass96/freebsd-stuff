@@ -183,7 +183,7 @@ chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
 
 # Setup user's home directory with common folders.
-xdg-user-dirs-update /home/$USER
+xdg-user-dirs-update
 
 # Setup Xfce preferences.
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/
