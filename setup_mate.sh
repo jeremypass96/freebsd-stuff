@@ -19,7 +19,7 @@ mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update
 
-echo "Do you have a printer installed?" (y/n)
+echo "Do you have a printer installed? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
 pkg install cups papersize-default-letter hplip
@@ -44,7 +44,7 @@ sed -i '' s/#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUSE
 # Pull in Ports tree, extract, and update it.
 portsnap auto
 
-echo "Do you have a printer installed?" (y/n)
+echo "Do you have a printer installed? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
 cd /usr/ports/print/cups && make install clean
