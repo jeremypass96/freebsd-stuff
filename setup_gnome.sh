@@ -28,6 +28,7 @@ if [ $answer = "n" ] ; then
 continue
 fi
 
+# Add /proc filesystem to /etc/fstab.
 echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
