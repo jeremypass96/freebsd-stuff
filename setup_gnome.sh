@@ -32,7 +32,7 @@ fi
 echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji gnome3 gnome-initial-setup gnome-shell-extension-dashtopanel chrome-gnome-shell rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 pop-gtk-themes pop-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji gnome3-lite gnome-initial-setup gnome-shell-extension-dashtopanel chrome-gnome-shell rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 pop-gtk-themes pop-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
 ./rcconf_setup.sh
 fi
 
@@ -67,7 +67,7 @@ cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
-cd /usr/ports/x11/gnome3 && make install clean
+cd /usr/ports/x11/gnome3-lite && make install clean
 cd /usr/ports/deskutils/gnome-initial-setup && make install clean
 cd /usr/ports/deskutils/gnome-shell-extension-dashtopanel && make install clean
 cd /usr/ports/www/chrome-gnome-shell && make install clean
