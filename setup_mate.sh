@@ -112,6 +112,7 @@ fi
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
+./freebsd_symlinks.sh
 ./dotfiles_setup.sh
 
 # Configure S.M.A.R.T. disk monitoring daemon.
