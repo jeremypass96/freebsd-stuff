@@ -494,6 +494,7 @@ chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 #####
 
 # Setup LightDM.
+sysrc lightdm_enable="YES"
 touch /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
