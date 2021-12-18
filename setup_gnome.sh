@@ -16,9 +16,7 @@ if [ $answer = "pkg" ] ; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
-cat << EOF >/usr/local/etc/pkg/repos/FreeBSD.conf
-FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }
-EOF
+echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update
 
 # Install packages.
