@@ -147,6 +147,11 @@ xdg-user-dirs-update
 # Setup GDM/GNOME.
 sysrc gdm_enable="YES"
 sysrc gnome_enable="YES"
+gsettings set org.gnome.desktop.interface clock-format 12h
+gsettings set org.gnome.desktop.background show-desktop-icons true
+gsettings set org.gnome.desktop.background picture-uri /usr/local/share/backgrounds/gnome/Loveles.jpg
+gsettings set org.gnome.desktop.datetime automatic-timezone true
+gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
