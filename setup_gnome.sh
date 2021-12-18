@@ -131,10 +131,10 @@ echo "Installing the macOS Big Sur cursor theme..."
 cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
 tar -xvf macOSBigSur.tar.gz
 echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
-mv macOSBigSur /usr/local/share/icons/
+cp -rv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
-rm -rf macOSBigSur.tar.gz
+rm -rf macOSBigSur.tar.gz macOSBigSur
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
