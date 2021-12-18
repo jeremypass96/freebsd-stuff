@@ -19,8 +19,16 @@ mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update
 
+echo "Do you have a printer installed?" (y/n)
+read answer
+if [ $answer = "y" ] ; then
+pkg install cups papersize-default-letter hplip
+if [ $answer = "n" ] ; then
+continue
+fi
+
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip xfce xfce4-goodies xfce-icons-elementary xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
 ./rcconf_setup.sh
 fi
 
@@ -35,6 +43,16 @@ sed -i '' s/#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUSE
 
 # Pull in Ports tree, extract, and update it.
 portsnap auto
+
+echo "Do you have a printer installed?" (y/n)
+read answer
+if [ $answer = "y" ] ; then
+cd /usr/ports/print/cups && make install clean
+cd /usr/ports/print/papersize-default-letter && make install clean
+cd /usr/ports/print/hplip && make install clean
+if [ $answer = "n" ] ; then
+continue
+fi
 
 # Install Ports.
 cd /usr/ports/security/sudo && make install clean
@@ -62,9 +80,6 @@ cd /usr/ports/graphics/inkscape && make install clean
 cd /usr/ports/graphics/pinta && make install clean
 cd /usr/ports/graphics/shotwell && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
-cd /usr/ports/print/cups && make install clean
-cd /usr/ports/print/papersize-default-letter && make install clean
-cd /usr/ports/print/hplip && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
 cd /usr/ports/emulators/virtualbox-ose && make install clean
