@@ -23,8 +23,10 @@ echo "Do you have a printer installed? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
 pkg install cups papersize-default-letter hplip
+fi
 if [ $answer = "n" ] ; then
 continue
+fi
 
 # Install packages.
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
@@ -49,8 +51,10 @@ if [ $answer = "y" ] ; then
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/papersize-default-letter && make install clean
 cd /usr/ports/print/hplip && make install clean
+fi
 if [ $answer = "n" ] ; then
 continue
+fi
 
 # Install Ports.
 cd /usr/ports/security/sudo && make install clean
