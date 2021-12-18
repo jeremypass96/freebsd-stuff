@@ -111,6 +111,7 @@ fi
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
+./dotfiles_setup.sh
 
 # Configure S.M.A.R.T. disk monitoring daemon.
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
