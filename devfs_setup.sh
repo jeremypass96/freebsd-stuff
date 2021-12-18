@@ -22,8 +22,8 @@ add path 'dvb/*' mode 0660 group operator
 EOF
 sysrc devfs_system_ruleset="devfsrules_common"
 #
-sed -i '' s/#link	cd0	cdrom/link	cd0	cdrom/g /etc/devfs.conf
-sed -i '' s/#link	cd0	dvd/link	cd0	dvd/g /etc/devfs.conf
+sed -i '' s/"#link	cd0	cdrom/link	cd0	cdrom"/g /etc/devfs.conf
+sed -i '' s/"#link	cd0	dvd/link	cd0	dvd"/g /etc/devfs.conf
 echo "own cd0 root:operator" >> /etc/devfs.conf
 echo "perm cd0 0660" >> /etc/devfs.conf
 echo "own pass0 root:operator" >> /etc/devfs.conf
