@@ -138,32 +138,8 @@ rm -rf macOSBigSur.tar.gz
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
-# Setup LightDM.
-touch /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
-mkdir /usr/local/etc/lightdm/wallpaper
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
-chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
-
-# Setup slick greeter.
-cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
-[Greeter]
-background = /usr/local/etc/lightdm/wallpaper/0062.jpg
-draw-user-backgrounds = true
-draw-grid = false
-show-hostname = true
-show-a11y = false
-show-keyboard = false
-clock-format = %I:%M %p
-theme-name = Pop
-icon-theme-name = Pop
-EOF
+# Setup GDM.
+sysrc gdm_enable="YES"
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
