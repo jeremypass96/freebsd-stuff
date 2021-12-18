@@ -138,8 +138,9 @@ rm -rf macOSBigSur.tar.gz
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
-# Setup GDM.
+# Setup GDM/GNOME.
 sysrc gdm_enable="YES"
+sysrc gnome_enable="YES"
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
