@@ -17,7 +17,7 @@ if [ $answer = "pkg" ] ; then
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 cat << EOF >/usr/local/etc/pkg/repos/FreeBSD.conf
-FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}/latest" }
+FreeBSD: { url: "http://pkg0.nyi.freebsd.org/${ABI}latest" }
 EOF
 pkg update
 
@@ -97,6 +97,7 @@ fi
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
+./freebsd_symlinks.sh
 
 # Configure S.M.A.R.T. disk monitoring daemon.
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
