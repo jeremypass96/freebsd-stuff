@@ -16,7 +16,6 @@ if [ $answer = "pkg" ] ; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
-echo "FreeBSD: { enabled: no }" > /usr/local/etc/pkg/repos/FreeBSD.conf
 cat << EOF >/usr/local/etc/pkg/repos/FreeBSD.conf
 FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }
 EOF
