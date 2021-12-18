@@ -20,7 +20,7 @@ echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }' > /usr/loca
 pkg update
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip gnome3 gnome-shell-extension-dashtopanel gnome-shell-extension-mediaplayer rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 pop-gtk-themes pop-icon-theme i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji cups papersize-default-letter hplip gnome3 gnome-shell-extension-dashtopanel gnome-shell-extension-mediaplayer rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 pop-gtk-themes pop-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
 ./rcconf_setup.sh
 fi
 
@@ -72,7 +72,7 @@ cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11-themes/pop-gtk-themes && make install clean
 cd /usr/ports/x11-themes/pop-icon-theme && make install clean
-cd /usr/ports/emulators/i386-wine && make install clean
+cd /usr/ports/emulators/wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
@@ -122,6 +122,7 @@ rm -rf macOSBigSur.tar.gz
 xdg-user-dirs-update
 
 # Setup LightDM.
+touch /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#greeter-session=example-gtk-gnome/greeter-session=slick-greeter/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
