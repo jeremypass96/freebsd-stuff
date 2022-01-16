@@ -9,7 +9,7 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD post-install setup script. This script will setup Xorg, Xfce, some useful software for you, along with system files being tweaked for desktop use."
+echo "Welcome to the FreeBSD Xfce setup script. This script will setup Xorg, Xfce, some useful software for you, along with system files being tweaked for desktop use."
 echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
 read answer
 if [ $answer = "pkg" ] ; then
