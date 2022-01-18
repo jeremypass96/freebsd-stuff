@@ -33,6 +33,9 @@ echo "hw.ibrs_active=1" >> /boot/loader.conf
 # Protects against "Meltdown" security mitigation.
 echo "vm.pmap.pti=1" >> /boot/loader.conf
 
+# Protects against "Varient 4" security mitigation.
+echo "hw.spec_store_bypass_disable_active=1" >> /boot/loader.conf
+
 echo "########################################################################" >> /boot/loader.conf
 echo "### Custom VT Colors - Andromeda (from iTerm2 Color Schemes project) ###" >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
