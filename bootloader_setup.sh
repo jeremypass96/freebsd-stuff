@@ -27,7 +27,7 @@ echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
 echo "hw.usb.no_boot_wait=1" >> /boot/loader.conf
 echo "hw.usb.no_shutdown_wait=1" >> /boot/loader.conf
 
-# Turn on "Spectre Varient 2" security mitigation.
+# Protects against "Spectre Varient 2" security mitigation.
 echo "hw.ibrs_active=1" >> /boot/loader.conf
 
 # Protects against "Meltdown" security mitigation.
