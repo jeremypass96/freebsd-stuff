@@ -15,5 +15,3 @@ fi
 if [ $answer = "ports" ] ; then
 ./freebsd_mate_theme_install_ports.sh
 fi
-
-./dotfiles_setup.sh
