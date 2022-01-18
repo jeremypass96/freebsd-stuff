@@ -32,7 +32,7 @@ fi
 echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji gnome3-lite gnome-utils gnome-initial-setup gnome-shell-extension-dashtopanel chrome-gnome-shell rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 pop-gtk-themes pop-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji gnome3-lite gnome-utils gnome-initial-setup gnome-shell-extension-dashtopanel chrome-gnome-shell rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 pop-gtk-themes pop-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 ./rcconf_setup.sh
 fi
 
@@ -108,6 +108,7 @@ cd /usr/ports/x11-fonts/droid-fonts-ttf && sudo make install clean
 cd /usr/ports/x11-fonts/materialdesign-ttf && sudo make install clean
 cd /usr/ports/x11-fonts/roboto-fonts-ttf && sudo make install clean
 cd /usr/ports/devel/xdg-user-dirs && sudo make install clean
+cd /usr/ports/sysutils/duf && make install clean
 
 # Setup rc.conf file.
 ./rcconf_setup_ports.sh
