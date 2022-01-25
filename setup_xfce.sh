@@ -310,7 +310,7 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
     </property>
     <property name="plugin-12" type="string" value="clock">
       <property name="digital-format" type="string" value="%I:%M %p"/>
-      <property name="tooltip-format" type="string" value="%A %d %B %Y"/>
+      <property name="tooltip-format" type="string" value="%x"/>
       <property name="mode" type="uint" value="2"/>
     </property>
     <property name="plugin-13" type="string" value="separator">
