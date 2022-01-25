@@ -282,8 +282,6 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
         <value type="int" value="10"/>
         <value type="int" value="11"/>
         <value type="int" value="12"/>
-        <value type="int" value="13"/>
-        <value type="int" value="14"/>
       </property>
       <property name="mode" type="uint" value="0"/>
     </property>
@@ -313,10 +311,6 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
       <property name="tooltip-format" type="string" value="%x"/>
       <property name="mode" type="uint" value="2"/>
     </property>
-    <property name="plugin-13" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-    </property>
-    <property name="plugin-14" type="string" value="actions"/>
     <property name="plugin-7" type="string" value="docklike"/>
     <property name="plugin-8" type="string" value="whiskermenu"/>
   </property>
