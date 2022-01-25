@@ -32,7 +32,7 @@ fi
 echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 i386-wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 ./rcconf_setup.sh
 fi
 
@@ -264,16 +264,16 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
   <property name="configver" type="int" value="2"/>
   <property name="panels" type="array">
     <value type="int" value="1"/>
-    <property name="dark-mode" type="bool" value="true"/>
+    <property name="dark-mode" type="bool" value="false"/>
     <property name="panel-1" type="empty">
-      <property name="position" type="string" value="p=6;x=0;y=0"/>
+      <property name="position" type="string" value="p=8;x=960;y=963"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="icon-size" type="uint" value="16"/>
-      <property name="size" type="uint" value="26"/>
+      <property name="size" type="uint" value="40"/>
       <property name="plugin-ids" type="array">
-        <value type="int" value="1"/>
-        <value type="int" value="2"/>
+        <value type="int" value="8"/>
+        <value type="int" value="7"/>
         <value type="int" value="3"/>
         <value type="int" value="4"/>
         <value type="int" value="5"/>
@@ -285,15 +285,10 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
         <value type="int" value="13"/>
         <value type="int" value="14"/>
       </property>
+      <property name="mode" type="uint" value="0"/>
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-1" type="string" value="applicationsmenu"/>
-    <property name="show-tooltips" type="bool" value="true"/>
-    </property>
-    <property name="plugin-2" type="string" value="tasklist">
-      <property name="grouping" type="uint" value="1"/>
-    </property>
     <property name="plugin-3" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
       <property name="style" type="uint" value="0"/>
@@ -304,10 +299,9 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
-    </property>
-    <property name="plugin-8" type="string" value="pulseaudio">
-      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="show-notifications" type="bool" value="true"/>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="thunar"/>
+      </property>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>
     <property name="plugin-10" type="string" value="notification-plugin"/>
@@ -317,11 +311,14 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
     <property name="plugin-12" type="string" value="clock">
       <property name="digital-format" type="string" value="%I:%M %p"/>
       <property name="tooltip-format" type="string" value="%A %d %B %Y"/>
+      <property name="mode" type="uint" value="2"/>
     </property>
     <property name="plugin-13" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
     <property name="plugin-14" type="string" value="actions"/>
+    <property name="plugin-7" type="string" value="docklike"/>
+    <property name="plugin-8" type="string" value="whiskermenu"/>
   </property>
 </channel>
 EOF
@@ -496,6 +493,100 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 </channel>
 EOF
 chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+#####
+
+mkdir -p /home/$USER/.config/xfce4/panel/
+cat << EOF >/home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+favorites=firefox.desktop,thunar.desktop,org.xfce.mousepad.desktop,xfburn.desktop,xfce4-terminal.desktop
+recent=
+button-icon=org.xfce.panel.whiskermenu
+button-single-row=true
+show-button-title=false
+show-button-icon=true
+launcher-show-name=true
+launcher-show-description=true
+launcher-show-tooltip=true
+launcher-icon-size=2
+hover-switch-category=false
+category-show-name=true
+category-icon-size=1
+sort-categories=true
+view-mode=1
+default-category=0
+recent-items-max=10
+favorites-in-recent=true
+position-search-alternate=false
+position-commands-alternate=false
+position-categories-alternate=true
+position-categories-horizontal=false
+stay-on-focus-out=false
+profile-shape=0
+confirm-session-command=true
+menu-width=450
+menu-height=532
+menu-opacity=100
+command-settings=xfce4-settings-manager
+show-command-settings=true
+command-lockscreen=xflock4
+show-command-lockscreen=true
+command-switchuser=dm-tool switch-to-greeter
+show-command-switchuser=false
+command-logoutuser=xfce4-session-logout --logout --fast
+show-command-logoutuser=false
+command-restart=xfce4-session-logout --reboot --fast
+show-command-restart=false
+command-shutdown=xfce4-session-logout --halt --fast
+show-command-shutdown=false
+command-suspend=xfce4-session-logout --suspend
+show-command-suspend=false
+command-hibernate=xfce4-session-logout --hibernate
+show-command-hibernate=false
+command-logout=xfce4-session-logout
+show-command-logout=true
+command-menueditor=menulibre
+show-command-menueditor=false
+command-profile=mugshot
+show-command-profile=false
+search-actions=4
+
+[action0]
+name=Search for Files
+pattern=-
+command=catfish --path=~ --start %s
+regex=false
+
+[action1]
+name=Wikipedia
+pattern=!w
+command=exo-open --launch WebBrowser https://en.wikipedia.org/wiki/%u
+regex=false
+
+[action2]
+name=Run in Terminal
+pattern=!
+command=exo-open --launch TerminalEmulator %s
+regex=false
+
+[action3]
+name=Open URI
+pattern=^(file|http|https):\\/\\/(.*)$
+command=exo-open \\0
+regex=true
+EOF
+chown $USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+#####
+
+cat << EOF >/home/$USER/.config/xfce4/panel/docklike-7.rc
+[user]
+noWindowsListIfSingle=false
+onlyDisplayVisible=true
+showPreviews=true
+showWindowCount=false
+indicatorStyle=0
+indicatorOrientation=0
+pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//thunar.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;
+EOF
+chown $USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 #####
 
 # Setup LightDM.
