@@ -71,6 +71,8 @@ cd /usr/ports/x11-wm/xfce4 && make install clean
 cd /usr/ports/x11/xfce4-goodies && make install clean
 cd /usr/ports/x11-themes/xfce-icons-elementary && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
+cd /usr/ports/x11-themes/gtk-xfce-engine && make install clean
+cd /usr/ports/x11/xfce4-docklike-plugin && make install clean
 cd /usr/ports/www/firefox && make install clean
 cd /usr/ports/mail/thunderbird && make install clean
 cd /usr/ports/audio/audacity && make install clean
