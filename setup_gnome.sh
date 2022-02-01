@@ -32,7 +32,7 @@ fi
 echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji gnome3-lite gnome-utils gnome-initial-setup gnome-shell-extension-dashtopanel chrome-gnome-shell rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 pop-gtk-themes pop-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji gnome3-lite gnome-utils gnome-initial-setup gnome-shell-extension-dashtopanel chrome-gnome-shell rhythmbox firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 pop-gtk-themes wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 ./rcconf_setup.sh
 fi
 
@@ -142,6 +142,18 @@ echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
 
+# Install icon theme.
+echo "Installing the Newaita-Reborn icon theme..."
+cd /home/$USER/
+git clone https://github.com/cbrnix/Newaita-reborn.git
+cd Newaita-reborn
+cp -rv Newaita-reborn /usr/local/share/icons/
+cp -rv Newaita-reborn-dark /usr/local/share/icons/
+cp -rv Newaita-reborn-pop-os* /usr/local/share/icons/
+cd && rm -rf /home/$USER/Newaita-reborn
+gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
+gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn-pop-os*/
+
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
@@ -151,6 +163,14 @@ sysrc gnome_enable="YES"
 gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.desktop.background show-desktop-icons true
 gsettings set org.gnome.desktop.background picture-uri /usr/local/share/backgrounds/gnome/Loveles.jpg
+gsettings set org.gnome.desktop.interface font-name "Roboto 10"
+gsettings set org.gnome.desktop.interface gtk-theme "Pop"
+gsettings set org.gnome.desktop.interface toolbar-style icons
+gsettings set org.gnome.desktop.interface icon-theme "Newaita-reborn-pop-os"
+gsettings set org.gnome.desktop.interface cursor-theme "macOSBigSur"
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false
+gsettings set org.gnome.desktop.sound input-feedback-sounds true
 gsettings set org.gnome.desktop.datetime automatic-timezone true
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 
