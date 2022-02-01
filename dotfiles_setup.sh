@@ -37,8 +37,8 @@ chown $USER /home/$USER/.config/micro/*
 mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
 
-# Change shell to zsh.
-chsh -s /usr/local/bin/zsh $USER
+# Change shell to zsh. DISABLED UNTIL I GET FIXED! WILL RENDER SYSTEM UNUSABLE!
+#chsh -s /usr/local/bin/zsh $USER
 
 # Get "zsh-autosuggestions" and "zsh-syntax-highlighting" Oh My Zsh plugins.
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
