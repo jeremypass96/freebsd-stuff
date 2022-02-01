@@ -70,6 +70,7 @@ fi
 #
 if [ $number = "5" ] ; then
 pkg install -y virtualbox-ose-additions xf86-video-vmware && service vboxguest enable && service vboxservice enable
+pw groupmod vboxusers -m $USER
 fi
 #
 if [ $number = "6" ] ; then
