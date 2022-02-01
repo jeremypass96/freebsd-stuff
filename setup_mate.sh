@@ -140,6 +140,35 @@ echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
 
+echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
+# Set window titlebar font.
+gsettings set org.mate.Marco.general titlebar-font "Ubuntu Bold 11"
+# Set window theme.
+gsettings set org.mate.Marco.general theme vimix-light-doder
+# Turn off middle click on window titlebar.
+gsettings set org.mate.Marco.general action-middle-click-titlebar none
+# Set theme.
+gsettings set org.mate.interface gtk-theme "ClassicLooks Rainyday"
+# Set icon theme.
+gsettings set org.mate.interface icon-theme Flatery-Sky
+# Set fonts.
+gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
+gsettings set org.mate.interface font-name "Roboto 10"
+gsettings set org.mate.caja.desktop font "Roboto 10"
+# Turn off a couple useless menus.
+gsettings set org.mate.interface show-input-method-menu false
+gsettings set org.mate.interface show-unicode-menu false
+# Set mouse cursor.
+gsettings set org.mate.peripherals-mouse cursor-theme macOSBigSur
+# Set up FreeDesktop sound theme.
+sudo pkg install -y freedesktop-sound-theme
+gsettings set org.mate.sound enable-esd true
+gsettings set org.mate.sound event-sounds true
+gsettings set org.mate.sound input-feedback-sounds true
+# Setup Caja preferences.
+gsettings set org.mate.caja.preferences enable-delete true
+gsettings set org.mate.caja.preferences preview-sound never
+
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
