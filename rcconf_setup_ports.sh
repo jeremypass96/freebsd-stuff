@@ -71,6 +71,7 @@ fi
 if [ $number = "5" ] ; then
 cd /usr/ports/emulators/virtualbox-ose-additions-legacy && make install clean
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean ; service vboxguest enable && service vboxservice enable
+pw groupmod vboxusers -m $USER
 fi
 #
 if [ $number = "6" ] ; then
