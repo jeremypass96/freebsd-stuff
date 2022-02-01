@@ -1,4 +1,10 @@
 #!/bin/sh
+
+if [ $(id -u) = 0 ] ; then
+echo "This setup script MUST be run as a normal user! DO NOT run as root! Thanks."
+exit
+fi
+
 gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.desktop.background show-desktop-icons true
 gsettings set org.gnome.desktop.background picture-uri /usr/local/share/backgrounds/gnome/Loveles.jpg
