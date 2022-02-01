@@ -13,5 +13,7 @@ echo "2.) Xfce"
 read answer
 if [ $answer = "1" ] ; then
 ./setup_mate.sh
+fi
 if [ $answer = "2" ] ; then
 ./setup_xfce.sh
+fi
