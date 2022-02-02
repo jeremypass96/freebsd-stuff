@@ -139,6 +139,7 @@ mv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
+rm -rf macOSBigSur/
 
 echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
 # Set window titlebar font.
