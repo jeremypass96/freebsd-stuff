@@ -20,20 +20,20 @@ echo 'QT_QPA_PLATFORMTHEME="qt5ct";   export QT_QPA_PLATFORMTHEME' >> /etc/profi
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
-chown $USER .zshrc
+chown $USER:$USER .zshrc
 cp -v .zshrc /usr/share/skel/dot.zshrc
 
 # Copy over neofetch config.
 mkdir -p /home/$USER/.config/neofetch
 cp -v config/neofetch/config.conf /home/$USER/.config/neofetch/
-chown $USER /home/$USER/.config/neofetch/*
+chown $USER:$USER /home/$USER/.config/neofetch/*
 mkdir -p /usr/share/skel/dot.config/neofetch
 cp -v config/neofetch/config.conf /usr/share/skel/dot.config/neofetch/
 
 # Copy over micro config.
 mkdir -p /home/$USER/.config/micro
 cp -v config/micro/settings.json /home/$USER/.config/micro/
-chown $USER /home/$USER/.config/micro/*
+chown $USER:$USER /home/$USER/.config/micro/*
 mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
 
