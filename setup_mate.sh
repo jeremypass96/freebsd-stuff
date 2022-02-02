@@ -32,7 +32,7 @@ fi
 echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks flatery-icon-themes wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 ./rcconf_setup.sh
 fi
 
@@ -141,6 +141,16 @@ chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
 rm -rf macOSBigSur/
 
+# Install icon theme.
+echo "Installing the Newaita-reborn icon theme..."
+cd /home/$USER/
+git clone https://github.com/cbrnix/Newaita-reborn.git
+cd Newaita-reborn
+cp -rv Newaita-reborn /usr/local/share/icons/
+cp -rv Newaita-reborn-dark /usr/local/share/icons/
+cd && rm -rf /home/$USER/Newaita-reborn
+gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
+
 echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
 # Set window titlebar font.
 gsettings set org.mate.Marco.general titlebar-font "Ubuntu Bold 11"
@@ -151,7 +161,7 @@ gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
 gsettings set org.mate.interface gtk-theme "ClassicLooks Rainyday"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme Flatery-Sky
+gsettings set org.mate.interface icon-theme Newaita-reborn
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
 gsettings set org.mate.interface font-name "Roboto 10"
@@ -196,7 +206,7 @@ show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
 theme-name = ClassicLooks Solaris
-icon-theme-name = Flatery-Black
+icon-theme-name = Newaita-reborn
 EOF
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
