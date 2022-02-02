@@ -170,7 +170,7 @@ MiscShowUnsafePasteDialog=TRUE
 FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
-chown $USER ~/.config/xfce4/terminal/terminalrc
+chown $USER:$USER ~/.config/xfce4/terminal/terminalrc
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF >/usr/local/etc/polkit-1/rules.d/60-shutdown.rules
@@ -203,6 +203,7 @@ mv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
+rm -rf macOSBigSur/
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
@@ -255,7 +256,7 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.x
     </property>
   </property>
 EOF
-chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 #####
 
@@ -318,7 +319,7 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
   </property>
 </channel>
 EOF
-chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 
 #####
 
@@ -415,7 +416,7 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
   </property>
 </channel>
 EOF
-chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 
 #####
 
@@ -465,7 +466,7 @@ cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
   </property>
 </channel>
 EOF
-chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
 #####
 
@@ -569,7 +570,7 @@ pattern=^(file|http|https):\\/\\/(.*)$
 command=exo-open \\0
 regex=true
 EOF
-chown $USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+chown $USER:$USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 #####
 
 cat << EOF >/home/$USER/.config/xfce4/panel/docklike-7.rc
@@ -582,7 +583,7 @@ indicatorStyle=0
 indicatorOrientation=0
 pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//thunar.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;
 EOF
-chown $USER /home/$USER/.config/xfce4/panel/docklike-7.rc
+chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 #####
 
 # Setup LightDM.
