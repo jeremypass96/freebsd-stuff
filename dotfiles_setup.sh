@@ -41,5 +41,5 @@ cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
 chsh -s /usr/local/bin/zsh $USER
 
 # Get "zsh-autosuggestions" and "zsh-syntax-highlighting" Oh My Zsh plugins.
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/local/share/ohmyzsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/local/share/ohmyzsh/custom/plugins/zsh-syntax-highlighting
