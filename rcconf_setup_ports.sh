@@ -12,6 +12,7 @@ sysrc sendmail_outbound_enable="NO"
 sysrc sendmail_submit_enable="NO"
 service ntpdate delete
 sysrc ntpd_enable="YES"
+sysrc ntpd_flags="-g"
 sysrc ntpd_sync_on_start="YES"
 sysrc inetd_enable="NO"
 sysrc icmp_drop_redirect="YES"
