@@ -7,7 +7,7 @@ echo "Please run this bootloader setup script as root! Thanks."
 exit
 fi
 
-echo #################### >> /boot/loader.conf
+echo ######################### >> /boot/loader.conf
 echo 'cuse_load="YES"' >> /boot/loader.conf
 echo 'cc_cubic_load="YES"' >> /boot/loader.conf
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
