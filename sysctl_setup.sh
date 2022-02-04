@@ -7,6 +7,7 @@ echo "Please run this script as root! Thanks."
 exit
 fi
 
+echo ############################ >> /etc/sysctl.conf
 echo kern.elf32.aslr.enable=1 >> /etc/sysctl.conf
 echo kern.elf32.aslr.honor_sbrk=0 >> /etc/sysctl.conf
 echo kern.elf64.aslr.enable=1 >> /etc/sysctl.conf
