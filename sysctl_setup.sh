@@ -46,6 +46,7 @@ echo kern.filedelay=5 >> /etc/sysctl.conf
 echo kern.cam.scsi_delay=2000 >> /etc/sysctl.conf
 echo kern.ipc.shmmax=1000000000 >> /etc/sysctl.conf
 echo kern.ipc.shm_use_phys=1 >> /etc/sysctl.conf
+echo kern.ipc.shm_allow_removed=1 >> /etc/sysctl.conf
 echo kern.ipc.shmall=256000 >> /etc/sysctl.conf
 echo hw.snd.default_auto=0 >> /etc/sysctl.conf
 echo hw.snd.vpc_0db=1 >> /etc/sysctl.conf
