@@ -12,7 +12,7 @@ echo 'cuse_load="YES"' >> /boot/loader.conf
 echo 'cc_cubic_load="YES"' >> /boot/loader.conf
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
 
-echo "Are you using an AMD CPU? (y/n)"
+echo "Do you have an AMD CPU installed in your computer? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
 echo 'amdsbwd_load="YES"' >> /boot/loader.conf
