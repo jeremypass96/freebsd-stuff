@@ -7,11 +7,21 @@ echo "Please run this bootloader setup script as root! Thanks."
 exit
 fi
 
+echo #################### >> /boot/loader.conf
 echo 'cuse_load="YES"' >> /boot/loader.conf
 echo 'cc_cubic_load="YES"' >> /boot/loader.conf
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
+
+echo "Are you using an AMD CPU? (y/n)"
+read answer
+if [ $answer = "y" ] ; then
 echo 'amdsbwd_load="YES"' >> /boot/loader.conf
 echo 'amdtemp_load="YES"' >> /boot/loader.conf
+fi
+if [ $answer = "n" ] ; then
+echo 'coretemp_load="YES"' >> /boot/loader.conf
+fi
+
 echo "loader_delay=0" >> /boot/loader.conf
 echo "autoboot_delay=-1" >> /boot/loader.conf
 echo 'beastie_disable="YES"' >> /boot/loader.conf
