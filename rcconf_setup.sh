@@ -62,7 +62,7 @@ sysrc kld_list+=radeon
 fi
 #
 if [ $number = "3" ] ; then
-pkg install -y nvidia-driver && sysrc kld_list+=nvidia-modeset
+pkg install -y nvidia-driver && sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
 if [ $number = "4" ] ; then
