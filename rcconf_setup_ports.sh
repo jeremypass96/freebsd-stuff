@@ -62,7 +62,7 @@ sysrc kld_list+=radeon
 fi
 #
 if [ $number = "3" ] ; then
-cd /usr/ports/x11/nvidia-driver && make install clean ; sysrc kld_list+=nvidia-modeset ; cd
+cd /usr/ports/x11/nvidia-driver && make install clean ; sysrc kld_list+=nvidia nvidia-modeset ; cd
 fi
 #
 if [ $number = "4" ] ; then
