@@ -1,7 +1,7 @@
 {
     "autosu": true,
     "backup": false,
-    "colorscheme": "dukedark-tc",
+    "colorscheme": "zenburn",
     "keymenu": true,
     "mkparents": true,
     "rmtrailingws": true,
