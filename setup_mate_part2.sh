@@ -1,5 +1,5 @@
 #!/bin/sh
-# This is the second part of the FreeBSD setup script. Do NOT run as root!
+# This is the second part of the FreeBSD MATE setup script. Do NOT run as root!
 
 if [ $(id -u) = 0 ] ; then
 echo "This setup script MUST be run as a normal user! DO NOT run as root! Thanks."
