@@ -10,10 +10,14 @@ echo "Welcome to the FreeBSD post-install setup script. This script simply asks 
 echo "Which desktop environment do you want to use? Please enter it's corresponding number."
 echo "1.) MATE"
 echo "2.) Xfce"
+echo "3.) Katana (fork of KDE 4)"
 read answer
 if [ $answer = "1" ] ; then
 ./setup_mate.sh
 fi
 if [ $answer = "2" ] ; then
 ./setup_xfce.sh
+fi
+if [ $answer = "3" ] ; then
+./setup_katana.sh
 fi
