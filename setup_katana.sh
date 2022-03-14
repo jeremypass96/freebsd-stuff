@@ -30,7 +30,7 @@ fi
 echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-baseapps firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-baseapps sddm firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 
 # Setup system files for desktop use.
 ./rcconf_setup.sh
@@ -45,8 +45,11 @@ cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 
 # Setup automoumt.
-cat << EOF >/usr/local/etc/automount.conf
+cat << EOF > /usr/local/etc/automount.conf
 USERUMOUNT=YES
 REMOVEDIRS=YES
 ATIME=NO
 EOF
+
+# Enable SDDM on boot.
+sysrc sddm_enable="YES"
