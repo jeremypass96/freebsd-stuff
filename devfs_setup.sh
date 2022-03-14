@@ -1,6 +1,6 @@
 #!/bin/sh
 # Sets up a devfs.rules/.conf file on FreeBSD for FreeBSD desktop use.
-cat << EOF >/etc/devfs.rules
+cat << EOF > /etc/devfs.rules
 [devfsrules_common=7]
 add path 'ad*' mode 666
 add path 'da*' mode 666
@@ -23,12 +23,10 @@ sysrc devfs_system_ruleset="devfsrules_common"
 #
 sed -i '' s/"#link	cd0	cdrom/link	cd0	cdrom"/g /etc/devfs.conf
 sed -i '' s/"#link	cd0	dvd/link	cd0	dvd"/g /etc/devfs.conf
-echo "perm /dev/acd0 0666" >> /etc/devfs.conf
-echo "perm /dev/acd1 0666" >> /etc/devfs.conf
-echo "perm /dev/cd0 0666" >> /etc/devfs.conf
-echo "perm /dev/cd1 0666" >> /etc/devfs.conf
-echo "perm /dev/pass0 0666" >> /etc/devfs.conf
-echo "perm /dev/xpt0 0666" >> /etc/devfs.conf
+echo "perm /dev/acd* 0666" >> /etc/devfs.conf
+echo "perm /dev/cd* 0666" >> /etc/devfs.conf
+echo "perm /dev/pass* 0666" >> /etc/devfs.conf
+echo "perm /dev/xpt* 0666" >> /etc/devfs.conf
 echo "perm /dev/da* 0666" >> /etc/devfs.conf
-echo "perm /dev/uscanner0 0666" >> /etc/devfs.conf
-echo "perm /dev/video0 0666" >> /etc/devfs.conf
+echo "perm /dev/uscanner* 0666" >> /etc/devfs.conf
+echo "perm /dev/video* 0666" >> /etc/devfs.conf
