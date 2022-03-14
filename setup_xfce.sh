@@ -124,7 +124,7 @@ cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 
 # Setup automoumt.
-cat << EOF >/usr/local/etc/automount.conf
+cat << EOF > /usr/local/etc/automount.conf
 USERUMOUNT=YES
 REMOVEDIRS=YES
 ATIME=NO
@@ -134,7 +134,7 @@ EOF
 mkdir -p ~/.config/xfce4/terminal/colorschemes
 cd 
 fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Andromeda.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Andromeda.theme
-cat << EOF >~/.config/xfce4/terminal/terminalrc
+cat << EOF > ~/.config/xfce4/terminal/terminalrc
 [Configuration]
 ColorForeground=#e5e5e5
 ColorBackground=#262a33
@@ -173,7 +173,7 @@ EOF
 chown $USER:$USER ~/.config/xfce4/terminal/terminalrc
 
 # Setup shutdown/sleep rules for Xfce.
-cat << EOF >/usr/local/etc/polkit-1/rules.d/60-shutdown.rules
+cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules
 polkit.addRule(function (action, subject) {
   if ((action.id == "org.freedesktop.consolekit.system.restart" ||
       action.id == "org.freedesktop.consolekit.system.stop")
@@ -183,7 +183,7 @@ polkit.addRule(function (action, subject) {
 });
 EOF
 #####
-cat << EOF >/usr/local/etc/polkit-1/rules.d/70-sleep.rules
+cat << EOF > /usr/local/etc/polkit-1/rules.d/70-sleep.rules
 polkit.addRule(function (action, subject) {
   if (action.id == "org.freedesktop.consolekit.system.suspend"
       && subject.isInGroup("operator")) {
@@ -210,7 +210,7 @@ xdg-user-dirs-update
 
 # Setup Xfce preferences.
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/
-cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfce4-desktop" version="1.0">
@@ -260,7 +260,7 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-des
 
 #####
 
-cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfce4-panel" version="1.0">
@@ -323,7 +323,7 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-pan
 
 #####
 
-cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfwm4" version="1.0">
@@ -420,7 +420,7 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 
 #####
 
-cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xsettings" version="1.0">
@@ -470,7 +470,7 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings
 
 #####
 
-cat << EOF >/home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="thunar" version="1.0">
@@ -493,7 +493,7 @@ chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 #####
 
 mkdir -p /home/$USER/.config/xfce4/panel/
-cat << EOF >/home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+cat << EOF > /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 favorites=firefox.desktop,thunar.desktop,org.xfce.mousepad.desktop,xfburn.desktop,xfce4-terminal.desktop
 recent=
 button-icon=org.xfce.panel.whiskermenu
@@ -573,7 +573,7 @@ EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 #####
 
-cat << EOF >/home/$USER/.config/xfce4/panel/docklike-7.rc
+cat << EOF > /home/$USER/.config/xfce4/panel/docklike-7.rc
 [user]
 noWindowsListIfSingle=false
 onlyDisplayVisible=true
@@ -599,7 +599,7 @@ fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o
 chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
 
 # Setup slick greeter.
-cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
+cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
 background = /usr/local/etc/lightdm/wallpaper/0062.jpg
 draw-user-backgrounds = true
