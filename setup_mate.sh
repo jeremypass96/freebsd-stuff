@@ -124,7 +124,7 @@ cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 
 # Setup automoumt.
-cat << EOF >/usr/local/etc/automount.conf
+cat << EOF > /usr/local/etc/automount.conf
 USERUMOUNT=YES
 REMOVEDIRS=YES
 ATIME=NO
@@ -196,7 +196,7 @@ fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o
 chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
 
 # Setup slick greeter.
-cat << EOF >/usr/local/etc/lightdm/slick-greeter.conf
+cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
 background = /usr/local/etc/lightdm/wallpaper/0062.jpg
 draw-user-backgrounds = true
