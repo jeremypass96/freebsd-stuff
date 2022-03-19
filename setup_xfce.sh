@@ -33,6 +33,8 @@ echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+
+# Setup rc.conf file.
 ./rcconf_setup.sh
 fi
 
@@ -171,6 +173,7 @@ FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
 chown $USER:$USER ~/.config/xfce4/terminal/terminalrc
+#####
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules
@@ -257,7 +260,6 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.
   </property>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
@@ -320,7 +322,6 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
@@ -417,7 +418,6 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
@@ -467,7 +467,6 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
@@ -611,17 +610,3 @@ clock-format = %I:%M %p
 theme-name = Greybird
 icon-theme-name = elementary-xfce
 EOF
-
-# Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
-sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
-sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
-sed -i '' s/ttyu2/#ttyu2/g /etc/ttys
-sed -i '' s/ttyu3/#ttyu3/g /etc/ttys
-sed -i '' s/dcons/#dcons/g /etc/ttys
-sed -i 'ttyv*' s/secure/insecure/g /etc/ttys
-
-# Update FreeBSD base.
-freebsd-update fetch install
-
-# Reboot
-shutdown -r now
