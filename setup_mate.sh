@@ -23,6 +23,8 @@ echo "Do you have a printer? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
 pkg install cups papersize-default-letter hplip
+sysrc cupsd_enable="YES"
+sysrc saned_enable="YES"
 fi
 if [ $answer = "n" ] ; then
 continue
