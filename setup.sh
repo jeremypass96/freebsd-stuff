@@ -6,6 +6,8 @@ echo "Please run this setup script as root via 'su'! Thanks."
 exit
 fi
 
+clear
+
 echo "Welcome to the FreeBSD post-install setup script. This script simply asks you what desktop environment you want to use. After you select your desktop environment, this script will launch your specified desktop's setup script."
 echo "Which desktop environment do you want to use? Please enter it's corresponding number."
 echo "1.) MATE"
