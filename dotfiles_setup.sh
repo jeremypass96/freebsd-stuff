@@ -12,7 +12,7 @@ cd Dotfiles/
 
 # Copy over .profile & fix system profile file.
 cp -v .profile /home/$USER
-chown $USER .profile
+chown $USER:$USER .profile
 cp -v .profile /usr/share/skel/dot.profile
 echo "EDITOR=micro;    export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
