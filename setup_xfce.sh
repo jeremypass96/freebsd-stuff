@@ -16,8 +16,8 @@ if [ $answer = "pkg" ] ; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
-echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update
+echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+pkg update -f
 
 echo "Do you have a printer? (y/n)"
 read answer
