@@ -13,9 +13,9 @@ echo "Welcome to the FreeBSD Katana setup script. This script will setup Xorg, t
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
-echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 echo 'Katana: { url: "pkg+https://raw.githubusercontent.com/fluxer/katana-freebsd/master", mirror_type: "srv", enabled: yes }' > /usr/local/etc/pkg/repos/Katana.conf
-pkg update
+pkg update -f
 
 echo "Do you have a printer? (y/n)"
 read answer
