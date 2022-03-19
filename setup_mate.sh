@@ -93,7 +93,6 @@ cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11-themes/classiclooks && make install clean
-cd /usr/ports/x11-themes/flatery-icon-themes && make install clean
 cd /usr/ports/emulators/i386-wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
@@ -148,8 +147,8 @@ echo "Installing the Newaita-reborn icon theme..."
 cd /home/$USER/
 git clone https://github.com/cbrnix/Newaita-reborn.git
 cd Newaita-reborn
-cp -rv Newaita-reborn /usr/local/share/icons/
-cp -rv Newaita-reborn-dark /usr/local/share/icons/
+cp -r Newaita-reborn /usr/local/share/icons/
+cp -r Newaita-reborn-dark /usr/local/share/icons/
 cd && rm -rf /home/$USER/Newaita-reborn
 gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
 
@@ -161,7 +160,7 @@ gsettings set org.mate.Marco.general theme vimix-light-doder
 # Turn off middle click on window titlebar.
 gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
-gsettings set org.mate.interface gtk-theme "ClassicLooks Rainyday"
+gsettings set org.mate.interface gtk-theme "ClassicLooks Solaris"
 # Set icon theme.
 gsettings set org.mate.interface icon-theme Newaita-reborn
 # Set fonts.
@@ -174,7 +173,7 @@ gsettings set org.mate.interface show-unicode-menu false
 # Set mouse cursor.
 gsettings set org.mate.peripherals-mouse cursor-theme macOSBigSur
 # Set up FreeDesktop sound theme.
-sudo pkg install -y freedesktop-sound-theme
+pkg install -y freedesktop-sound-theme
 gsettings set org.mate.sound enable-esd true
 gsettings set org.mate.sound event-sounds true
 gsettings set org.mate.sound input-feedback-sounds true
@@ -207,6 +206,6 @@ show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = ClassicLooks Solaris
+theme-name = ClassicLooks Rainyday
 icon-theme-name = Newaita-reborn
 EOF
