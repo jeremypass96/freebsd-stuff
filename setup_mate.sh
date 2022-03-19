@@ -35,6 +35,9 @@ echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 fi
 
+# Setup rc.conf file.
+./rcconf_setup.sh
+
 if [ $answer = "ports" ] ; then
 
 # Copying over make.conf file.
@@ -112,7 +115,6 @@ cd /usr/ports/sysutils/duf && make install clean
 fi
 
 # Setup system files for desktop use.
-./rcconf_setup.sh
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
