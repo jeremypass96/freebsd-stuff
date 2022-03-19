@@ -35,5 +35,5 @@ sed -i 'ttyv*' s/secure/insecure/g /etc/ttys
 # Update FreeBSD base.
 freebsd-update fetch install
 
-# Reboot
-shutdown -r now
+# Reboot in 5 seconds.
+shutdown -r 5s
