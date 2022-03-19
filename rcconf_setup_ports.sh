@@ -7,10 +7,10 @@ echo "Please run this script as root! Thanks."
 exit
 fi
 
+service ntpdate delete
 sysrc sendmail_msp_queueenable="NO"
 sysrc sendmail_outbound_enable="NO"
 sysrc sendmail_submit_enable="NO"
-service ntpdate delete
 sysrc ntpd_enable="YES"
 sysrc ntpd_flags="-g"
 sysrc ntpd_sync_on_start="YES"
@@ -33,8 +33,6 @@ sysrc autoboot="YES"
 sysrc rc_fast="YES"
 sysrc dbus_enable="YES"
 sysrc rc_startmsgs="NO"
-sysrc cupsd_enable="YES"
-sysrc saned_enable="YES"
 sysrc blanktime="1200"
 sysrc savecore_enable="NO"
 sysrc virecover_enable="NO"
