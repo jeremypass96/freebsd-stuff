@@ -38,6 +38,11 @@ pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-bas
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
+
+# Setup MATE themes. Will be ran as a normal user.
+su - $USER
+./freebsd_mate_theme_install.sh
+exit
 fi
 
 if [ $answer = "ports" ] ; then
@@ -113,6 +118,11 @@ cd /usr/ports/sysutils/duf && make install clean
 
 # Setup rc.conf file.
 ./rcconf_setup_ports.sh
+
+# Setup MATE themes. Will be ran as a normal user.
+su - $USER
+./freebsd_mate_theme_install_ports.sh
+exit
 fi
 
 # Setup system files for desktop use.
