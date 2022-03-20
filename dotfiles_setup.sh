@@ -12,7 +12,7 @@ cd Dotfiles/
 
 # Copy over .profile & fix system profile file.
 cp -v .profile /home/$USER
-chown $USER:$USER .profile
+chown $USER:$USER /home/$USER/.profile
 cp -v .profile /usr/share/skel/dot.profile
 echo "EDITOR=micro;    export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
@@ -21,7 +21,7 @@ echo 'QT_QPA_PLATFORMTHEME="qt5ct";   export QT_QPA_PLATFORMTHEME' >> /etc/profi
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
-chown $USER:$USER .zshrc
+chown $USER:$USER /home/$USER/.zshrc
 cp -v .zshrc /usr/share/skel/dot.zshrc
 
 # Copy over neofetch config.
