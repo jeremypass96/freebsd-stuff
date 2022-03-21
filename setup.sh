@@ -53,6 +53,11 @@ REMOVEDIRS=YES
 ATIME=NO
 EOF
 
+# Install the Poppins font.
+fetch https://fonts.google.com/download?family=Poppins -o Poppins.zip
+unzip Poppins.zip -d Poppins
+mv Poppins /usr/local/share/fonts/
+
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
