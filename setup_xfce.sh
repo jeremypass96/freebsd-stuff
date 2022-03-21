@@ -36,7 +36,7 @@ pkg update -y
 pkg upgrade -y
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 pkg clean -y
 
 # Setup rc.conf file.
@@ -81,6 +81,7 @@ cd /usr/ports/x11-themes/gtk-arc-themes && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/x11-themes/gtk-xfce-engine && make install clean
 cd /usr/ports/x11/xfce4-docklike-plugin && make install clean
+cd /usr/ports/audio/xfce4-pulseaudio-plugin && make install clean
 cd /usr/ports/www/firefox && make install clean
 cd /usr/ports/audio/audacity && make install clean
 cd /usr/ports/multimedia/handbrake && make install clean
@@ -307,6 +308,15 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
     </property>
     <property name="plugin-7" type="string" value="docklike"/>
     <property name="plugin-8" type="string" value="whiskermenu"/>
+    <property name="plugin-2" type="string" value="xfce4-clipman-plugin"/>
+    <property name="clipman" type="empty">
+      <property name="settings" type="empty">
+        <property name="enable-actions" type="bool" value="true"/>
+      </property>
+    </property>
+    <property name="plugin-13" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+    </property>
   </property>
 </channel>
 EOF
@@ -477,7 +487,43 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
   <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
 </channel>
 EOF
-chown $USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+#####
+
+cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-session" version="1.0">
+  <property name="general" type="empty">
+    <property name="FailsafeSessionName" type="empty"/>
+    <property name="LockCommand" type="empty"/>
+    <property name="SessionName" type="string" value="Default"/>
+    <property name="SaveOnExit" type="bool" value="false"/>
+  </property>
+  <property name="sessions" type="empty">
+    <property name="Failsafe" type="empty">
+      <property name="IsFailsafe" type="empty"/>
+      <property name="Count" type="empty"/>
+      <property name="Client0_Command" type="empty"/>
+      <property name="Client0_Priority" type="empty"/>
+      <property name="Client0_PerScreen" type="empty"/>
+      <property name="Client1_Command" type="empty"/>
+      <property name="Client1_Priority" type="empty"/>
+      <property name="Client1_PerScreen" type="empty"/>
+      <property name="Client2_Command" type="empty"/>
+      <property name="Client2_Priority" type="empty"/>
+      <property name="Client2_PerScreen" type="empty"/>
+      <property name="Client3_Command" type="empty"/>
+      <property name="Client3_Priority" type="empty"/>
+      <property name="Client3_PerScreen" type="empty"/>
+      <property name="Client4_Command" type="empty"/>
+      <property name="Client4_Priority" type="empty"/>
+      <property name="Client4_PerScreen" type="empty"/>
+    </property>
+  </property>
+</channel>
+EOF
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
 #####
 
 mkdir -p /home/$USER/.config/xfce4/panel/
@@ -569,7 +615,7 @@ showPreviews=true
 showWindowCount=false
 indicatorStyle=0
 indicatorOrientation=0
-pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//thunar.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;
+pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 #####
