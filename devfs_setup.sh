@@ -21,8 +21,8 @@ add path 'video*' mode 0660
 EOF
 sysrc devfs_system_ruleset="devfsrules_common"
 #
-sed -i '' s/"#link	cd0	cdrom/link	cd0	cdrom"/g /etc/devfs.conf
-sed -i '' s/"#link	cd0	dvd/link	cd0	dvd"/g /etc/devfs.conf
+sed -i '' s/"#link cd0 cdrom/link	cd0	cdrom"/g /etc/devfs.conf
+sed -i '' s/"#link cd0 dvd/link	cd0	dvd"/g /etc/devfs.conf
 echo "perm /dev/acd* 0660" >> /etc/devfs.conf
 echo "perm /dev/cd* 0660" >> /etc/devfs.conf
 echo "perm /dev/pass* 0660" >> /etc/devfs.conf
