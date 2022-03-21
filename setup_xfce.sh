@@ -9,7 +9,8 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD Xfce setup script. This script will setup Xorg, Xfce, some useful software for you, along with system files being tweaked for desktop use."
+echo "Welcome to the FreeBSD Xfce setup script. This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+
 echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
 read answer
 if [ $answer = "pkg" ] ; then
@@ -25,17 +26,17 @@ if [ $answer = "n" ] ; then
 continue
 fi
 
-# Add /proc filesystem to /etc/fstab.
-echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
-
-# Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary gtk-arc-themes xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+# Install Arc GTK themes (not in "latest" repo).
+pkg install -y gtk-arc-themes
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update -y
 pkg upgrade -y
+
+# Install packages.
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
@@ -118,23 +119,6 @@ cd /usr/ports/sysutils/duf && make install clean
 ./rcconf_setup_ports.sh
 fi
 
-# Setup system files for desktop use.
-./sysctl_setup.sh
-./bootloader_setup.sh
-./devfs_setup.sh
-./dotfiles_setup.sh
-
-# Configure S.M.A.R.T. disk monitoring daemon.
-cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
-echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
-
-# Setup automoumt.
-cat << EOF > /usr/local/etc/automount.conf
-USERUMOUNT=YES
-REMOVEDIRS=YES
-ATIME=NO
-EOF
-
 # Setup Xfce4 Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 chown $USER:$USER /home/$USER/.config/xfce4/terminal
@@ -212,9 +196,6 @@ echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
 rm -rf macOSBigSur/
-
-# Setup user's home directory with common folders.
-xdg-user-dirs-update
 
 # Setup Xfce preferences.
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml

@@ -9,7 +9,11 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD MATE setup script. This script will setup Xorg, MATE, some useful software for you, along with system files being tweaked for desktop use."
+echo "Welcome to the FreeBSD MATE setup script. This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+
+# Add /proc filesystem to /etc/fstab.
+echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
+
 echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
 read answer
 if [ $answer = "pkg" ] ; then
@@ -30,14 +34,32 @@ if [ $answer = "n" ] ; then
 continue
 fi
 
-# Add /proc filesystem to /etc/fstab.
-echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
-
 # Install packages.
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
+
+# Install cursor theme.
+echo "Installing the macOS Big Sur cursor theme..."
+cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
+tar -xvf macOSBigSur.tar.gz
+echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
+mv macOSBigSur /usr/local/share/icons/
+echo "Setting proper file permissions..."
+chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
+rm -rf macOSBigSur.tar.gz
+rm -rf macOSBigSur/
+
+# Install icon theme.
+echo "Installing the Newaita-reborn icon theme..."
+cd /home/$USER/
+git clone https://github.com/cbrnix/Newaita-reborn.git
+cd Newaita-reborn
+cp -r Newaita-reborn /usr/local/share/icons/
+cp -r Newaita-reborn-dark /usr/local/share/icons/
+cd && rm -rf /home/$USER/Newaita-reborn
+gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
 
 # Setup MATE themes. Will be ran as a normal user.
 su - $USER
@@ -119,30 +141,6 @@ cd /usr/ports/sysutils/duf && make install clean
 # Setup rc.conf file.
 ./rcconf_setup_ports.sh
 
-# Setup MATE themes. Will be ran as a normal user.
-su - $USER
-./freebsd_mate_theme_install_ports.sh
-exit
-fi
-
-# Setup system files for desktop use.
-./sysctl_setup.sh
-./bootloader_setup.sh
-./devfs_setup.sh
-./freebsd_symlinks.sh
-./dotfiles_setup.sh
-
-# Configure S.M.A.R.T. disk monitoring daemon.
-cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
-echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
-
-# Setup automoumt.
-cat << EOF > /usr/local/etc/automount.conf
-USERUMOUNT=YES
-REMOVEDIRS=YES
-ATIME=NO
-EOF
-
 # Install cursor theme.
 echo "Installing the macOS Big Sur cursor theme..."
 cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
@@ -163,6 +161,12 @@ cp -r Newaita-reborn /usr/local/share/icons/
 cp -r Newaita-reborn-dark /usr/local/share/icons/
 cd && rm -rf /home/$USER/Newaita-reborn
 gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
+
+# Setup MATE theme. Will be ran as a normal user.
+su - $USER
+./freebsd_mate_theme_install_ports.sh
+exit
+fi
 
 echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
 # Set window titlebar font.
@@ -192,9 +196,6 @@ gsettings set org.mate.sound input-feedback-sounds true
 # Setup Caja preferences.
 gsettings set org.mate.caja.preferences enable-delete true
 gsettings set org.mate.caja.preferences preview-sound never
-
-# Setup user's home directory with common folders.
-xdg-user-dirs-update
 
 # Setup LightDM.
 sysrc lightdm_enable="YES"

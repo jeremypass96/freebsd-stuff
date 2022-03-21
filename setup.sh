@@ -32,6 +32,30 @@ sed -i '' s/ttyu3/#ttyu3/g /etc/ttys
 sed -i '' s/dcons/#dcons/g /etc/ttys
 sed -i 'ttyv*' s/secure/insecure/g /etc/ttys
 
+# Add /proc filesystem to /etc/fstab.
+echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
+
+# Setup system files for desktop use.
+./sysctl_setup.sh
+./bootloader_setup.sh
+./devfs_setup.sh
+./freebsd_symlinks.sh
+./dotfiles_setup.sh
+
+# Configure S.M.A.R.T. disk monitoring daemon.
+cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
+echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
+
+# Setup automoumt.
+cat << EOF > /usr/local/etc/automount.conf
+USERUMOUNT=YES
+REMOVEDIRS=YES
+ATIME=NO
+EOF
+
+# Setup user's home directory with common folders.
+xdg-user-dirs-update
+
 # Update FreeBSD base.
 freebsd-update fetch install
 
