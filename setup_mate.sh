@@ -21,7 +21,7 @@ if [ $answer = "pkg" ] ; then
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update -f
+pkg update -y
 
 echo "Do you plan to use a printer? (y/n)"
 read answer
@@ -36,6 +36,7 @@ fi
 
 # Install packages.
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg clean -y
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
