@@ -14,11 +14,6 @@ echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/p
 read answer
 if [ $answer = "pkg" ] ; then
 
-# Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update -f
-
 echo "Do you plan to use a printer? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
@@ -34,7 +29,13 @@ fi
 echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary gtk-arc-themes xarchiver gtk-xfce-engine xfce4-docklike-plugin firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+
+# Update repo to use latest packages.
+mkdir -p /usr/local/etc/pkg/repos
+echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+pkg update -y
+pkg upgrade -y
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
@@ -74,11 +75,11 @@ cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11-wm/xfce4 && make install clean
 cd /usr/ports/x11/xfce4-goodies && make install clean
 cd /usr/ports/x11-themes/xfce-icons-elementary && make install clean
+cd /usr/ports/x11-themes/gtk-arc-themes && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/x11-themes/gtk-xfce-engine && make install clean
 cd /usr/ports/x11/xfce4-docklike-plugin && make install clean
 cd /usr/ports/www/firefox && make install clean
-cd /usr/ports/mail/thunderbird && make install clean
 cd /usr/ports/audio/audacity && make install clean
 cd /usr/ports/multimedia/handbrake && make install clean
 cd /usr/ports/sysutils/isomaster && make install clean
@@ -135,10 +136,12 @@ ATIME=NO
 EOF
 
 # Setup Xfce4 Terminal colors.
-mkdir -p ~/.config/xfce4/terminal/colorschemes
-cd 
+mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
+chown $USER:$USER /home/$USER/.config/xfce4/terminal
+chown $USER:$USER /home/$USER/.config/xfce4/terminal/colorschemes
+cd
 fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Andromeda.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Andromeda.theme
-cat << EOF > ~/.config/xfce4/terminal/terminalrc
+cat << EOF > /home/$USER/.config/xfce4/terminal/terminalrc
 [Configuration]
 ColorForeground=#e5e5e5
 ColorBackground=#262a33
@@ -214,7 +217,9 @@ rm -rf macOSBigSur/
 xdg-user-dirs-update
 
 # Setup Xfce preferences.
-mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/
+mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -592,8 +597,8 @@ sysrc lightdm_enable="YES"
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#greeter-setup-script=^/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user=^/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
 mkdir /usr/local/etc/lightdm/wallpaper
 fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
