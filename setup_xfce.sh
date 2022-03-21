@@ -36,7 +36,7 @@ pkg update -y
 pkg upgrade -y
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 pkg clean -y
 
 # Setup rc.conf file.
@@ -82,6 +82,7 @@ cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/x11-themes/gtk-xfce-engine && make install clean
 cd /usr/ports/x11/xfce4-docklike-plugin && make install clean
 cd /usr/ports/audio/xfce4-pulseaudio-plugin && make install clean
+cd /usr/ports/x11-fonts/font-manager && make install clean
 cd /usr/ports/www/firefox && make install clean
 cd /usr/ports/audio/audacity && make install clean
 cd /usr/ports/multimedia/handbrake && make install clean
