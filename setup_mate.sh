@@ -26,16 +26,15 @@ pkg update -y
 echo "Do you plan to use a printer? (y/n)"
 read answer
 if [ $answer = "y" ] ; then
-pkg install cups papersize-default-letter hplip
+pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
-sysrc saned_enable="YES"
 fi
 if [ $answer = "n" ] ; then
 continue
 fi
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole firefox thunderbird audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate xfburn parole qt5ct firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 pkg clean -y
 
 # Setup rc.conf file.
@@ -102,8 +101,8 @@ cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11/mate && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/multimedia/parole && make install clean
+cd /usr/ports/misc/qt5ct && make install clean
 cd /usr/ports/www/firefox && make install clean
-cd /usr/ports/mail/thunderbird && make install clean
 cd /usr/ports/audio/audacity && make install clean
 cd /usr/ports/multimedia/handbrake && make install clean
 cd /usr/ports/sysutils/isomaster && make install clean
@@ -130,13 +129,13 @@ cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
 cd /usr/ports/converters/unix2dos && make install clean
 cd /usr/ports/sysutils/smartmontools && make install clean
-cd /usr/ports/x11-fonts/ubuntu-font && sudo make install clean
-cd /usr/ports/x11-fonts/office-code-pro && sudo make install clean
-cd /usr/ports/x11-fonts/webfonts && sudo make install clean
-cd /usr/ports/x11-fonts/droid-fonts-ttf && sudo make install clean
-cd /usr/ports/x11-fonts/materialdesign-ttf && sudo make install clean
-cd /usr/ports/x11-fonts/roboto-fonts-ttf && sudo make install clean
-cd /usr/ports/devel/xdg-user-dirs && sudo make install clean
+cd /usr/ports/x11-fonts/ubuntu-font && make install clean
+cd /usr/ports/x11-fonts/office-code-pro && make install clean
+cd /usr/ports/x11-fonts/webfonts && make install clean
+cd /usr/ports/x11-fonts/droid-fonts-ttf && make install clean
+cd /usr/ports/x11-fonts/materialdesign-ttf && make install clean
+cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
+cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 
 # Setup rc.conf file.
