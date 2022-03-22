@@ -116,6 +116,7 @@ cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 
 # Setup rc.conf file.
+cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
 fi
 
@@ -123,7 +124,6 @@ fi
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 chown $USER:$USER /home/$USER/.config/xfce4/terminal
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/colorschemes
-cd
 fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Andromeda.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Andromeda.theme
 cat << EOF > /home/$USER/.config/xfce4/terminal/terminalrc
 [Configuration]
@@ -187,15 +187,9 @@ EOF
 pw group mod operator -m $USER
 
 # Install cursor theme.
-echo "Installing the macOS Big Sur cursor theme..."
-cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
-tar -xvf macOSBigSur.tar.gz
-echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
-mv macOSBigSur /usr/local/share/icons/
-echo "Setting proper file permissions..."
-chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
-rm -rf macOSBigSur.tar.gz
-rm -rf macOSBigSur/
+echo "Installing the "Volantes Light Cursors" cursor theme..."
+tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+rm -rf volantes_light_cursors.tar.gz
 
 # Setup Xfce preferences.
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
@@ -461,8 +455,8 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
     <property name="MenuImages" type="empty"/>
     <property name="ButtonImages" type="empty"/>
     <property name="MenuBarAccel" type="empty"/>
-    <property name="CursorThemeName" type="string" value="macOSBigSur"/>
-    <property name="CursorThemeSize" type="empty"/>
+    <property name="CursorThemeName" type="string" value="volantes_light_cursors"/>
+    <property name="CursorThemeSize" type="32"/>
     <property name="DecorationLayout" type="empty"/>
     <property name="DialogsUseHeader" type="empty"/>
     <property name="TitlebarMiddleClick" type="empty"/>
