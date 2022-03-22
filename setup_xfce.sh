@@ -35,7 +35,7 @@ pkg update -y
 pkg upgrade -y
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager Kvantum-qt5 qt5ct firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes la-capitaine-icon-theme xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 pkg clean -y
 
 # Setup rc.conf file.
@@ -75,15 +75,15 @@ cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11-wm/xfce4 && make install clean
 cd /usr/ports/x11/xfce4-goodies && make install clean
-cd /usr/ports/x11-themes/xfce-icons-elementary && make install clean
-cd /usr/ports/x11-themes/gtk-arc-themes && make install clean
+cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
+cd /usr/ports/x11-themes/la-capitaine-icon-theme && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/x11-themes/gtk-xfce-engine && make install clean
 cd /usr/ports/x11/xfce4-docklike-plugin && make install clean
 cd /usr/ports/audio/xfce4-pulseaudio-plugin && make install clean
 cd /usr/ports/x11-fonts/font-manager && make install clean
 cd /usr/ports/misc/qt5ct && make install clean
-cd /usr/ports/x11-themes/Kvantum && make install clean
+cd /usr/ports/x11-themes/qt5-style-plugins && make install clean
 cd /usr/ports/www/firefox && make install clean
 cd /usr/ports/audio/audacity && make install clean
 cd /usr/ports/multimedia/handbrake && make install clean
@@ -103,7 +103,7 @@ cd /usr/ports/emulators/virtualbox-ose && make install clean
 cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
-cd /usr/ports/emulators/i386-wine && make install clean
+cd /usr/ports/emulators/wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
@@ -261,12 +261,12 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
   <property name="configver" type="int" value="2"/>
   <property name="panels" type="array">
     <value type="int" value="1"/>
-    <property name="dark-mode" type="bool" value="false"/>
+    <property name="dark-mode" type="bool" value="true"/>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=8;x=960;y=963"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="icon-size" type="uint" value="16"/>
+      <property name="icon-size" type="uint" value="0"/>
       <property name="size" type="uint" value="40"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="8"/>
@@ -276,11 +276,14 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
         <value type="int" value="5"/>
         <value type="int" value="6"/>
         <value type="int" value="9"/>
+        <value type="int" value="2"/>
         <value type="int" value="10"/>
-        <value type="int" value="11"/>
+        <value type="int" value="13"/>
         <value type="int" value="12"/>
+        <value type="int" value="11"/>
       </property>
       <property name="mode" type="uint" value="0"/>
+      <property name="disable-struts" type="bool" value="false"/>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -295,7 +298,13 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
-        <value type="string" value="thunar"/>
+      </property>
+      <property name="known-items" type="array">
+      </property>
+      <property name="hidden-items" type="array">
+      </property>
+      <property name="icon-size" type="int" value="0"/>
+      <property name="hidden-legacy-items" type="array">
       </property>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>
@@ -387,7 +396,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     <property name="snap_to_windows" type="bool" value="false"/>
     <property name="snap_width" type="int" value="10"/>
     <property name="vblank_mode" type="string" value="auto"/>
-    <property name="theme" type="string" value="Arc-Darker"/>
+    <property name="theme" type="string" value="Skeuos-Blue-Light-XFWM"/>
     <property name="tile_on_move" type="bool" value="true"/>
     <property name="title_alignment" type="string" value="center"/>
     <property name="title_font" type="string" value="Poppins Bold 11"/>
@@ -426,8 +435,8 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="string" value="Arc-Darker"/>
-    <property name="IconThemeName" type="string" value="elementary-xfce"/>
+    <property name="ThemeName" type="string" value="Skeuos-Blue-Light"/>
+    <property name="IconThemeName" type="string" value="La-Capitaine"/>
     <property name="DoubleClickTime" type="empty"/>
     <property name="DoubleClickDistance" type="empty"/>
     <property name="DndDragThreshold" type="empty"/>
