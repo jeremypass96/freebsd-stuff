@@ -257,7 +257,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
   <property name="configver" type="int" value="2"/>
   <property name="panels" type="array">
     <value type="int" value="1"/>
-    <property name="dark-mode" type="bool" value="true"/>
+    <property name="dark-mode" type="bool" value="false"/>
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=8;x=960;y=963"/>
       <property name="length" type="uint" value="100"/>
@@ -392,7 +392,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
     <property name="snap_to_windows" type="bool" value="false"/>
     <property name="snap_width" type="int" value="10"/>
     <property name="vblank_mode" type="string" value="auto"/>
-    <property name="theme" type="string" value="Skeuos-Blue-Light-XFWM"/>
+    <property name="theme" type="string" value="Skeuos-Blue-Dark-XFWM"/>
     <property name="tile_on_move" type="bool" value="true"/>
     <property name="title_alignment" type="string" value="center"/>
     <property name="title_font" type="string" value="Poppins Bold 11"/>
@@ -431,8 +431,8 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="string" value="Skeuos-Blue-Light"/>
-    <property name="IconThemeName" type="string" value="elementary-xfce"/>
+    <property name="ThemeName" type="string" value="Skeuos-Blue-Dark"/>
+    <property name="IconThemeName" type="string" value="elementary-xfce-dark"/>
     <property name="DoubleClickTime" type="empty"/>
     <property name="DoubleClickDistance" type="empty"/>
     <property name="DndDragThreshold" type="empty"/>
@@ -651,23 +651,23 @@ sysrc lightdm_enable="YES"
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#greeter-setup-script=/greeter-setup-script=/usr/local/bin/numlockx on/g /usr/local/etc/lightdm/lightdm.conf
+sed -i '' s/"#greeter-setup-script=/greeter-setup-script=numlockx on"/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
 mkdir /usr/local/etc/lightdm/wallpaper
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
-chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
+fetch https://raw.githubusercontent.com/broozar/installDesktopFreeBSD/DarkMate13.0/files/wallpaper/centerFlat_grey-4k.png -o /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
+chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 
 # Setup slick greeter.
 cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
-background = /usr/local/etc/lightdm/wallpaper/0062.jpg
+background = /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 draw-user-backgrounds = true
 draw-grid = false
 show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = Greybird
-icon-theme-name = elementary-xfce
+theme-name = Skeuos-Red-Dark
+icon-theme-name = elementary-xfce-dark
 EOF
