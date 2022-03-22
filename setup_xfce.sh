@@ -654,5 +654,5 @@ show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
 theme-name = Greybird
-icon-theme-name = elementary-xfce
+icon-theme-name = La-Capitaine
 EOF
