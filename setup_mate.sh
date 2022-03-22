@@ -158,8 +158,8 @@ echo "Installing the Newaita-reborn icon theme..."
 cd /home/$USER/
 git clone https://github.com/cbrnix/Newaita-reborn.git
 cd Newaita-reborn
-cp -r Newaita-reborn /usr/local/share/icons/
-cp -r Newaita-reborn-dark /usr/local/share/icons/
+cp -R Newaita-reborn /usr/local/share/icons/
+cp -R Newaita-reborn-dark /usr/local/share/icons/
 cd && rm -rf /home/$USER/Newaita-reborn
 gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
 
