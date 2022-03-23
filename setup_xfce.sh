@@ -284,6 +284,9 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
       <property name="style" type="uint" value="0"/>
     </property>
     <property name="plugin-4" type="string" value="pager"/>
+      <property name="rows" type="uint" value="2"/>
+      <property name="miniature-view" type="bool" value="true"/>
+    </property>
     <property name="plugin-5" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
