@@ -31,7 +31,7 @@ echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: 
 pkg update -y
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes xfce-icons-elementary xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes xfce-icons-elementary galculator xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 pkg clean -y
 
 # Setup rc.conf file.
@@ -73,6 +73,7 @@ cd /usr/ports/x11-wm/xfce4 && make install clean
 cd /usr/ports/x11/xfce4-goodies && make install clean
 cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
 cd /usr/ports/x11-themes/xfce-icons-elementary && make install clean
+cd /usr/ports/math/galculator && make install clean
 cd /usr/ports/archivers/xarchiver && make install clean
 cd /usr/ports/x11-themes/gtk-xfce-engine && make install clean
 cd /usr/ports/x11/xfce4-docklike-plugin && make install clean
@@ -636,7 +637,7 @@ showPreviews=true
 showWindowCount=false
 indicatorStyle=0
 indicatorOrientation=0
-pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;
+pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;/usr/local/share/applications//galculator.desktop;
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 #####
