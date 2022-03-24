@@ -34,6 +34,9 @@ pkg update -y
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes xfce-icons-elementary galculator xarchiver gtk-xfce-engine xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
 pkg clean -y
 
+# Install Mousepad text editor color scheme.
+fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-3.0/styles/onedark-bright.xml
+
 # Setup rc.conf file.
 ./rcconf_setup.sh
 fi
@@ -122,6 +125,9 @@ cd /usr/ports/x11-fonts/materialdesign-ttf && make install clean
 cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
+
+# Install Mousepad text editor color scheme.
+fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-3.0/styles/onedark-bright.xml
 
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
