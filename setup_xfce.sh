@@ -97,7 +97,6 @@ cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
 cd /usr/ports/emulators/virtualbox-ose && make install clean
-cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/emulators/wine && make install clean
