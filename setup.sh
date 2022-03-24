@@ -56,6 +56,7 @@ EOF
 # Install the Poppins font.
 fetch https://fonts.google.com/download?family=Poppins -o Poppins.zip
 unzip Poppins.zip -d /usr/local/share/fonts/Poppins
+rm Poppins.zip
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
