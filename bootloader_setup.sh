@@ -45,6 +45,7 @@ echo "hw.spec_store_bypass_disable_active=1" >> /boot/loader.conf
 
 echo "########################################################################" >> /boot/loader.conf
 echo "### Custom VT Colors - Andromeda (from iTerm2 Color Schemes project) ###" >> /boot/loader.conf
+echo "### Kernel messages are bright green.                                ###" >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
 echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
 echo 'kern.vt.color.1.rgb="#cd3131"' >> /boot/loader.conf
@@ -61,5 +62,5 @@ echo 'kern.vt.color.11.rgb="#e5e512"' >> /boot/loader.conf
 echo 'kern.vt.color.12.rgb="#2472c8"' >> /boot/loader.conf
 echo 'kern.vt.color.13.rgb="#bc3fbc"' >> /boot/loader.conf
 echo 'kern.vt.color.14.rgb="#0fa8cd"' >> /boot/loader.conf
-echo 'kern.vt.color.15.rgb="#e5e5e5"' >> /boot/loader.conf
+echo 'kern.vt.color.15.rgb="#8ff586"' >> /boot/loader.conf
 echo "########################################################################" >> /boot/loader.conf
