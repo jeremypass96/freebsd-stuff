@@ -43,6 +43,9 @@ if [ $answer = "ports" ] ; then
 # Copying over make.conf file.
 cp -v make.conf /etc/
 
+# Configure the MAKE_JOBS_NUMBER line in make.conf
+sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER=`sysctl -n hw.ncpu`/g /etc/make.conf
+
 # Avoid pulling in Ports tree categories with non-English languages.
 sed -i '' s/"#REFUSE arabic chinese french german hebrew hungarian japanese/REFUSE arabic chinese french german hebrew hungarian japanese"/g /etc/portsnap.conf
 sed -i '' s/"#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUSE korean polish portuguese russian ukrainian vietnamese"/g /etc/portsnap.conf
