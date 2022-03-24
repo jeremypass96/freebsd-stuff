@@ -61,6 +61,11 @@ if [ $answer = "n" ] ; then
 continue
 fi
 
+# Adding in make.conf options for Xfce.
+echo "Xfce Options" >> /etc/make.conf
+echo "x11-wm_xfce4_SET=LIGHTDM" >> /etc/make.conf
+echo "x11-wm_xfce4_UNSET=GREYBIRD" >> /etc/make.conf
+
 # Install Ports.
 cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
