@@ -24,8 +24,10 @@ sysrc cupsd_enable="YES"
 read -p "Paper size? (Letter/A4) " resp
 if [ 0"$resp" = 0Letter ]; then
 pkg install -y papersize-default-letter
+fi
 if [ 0"$resp" = 0A4 ]; then
 pkg install -y papersize-default-a4
+fi
 fi
 if [ 0"$resp" = 0n ]; then
 continue
