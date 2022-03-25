@@ -12,14 +12,14 @@ clear
 echo "Welcome to the FreeBSD Xfce setup script. This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 
 read -p "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports) " resp
-if [ 0"$resp" != 0ports ]; then
+if [ 0"$resp" = 0pkg ]; then
 
 read -p "Do you plan to use a printer? (y/n) " resp
-if [ 0"$resp" != 0n ]; then
+if [ 0"$resp" = 0y ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
-if [ 0"$resp" != 0y ]; then
+if [ 0"$resp" = 0n ]; then
 continue
 fi
 
@@ -39,7 +39,7 @@ fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/
 ./rcconf_setup.sh
 fi
 
-if [ 0"$resp" != 0pkg ]; then
+if [ 0"$resp" = 0ports ]; then
 
 # Copying over make.conf file.
 cp -v make.conf /etc/
@@ -55,12 +55,12 @@ sed -i '' s/"#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUS
 portsnap auto
 
 read -p "Do you plan to use a printer? (y/n) " resp
-if [ 0"$resp" != 0n ]; then
+if [ 0"$resp" = 0y ]; then
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/papersize-default-letter && make install clean
 sysrc cupsd_enable="YES"
 fi
-if [ 0"$resp" != 0y ]; then
+if [ 0"$resp" = 0n ]; then
 continue
 fi
 
@@ -174,6 +174,7 @@ FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
 chown $USER:$USER ~/.config/xfce4/terminal/terminalrc
+cp -Rv ~/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
 #####
 
 # Setup shutdown/sleep rules for Xfce.
