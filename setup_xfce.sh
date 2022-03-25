@@ -592,7 +592,7 @@ cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /us
 mkdir -p /home/$USER/.config/xfce4/panel/
 cat << EOF > /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 favorites=firefox.desktop,thunar.desktop,org.xfce.mousepad.desktop,xfburn.desktop,xfce4-terminal.desktop,xfce4-taskmanager.desktop
-button-icon=org.xfce.panel.whiskermenu
+button-icon=distributor-logo-freebsd
 button-single-row=true
 show-button-title=false
 show-button-icon=true
