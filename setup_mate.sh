@@ -9,18 +9,21 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD MATE setup script. This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo "Welcome to the FreeBSD MATE setup script."
+echo "This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo ""
+read -p "Press any key to continue..." resp
 
-# Add /proc filesystem to /etc/fstab.
-echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
+clear
 
-read -p "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports) " resp
+read -p "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports) " resp
 if [ 0"$resp" = 0pkg ]; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update
+echo ""
 
 read -p "Do you plan to use a printer? (y/n) " resp
 if [ 0"$resp" = 0y ]; then
