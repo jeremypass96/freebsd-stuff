@@ -62,7 +62,7 @@ sysrc kld_list+=radeon
 fi
 #
 if [ 0"$resp" = 03 ]; then
-cd /usr/ports/x11/nvidia-driver && make install clean ; sysrc kld_list+=nvidia nvidia-modeset ; cd
+cd /usr/ports/x11/nvidia-driver && make install clean ; sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
 if [ 0"$resp" = 04 ]; then
