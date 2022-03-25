@@ -14,7 +14,7 @@ echo ""
 read -p "Which desktop environment do you want to use? Please enter it's corresponding number.
 1.) MATE
 2.) Xfce
-3.) Katana (fork of KDE4) 
+3.) Katana (fork of KDE4)
 > " resp
 if [ 0"$resp" = 01 ]; then
 ./setup_mate.sh
@@ -35,7 +35,7 @@ sed -i '' s/dcons/#dcons/g /etc/ttys
 sed -i 'ttyv*' s/secure/insecure/g /etc/ttys
 
 # Add /proc filesystem to /etc/fstab.
-echo "proc           /proc       procfs  rw  0   0" >> /etc/fstab
+echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
 
 # Setup system files for desktop use.
 ./sysctl_setup.sh
