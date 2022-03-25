@@ -79,3 +79,4 @@ if [ 0"$resp" = 06 ]; then
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 cd /usr/ports/emulators/open-vm-tools && make install clean
 fi
+cd /home/$USER/freebsd-setup-scripts
