@@ -567,7 +567,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
-cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
 #####
 
 mkdir -p /home/$USER/.config/xfce4/panel/
