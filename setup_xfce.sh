@@ -61,7 +61,7 @@ read answer
 if [ $answer = "y" ] ; then
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/papersize-default-letter && make install clean
-cd /usr/ports/print/hplip && make install clean
+sysrc cupsd_enable="YES"
 fi
 if [ $answer = "n" ] ; then
 continue
