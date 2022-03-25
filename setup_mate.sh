@@ -14,22 +14,20 @@ echo "Welcome to the FreeBSD MATE setup script. This script will setup Xorg, MAT
 # Add /proc filesystem to /etc/fstab.
 echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
 
-echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
-read answer
-if [ $answer = "pkg" ] ; then
+read -p "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports) " resp
+if [ 0"$resp" != 0ports ]; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update -y
+pkg update
 
-echo "Do you plan to use a printer? (y/n)"
-read answer
-if [ $answer = "y" ] ; then
+read -p "Do you plan to use a printer? (y/n) " resp
+if [ 0"$resp" != 0n ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
-if [ $answer = "n" ] ; then
+if [ 0"$resp" != 0y ]; then
 continue
 fi
 
@@ -40,34 +38,13 @@ pkg clean -y
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
-# Install cursor theme.
-echo "Installing the macOS Big Sur cursor theme..."
-cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
-tar -xvf macOSBigSur.tar.gz
-echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
-mv macOSBigSur /usr/local/share/icons/
-echo "Setting proper file permissions..."
-chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
-rm -rf macOSBigSur.tar.gz
-rm -rf macOSBigSur/
-
-# Install icon theme.
-echo "Installing the Newaita-reborn icon theme..."
-cd /home/$USER/
-git clone https://github.com/cbrnix/Newaita-reborn.git
-cd Newaita-reborn
-cp -r Newaita-reborn /usr/local/share/icons/
-cp -r Newaita-reborn-dark /usr/local/share/icons/
-cd && rm -rf /home/$USER/Newaita-reborn
-gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
-
 # Setup MATE themes. Will be ran as a normal user.
 su - $USER
 ./freebsd_mate_theme_install.sh
 exit
 fi
 
-if [ $answer = "ports" ] ; then
+if [ 0"$resp" != 0pkg ]; then
 
 # Copying over make.conf file.
 cp -v make.conf /etc/
@@ -82,14 +59,13 @@ sed -i '' s/"#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUS
 # Pull in Ports tree, extract, and update it.
 portsnap auto
 
-echo "Do you have a printer? (y/n)"
-read answer
-if [ $answer = "y" ] ; then
+read -p "Do you plan to use a printer? (y/n) " resp
+if [ 0"$resp" != 0n ]; then
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/papersize-default-letter && make install clean
 cd /usr/ports/print/hplip && make install clean
 fi
-if [ $answer = "n" ] ; then
+if [ 0"$resp" != 0y ]; then
 continue
 fi
 
@@ -144,7 +120,14 @@ cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 
 # Setup rc.conf file.
+cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
+
+# Setup MATE theme. Will be ran as a normal user.
+su - $USER
+./freebsd_mate_theme_install_ports.sh
+exit
+fi
 
 # Install cursor theme.
 echo "Installing the macOS Big Sur cursor theme..."
@@ -162,16 +145,11 @@ echo "Installing the Newaita-reborn icon theme..."
 cd /home/$USER/
 git clone https://github.com/cbrnix/Newaita-reborn.git
 cd Newaita-reborn
-cp -R Newaita-reborn /usr/local/share/icons/
-cp -R Newaita-reborn-dark /usr/local/share/icons/
+cp -r Newaita-reborn /usr/local/share/icons/
+cp -r Newaita-reborn-dark /usr/local/share/icons/
 cd && rm -rf /home/$USER/Newaita-reborn
-gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn*/
-
-# Setup MATE theme. Will be ran as a normal user.
-su - $USER
-./freebsd_mate_theme_install_ports.sh
-exit
-fi
+gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn/
+gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn-dark/
 
 echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
 # Set window titlebar font.
@@ -211,13 +189,13 @@ sed -i '' s/#greeter-setup-script=^/greeter-setup-script=/usr/local/bin/numlockx
 sed -i '' s/#autologin-user=^/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
 mkdir /usr/local/etc/lightdm/wallpaper
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0062.jpg\?inline\=false -o /usr/local/etc/lightdm/wallpaper/0062.jpg
-chown root:wheel /usr/local/etc/lightdm/wallpaper/0062.jpg
+fetch https://raw.githubusercontent.com/broozar/installDesktopFreeBSD/DarkMate13.0/files/wallpaper/centerFlat_grey-4k.png -o /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
+chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 
 # Setup slick greeter.
 cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
-background = /usr/local/etc/lightdm/wallpaper/0062.jpg
+background = /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 draw-user-backgrounds = true
 draw-grid = false
 show-hostname = true
