@@ -43,35 +43,37 @@ sysrc apm_enable="YES"
 
 # Setup DRM kmod support for graphics cards.
 pkg install -y drm-kmod
-echo "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?"
-echo "1.) AMD GPU"
-echo "2.) ATI Radeon"
-echo "3.) NVIDIA"
-echo "4.) Intel"
-echo "5.) VirtualBox"
-echo "6.) VMware"
-read number
-if [ $number = "1" ] ; then
+
+read -p "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?
+1.) AMD GPU
+2.) ATI Radeon
+3.) NVIDIA
+4.) Intel
+5.) VirtualBox
+6.) VMware
+> " resp
+
+if [ 0"$resp" = 01 ]; then
 sysrc kld_list+=amdgpu
 fi
 #
-if [ $number = "2" ] ; then
+if [ 0"$resp" = 02 ]; then
 sysrc kld_list+=radeon
 fi
 #
-if [ $number = "3" ] ; then
+if [ 0"$resp" = 03 ]; then
 pkg install -y nvidia-driver && sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
-if [ $number = "4" ] ; then
+if [ 0"$resp" = 04 ]; then
 sysrc kld_list+=i915kms
 fi
 #
-if [ $number = "5" ] ; then
+if [ 0"$resp" = 05 ]; then
 pkg install -y virtualbox-ose-additions xf86-video-vmware && service vboxguest enable && service vboxservice enable
 pw groupmod vboxusers -m $USER
 fi
 #
-if [ $number = "6" ] ; then
+if [ 0"$resp" = 06 ]; then
 pkg install -y xf86-video-vmware open-vm-tools
 fi
