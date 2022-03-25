@@ -1,5 +1,5 @@
 # FreeBSD Setup Scripts
-You'll need to install sudo, git, and portmaster (for installing ports) for these scripts to work. The bootloader setup script automatically sets up CPU microcode updates for you (both the ports version and the pkg version). The main setup script will install portmaster (if you decided to tell the setup script to compile software from the Ports tree), micro, zsh, ohmyzsh, and neofetch for you. It will also ask you if you want to install binary packages or compile software from the Ports tree.
+You'll need to install sudo and git for these scripts to work. The bootloader setup script automatically sets up CPU microcode updates for you (both the ports version and the pkg version). The main setup script will ask you if you want to install binary packages or compile software from the Ports tree.
 
 The git package is required to download these scripts.
 
