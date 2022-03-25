@@ -125,6 +125,7 @@ cd /usr/ports/x11-fonts/materialdesign-ttf && make install clean
 cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
+cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
