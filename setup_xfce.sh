@@ -9,10 +9,21 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD Xfce setup script. This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo "Welcome to the FreeBSD Xfce setup script."
+echo "This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo ""
+read -p "Press any key to continue..." resp
 
-read -p "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports) " resp
+clear
+
+read -p "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports) " resp
 if [ 0"$resp" = 0pkg ]; then
+
+# Update repo to use latest packages.
+mkdir -p /usr/local/etc/pkg/repos
+echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+pkg update
+echo ""
 
 read -p "Do you plan to use a printer? (y/n) " resp
 if [ 0"$resp" = 0y ]; then
@@ -29,11 +40,6 @@ fi
 if [ 0"$resp" = 0n ]; then
 continue
 fi
-
-# Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update
 
 # Install packages.
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes xfce-icons-elementary epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
