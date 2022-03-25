@@ -187,7 +187,7 @@ FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
-cp -Rv /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
+cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
 #####
 
 # Setup shutdown/sleep rules for Xfce.
