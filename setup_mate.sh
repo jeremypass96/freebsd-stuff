@@ -15,7 +15,7 @@ echo "Welcome to the FreeBSD MATE setup script. This script will setup Xorg, MAT
 echo "proc           /proc        procfs    rw      0     0" >> /etc/fstab
 
 read -p "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports) " resp
-if [ 0"$resp" != 0ports ]; then
+if [ 0"$resp" = 0pkg ]; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
@@ -23,11 +23,11 @@ echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: 
 pkg update
 
 read -p "Do you plan to use a printer? (y/n) " resp
-if [ 0"$resp" != 0n ]; then
+if [ 0"$resp" = 0y ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
-if [ 0"$resp" != 0y ]; then
+if [ 0"$resp" = 0n ]; then
 continue
 fi
 
@@ -44,7 +44,7 @@ su - $USER
 exit
 fi
 
-if [ 0"$resp" != 0pkg ]; then
+if [ 0"$resp" = 0ports ]; then
 
 # Copying over make.conf file.
 cp -v make.conf /etc/
@@ -60,12 +60,12 @@ sed -i '' s/"#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUS
 portsnap auto
 
 read -p "Do you plan to use a printer? (y/n) " resp
-if [ 0"$resp" != 0n ]; then
+if [ 0"$resp" = 0y ]; then
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/papersize-default-letter && make install clean
 cd /usr/ports/print/hplip && make install clean
 fi
-if [ 0"$resp" != 0y ]; then
+if [ 0"$resp" = 0n ]; then
 continue
 fi
 
