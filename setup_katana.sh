@@ -17,7 +17,7 @@ echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: 
 echo 'Katana: { url: "pkg+https://raw.githubusercontent.com/fluxer/katana-freebsd/master", mirror_type: "srv", enabled: yes }' > /usr/local/etc/pkg/repos/Katana.conf
 pkg update
 
-read -p "Do you have a printer? (y/n) " resp
+read -p "Do you plan to use a printer? (y/n) " resp
 if [ 0"$resp" != 0n ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
