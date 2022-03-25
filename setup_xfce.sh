@@ -16,7 +16,7 @@ if [ 0"$resp" = 0pkg ]; then
 
 read -p "Do you plan to use a printer? (y/n) " resp
 if [ 0"$resp" = 0y ]; then
-pkg install cups papersize-default-letter
+pkg install -y cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
 if [ 0"$resp" = 0n ]; then
