@@ -24,9 +24,6 @@ fi
 if [ 0"$resp" = 03 ]; then
 ./setup_katana.sh
 fi
-if [ 0"$resp" != 0* ]; then
-echo "Invalid selection: $resp"
-fi
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
