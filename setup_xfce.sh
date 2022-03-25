@@ -11,24 +11,22 @@ clear
 
 echo "Welcome to the FreeBSD Xfce setup script. This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 
-echo "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports)"
-read answer
-if [ $answer = "pkg" ] ; then
+read -p "Do you plan to install software via pkg (binary packages) or ports? (pkg/ports) " resp
+if [ 0"$resp" != 0ports ]; then
 
-echo "Do you plan to use a printer? (y/n)"
-read answer
-if [ $answer = "y" ] ; then
+read -p "Do you plan to use a printer? (y/n) " resp
+if [ 0"$resp" != 0n ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
-if [ $answer = "n" ] ; then
+if [ 0"$resp" != 0y ]; then
 continue
 fi
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update -y
+pkg update
 
 # Install packages.
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes xfce-icons-elementary epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf
@@ -41,7 +39,7 @@ fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/
 ./rcconf_setup.sh
 fi
 
-if [ $answer = "ports" ] ; then
+if [ 0"$resp" != 0pkg ]; then
 
 # Copying over make.conf file.
 cp -v make.conf /etc/
@@ -56,14 +54,13 @@ sed -i '' s/"#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUS
 # Pull in Ports tree, extract, and update it.
 portsnap auto
 
-echo "Do you have a printer? (y/n)"
-read answer
-if [ $answer = "y" ] ; then
+read -p "Do you plan to use a printer? (y/n) " resp
+if [ 0"$resp" != 0n ]; then
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/papersize-default-letter && make install clean
 sysrc cupsd_enable="YES"
 fi
-if [ $answer = "n" ] ; then
+if [ 0"$resp" != 0y ]; then
 continue
 fi
 
@@ -257,6 +254,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.
   </property>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /usr/share/skel/dot.config/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
@@ -340,6 +338,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
@@ -436,6 +435,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
@@ -485,6 +485,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
@@ -507,6 +508,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
@@ -543,6 +545,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml 
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
@@ -562,6 +565,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+cp -Rv /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
 #####
 
 mkdir -p /home/$USER/.config/xfce4/panel/
@@ -642,6 +646,7 @@ command=exo-open \\0
 regex=true
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+cp -Rv /home/$USER/.config/xfce4/panel/whiskermenu-8.rc /usr/share/skel/dot.config/xfce4/panel/whiskermenu-8.rc
 #####
 
 cat << EOF > /home/$USER/.config/xfce4/panel/docklike-7.rc
@@ -655,6 +660,7 @@ indicatorOrientation=0
 pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;/usr/local/share/applications//galculator.desktop;
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
+cp -Rv /home/$USER/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
 #####
 
 # Setup LightDM.
