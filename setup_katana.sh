@@ -15,15 +15,14 @@ echo "Welcome to the FreeBSD Katana setup script. This script will setup Xorg, t
 mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 echo 'Katana: { url: "pkg+https://raw.githubusercontent.com/fluxer/katana-freebsd/master", mirror_type: "srv", enabled: yes }' > /usr/local/etc/pkg/repos/Katana.conf
-pkg update -y
+pkg update
 
-echo "Do you plan to use a printer? (y/n)"
-read answer
-if [ $answer = "y" ] ; then
+read -p "Do you have a printer? (y/n) " resp
+if [ 0"$resp" != 0n ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
-if [ $answer = "n" ] ; then
+if [ 0"$resp" != 0y ]; then
 continue
 fi
 
