@@ -11,6 +11,7 @@ clear
 
 echo "Welcome to the FreeBSD Katana setup script."
 echo "This script will setup Xorg, the Katana desktop, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo ""
 read -p "Press any key to continue..." resp
 
 clear
