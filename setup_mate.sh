@@ -68,6 +68,7 @@ portsnap auto
 
 read -p "Do you plan to use a printer? (y/n) " resp
 if [ 0"$resp" = 0y ]; then
+sed -i '' '13s/$/ CUPS/' /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 sysrc cupsd_enable="YES"
 read -p "Paper size? (Letter/A4) " resp
@@ -79,6 +80,7 @@ cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
 fi
 if [ 0"$resp" = 0n ]; then
+sed -i '' '14s/$/ CUPS/' /etc/make.conf
 continue
 fi
 
