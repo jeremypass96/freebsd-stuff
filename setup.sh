@@ -8,20 +8,24 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD post-install setup script. This script simply asks you what desktop environment you want to use. After you select your desktop environment, this script will launch your specified desktop's setup script."
-echo "Which desktop environment do you want to use? Please enter it's corresponding number."
-echo "1.) MATE"
-echo "2.) Xfce"
-echo "3.) Katana (fork of KDE4)"
-read answer
-if [ $answer = "1" ] ; then
+echo "Welcome to the FreeBSD post-install setup script. This script simply asks you what desktop environment you want to use.
+After you select your desktop environment, this script will launch your specified desktop's setup script."
+read -p "Which desktop environment do you want to use? Please enter it's corresponding number.
+1.) MATE
+2.) Xfce
+3.) Katana (fork of KDE4) 
+> " resp
+if [ 0"$resp" = 01 ]; then
 ./setup_mate.sh
 fi
-if [ $answer = "2" ] ; then
+if [ 0"$resp" = 02 ]; then
 ./setup_xfce.sh
 fi
-if [ $answer = "3" ] ; then
+if [ 0"$resp" = 03 ]; then
 ./setup_katana.sh
+fi
+if [ 0"$resp" != 0* ]; then
+echo "Invalid selection: $resp"
 fi
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root while booted into normal mode.
