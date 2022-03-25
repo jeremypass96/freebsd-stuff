@@ -18,12 +18,15 @@ echo 'Katana: { url: "pkg+https://raw.githubusercontent.com/fluxer/katana-freebs
 pkg update
 
 read -p "Do you plan to use a printer? (y/n) " resp
-if [ 0"$resp" != 0n ]; then
+if [ 0"$resp" = 0y ]; then
 pkg install cups papersize-default-letter
 sysrc cupsd_enable="YES"
 fi
-if [ 0"$resp" != 0y ]; then
+if [ 0"$resp" = 0n ]; then
 continue
+fi
+if [ 0"$resp" != 0* ]; then
+echo "Invalid selection: $resp"
 fi
 
 # Install packages.
