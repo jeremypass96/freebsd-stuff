@@ -530,6 +530,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
   <property name="tree-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
   <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
   <property name="shortcuts-icon-emblems" type="bool" value="true"/>
+  <property name="misc-volume-management" type="bool" value="false"/>
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
