@@ -290,7 +290,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
       <property name="position" type="string" value="p=8;x=960;y=963"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="icon-size" type="uint" value="25"/>
+      <property name="icon-size" type="uint" value="24"/>
       <property name="size" type="uint" value="40"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="8"/>
@@ -526,6 +526,10 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
   <property name="misc-show-delete-action" type="bool" value="true"/>
   <property name="default-view" type="string" value="ThunarIconView"/>
   <property name="last-location-bar" type="string" value="ThunarLocationButtons"/>
+  <property name="misc-recursive-permissions" type="string" value="THUNAR_RECURSIVE_PERMISSIONS_ALWAYS"/>
+  <property name="tree-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
+  <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_16"/>
+  <property name="shortcuts-icon-emblems" type="bool" value="true"/>
 </channel>
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
