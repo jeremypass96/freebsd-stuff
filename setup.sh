@@ -15,7 +15,7 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 1.) MATE
 2.) Xfce
 3.) Katana (fork of KDE4)
-> " resp
+-> " resp
 if [ 0"$resp" = 01 ]; then
 ./setup_mate.sh
 fi
