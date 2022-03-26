@@ -55,10 +55,12 @@ read -p "FreeBSD DRM kmod graphics support has been installed. What kind of grap
 
 if [ 0"$resp" = 01 ]; then
 sysrc kld_list+=amdgpu
+pkg install -y xf86-video-amdgpu
 fi
 #
 if [ 0"$resp" = 02 ]; then
 sysrc kld_list+=radeon
+pkg install -y xf86-video-ati
 fi
 #
 if [ 0"$resp" = 03 ]; then
@@ -67,6 +69,7 @@ fi
 #
 if [ 0"$resp" = 04 ]; then
 sysrc kld_list+=i915kms
+pkg install -y xf86-video-intel
 fi
 #
 if [ 0"$resp" = 05 ]; then
