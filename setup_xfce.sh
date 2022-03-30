@@ -299,15 +299,14 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
         <value type="int" value="4"/>
         <value type="int" value="5"/>
         <value type="int" value="6"/>
-        <value type="int" value="9"/>
-        <value type="int" value="2"/>
         <value type="int" value="10"/>
         <value type="int" value="13"/>
-        <value type="int" value="12"/>
-        <value type="int" value="11"/>
+        <value type="int" value="16"/>
+        <value type="int" value="17"/>
       </property>
       <property name="mode" type="uint" value="0"/>
       <property name="disable-struts" type="bool" value="false"/>
+      <property name="nrows" type="uint" value="1"/>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -315,7 +314,7 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
       <property name="expand" type="bool" value="true"/>
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-4" type="string" value="pager"/>
+    <property name="plugin-4" type="string" value="pager">
       <property name="rows" type="uint" value="2"/>
       <property name="miniature-view" type="bool" value="true"/>
     </property>
@@ -324,37 +323,30 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xm
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
-      <property name="known-legacy-items" type="array">
-      </property>
-      <property name="known-items" type="array">
-      </property>
       <property name="hidden-items" type="array">
       </property>
       <property name="icon-size" type="int" value="0"/>
       <property name="hidden-legacy-items" type="array">
       </property>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="hide-new-items" type="bool" value="false"/>
     </property>
-    <property name="plugin-9" type="string" value="power-manager-plugin"/>
     <property name="plugin-10" type="string" value="notification-plugin"/>
-    <property name="plugin-11" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-    </property>
-    <property name="plugin-12" type="string" value="clock">
-      <property name="digital-format" type="string" value="%I:%M %p"/>
-      <property name="tooltip-format" type="string" value="%x"/>
-      <property name="mode" type="uint" value="2"/>
-    </property>
     <property name="plugin-7" type="string" value="docklike"/>
     <property name="plugin-8" type="string" value="whiskermenu"/>
-    <property name="plugin-2" type="string" value="xfce4-clipman-plugin"/>
     <property name="clipman" type="empty">
       <property name="settings" type="empty">
         <property name="enable-actions" type="bool" value="true"/>
+      </property>
+      <property name="tweaks" type="empty">
+        <property name="never-confirm-history-clear" type="bool" value="true"/>
       </property>
     </property>
     <property name="plugin-13" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
+    <property name="plugin-16" type="string" value="datetime"/>
+    <property name="plugin-17" type="string" value="showdesktop"/>
   </property>
 </channel>
 EOF
@@ -688,6 +680,17 @@ pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applicati
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 cp -v /home/$USER/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
+#####
+
+cat << EOF > /home/$USER/.config/xfce4/panel/datetime-16.rc
+layout=1
+date_font=Roboto 9
+time_font=Roboto 9
+date_format=%m/%d/%Y
+time_format=%l:%M %p
+EOF
+chown $USER:$USER /home/$USER/.config/xfce4/panel/datetime-16.rc
+cp -v /home/$USER/.config/xfce4/panel/datetime-16.rc /usr/share/skel/dot.config/xfce4/panel/datetime-16.rc
 #####
 
 # Setup LightDM.
