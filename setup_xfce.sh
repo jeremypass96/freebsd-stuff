@@ -715,6 +715,6 @@ show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = Skeuos-Red-Dark
-icon-theme-name = Papirus-Dark
+theme-name = Skeuos-Red
+icon-theme-name = Papirus
 EOF
