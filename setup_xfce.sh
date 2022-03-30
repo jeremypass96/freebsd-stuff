@@ -709,7 +709,7 @@ chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
 background = /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
-draw-user-backgrounds = true
+draw-user-backgrounds = false
 draw-grid = false
 show-hostname = true
 show-a11y = false
