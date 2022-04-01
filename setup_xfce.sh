@@ -21,7 +21,15 @@ if [ 0"$resp" = 0pkg ]; then
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
-echo 'FreeBSD: { url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest", mirror_type: "srv", signature_type: "fingerprints", fingerprints: "/usr/share/keys/pkg", enabled: yes }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+cat << EOF > /usr/local/etc/pkg/repos/FreeBSD.conf
+FreeBSD: { 
+  url: "http://pkg0.nyi.FreeBSD.org/${ABI}/latest",
+  mirror_type: "srv",
+  signature_type: "fingerprints",
+  fingerprints: "/usr/share/keys/pkg",
+  enabled: yes
+  }
+EOF
 pkg update
 echo ""
 
