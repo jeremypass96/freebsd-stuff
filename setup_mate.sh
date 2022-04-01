@@ -28,7 +28,7 @@ FreeBSD: {
   signature_type: "fingerprints",
   fingerprints: "/usr/share/keys/pkg",
   enabled: yes
-  }
+}
 EOF
 pkg update
 echo ""
