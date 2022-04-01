@@ -34,7 +34,7 @@ echo "# Allow all users to access CD/DVD drives" >> /etc/devfs.conf
 echo "perm 	/dev/acd* 					0666" >> /etc/devfs.conf
 echo "perm 	/dev/cd* 					0666" >> /etc/devfs.conf
 
-echo "# Allow all useres to access USB devices" >> /etc/devfs.conf
+echo "# Allow all users to access USB devices" >> /etc/devfs.conf
 echo "perm 	/dev/da* 					0666" >> /etc/devfs.conf
 
 echo "# Misc. other devices" >> /etc/devfs.conf
