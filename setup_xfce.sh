@@ -575,8 +575,8 @@ cat << EOF > /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.
   </property>
   <property name="primary-monitor" type="uint" value="0"/>
   <property name="notify-location" type="uint" value="2"/>
-  <property name="log-level" type="uint" value="0"/>
-  <property name="log-level-apps" type="uint" value="0"/>
+  <property name="log-level" type="uint" value="1"/>
+  <property name="log-level-apps" type="uint" value="1"/>
   <property name="theme" type="string" value="Default"/>
   <property name="do-slideout" type="bool" value="true"/>
   <property name="do-fadeout" type="bool" value="true"/>
