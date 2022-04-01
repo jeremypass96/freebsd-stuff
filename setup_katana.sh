@@ -25,7 +25,7 @@ FreeBSD: {
   signature_type: "fingerprints",
   fingerprints: "/usr/share/keys/pkg",
   enabled: yes
-  }
+}
 EOF
 #
 cat << EOF > /usr/local/etc/pkg/repos/Katana.conf
@@ -33,7 +33,7 @@ Katana: {
   url: "pkg+https://raw.githubusercontent.com/fluxer/katana-freebsd/master",
   mirror_type: "srv",
   enabled: yes
-  }
+}
 EOF
 pkg update
 
