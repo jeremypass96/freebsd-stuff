@@ -38,11 +38,11 @@ EOF
 pkg update
 
 echo ""
-read -p "Do you plan to use a printer? (y/n) " resp
+read -p "Do you plan to use a printer? (y/n): " resp
 if [ 0"$resp" = 0y ]; then
 pkg install -y cups
 sysrc cupsd_enable="YES"
-read -p "Paper size? (Letter/A4) " resp
+read -p "Paper size? (Letter/A4): " resp
 if [ 0"$resp" = 0Letter ]; then
 pkg install -y papersize-default-letter
 fi
