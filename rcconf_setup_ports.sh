@@ -64,7 +64,8 @@ sed -i '' '17s/$/ATI/' /etc/make.conf
 fi
 #
 if [ 0"$resp" = 03 ]; then
-cd /usr/ports/x11/nvidia-driver && make install clean ; sysrc kld_list+=nvidia nvidia-modeset
+cd /usr/ports/x11/nvidia-driver && make install clean
+sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
 if [ 0"$resp" = 04 ]; then
@@ -74,7 +75,8 @@ fi
 #
 if [ 0"$resp" = 05 ]; then
 cd /usr/ports/emulators/virtualbox-ose-additions-legacy && make install clean
-cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean ; service vboxguest enable && service vboxservice enable
+cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
+service vboxguest enable && service vboxservice enable
 sed -i '' '17s/$/VMWARE/' /etc/make.conf
 pw groupmod vboxusers -m $USER
 fi
