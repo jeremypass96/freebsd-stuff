@@ -16,7 +16,7 @@ read -p "Press any key to continue..." resp
 
 clear
 
-read -p "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports) " resp
+read -p "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
 if [ 0"$resp" = 0pkg ]; then
 
 # Update repo to use latest packages.
@@ -33,11 +33,11 @@ EOF
 pkg update
 echo ""
 
-read -p "Do you plan to use a printer? (y/n) " resp
+read -p "Do you plan to use a printer? (y/n): " resp
 if [ 0"$resp" = 0y ]; then
 pkg install -y cups
 sysrc cupsd_enable="YES"
-read -p "Paper size? (Letter/A4) " resp
+read -p "Paper size? (Letter/A4): " resp
 if [ 0"$resp" = 0Letter ]; then
 pkg install -y papersize-default-letter
 fi
@@ -72,12 +72,12 @@ sed -i '' s/"#REFUSE korean polish portuguese russian ukrainian vietnamese/REFUS
 # Pull in Ports tree, extract, and update it.
 portsnap auto
 
-read -p "Do you plan to use a printer? (y/n) " resp
+read -p "Do you plan to use a printer? (y/n): " resp
 if [ 0"$resp" = 0y ]; then
 sed -i '' '13s/$/ CUPS/' /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 sysrc cupsd_enable="YES"
-read -p "Paper size? (Letter/A4) " resp
+read -p "Paper size? (Letter/A4): " resp
 if [ 0"$resp" = 0Letter ]; then
 cd /usr/ports/print/papersize-default-letter && make install clean
 fi
