@@ -51,7 +51,7 @@ read -p "FreeBSD DRM kmod graphics support has been installed. What kind of grap
 4.) Intel
 5.) VirtualBox
 6.) VMware
-> " resp
+-> " resp
 
 if [ 0"$resp" = 01 ]; then
 sysrc kld_list+=amdgpu
