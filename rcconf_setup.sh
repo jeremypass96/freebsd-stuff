@@ -64,7 +64,8 @@ pkg install -y xf86-video-ati
 fi
 #
 if [ 0"$resp" = 03 ]; then
-pkg install -y nvidia-driver && sysrc kld_list+=nvidia nvidia-modeset
+pkg install -y nvidia-driver
+sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
 if [ 0"$resp" = 04 ]; then
@@ -73,7 +74,8 @@ pkg install -y xf86-video-intel
 fi
 #
 if [ 0"$resp" = 05 ]; then
-pkg install -y virtualbox-ose-additions xf86-video-vmware ; service vboxguest enable && service vboxservice enable
+pkg install -y virtualbox-ose-additions xf86-video-vmware
+service vboxguest enable && service vboxservice enable
 pw groupmod vboxusers -m $USER
 fi
 #
