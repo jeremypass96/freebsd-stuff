@@ -222,6 +222,6 @@ show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = ClassicLooks Solaris
-icon-theme-name = Newaita-reborn
+theme-name = Papirus
+icon-theme-name = Skeuos-Red-Light
 EOF
