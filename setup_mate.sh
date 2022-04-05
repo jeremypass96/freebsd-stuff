@@ -151,6 +151,12 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
 
+# Setup MATE theme. Will be ran as a normal user.
+su - $USER
+./freebsd_mate_theme_install_ports.sh
+exit
+fi
+
 # Install cursor theme.
 echo "Installing the macOS Big Sur cursor theme..."
 cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
@@ -201,12 +207,6 @@ gsettings set org.mate.sound input-feedback-sounds true
 # Setup Caja preferences.
 gsettings set org.mate.caja.preferences enable-delete true
 gsettings set org.mate.caja.preferences preview-sound never
-
-# Setup MATE theme. Will be ran as a normal user.
-su - $USER
-./freebsd_mate_theme_install_ports.sh
-exit
-fi
 
 # Setup LightDM.
 sysrc lightdm_enable="YES"
