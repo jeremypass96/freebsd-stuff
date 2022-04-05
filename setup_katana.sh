@@ -57,11 +57,68 @@ fi
 clear
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch mp4v2 wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font sourcecodepro-ttf webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 firefox webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount unix2dos smartmontools ubuntu-font sourcecodepro-ttf webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
 pkg clean -y
+
+clear 
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"
+
+clear
+
+read -p "Do you want to install any extra 3rd party software?
+
+1. Audacity (audio editor)
+2. Xfburn (CD burner)
+3. Handbrake (video file converter)
+4. ISO Master (ISO file editor)
+5. AbiWord (word processor)
+6. Gnumeric (speadsheet)
+7. Transmission (Torrent downloader)
+8. Asunder (CD ripper)
+9. GIMP (image editor)
+10. Inkskape (vector graphics editor)
+11. Pinta (image editor similar to Paint.NET on Windows)
+12. Shotwell (photo organizer/editor)
+13. VirtualBox (run multiple operating systems on your PC)
+14. Wine (run Windows applications)
+
+15. All of the above.
+16. None of the above.
+-> " resp
+if [ 0"$resp" = 01 ]; then
+pkg install -y audacity
+if [ 0"$resp" = 02 ]; then
+pkg install -y xfburn
+if [ 0"$resp" = 03 ]; then
+pkg install -y handbrake
+if [ 0"$resp" = 04 ]; then
+pkg install -y isomaster
+if [ 0"$resp" = 05 ]; then
+pkg install -y abiword
+if [ 0"$resp" = 06 ]; then
+pkg install -y gnumeric
+if [ 0"$resp" = 07 ]; then
+pkg install -y transmission-gtk
+if [ 0"$resp" = 08 ]; then
+pkg install -y asunder
+if [ 0"$resp" = 09 ]; then
+pkg install -y gimp
+if [ 0"$resp" = 010 ]; then
+pkg install -y inkscape
+if [ 0"$resp" = 011 ]; then
+pkg install -y pinta
+if [ 0"$resp" = 012 ]; then
+pkg install -y shotwell
+if [ 0"$resp" = 013 ]; then
+pkg install -y virtualbox-ose
+if [ 0"$resp" = 014 ]; then
+pkg install -y wine wine-mono wine-gecko
+if [ 0"$resp" = 015 ]; then
+pkg install -y audacity xfburn handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell virtualbox-ose wine wine-mono wine-gecko
+if [ 0"$resp" = 016 ]; then
+continue
