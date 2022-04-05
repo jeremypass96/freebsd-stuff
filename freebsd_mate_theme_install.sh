@@ -2,13 +2,6 @@
 cd
 #
 clear
-# Install Vimix theme (for window border use only!)
-git clone https://github.com/vinceliuice/vimix-gtk-themes.git ~/
-cd ~/vimix-gtk-themes
-sudo ./install.sh --dest /usr/local/share/themes --color light
-cd && rm -rf vimix-gtk-themes
-#
-clear
 # Get wallpaper!
 echo "Getting wallpaper..."
 fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg?inline=false -o /usr/local/share/backgrounds/0188.jpg
@@ -23,9 +16,9 @@ gsettings set org.mate.Marco.general theme vimix-light-doder
 # Turn off middle click on window titlebar.
 gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
-gsettings set org.mate.interface gtk-theme "ClassicLooks Rainyday"
+gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Dark"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme Newaita-reborn
+gsettings set org.mate.interface icon-theme Papirus-Dark
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
 gsettings set org.mate.interface font-name "Roboto 10"
