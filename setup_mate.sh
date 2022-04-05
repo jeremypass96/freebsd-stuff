@@ -166,16 +166,15 @@ mv macOSBigSur /usr/local/share/icons/
 echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
-rm -rf macOSBigSur/
 
 # Install icon theme.
 echo "Installing the Newaita-reborn icon theme..."
 cd /home/$USER/
 git clone https://github.com/cbrnix/Newaita-reborn.git
 cd Newaita-reborn
-cp -R Newaita-reborn /usr/local/share/icons/
-cp -R Newaita-reborn-dark /usr/local/share/icons/
-cd && rm -rf /home/$USER/Newaita-reborn
+mv Newaita-reborn /usr/local/share/icons/
+mv Newaita-reborn-dark /usr/local/share/icons/
+cd /home/$USER/
 gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn
 gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn-dark
 
