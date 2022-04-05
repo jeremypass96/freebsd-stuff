@@ -49,8 +49,10 @@ if [ 0"$resp" = 0n ]; then
 continue
 fi
 
+clear
+
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator xfburn parole qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator parole qt5ct qt5-style-plugins firefox  webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
 pkg clean -y
 
 # Setup rc.conf file.
@@ -60,6 +62,61 @@ pkg clean -y
 su - $USER
 ./freebsd_mate_theme_install.sh
 exit
+
+clear
+
+read -p "Do you want to install any extra 3rd party software?
+
+1. Audacity (audio editor)
+2. Xfburn (CD burner)
+3. Handbrake (video file converter)
+4. ISO Master (ISO file editor)
+5. AbiWord (word processor)
+6. Gnumeric (speadsheet)
+7. Transmission (Torrent downloader)
+8. Asunder (CD ripper)
+9. GIMP (image editor)
+10. Inkskape (vector graphics editor)
+11. Pinta (image editor similar to Paint.NET on Windows)
+12. Shotwell (photo organizer/editor)
+13. VirtualBox (run multiple operating systems on your PC)
+14. Wine (run Windows applications)
+
+15. All of the above.
+16. None of the above.
+-> " resp
+if [ 0"$resp" = 01 ]; then
+pkg install -y audacity
+if [ 0"$resp" = 02 ]; then
+pkg install -y xfburn
+if [ 0"$resp" = 03 ]; then
+pkg install -y handbrake
+if [ 0"$resp" = 04 ]; then
+pkg install -y isomaster
+if [ 0"$resp" = 05 ]; then
+pkg install -y abiword
+if [ 0"$resp" = 06 ]; then
+pkg install -y gnumeric
+if [ 0"$resp" = 07 ]; then
+pkg install -y transmission-gtk
+if [ 0"$resp" = 08 ]; then
+pkg install -y asunder
+if [ 0"$resp" = 09 ]; then
+pkg install -y gimp
+if [ 0"$resp" = 010 ]; then
+pkg install -y inkscape
+if [ 0"$resp" = 011 ]; then
+pkg install -y pinta
+if [ 0"$resp" = 012 ]; then
+pkg install -y shotwell
+if [ 0"$resp" = 013 ]; then
+pkg install -y virtualbox-ose
+if [ 0"$resp" = 014 ]; then
+pkg install -y wine wine-mono wine-gecko
+if [ 0"$resp" = 015 ]; then
+pkg install -y audacity xfburn handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell virtualbox-ose wine wine-mono wine-gecko
+if [ 0"$resp" = 016 ]; then
+continue
 fi
 
 if [ 0"$resp" = 0ports ]; then
@@ -95,6 +152,8 @@ sed -i '' '14s/$/ CUPS/' /etc/make.conf
 continue
 fi
 
+clear
+
 # Install Ports.
 cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
@@ -105,33 +164,18 @@ cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11/mate && make install clean
 cd /usr/ports/math/galculator && make install clean
-cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/misc/qt5ct && make install clean
 cd /usr/ports/x11-themes/qt5-style-plugins && make install clean
 cd /usr/ports/www/firefox && make install clean
-cd /usr/ports/audio/audacity && make install clean
-cd /usr/ports/multimedia/handbrake && make install clean
-cd /usr/ports/sysutils/isomaster && make install clean
-cd /usr/ports/editors/abiword && make install clean
-cd /usr/ports/math/gnumeric && make install clean
-cd /usr/ports/net-p2p/transmission-gtk && make install clean
-cd /usr/ports/audio/asunder && make install clean
-cd /usr/ports/graphics/gimp && make install clean
-cd /usr/ports/graphics/inkscape && make install clean
-cd /usr/ports/graphics/pinta && make install clean
-cd /usr/ports/graphics/shotwell && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
-cd /usr/ports/emulators/virtualbox-ose && make install clean
 cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
-cd /usr/ports/emulators/wine && make install clean
-cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
@@ -156,6 +200,62 @@ cd /home/$USER/freebsd-setup-scripts
 su - $USER
 ./freebsd_mate_theme_install_ports.sh
 exit
+
+clear
+
+read -p "Do you want to install any extra 3rd party software?
+
+1. Audacity (audio editor)
+2. Xfburn (CD burner)
+3. Handbrake (video file converter)
+4. ISO Master (ISO file editor)
+5. AbiWord (word processor)
+6. Gnumeric (speadsheet)
+7. Transmission (Torrent downloader)
+8. Asunder (CD ripper)
+9. GIMP (image editor)
+10. Inkskape (vector graphics editor)
+11. Pinta (image editor similar to Paint.NET on Windows)
+12. Shotwell (photo organizer/editor)
+13. VirtualBox (run multiple operating systems on your PC)
+14. Wine (run Windows applications)
+
+15. All of the above.
+16. None of the above.
+-> " resp
+if [ 0"$resp" = 01 ]; then
+cd /usr/ports/audio/audacity && make install clean
+if [ 0"$resp" = 02 ]; then
+cd /usr/ports/sysutils/xfburn && make install clean
+if [ 0"$resp" = 03 ]; then
+cd /usr/ports/multimedia/handbrake && make install clean
+if [ 0"$resp" = 04 ]; then
+cd /usr/ports/sysutils/isomaster && make install clean
+if [ 0"$resp" = 05 ]; then
+cd /usr/ports/editors/abiword && make install clean
+if [ 0"$resp" = 06 ]; then
+cd /usr/ports/math/gnumeric && make install clean
+if [ 0"$resp" = 07 ]; then
+cd /usr/ports/net-p2p/transmission-gtk && make install clean
+if [ 0"$resp" = 08 ]; then
+cd /usr/ports/audio/asunder && make install clean
+if [ 0"$resp" = 09 ]; then
+cd /usr/ports/graphics/gimp && make install clean
+if [ 0"$resp" = 010 ]; then
+cd /usr/ports/graphics/inkscape && make install clean
+if [ 0"$resp" = 011 ]; then
+cd /usr/ports/graphics/pinta && make install clean
+if [ 0"$resp" = 012 ]; then
+cd /usr/ports/graphics/shotwell && make install clean
+if [ 0"$resp" = 013 ]; then
+cd /usr/ports/emulators/virtualbox-ose && make install clean
+if [ 0"$resp" = 014 ]; then
+cd /usr/ports/emulators/wine && make install clean
+cd /usr/ports/emulators/wine-gecko && make install clean
+if [ 0"$resp" = 015 ]; then
+portmaster -y audio/audacity sysutils/xfburn multimedia/handbrake sysutils/isomaster editors/abiword math/gnumeric net-p2p/transmission-gtk audio/asunder graphics/gimp graphics/inkscape graphics/pinta graphics/shotwell emulators/virtualbox-ose emulators/wine emulators/wine-gecko
+if [ 0"$resp" = 016 ]; then
+continue
 fi
 
 # Install Pluma text editor color scheme.
