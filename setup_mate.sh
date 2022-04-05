@@ -50,7 +50,7 @@ continue
 fi
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator xfburn parole qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 classiclooks wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator xfburn parole qt5ct qt5-style-plugins firefox audacity handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell webfonts virtualbox-ose micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme wine wine-mono wine-gecko numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
 pkg clean -y
 
 # Setup rc.conf file.
@@ -128,7 +128,8 @@ cd /usr/ports/emulators/virtualbox-ose && make install clean
 cd /usr/ports/x11/lightdm && make install clean
 cd /usr/ports/x11/slick-greeter && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
-cd /usr/ports/x11-themes/classiclooks && make install clean
+cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
+cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
 cd /usr/ports/emulators/wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
 cd /usr/ports/x11/numlockx && make install clean
@@ -157,6 +158,9 @@ su - $USER
 exit
 fi
 
+# Install Pluma text editor color scheme.
+fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-4/styles/onedark-bright.xml
+
 # Install cursor theme.
 echo "Installing the macOS Big Sur cursor theme..."
 cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
@@ -167,17 +171,6 @@ echo "Setting proper file permissions..."
 chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
 rm -rf macOSBigSur.tar.gz
 
-# Install icon theme.
-echo "Installing the Newaita-reborn icon theme..."
-cd /home/$USER/
-git clone https://github.com/cbrnix/Newaita-reborn.git
-cd Newaita-reborn
-mv Newaita-reborn /usr/local/share/icons/
-mv Newaita-reborn-dark /usr/local/share/icons/
-cd /home/$USER/
-gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn
-gtk-update-icon-cache /usr/local/share/icons/Newaita-reborn-dark
-
 echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
 # Set window titlebar font.
 gsettings set org.mate.Marco.general titlebar-font "Ubuntu Bold 11"
@@ -186,9 +179,9 @@ gsettings set org.mate.Marco.general theme vimix-light-doder
 # Turn off middle click on window titlebar.
 gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
-gsettings set org.mate.interface gtk-theme "ClassicLooks Solaris"
+gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Dark"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme Newaita-reborn
+gsettings set org.mate.interface icon-theme Papirus-Dark
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
 gsettings set org.mate.interface font-name "Roboto 10"
