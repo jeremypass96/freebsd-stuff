@@ -7,6 +7,8 @@ echo "Please run this script as root! Thanks."
 exit
 fi
 
+clear 
+
 service ntpdate delete
 sysrc sendmail_msp_queueenable="NO"
 sysrc sendmail_outbound_enable="NO"
