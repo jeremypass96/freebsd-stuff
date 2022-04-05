@@ -25,7 +25,7 @@ gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
 gsettings set org.mate.interface gtk-theme "ClassicLooks Rainyday"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme Flatery-Sky
+gsettings set org.mate.interface icon-theme Newaita-reborn
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
 gsettings set org.mate.interface font-name "Roboto 10"
