@@ -52,16 +52,11 @@ fi
 clear
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator parole qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
+pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator parole qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 pkg clean -y
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
-
-# Setup MATE themes. Will be ran as a normal user.
-su - $USER
-./freebsd_mate_theme_install.sh
-exit
 
 clear
 
@@ -190,15 +185,17 @@ cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 cd /usr/ports/sysutils/colorize && make install clean
+cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
+fi
 
-# Setup MATE theme. Will be ran as a normal user.
+# Setup MATE themes. Will be ran as a normal user.
 su - $USER
-./freebsd_mate_theme_install_ports.sh
+./freebsd_mate_theme_install.sh
 exit
 
 clear
