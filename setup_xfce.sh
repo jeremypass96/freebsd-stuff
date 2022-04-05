@@ -55,6 +55,8 @@ clear
 pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
 pkg clean -y
 
+clear
+
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
@@ -259,6 +261,8 @@ portmaster -y audio/audacity sysutils/xfburn multimedia/handbrake sysutils/isoma
 if [ 0"$resp" = 016 ]; then
 continue
 fi
+
+clear
 
 # Install Mousepad text editor color scheme.
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-3.0/styles/onedark-bright.xml
