@@ -55,32 +55,32 @@ read -p "FreeBSD DRM kmod graphics support has been installed. What kind of grap
 6.) VMware
 -> " resp
 
-if [ 0"$resp" = 01 ]; then
+if [ "$resp" = 1 ]; then
 sysrc kld_list+=amdgpu
 pkg install -y xf86-video-amdgpu
 fi
 #
-if [ 0"$resp" = 02 ]; then
+if [ "$resp" = 2 ]; then
 sysrc kld_list+=radeon
 pkg install -y xf86-video-ati
 fi
 #
-if [ 0"$resp" = 03 ]; then
+if [ "$resp" = 3 ]; then
 pkg install -y nvidia-driver
 sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
-if [ 0"$resp" = 04 ]; then
+if [ "$resp" = 4 ]; then
 sysrc kld_list+=i915kms
 pkg install -y xf86-video-intel
 fi
 #
-if [ 0"$resp" = 05 ]; then
+if [ "$resp" = 5 ]; then
 pkg install -y virtualbox-ose-additions xf86-video-vmware
 service vboxguest enable && service vboxservice enable
 pw groupmod vboxusers -m $USER
 fi
 #
-if [ 0"$resp" = 06 ]; then
+if [ "$resp" = 6 ]; then
 pkg install -y xf86-video-vmware open-vm-tools
 fi
