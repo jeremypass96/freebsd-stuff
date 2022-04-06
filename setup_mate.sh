@@ -37,13 +37,13 @@ read -p "Do you plan to use a printer? (y/n): " resp
 if [ 0"$resp" = 0y ]; then
 pkg install -y cups
 sysrc cupsd_enable="YES"
+fi
 read -p "Paper size? (Letter/A4): " resp
 if [ 0"$resp" = 0Letter ]; then
 pkg install -y papersize-default-letter
 fi
 if [ 0"$resp" = 0A4 ]; then
 pkg install -y papersize-default-a4
-fi
 fi
 if [ 0"$resp" = 0n ]; then
 continue
@@ -82,36 +82,52 @@ read -p "Do you want to install any extra 3rd party software?
 -> " resp
 if [ 0"$resp" = 01 ]; then
 pkg install -y audacity
+fi
 if [ 0"$resp" = 02 ]; then
 pkg install -y xfburn
+fi
 if [ 0"$resp" = 03 ]; then
 pkg install -y handbrake
+fi
 if [ 0"$resp" = 04 ]; then
 pkg install -y isomaster
+fi
 if [ 0"$resp" = 05 ]; then
 pkg install -y abiword
+fi
 if [ 0"$resp" = 06 ]; then
 pkg install -y gnumeric
+fi
 if [ 0"$resp" = 07 ]; then
 pkg install -y transmission-gtk
+fi
 if [ 0"$resp" = 08 ]; then
 pkg install -y asunder
+fi
 if [ 0"$resp" = 09 ]; then
 pkg install -y gimp
+fi
 if [ 0"$resp" = 010 ]; then
 pkg install -y inkscape
+fi
 if [ 0"$resp" = 011 ]; then
 pkg install -y pinta
+fi
 if [ 0"$resp" = 012 ]; then
 pkg install -y shotwell
+fi
 if [ 0"$resp" = 013 ]; then
 pkg install -y virtualbox-ose
+fi
 if [ 0"$resp" = 014 ]; then
 pkg install -y wine wine-mono wine-gecko
+fi
 if [ 0"$resp" = 015 ]; then
 pkg install -y audacity xfburn handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell virtualbox-ose wine wine-mono wine-gecko
+fi
 if [ 0"$resp" = 016 ]; then
 continue
+fi
 fi
 
 if [ 0"$resp" = 0ports ]; then
@@ -222,37 +238,53 @@ read -p "Do you want to install any extra 3rd party software?
 -> " resp
 if [ 0"$resp" = 01 ]; then
 cd /usr/ports/audio/audacity && make install clean
+fi
 if [ 0"$resp" = 02 ]; then
 cd /usr/ports/sysutils/xfburn && make install clean
+fi
 if [ 0"$resp" = 03 ]; then
 cd /usr/ports/multimedia/handbrake && make install clean
+fi
 if [ 0"$resp" = 04 ]; then
 cd /usr/ports/sysutils/isomaster && make install clean
+fi
 if [ 0"$resp" = 05 ]; then
 cd /usr/ports/editors/abiword && make install clean
+fi
 if [ 0"$resp" = 06 ]; then
 cd /usr/ports/math/gnumeric && make install clean
+fi
 if [ 0"$resp" = 07 ]; then
 cd /usr/ports/net-p2p/transmission-gtk && make install clean
+fi
 if [ 0"$resp" = 08 ]; then
 cd /usr/ports/audio/asunder && make install clean
+fi
 if [ 0"$resp" = 09 ]; then
 cd /usr/ports/graphics/gimp && make install clean
+fi
 if [ 0"$resp" = 010 ]; then
 cd /usr/ports/graphics/inkscape && make install clean
+fi
 if [ 0"$resp" = 011 ]; then
 cd /usr/ports/graphics/pinta && make install clean
+fi
 if [ 0"$resp" = 012 ]; then
 cd /usr/ports/graphics/shotwell && make install clean
+fi
 if [ 0"$resp" = 013 ]; then
 cd /usr/ports/emulators/virtualbox-ose && make install clean
+fi
 if [ 0"$resp" = 014 ]; then
 cd /usr/ports/emulators/wine && make install clean
 cd /usr/ports/emulators/wine-gecko && make install clean
+fi
 if [ 0"$resp" = 015 ]; then
 portmaster -y audio/audacity sysutils/xfburn multimedia/handbrake sysutils/isomaster editors/abiword math/gnumeric net-p2p/transmission-gtk audio/asunder graphics/gimp graphics/inkscape graphics/pinta graphics/shotwell emulators/virtualbox-ose emulators/wine emulators/wine-gecko
+fi
 if [ 0"$resp" = 016 ]; then
 continue
+fi
 fi
 
 # Install Pluma text editor color scheme.
