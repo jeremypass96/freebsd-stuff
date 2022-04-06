@@ -39,18 +39,18 @@ pkg update
 
 echo ""
 read -p "Do you plan to use a printer? (y/n): " resp
-if [ 0"$resp" = 0y ]; then
+if [ "$resp" = y ]; then
 pkg install -y cups
 sysrc cupsd_enable="YES"
 fi
 read -p "Paper size? (Letter/A4): " resp
-if [ 0"$resp" = 0Letter ]; then
+if [ "$resp" = Letter ]; then
 pkg install -y papersize-default-letter
 fi
-if [ 0"$resp" = 0A4 ]; then
+if [ "$resp" = A4 ]; then
 pkg install -y papersize-default-a4
 fi
-if [ 0"$resp" = 0n ]; then
+if [ "$resp" = n ]; then
 continue
 fi
 
@@ -90,51 +90,51 @@ read -p "Do you want to install any extra 3rd party software?
 15. All of the above.
 16. None of the above.
 -> " resp
-if [ 0"$resp" = 01 ]; then
+if [ "$resp" = 1 ]; then
 pkg install -y audacity
 fi
-if [ 0"$resp" = 02 ]; then
+if [ "$resp" = 2 ]; then
 pkg install -y xfburn
 fi
-if [ 0"$resp" = 03 ]; then
+if [ "$resp" = 3 ]; then
 pkg install -y handbrake
 fi
-if [ 0"$resp" = 04 ]; then
+if [ "$resp" = 4 ]; then
 pkg install -y isomaster
 fi
-if [ 0"$resp" = 05 ]; then
+if [ "$resp" = 5 ]; then
 pkg install -y abiword
 fi
-if [ 0"$resp" = 06 ]; then
+if [ "$resp" = 6 ]; then
 pkg install -y gnumeric
 fi
-if [ 0"$resp" = 07 ]; then
+if [ "$resp" = 7 ]; then
 pkg install -y transmission-gtk
 fi
-if [ 0"$resp" = 08 ]; then
+if [ "$resp" = 8 ]; then
 pkg install -y asunder
 fi
-if [ 0"$resp" = 09 ]; then
+if [ "$resp" = 9 ]; then
 pkg install -y gimp
 fi
-if [ 0"$resp" = 010 ]; then
+if [ "$resp" = 10 ]; then
 pkg install -y inkscape
 fi
-if [ 0"$resp" = 011 ]; then
+if [ "$resp" = 11 ]; then
 pkg install -y pinta
 fi
-if [ 0"$resp" = 012 ]; then
+if [ "$resp" = 12 ]; then
 pkg install -y shotwell
 fi
-if [ 0"$resp" = 013 ]; then
+if [ "$resp" = 13 ]; then
 pkg install -y virtualbox-ose
 fi
-if [ 0"$resp" = 014 ]; then
+if [ "$resp" = 14 ]; then
 pkg install -y wine wine-mono wine-gecko
 fi
-if [ 0"$resp" = 015 ]; then
+if [ "$resp" = 15 ]; then
 pkg install -y audacity xfburn handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell virtualbox-ose wine wine-mono wine-gecko
 fi
-if [ 0"$resp" = 016 ]; then
+if [ "$resp" = 16 ]; then
 continue
 fi
