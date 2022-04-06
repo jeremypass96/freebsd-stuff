@@ -55,27 +55,27 @@ read -p "FreeBSD DRM kmod graphics support has been installed. What kind of grap
 6.) VMware
 -> " resp
 
-if [ 0"$resp" = 01 ]; then
+if [ "$resp" = 1 ]; then
 sysrc kld_list+=amdgpu
 sed -i '' '17s/$/AMDGPU/' /etc/make.conf
 fi
 #
-if [ 0"$resp" = 02 ]; then
+if [ "$resp" = 2 ]; then
 sysrc kld_list+=radeon
 sed -i '' '17s/$/ATI/' /etc/make.conf
 fi
 #
-if [ 0"$resp" = 03 ]; then
+if [ "$resp" = 3 ]; then
 cd /usr/ports/x11/nvidia-driver && make install clean
 sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
-if [ 0"$resp" = 04 ]; then
+if [ "$resp" = 4 ]; then
 sysrc kld_list+=i915kms
 sed -i '' '17s/$/INTEL/' /etc/make.conf
 fi
 #
-if [ 0"$resp" = 05 ]; then
+if [ "$resp" = 5 ]; then
 cd /usr/ports/emulators/virtualbox-ose-additions-legacy && make install clean
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 service vboxguest enable && service vboxservice enable
@@ -83,7 +83,7 @@ sed -i '' '17s/$/VMWARE/' /etc/make.conf
 pw groupmod vboxusers -m $USER
 fi
 #
-if [ 0"$resp" = 06 ]; then
+if [ "$resp" = 6 ]; then
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 cd /usr/ports/emulators/open-vm-tools && make install clean
 sed -i '' '17s/$/VMWARE VMMOUSE/' /etc/make.conf
