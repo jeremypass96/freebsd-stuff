@@ -37,13 +37,13 @@ read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y cups
 sysrc cupsd_enable="YES"
-fi
 read -p "Paper size? (Letter/A4): " resp
 if [ "$resp" = Letter ]; then
 pkg install -y papersize-default-letter
 fi
 if [ "$resp" = A4 ]; then
 pkg install -y papersize-default-a4
+fi
 fi
 if [ "$resp" = n ]; then
 continue
