@@ -116,7 +116,7 @@ if [ "$resp" = n ]; then
 continue
 fi
 
-if [ "$resp" = 0ports ]; then
+if [ "$resp" = ports ]; then
 
 # Copying over make.conf file.
 cp -v make.conf /etc/
