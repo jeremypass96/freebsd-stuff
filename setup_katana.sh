@@ -87,8 +87,8 @@ read -p "Do you want to install any extra 3rd party software?
 13. VirtualBox (run multiple operating systems on your PC)
 14. Wine (run Windows applications)
 
-15. All of the above.
-16. None of the above.
+a. All of the above.
+n. None of the above.
 -> " resp
 if [ "$resp" = 1 ]; then
 pkg install -y audacity
@@ -132,9 +132,9 @@ fi
 if [ "$resp" = 14 ]; then
 pkg install -y wine wine-mono wine-gecko
 fi
-if [ "$resp" = 15 ]; then
+if [ "$resp" = a ]; then
 pkg install -y audacity xfburn handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell virtualbox-ose wine wine-mono wine-gecko
 fi
-if [ "$resp" = 16 ]; then
+if [ "$resp" = n ]; then
 continue
 fi
