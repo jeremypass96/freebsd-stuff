@@ -47,6 +47,7 @@ sysrc apm_enable="YES"
 cd /usr/ports/graphics/drm-kmod && make install clean
 
 read -p "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?
+
 1.) AMD GPU
 2.) ATI Radeon
 3.) NVIDIA
