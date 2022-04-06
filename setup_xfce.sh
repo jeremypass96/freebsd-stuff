@@ -62,60 +62,6 @@ clear
 
 clear
 
-read -p "Do you want to install any extra 3rd party software?
-
-1. Audacity (audio editor)
-2. Xfburn (CD burner)
-3. Handbrake (video file converter)
-4. ISO Master (ISO file editor)
-5. AbiWord (word processor)
-6. Gnumeric (speadsheet)
-7. Transmission (torrent downloader)
-8. Asunder (CD ripper)
-9. GIMP (image editor)
-10. Inkskape (vector graphics editor)
-11. Pinta (image editor similar to Paint.NET on Windows)
-12. Shotwell (photo organizer/editor)
-13. VirtualBox (run multiple operating systems on your PC)
-14. Wine (run Windows applications)
-
-a. All of the above.
-n. None of the above.
--> " resp
-if [ "$resp" = 1 ]; then
-pkg install -y audacity
-if [ "$resp" = 2 ]; then
-pkg install -y xfburn
-if [ "$resp" = 3 ]; then
-pkg install -y handbrake
-if [ "$resp" = 4 ]; then
-pkg install -y isomaster
-if [ "$resp" = 5 ]; then
-pkg install -y abiword
-if [ "$resp" = 6 ]; then
-pkg install -y gnumeric
-if [ "$resp" = 7 ]; then
-pkg install -y transmission-gtk
-if [ "$resp" = 8 ]; then
-pkg install -y asunder
-if [ "$resp" = 9 ]; then
-pkg install -y gimp
-if [ "$resp" = 10 ]; then
-pkg install -y inkscape
-if [ "$resp" = 11 ]; then
-pkg install -y pinta
-if [ "$resp" = 12 ]; then
-pkg install -y shotwell
-if [ "$resp" = 13 ]; then
-pkg install -y virtualbox-ose
-if [ "$resp" = 14 ]; then
-pkg install -y wine wine-mono wine-gecko
-if [ "$resp" = a ]; then
-pkg install -y audacity xfburn handbrake isomaster abiword gnumeric transmission-gtk asunder gimp inkscape pinta shotwell virtualbox-ose wine wine-mono wine-gecko
-if [ "$resp" = n ]; then
-continue
-fi
-
 if [ "$resp" = ports ]; then
 
 # Copying over make.conf file.
@@ -204,63 +150,6 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
-
-clear
-
-read -p "Do you want to install any extra 3rd party software?
-
-1. Audacity (audio editor)
-2. Xfburn (CD burner)
-3. Handbrake (video file converter)
-4. ISO Master (ISO file editor)
-5. AbiWord (word processor)
-6. Gnumeric (speadsheet)
-7. Transmission (torrent downloader)
-8. Asunder (CD ripper)
-9. GIMP (image editor)
-10. Inkskape (vector graphics editor)
-11. Pinta (image editor similar to Paint.NET on Windows)
-12. Shotwell (photo organizer/editor)
-13. VirtualBox (run multiple operating systems on your PC)
-14. Wine (run Windows applications)
-
-a. All of the above.
-n. None of the above.
--> " resp
-if [ "$resp" = 1 ]; then
-cd /usr/ports/audio/audacity && make install clean
-if [ "$resp" = 2 ]; then
-cd /usr/ports/sysutils/xfburn && make install clean
-if [ "$resp" = 3 ]; then
-cd /usr/ports/multimedia/handbrake && make install clean
-if [ "$resp" = 4 ]; then
-cd /usr/ports/sysutils/isomaster && make install clean
-if [ "$resp" = 5 ]; then
-cd /usr/ports/editors/abiword && make install clean
-if [ "$resp" = 6 ]; then
-cd /usr/ports/math/gnumeric && make install clean
-if [ "$resp" = 7 ]; then
-cd /usr/ports/net-p2p/transmission-gtk && make install clean
-if [ "$resp" = 8 ]; then
-cd /usr/ports/audio/asunder && make install clean
-if [ "$resp" = 9 ]; then
-cd /usr/ports/graphics/gimp && make install clean
-if [ "$resp" = 10 ]; then
-cd /usr/ports/graphics/inkscape && make install clean
-if [ "$resp" = 11 ]; then
-cd /usr/ports/graphics/pinta && make install clean
-if [ "$resp" = 12 ]; then
-cd /usr/ports/graphics/shotwell && make install clean
-if [ "$resp" = 13 ]; then
-cd /usr/ports/emulators/virtualbox-ose && make install clean
-if [ "$resp" = 14 ]; then
-cd /usr/ports/emulators/wine && make install clean
-cd /usr/ports/emulators/wine-gecko && make install clean
-if [ "$resp" = a ]; then
-portmaster -y audio/audacity sysutils/xfburn multimedia/handbrake sysutils/isomaster editors/abiword math/gnumeric net-p2p/transmission-gtk audio/asunder graphics/gimp graphics/inkscape graphics/pinta graphics/shotwell emulators/virtualbox-ose emulators/wine emulators/wine-gecko
-if [ "$resp" = n ]; then
-continue
-fi
 
 clear
 
