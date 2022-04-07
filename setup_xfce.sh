@@ -52,7 +52,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
 pkg clean -y
 
 clear
@@ -60,7 +60,9 @@ clear
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
-clear
+# Install 3rd party software.
+software_dialog_pkgs.sh
+fi
 
 if [ "$resp" = ports ]; then
 
@@ -105,6 +107,7 @@ echo "x11-wm_xfce4_UNSET=GREYBIRD" >> /etc/make.conf
 clear
 
 # Install Ports.
+cd /usr/ports/shells/bash && make install clean
 cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
 cd /usr/ports/x11/xclip && make install clean
@@ -150,6 +153,10 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
+
+# Install 3rd party software.
+software_dialog_ports.sh
+fi
 
 clear
 
