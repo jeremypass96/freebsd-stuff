@@ -57,7 +57,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 firefox webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount unix2dos smartmontools ubuntu-font sourcecodepro-ttf webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 firefox webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount unix2dos smartmontools ubuntu-font sourcecodepro-ttf webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize
 pkg clean -y
 
 clear 
@@ -67,3 +67,6 @@ clear
 
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"
+
+# Install 3rd party software.
+./software_dialog_pkgs.sh
