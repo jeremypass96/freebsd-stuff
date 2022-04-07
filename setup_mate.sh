@@ -59,7 +59,8 @@ pkg clean -y
 ./rcconf_setup.sh
 
 # Install 3rd party software.
-software_dialog_pkgs.sh
+./software_dialog_pkgs.sh
+fi
 
 if [ "$resp" = ports ]; then
 
@@ -147,7 +148,8 @@ su - $USER
 exit
 
 # Install 3rd party software.
-software_dialog_ports.sh
+./software_dialog_ports.sh
+fi
 
 clear
 
