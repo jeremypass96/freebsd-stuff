@@ -52,13 +52,14 @@ fi
 clear
 
 # Install packages.
-pkg install -y sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator parole qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate galculator parole qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 pkg clean -y
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
-clear
+# Install 3rd party software.
+software_dialog_pkgs.sh
 
 if [ "$resp" = ports ]; then
 
@@ -96,6 +97,7 @@ fi
 clear
 
 # Install Ports.
+cd /usr/ports/shells/bash && make install clean
 cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
 cd /usr/ports/x11/xclip && make install clean
@@ -143,6 +145,9 @@ fi
 su - $USER
 ./freebsd_mate_theme_install.sh
 exit
+
+# Install 3rd party software.
+software_dialog_ports.sh
 
 clear
 
