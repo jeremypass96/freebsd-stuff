@@ -32,7 +32,7 @@ do
         11) port="graphics/pinta";;
         12) port="graphics/shotwell";;
         13) port="emulators/virtualbox-ose";;
-        14) port="emulators/wine emulators/wine-gecko";;
+        14) port="emulators/wine";;
     esac
     portmaster -y $port
     clear
