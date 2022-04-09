@@ -42,6 +42,7 @@ read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y cups gutenprint
 sysrc cupsd_enable="YES"
+sysrc cups_browsed_enable="YES"
 read -p "Paper size? (Letter/A4): " resp
 if [ "$resp" = Letter ]; then
 pkg install -y papersize-default-letter
