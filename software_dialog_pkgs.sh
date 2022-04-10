@@ -1,5 +1,5 @@
 #!/usr/local/bin/bash
-cmd=(dialog --separate-output --no-cancel --checklist "Do you want to install any extra 3rd party software?" 21 70 21)
+cmd=(dialog --separate-output --no-cancel --checklist "Would you like to install any extra 3rd party software?" 21 70 21)
 options=(1 "Audacity (audio editor)" off
          2 "Xfburn (CD burner)" off
          3 "Handbrake (video file converter)" off
