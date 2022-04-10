@@ -13,7 +13,8 @@ options=(1 "Audacity (audio editor)" off
          11 "Pinta (image editor similar to Paint.NET on Windows)" off
          12 "Shotwell (photo organizer/editor)" off
          13 "VirtualBox (run multiple operating systems on your PC)" off
-         14 "Wine (run Windows applications)" off)
+         14 "Wine (run Windows applications)" off
+         n "No, don't install any 3rd party software." off)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 for choice in $choices
@@ -33,6 +34,7 @@ do
         12) pkg="shotwell";;
         13) pkg="virtualbox-ose";;
         14) pkg="wine wine-mono wine-gecko";;
+        n) continue
     esac
     pkg install -y $pkg
     clear
