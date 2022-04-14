@@ -33,7 +33,8 @@ do
         11) port="graphics/pinta";;
         12) port="graphics/shotwell";;
         13) port="emulators/virtualbox-ose";;
-        14) port="emulators/wine";;
+        14) port="emulators/wine"
+        echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
         n) continue
     esac
     portmaster -y $port
