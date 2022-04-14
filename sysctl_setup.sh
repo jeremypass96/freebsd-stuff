@@ -27,7 +27,13 @@ echo net.inet.tcp.blackhole=2 >> /etc/sysctl.conf
 echo net.inet.udp.blackhole=1 >> /etc/sysctl.conf
 echo net.inet.ip.random_id=1 >> /etc/sysctl.conf
 echo net.inet.tcp.always_keepalive=0 >> /etc/sysctl.conf
+echo net.inet.icmp.drop_redirect >> /etc/sysctl.conf
+echo net.inet.tcp.drop_synfin=1 >> /etc/sysctl.conf
+echo net.inet.tcp.fast_finwait2_recycle=1 >> /etc/sysctl.conf
+echo net.inet.tcp.icmp_may_rst=0 >> /etc/sysctl.conf
 echo net.inet.ip.redirect=0 >> /etc/sysctl.conf
+echo net.inet.tcp.syncache.rexmtlimit=0 >> /etc/sysctl.conf
+echo net.inet.tcp.syncookies=0 >> /etc/sysctl.conf
 echo net.inet.tcp.cc.algorithm=cubic >> /etc/sysctl.conf
 echo hw.acpi.power_button_state=S3 >> /etc/sysctl.conf
 echo hw.kbd.keymap_restrict_change=4 >> /etc/sysctl.conf
@@ -57,6 +63,7 @@ echo machdep.syscall_ret_flush_l1d=1 >> /etc/sysctl.conf
 echo hw.spec_store_bypass_disable=2 >> /etc/sysctl.conf
 echo hw.mds_disable=3 >> /etc/sysctl.conf
 echo hw.ibrs_disable=0 >> /etc/sysctl.conf
+echo kern.sched.slice=3 >> /etc/sysctl.conf
 echo "" >> /etc/sysctl.conf
 echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
 echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
