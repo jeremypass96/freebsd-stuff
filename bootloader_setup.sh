@@ -21,8 +21,8 @@ if [ "$resp" = n ]; then
 echo 'coretemp_load="YES"' >> /boot/loader.conf
 fi
 
-echo "loader_delay=0" >> /boot/loader.conf
-echo "autoboot_delay=-1" >> /boot/loader.conf
+echo loader_delay=0 >> /boot/loader.conf
+echo autoboot_delay=-1 >> /boot/loader.conf
 echo 'beastie_disable="YES"' >> /boot/loader.conf
 echo 'cpu_microcode_load="YES"' >> /boot/loader.conf
 echo 'cpu_microcode_name="/boot/firmware/intel-ucode.bin"' >> /boot/loader.conf
@@ -31,10 +31,12 @@ echo 'libiconv_load="YES"' >> /boot/loader.conf
 echo 'libmchain_load="YES"' >> /boot/loader.conf
 echo 'cd9660_iconv_load="YES"' >> /boot/loader.conf
 echo 'msdosfs_iconv_load="YES"' >> /boot/loader.conf
-echo "kern.ipc.shmseg=10000" >> /boot/loader.conf
-echo "kern.ipc.shmmni=10000" >> /boot/loader.conf
-echo "hw.usb.no_boot_wait=1" >> /boot/loader.conf
-echo "hw.usb.no_shutdown_wait=1" >> /boot/loader.conf
+echo kern.ipc.shmseg=10000 >> /boot/loader.conf
+echo kern.ipc.shmmni=10000 >> /boot/loader.conf
+echo hw.usb.no_boot_wait=1 >> /boot/loader.conf
+echo hw.usb.no_shutdown_wait=1 >> /boot/loader.conf
+echo kern.geom.label.disk_ident.enable=0 >> /boot/loader.conf
+echo kern.geom.label.gptid.enable=0 >> /boot/loader.conf
 
 # Protects against "Meltdown" security mitigation.
 echo "vm.pmap.pti=1" >> /boot/loader.conf
