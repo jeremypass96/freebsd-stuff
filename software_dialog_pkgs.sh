@@ -33,7 +33,8 @@ do
         11) pkg="pinta";;
         12) pkg="shotwell";;
         13) pkg="virtualbox-ose";;
-        14) pkg="wine wine-mono wine-gecko";;
+        14) pkg="wine wine-mono wine-gecko"
+            echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
         n) continue
     esac
     pkg install -y $pkg
