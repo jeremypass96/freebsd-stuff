@@ -71,3 +71,10 @@ sysrc kdm_enable="YES"
 
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
+
+# Fix GTK/QT antialiasing
+cat << EOF > /home/$USER/.xinitrc
+# GTK/QT ANTIALIASING
+export QT_XFT=1
+export GDK_USE_XFT=1
+EOF
