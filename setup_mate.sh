@@ -224,7 +224,7 @@ theme-name = Papirus-Light
 icon-theme-name = Skeuos-Blue-Light
 EOF
 
-# Setup qt5ct
+# Setup qt5ct and fix GTK/QT antialiasing
 cat << EOF > /home/USER/.xinitrc
 # qt5ct
 export QT_QPA_PLATFORMTHEME=qt5ct
