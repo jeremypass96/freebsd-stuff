@@ -64,6 +64,12 @@ rm Poppins.zip
 ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/fonts/conf.d/
 ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts/conf.d/
 
+# Cleanup boot process.
+grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
+grep -n -A 8 'random_start()' /etc/rc.d/random
+sed -i '' s/'echo "Autoloading module: ${m}"'/'# echo "Autoloading module: ${m}"'/g /etc/rc.d/devmatch
+sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
+
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
