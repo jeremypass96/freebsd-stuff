@@ -24,6 +24,7 @@ fi
 echo loader_delay=0 >> /boot/loader.conf
 echo autoboot_delay=-1 >> /boot/loader.conf
 echo 'beastie_disable="YES"' >> /boot/loader.conf
+echo 'boot_mute="YES"' >> /boot/loader.conf
 echo 'cpu_microcode_load="YES"' >> /boot/loader.conf
 echo 'cpu_microcode_name="/boot/firmware/intel-ucode.bin"' >> /boot/loader.conf
 echo 'fusefs_load="YES"' >> /boot/loader.conf
