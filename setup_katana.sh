@@ -74,7 +74,7 @@ sysrc kdm_enable="YES"
 
 # Fix GTK/QT antialiasing
 cat << EOF > /home/$USER/.xinitrc
-# GTK/QT ANTIALIASING
+# GTK/QT Antialiasing
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
