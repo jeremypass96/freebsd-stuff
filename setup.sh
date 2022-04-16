@@ -60,6 +60,10 @@ fetch https://fonts.google.com/download?family=Poppins -o Poppins.zip
 unzip Poppins.zip -d /usr/local/share/fonts/Poppins
 rm Poppins.zip
 
+# Fix font rendering.
+ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/fonts/conf.d/
+ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts/conf.d/
+
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
 
