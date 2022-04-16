@@ -160,14 +160,8 @@ clear
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-4/styles/onedark-bright.xml
 
 # Install cursor theme.
-echo "Installing the macOS Big Sur cursor theme..."
-cd /home/$USER/ && fetch https://github.com/ful1e5/apple_cursor/releases/download/v1.2.0/macOSBigSur.tar.gz -o macOSBigSur.tar.gz
-tar -xvf macOSBigSur.tar.gz
-echo 'Moving cursor theme directory to "/usr/local/share/icons"...'
-mv macOSBigSur /usr/local/share/icons/
-echo "Setting proper file permissions..."
-chown -R root:wheel /usr/local/share/icons/macOSBigSur/*
-rm -rf macOSBigSur.tar.gz
+echo "Installing the "Volantes Light Cursors" cursor theme..."
+tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
 echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
 # Set window titlebar font.
@@ -188,7 +182,8 @@ gsettings set org.mate.caja.desktop font "Roboto 10"
 gsettings set org.mate.interface show-input-method-menu false
 gsettings set org.mate.interface show-unicode-menu false
 # Set mouse cursor.
-gsettings set org.mate.peripherals-mouse cursor-theme macOSBigSur
+gsettings set org.mate.peripherals-mouse cursor-theme volantes_light_cursors
+gsettings set org.mate.peripherals-mouse cursor-size 32
 # Set up FreeDesktop sound theme.
 pkg install -y freedesktop-sound-theme
 gsettings set org.mate.sound enable-esd true
