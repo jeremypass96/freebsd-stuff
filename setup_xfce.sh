@@ -734,14 +734,16 @@ icon-theme-name = Papirus-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing
-cat << EOF > /home/USER/.xinitrc
+cat << EOF > /home/$USER/.xinitrc
 # qt5ct
 export QT_QPA_PLATFORMTHEME=qt5ct
 # GTK/QT Antialiasing
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
-####
+
+# Setup qt5ct
+mkdir /home/$USER/.config/qt5ct
 cat << EOF > /home/$USER/.config/qt5ct/qt5ct.conf
 [Appearance]
 color_scheme_path=/usr/local/share/qt5ct/colors/airy.conf
