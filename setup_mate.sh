@@ -228,6 +228,9 @@ EOF
 cat << EOF > /home/USER/.xinitrc
 # qt5ct
 export QT_QPA_PLATFORMTHEME=qt5ct
+# GTK/QT Antialiasing
+export QT_XFT=1
+export GDK_USE_XFT=1
 EOF
 ####
 cat << EOF > /home/$USER/.config/qt5ct/qt5ct.conf
