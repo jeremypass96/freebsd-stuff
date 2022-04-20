@@ -16,6 +16,7 @@ sysrc sendmail_submit_enable="NO"
 sysrc ntpd_enable="YES"
 sysrc ntpd_flags="-g"
 sysrc ntpd_sync_on_start="YES"
+sysrc ntpd_oomprotect="YES"
 sysrc inetd_enable="NO"
 sysrc icmp_drop_redirect="YES"
 sysrc icmp_log_redirect="YES"
@@ -42,6 +43,7 @@ sysrc vboxnet_enable="YES"
 sysrc smartd_enable="YES"
 sysrc dumpdev="NO"
 sysrc apm_enable="YES"
+sysrc defaultroute_delay="0"
 
 # Set up DRM kmod support for graphics cards.
 cd /usr/ports/graphics/drm-kmod && make install clean
