@@ -741,6 +741,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
+chown $USER:$USER /home/$USER/.xinitrc
 
 # Setup qt5ct
 mkdir /home/$USER/.config/qt5ct
@@ -778,3 +779,4 @@ geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\xd1\0\0\0+\0\0\x3\xb1\0\0\x2\
 force_raster_widgets=1
 ignored_applications=@Invalid()
 EOF
+chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
