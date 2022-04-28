@@ -232,3 +232,7 @@ EOF
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct
 chown $USER:$USER .
+
+# Fix MATE error on first boot.
+mkdir /home/$USER/.config/caja
+chown $USER:$USER /home/$USER/.config/caja
