@@ -34,6 +34,7 @@ do
         12) port="graphics/shotwell";;
         13) port="emulators/virtualbox-ose";;
         14) port="emulators/wine"
+        echo "Wine fix" >> /boot/loader.conf
         echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
         n) continue
     esac
