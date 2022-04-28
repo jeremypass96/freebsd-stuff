@@ -230,3 +230,5 @@ force_raster_widgets=1
 ignored_applications=@Invalid()
 EOF
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
+chown $USER:$USER /home/$USER/.config/qt5ct
+chown $USER:$USER .
