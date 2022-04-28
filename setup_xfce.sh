@@ -208,6 +208,7 @@ FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
+mkdir -p /usr/share/skel/dot.config/xfce4/terminal
 cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
 #####
 
