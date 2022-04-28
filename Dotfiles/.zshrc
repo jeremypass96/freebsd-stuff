@@ -100,7 +100,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias df="df -h"
-alias cat="ccat"
-alias less="cless"
 neofetch
-QT_QPA_PLATFORMTHEME=qt5ct;   export QT_QPA_PLATFORMTHEME
