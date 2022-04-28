@@ -184,54 +184,22 @@ icon-theme-name = Skeuos-Blue-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing
-cat << EOF > /home/$USER/.xinitrc
-# qt5ct
-export QT_QPA_PLATFORMTHEME=qt5ct
-# GTK/QT Antialiasing
-export QT_XFT=1
-export GDK_USE_XFT=1
-EOF
+cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/.xinitrc /home/$USER/.xinitrc
+cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Setup qt5ct
+#####
 mkdir /home/$USER/.config/qt5ct
-cat << EOF > /home/$USER/.config/qt5ct/qt5ct.conf
-[Appearance]
-color_scheme_path=/usr/local/share/qt5ct/colors/airy.conf
-custom_palette=false
-icon_theme=Papirus-Dark
-standard_dialogs=default
-style=gtk2
+chown $USER:$USER /home/$USER/.config/qt5ct/.
+mkdir /usr/share/skel/dot.config/qt5ct
+#####
 
-[Fonts]
-fixed=@Variant(\0\0\0@\0\0\0\x1e\0O\0\x66\0\x66\0i\0\x63\0\x65\0 \0\x43\0o\0\x64\0\x65\0 \0P\0r\0o@(\0\0\0\0\0\0\xff\xff\xff\xff\x5\x1\0\x32\x10)
-general=@Variant(\0\0\0@\0\0\0\f\0R\0o\0\x62\0o\0t\0o@$\0\0\0\0\0\0\xff\xff\xff\xff\x5\x1\0\x32\x10)
-
-[Interface]
-activate_item_on_single_click=1
-buttonbox_layout=0
-cursor_flash_time=1000
-dialog_buttons_have_icons=1
-double_click_interval=400
-gui_effects=@Invalid()
-keyboard_scheme=0
-menus_have_icons=true
-show_shortcuts_in_context_menus=true
-stylesheets=@Invalid()
-toolbutton_style=4
-underline_shortcut=1
-wheel_scroll_lines=3
-
-[SettingsWindow]
-geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\xd1\0\0\0+\0\0\x3\xb1\0\0\x2\xb1\0\0\0\xd2\0\0\0I\0\0\x3\xb0\0\0\x2\xb0\0\0\0\0\0\0\0\0\x4\0\0\0\0\xd2\0\0\0I\0\0\x3\xb0\0\0\x2\xb0)
-
-[Troubleshooting]
-force_raster_widgets=1
-ignored_applications=@Invalid()
-EOF
+#####
+cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
+cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-chown $USER:$USER /home/$USER/.config/qt5ct
-chown $USER:$USER .
+#####
 
 # Fix MATE error on first boot.
 mkdir /home/$USER/.config/caja
