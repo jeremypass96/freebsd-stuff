@@ -23,7 +23,7 @@ if [ "$resp" = pkg ]; then
 mkdir -p /usr/local/etc/pkg/repos
 cat << EOF > /usr/local/etc/pkg/repos/FreeBSD.conf
 FreeBSD: {
-  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
+  url: 'pkg+http://pkg.FreeBSD.org/${ABI}/latest',
   mirror_type: "srv",
   signature_type: "fingerprints",
   fingerprints: "/usr/share/keys/pkg",
