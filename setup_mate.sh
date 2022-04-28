@@ -143,12 +143,6 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
-fi
-
-# Setup MATE themes. Will be ran as a normal user.
-su - $USER
-./freebsd_mate_theme_install.sh
-exit
 
 # Install 3rd party software.
 ./software_dialog_ports.sh
@@ -162,36 +156,6 @@ fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/
 # Install cursor theme.
 echo "Installing the "Volantes Light Cursors" cursor theme..."
 tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
-
-echo "Setting up root account's MATE desktop... looks the same as regular user's desktop, except there's no wallpaper change."
-# Set window titlebar font.
-gsettings set org.mate.Marco.general titlebar-font "Ubuntu Bold 11"
-# Set window theme.
-gsettings set org.mate.Marco.general theme vimix-light-doder
-# Turn off middle click on window titlebar.
-gsettings set org.mate.Marco.general action-middle-click-titlebar none
-# Set theme.
-gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Dark"
-# Set icon theme.
-gsettings set org.mate.interface icon-theme Papirus-Dark
-# Set fonts.
-gsettings set org.mate.interface monospace-font-name "Office Code Pro 12"
-gsettings set org.mate.interface font-name "Roboto 10"
-gsettings set org.mate.caja.desktop font "Roboto 10"
-# Turn off a couple useless menus.
-gsettings set org.mate.interface show-input-method-menu false
-gsettings set org.mate.interface show-unicode-menu false
-# Set mouse cursor.
-gsettings set org.mate.peripherals-mouse cursor-theme volantes_light_cursors
-gsettings set org.mate.peripherals-mouse cursor-size 32
-# Set up FreeDesktop sound theme.
-pkg install -y freedesktop-sound-theme
-gsettings set org.mate.sound enable-esd true
-gsettings set org.mate.sound event-sounds true
-gsettings set org.mate.sound input-feedback-sounds true
-# Setup Caja preferences.
-gsettings set org.mate.caja.preferences enable-delete true
-gsettings set org.mate.caja.preferences preview-sound never
 
 # Setup LightDM.
 sysrc lightdm_enable="YES"
