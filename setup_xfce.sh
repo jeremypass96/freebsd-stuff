@@ -692,7 +692,7 @@ showPreviews=true
 showWindowCount=false
 indicatorStyle=0
 indicatorOrientation=0
-pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;/usr/local/share/applications//galculator.desktop;
+pinned=/usr/local/share/applications//firefox.desktop;/usr/local/share/applications//thunar.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//galculator.desktop;
 EOF
 chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 cp -v /home/$USER/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
