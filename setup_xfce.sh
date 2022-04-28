@@ -170,6 +170,7 @@ fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 chown $USER:$USER /home/$USER/.config/xfce4/terminal
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/colorschemes
+chown $USER:$USER /home/$USER/.config/xfce4/terminal/colorschemes/.
 fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Andromeda.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Andromeda.theme
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
@@ -206,7 +207,9 @@ tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 # Setup Xfce preferences.
 #####
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/.
 mkdir -p /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml
+chown $USER:$USER /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/.
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
 #####
@@ -255,7 +258,9 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-not
 
 #####
 mkdir -p /home/$USER/.config/xfce4/panel/
+chown $USER:$USER /home/$USER/.config/xfce4/panel/.
 mkdir -p /usr/share/skel/dot.config/xfce4/panel
+chown $USER:$USER /usr/share/skel/dot.config/xfce4/panel/.
 #####
 
 #####
@@ -310,6 +315,7 @@ chown $USER:$USER /home/$USER/.xinitrc
 # Setup qt5ct
 #####
 mkdir /home/$USER/.config/qt5ct
+chown $USER:$USER /home/$USER/.config/qt5ct/.
 mkdir /usr/share/skel/dot.config/qt5ct
 #####
 
