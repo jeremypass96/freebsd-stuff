@@ -315,7 +315,7 @@ chown $USER:$USER /home/$USER/.xinitrc
 # Setup qt5ct
 #####
 mkdir /home/$USER/.config/qt5ct
-mkdir -p /usr/share/skel/dot.config/qt5ct/qt5ct.conf
+mkdir -p /usr/share/skel/dot.config/qt5ct
 #####
 
 #####
