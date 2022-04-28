@@ -10,9 +10,9 @@ clear
 # Set wallpaper.
 gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/0188.jpg
 # Set window titlebar font.
-gsettings set org.mate.Marco.general titlebar-font "Ubuntu Bold 11"
+gsettings set org.mate.Marco.general titlebar-font "Poppins Bold 10"
 # Set window theme.
-gsettings set org.mate.Marco.general theme vimix-light-doder
+gsettings set org.mate.Marco.general theme "Skeuos-Blue-Dark"
 # Turn off middle click on window titlebar.
 gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
