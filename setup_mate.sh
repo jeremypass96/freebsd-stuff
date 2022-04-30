@@ -53,7 +53,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole qt5ct qt5-style-plugins firefox webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole qt5ct qt5-style-plugins iridium-browser webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 pkg clean -y
 
 # Setup rc.conf file.
@@ -114,7 +114,7 @@ cd /usr/ports/math/galculator && make install clean
 cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/misc/qt5ct && make install clean
 cd /usr/ports/x11-themes/qt5-style-plugins && make install clean
-cd /usr/ports/www/firefox && make install clean
+cd /usr/ports/www/iridium && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
