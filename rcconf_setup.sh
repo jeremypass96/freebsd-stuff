@@ -85,5 +85,5 @@ pw groupmod vboxusers -m $USER
 fi
 #
 if [ "$resp" = 6 ]; then
-pkg install -y xf86-video-vmware open-vm-tools
+pkg install -y xf86-video-vmware xf86-input-vmmouse open-vm-tools
 fi
