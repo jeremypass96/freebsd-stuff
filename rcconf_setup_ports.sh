@@ -88,6 +88,7 @@ fi
 #
 if [ "$resp" = 6 ]; then
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
+cd /usr/ports/x11-drivers/xf86-input-vmmouse && make install clean
 cd /usr/ports/emulators/open-vm-tools && make install clean
 sed -i '' '17s/$/VMWARE VMMOUSE/' /etc/make.conf
 fi
