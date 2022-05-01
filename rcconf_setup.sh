@@ -39,7 +39,6 @@ sysrc rc_startmsgs="NO"
 sysrc blanktime="1200"
 sysrc savecore_enable="NO"
 sysrc virecover_enable="NO"
-sysrc vboxnet_enable="YES"
 sysrc smartd_enable="YES"
 sysrc dumpdev="NO"
 sysrc apm_enable="YES"
@@ -81,10 +80,12 @@ fi
 if [ "$resp" = 5 ]; then
 pkg install -y virtualbox-ose-additions xf86-video-vmware
 service vboxguest enable ; service vboxservice enable
+sysrc vboxnet_enable="YES"
 pw groupmod vboxusers -m $USER
 fi
 #
 if [ "$resp" = 6 ]; then
 pkg install -y xf86-video-vmware xf86-input-vmmouse open-vm-tools
 sysrc powerd_enable="NO"
+sysrc smartd_enable="NO"
 fi
