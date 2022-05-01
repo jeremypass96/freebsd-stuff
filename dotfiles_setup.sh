@@ -12,8 +12,8 @@ cd Dotfiles/
 
 # Copy over .profile & fix system profile file.
 cp -v .profile /home/$USER
-chown $USER:$USER /home/$USER/.profile
 cp -v .profile /usr/share/skel/dot.profile
+chown $USER:$USER /home/$USER/.profile
 echo "EDITOR=micro;    export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
 echo "MANPAGER=less;    export MANPAGER" >> /etc/profile
@@ -21,24 +21,24 @@ echo 'QT_QPA_PLATFORMTHEME="qt5ct";   export QT_QPA_PLATFORMTHEME' >> /etc/profi
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
-chown $USER:$USER /home/$USER/.zshrc
 cp -v .zshrc /usr/share/skel/dot.zshrc
+chown $USER:$USER /home/$USER/.zshrc
 
 # Copy over neofetch config.
 mkdir -p /home/$USER/.config/neofetch
 cp -v config/neofetch/config.conf /home/$USER/.config/neofetch/
-chown $USER:$USER /home/$USER/.config/neofetch
-chown $USER:$USER /home/$USER/.config/neofetch/*
 mkdir -p /usr/share/skel/dot.config/neofetch
 cp -v config/neofetch/config.conf /usr/share/skel/dot.config/neofetch/
+chown $USER:$USER /home/$USER/.config/neofetch
+chown $USER:$USER /home/$USER/.config/neofetch/*
 
 # Copy over micro config.
 mkdir -p /home/$USER/.config/micro
 cp -v config/micro/settings.json /home/$USER/.config/micro/
-chown $USER:$USER /home/$USER/.config/micro
-chown $USER:$USER /home/$USER/.config/micro/*
 mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
+chown $USER:$USER /home/$USER/.config/micro
+chown $USER:$USER /home/$USER/.config/micro/*
 
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
