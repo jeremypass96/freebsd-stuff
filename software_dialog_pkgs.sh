@@ -33,10 +33,10 @@ do
         11) pkg="pinta";;
         12) pkg="shotwell";;
         13) pkg="virtualbox-ose"
-            sysrc vboxnet_enable="YES";;
+        sysrc vboxnet_enable="YES";;
         14) pkg="wine wine-mono wine-gecko"
-            echo "Wine fix" >> /boot/loader.conf
-            echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
+        echo "# Wine fix" >> /boot/loader.conf
+        echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
         n) continue
     esac
     pkg install -y $pkg
