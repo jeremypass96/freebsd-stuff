@@ -33,7 +33,12 @@ do
         11) port="graphics/pinta";;
         12) port="graphics/shotwell";;
         13) port="emulators/virtualbox-ose"
-        sysrc vboxnet_enable="YES";;
+        sysrc vboxnet_enable="YES"
+        echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
+        echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
+        echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
+        echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
+        echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf;;
         14) port="emulators/wine"
         echo "# Wine fix" >> /boot/loader.conf
         echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
