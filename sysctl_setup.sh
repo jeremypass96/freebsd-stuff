@@ -61,9 +61,3 @@ echo hw.spec_store_bypass_disable=2 >> /etc/sysctl.conf
 echo hw.mds_disable=3 >> /etc/sysctl.conf
 echo hw.ibrs_disable=0 >> /etc/sysctl.conf
 echo kern.sched.slice=3 >> /etc/sysctl.conf
-echo "" >> /etc/sysctl.conf
-echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
-echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
-echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
-echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
-echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
