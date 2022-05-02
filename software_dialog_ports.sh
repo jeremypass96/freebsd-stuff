@@ -41,7 +41,7 @@ do
         echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf;;
         14) port="emulators/wine"
         echo "# Wine fix" >> /boot/loader.conf
-        echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
+        echo machdep.max_ldt_segment=2048 >> /boot/loader.conf;;
         n) continue
     esac
     portmaster -y $port
