@@ -1,4 +1,4 @@
-favorites=firefox.desktop,thunar.desktop,org.xfce.mousepad.desktop,xfburn.desktop,xfce4-terminal.desktop,xfce4-taskmanager.desktop
+favorites=chromium-browser.desktop,thunar.desktop,org.xfce.mousepad.desktop,xfburn.desktop,xfce4-terminal.desktop,xfce4-taskmanager.desktop
 button-icon=distributor-logo-freebsd
 button-single-row=true
 show-button-title=false
