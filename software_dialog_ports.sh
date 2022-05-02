@@ -35,7 +35,7 @@ do
         13) port="emulators/virtualbox-ose"
         sysrc vboxnet_enable="YES";;
         14) port="emulators/wine"
-        echo "Wine fix" >> /boot/loader.conf
+        echo "# Wine fix" >> /boot/loader.conf
         echo "machdep.max_ldt_segment=2048" >> /boot/loader.conf;;
         n) continue
     esac
