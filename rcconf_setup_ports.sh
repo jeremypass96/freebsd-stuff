@@ -83,7 +83,6 @@ cd /usr/ports/emulators/virtualbox-ose-additions-legacy && make install clean
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 service vboxguest enable ; service vboxservice enable
 sed -i '' '17s/$/VMWARE/' /etc/make.conf
-sysrc vboxnet_enable="YES"
 pw groupmod vboxusers -m $USER
 fi
 #
