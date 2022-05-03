@@ -53,14 +53,14 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
-pkg clean -y
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
+pkg clean -y
 fi
 
 if [ "$resp" = ports ]; then
@@ -126,6 +126,7 @@ cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
+cd /usr/ports/sysutils/fusefs-simple-mtpfs && make install clean
 cd /usr/ports/converters/unix2dos && make install clean
 cd /usr/ports/sysutils/smartmontools && make install clean
 cd /usr/ports/x11-fonts/ubuntu-font && make install clean
