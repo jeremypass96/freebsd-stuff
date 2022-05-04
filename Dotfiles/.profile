@@ -17,7 +17,6 @@
 EDITOR=micro;   export EDITOR
 PAGER=less;   export PAGER
 MANPAGER=less;    export MANPAGER
-QT_QPA_PLATFORMTHEME=qt5ct;   export QT_QPA_PLATFORMTHEME
 
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV
