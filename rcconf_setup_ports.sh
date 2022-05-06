@@ -44,6 +44,7 @@ sysrc smartd_enable="YES"
 sysrc dumpdev="NO"
 sysrc apm_enable="YES"
 sysrc defaultroute_delay="0"
+sysrc rcshutdown_timeout="10"
 
 # Set up DRM kmod support for graphics cards.
 cd /usr/ports/graphics/drm-kmod && make install clean
