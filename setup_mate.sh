@@ -35,7 +35,7 @@ echo ""
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-pkg install -y cups gutenprint
+pkg install -y cups gutenprint system-config-printer
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 read -p "Paper size? (Letter/A4): " resp
@@ -83,6 +83,7 @@ if [ "$resp" = y ]; then
 sed -i '' '13s/$/ CUPS/' /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
+cd /usr/ports/print/system-config-printer && make install clean
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 read -p "Paper size? (Letter/A4): " resp
