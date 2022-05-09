@@ -37,7 +37,8 @@ Katana: {
 EOF
 pkg update
 
-echo ""
+clear
+
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y cups gutenprint system-config-printer
