@@ -3,7 +3,7 @@
 # Final setup stage.
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ] ; then
+if [ $(id -u) -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
 exit
 fi
