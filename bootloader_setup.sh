@@ -2,7 +2,7 @@
 # This shell script sets up FreeBSD's loader.conf bootloader variables for desktop use.
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ] ; then
+if [ $(id -u) -ne 0 ]; then
 echo "Please run this bootloader setup script as root! Thanks."
 exit
 fi
