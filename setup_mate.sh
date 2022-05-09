@@ -2,7 +2,7 @@
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ] ; then
+if [ $(id -u) -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
 exit
 fi
@@ -31,7 +31,8 @@ FreeBSD: {
 }
 EOF
 pkg update
-echo ""
+
+clear
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
