@@ -41,7 +41,7 @@ clear
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-pkg install -y cups gutenprint system-config-printer
+pkg install -y cups gutenprint system-config-printer hplip
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
