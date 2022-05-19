@@ -44,6 +44,8 @@ if [ "$resp" = y ]; then
 pkg install -y cups gutenprint system-config-printer
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
+sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
+sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
 read -p "Paper size? (Letter/A4): " resp
 if [ "$resp" = Letter ]; then
 pkg install -y papersize-default-letter
