@@ -84,9 +84,11 @@ portsnap auto
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 sed -i '' '13s/$/ CUPS/' /etc/make.conf
+sed -i '' '26s/$/print_hplip_UNSET=X11/' /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
 cd /usr/ports/print/system-config-printer && make install clean
+cd /usr/ports/print/hplip && make install clean
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
