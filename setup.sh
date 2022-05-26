@@ -51,6 +51,7 @@ echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 # Setup automoumt.
 cat << EOF > /usr/local/etc/automount.conf
 USERUMOUNT=YES
+NICENAMES=YES
 REMOVEDIRS=YES
 ATIME=NO
 EOF
