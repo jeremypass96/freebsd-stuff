@@ -70,6 +70,7 @@ grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 sed -i '' s/'echo "Autoloading module: ${m}"'/'# echo "Autoloading module: ${m}"'/g /etc/rc.d/devmatch
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
+sed -i '' 's/run_rc_script ${_rc_elem} ${_boot}/run_rc_script ${_rc_elem} ${_boot} > \/dev\/null/g' /etc/rc
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
