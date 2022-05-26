@@ -7,30 +7,33 @@ echo "Please run this bootloader setup script as root! Thanks."
 exit
 fi
 
-echo 'cuse_load="YES"' >> /boot/loader.conf
-echo 'cc_cubic_load="YES"' >> /boot/loader.conf
+sysrc -f /boot/loader.conf cuse_load="YES"
+sysrc -f /boot/loader.conf cc_cubic_load="YES"
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
 
 read -p "Do you have an AMD CPU installed in your computer? (y/n): " resp
 if [ "$resp" = y ]; then
-echo 'amdsbwd_load="YES"' >> /boot/loader.conf
-echo 'amdtemp_load="YES"' >> /boot/loader.conf
+sysrc -f /boot/loader.conf amdsbwd_load="YES"
+sysrc -f /boot/loader.conf amdtemp_load="YES"
 fi
 if [ "$resp" = n ]; then
-echo 'coretemp_load="YES"' >> /boot/loader.conf
+sysrc -f /boot/loader.conf coretemp_load="YES"
 fi
 
-echo loader_delay=0 >> /boot/loader.conf
-echo autoboot_delay=-1 >> /boot/loader.conf
-echo 'beastie_disable="YES"' >> /boot/loader.conf
-echo 'boot_mute="YES"' >> /boot/loader.conf
-echo 'cpu_microcode_load="YES"' >> /boot/loader.conf
-echo 'cpu_microcode_name="/boot/firmware/intel-ucode.bin"' >> /boot/loader.conf
-echo 'fusefs_load="YES"' >> /boot/loader.conf
-echo 'libiconv_load="YES"' >> /boot/loader.conf
-echo 'libmchain_load="YES"' >> /boot/loader.conf
-echo 'cd9660_iconv_load="YES"' >> /boot/loader.conf
-echo 'msdosfs_iconv_load="YES"' >> /boot/loader.conf
+# Cleanup boot messages.
+sed -i ” ‘s/run_rc_script ${_rc_elem} ${_boot}/run_rc_script ${_rc_elem} ${_boot} > \/dev\/null/g’ /etc/rc
+
+sysrc -f /boot/loader.conf loader_delay=0
+sysrc -f /boot/loader.conf autoboot_delay=-1
+sysrc -f /boot/loader.conf beastie_disable="YES"
+sysrc -f /boot/loader.conf boot_mute="YES"
+sysrc -f /boot/loader.conf cpu_microcode_load="YES"
+sysrc -f /boot/loader.conf cpu_microcode_name="/boot/firmware/intel-ucode.bin"
+sysrc -f /boot/loader.conf fusefs_load="YES"
+sysrc -f /boot/loader.conf libiconv_load="YES"
+sysrc -f /boot/loader.conf libmchain_load="YES"
+sysrc -f /boot/loader.conf cd9660_iconv_load="YES"
+sysrc -f /boot/loader.conf msdosfs_iconv_load="YES"
 echo kern.ipc.shmseg=10000 >> /boot/loader.conf
 echo kern.ipc.shmmni=10000 >> /boot/loader.conf
 echo hw.usb.no_boot_wait=1 >> /boot/loader.conf
