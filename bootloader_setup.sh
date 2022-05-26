@@ -20,9 +20,6 @@ if [ "$resp" = n ]; then
 sysrc -f /boot/loader.conf coretemp_load="YES"
 fi
 
-# Cleanup boot messages.
-sed -i ” ‘s/run_rc_script ${_rc_elem} ${_boot}/run_rc_script ${_rc_elem} ${_boot} > \/dev\/null/g’ /etc/rc
-
 sysrc -f /boot/loader.conf loader_delay=0
 sysrc -f /boot/loader.conf autoboot_delay=-1
 sysrc -f /boot/loader.conf beastie_disable="YES"
