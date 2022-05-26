@@ -8,10 +8,6 @@ exit
 fi
 
 echo "#########################" >> /etc/sysctl.conf
-echo kern.elf32.aslr.enable=1 >> /etc/sysctl.conf
-echo kern.elf32.aslr.honor_sbrk=0 >> /etc/sysctl.conf
-echo kern.elf64.aslr.enable=1 >> /etc/sysctl.conf
-echo kern.elf64.aslr.honor_sbrk=0 >> /etc/sysctl.conf
 echo kern.sched.preempt_thresh=224 >> /etc/sysctl.conf
 echo kern.vt.enable_bell=0 >> /etc/sysctl.conf
 echo vfs.usermount=1 >> /etc/sysctl.conf
