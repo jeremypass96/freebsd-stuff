@@ -109,7 +109,7 @@ sed -i '' '14s/$/ CUPS/' /etc/make.conf
 continue
 fi
 
-# Adding in make.conf options for Xfce.
+# make.conf options for Xfce.
 echo "Xfce Options" >> /etc/make.conf
 echo "x11-wm_xfce4_SET=LIGHTDM" >> /etc/make.conf
 echo "x11-wm_xfce4_UNSET=GREYBIRD" >> /etc/make.conf
