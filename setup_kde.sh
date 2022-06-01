@@ -9,8 +9,8 @@ fi
 
 clear
 
-echo "Welcome to the FreeBSD Xfce setup script."
-echo "This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo "Welcome to the FreeBSD KDE setup script."
+echo "This script will setup Xorg, KDE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
 read -p "Press any key to continue..." resp
 
