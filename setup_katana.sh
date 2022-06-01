@@ -66,6 +66,7 @@ pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries not
 # Configure doas.
 cat << EOF > /usr/local/etc/doas.conf
 permit keepenv :wheel as root
+EOF
 
 clear
 
