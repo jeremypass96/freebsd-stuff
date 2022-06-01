@@ -15,6 +15,7 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 1.) MATE
 2.) Xfce
 3.) Katana (fork of KDE4)
+4.) KDE Plasma 5
 -> " resp
 if [ 0"$resp" = 01 ]; then
 ./setup_mate.sh
@@ -24,6 +25,9 @@ if [ 0"$resp" = 02 ]; then
 fi
 if [ 0"$resp" = 03 ]; then
 ./setup_katana.sh
+fi
+if [ 0"$resp" = 04 ]; then
+./setup_kde.sh
 fi
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
