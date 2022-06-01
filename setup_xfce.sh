@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -87,7 +87,7 @@ clear
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 sed -i '' '13s/$/ CUPS/' /etc/make.conf
-sed -i '' '26s/$/print_hplip_UNSET=X11/' /etc/make.conf
+sed -i '' '25s/$/print_hplip_UNSET=X11/' /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
 cd /usr/ports/print/system-config-printer && make install clean
@@ -118,7 +118,7 @@ clear
 
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
-cd /usr/ports/security/sudo && make install clean
+cd /usr/ports/security/doas && make install clean
 cd /usr/ports/editors/micro && make install clean
 cd /usr/ports/x11/xclip && make install clean
 cd /usr/ports/shells/zsh && make install clean
@@ -173,6 +173,11 @@ clear
 
 # Install Mousepad text editor color scheme.
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-3.0/styles/onedark-bright.xml
+
+# Configure doas.
+cat << EOF > /usr/local/etc/doas.conf
+permit keepenv :wheel as root
+EOF
 
 # Setup Xfce4 Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
