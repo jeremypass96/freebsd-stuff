@@ -17,16 +17,16 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 3.) Katana (fork of KDE4)
 4.) KDE Plasma 5
 -> " resp
-if [ 0"$resp" = 01 ]; then
+if [ "$resp" = 1 ]; then
 ./setup_mate.sh
 fi
-if [ 0"$resp" = 02 ]; then
+if [ "$resp" = 2 ]; then
 ./setup_xfce.sh
 fi
-if [ 0"$resp" = 03 ]; then
+if [ "$resp" = 3 ]; then
 ./setup_katana.sh
 fi
-if [ 0"$resp" = 04 ]; then
+if [ "$resp" = 4 ]; then
 ./setup_kde.sh
 fi
 
