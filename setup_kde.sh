@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils spectacle gwenview sddm plasma5-sddm-kcm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils spectacle gwenview sddm plasma5-sddm-kcm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -117,7 +117,7 @@ clear
 
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
-cd /usr/ports/security/sudo && make install clean
+cd /usr/ports/security/doas && make install clean
 cd /usr/ports/editors/micro && make install clean
 cd /usr/ports/x11/xclip && make install clean
 cd /usr/ports/shells/zsh && make install clean
@@ -161,6 +161,11 @@ cd /home/$USER/freebsd-setup-scripts
 fi
 
 clear
+
+# Configure doas.
+cat << EOF > /usr/local/etc/doas.conf
+permit keepenv :wheel as root
+EOF
 
 # Enable SDDM (Simple Desktop Display Manager) on boot.
 sysrc sddm_enable="YES"
