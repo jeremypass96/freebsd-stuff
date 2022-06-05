@@ -32,7 +32,7 @@ do
         11) port="graphics/shotwell";;
         12) port="emulators/virtualbox-ose"
         echo "" >> /etc/make.conf
-        echo "VirtualBox Options" >> /etc/make.conf
+        echo "# VirtualBox Options" >> /etc/make.conf
         echo "emulators_virtualbox-ose_SET=GUESTADDITIONS" >> /etc/make.conf
         sysrc vboxnet_enable="YES"
         echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
@@ -42,7 +42,7 @@ do
         echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf;;
         13) port="emulators/wine"
         echo "" >> /etc/make.conf
-        echo "Wine Options" >> /etc/make.conf
+        echo "# Wine Options" >> /etc/make.conf
         echo "emulators_wine_SET=MONO" >> /etc/make.conf
         echo "# Wine fix" >> /boot/loader.conf
         echo machdep.max_ldt_segment=2048 >> /boot/loader.conf;;
