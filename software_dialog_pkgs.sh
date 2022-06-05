@@ -30,7 +30,7 @@ do
         9) pkg="inkscape";;
         10) pkg="pinta";;
         11) pkg="shotwell";;
-        12) pkg="virtualbox-ose"
+        12) pkg="virtualbox-ose virtualbox-ose-kmod"
         sysrc vboxnet_enable="YES"
         echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
         echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
