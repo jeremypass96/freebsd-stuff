@@ -11,7 +11,7 @@ clear
 echo "Welcome to the FreeBSD post-install setup script. This script simply asks you what desktop environment you want to use.
 After you select your desktop environment, this script will launch your specified desktop's setup script."
 echo ""
-read -p "Which desktop environment do you want to use? Please enter it's corresponding number/letter.
+read -p "Which desktop environment do you want to use? Please enter it's corresponding number.
 1.) MATE
 2.) Xfce
 3.) Katana (fork of KDE4)
