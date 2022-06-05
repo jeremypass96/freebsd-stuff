@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -127,6 +127,7 @@ cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11-wm/xfce4 && make install clean
 cd /usr/ports/x11/xfce4-goodies && make install clean
+cd /usr/ports/sysutils/xfburn && make install clean
 cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
 cd /usr/ports/graphics/epdfview && make install clean
