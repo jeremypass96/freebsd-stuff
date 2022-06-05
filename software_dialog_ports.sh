@@ -21,7 +21,7 @@ do
     case $choice in
         1) port="audio/audacity";;
         2) port="multimedia/handbrake";;
-        3) port="sysutils/somaster";;
+        3) port="sysutils/isomaster";;
         4) port="editors/abiword";;
         5) port="math/gnumeric";;
         6) port="net-p2p/transmission-gtk";;
