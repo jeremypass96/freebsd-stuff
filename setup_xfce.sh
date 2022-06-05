@@ -111,7 +111,7 @@ continue
 fi
 
 # make.conf options for Xfce.
-echo "Xfce Options" >> /etc/make.conf
+echo "# Xfce Options" >> /etc/make.conf
 echo "x11-wm_xfce4_SET=LIGHTDM" >> /etc/make.conf
 echo "x11-wm_xfce4_UNSET=GREYBIRD" >> /etc/make.conf
 
