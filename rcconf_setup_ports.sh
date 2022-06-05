@@ -66,7 +66,7 @@ sed -i '' '17s/$/AMDGPU/' /etc/make.conf
 fi
 #
 if [ "$resp" = 2 ]; then
-sysrc kld_list+=radeon
+sysrc kld_list+=radeonkms
 sed -i '' '17s/$/ATI/' /etc/make.conf
 fi
 #
