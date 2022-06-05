@@ -30,7 +30,7 @@ do
         9) port="graphics/inkscape";;
         10) port="graphics/pinta";;
         11) port="graphics/shotwell";;
-        12) port="emulators/virtualbox-ose"
+        12) port="emulators/virtualbox-ose emulators/virtualbox-ose-kmod"
         echo "" >> /etc/make.conf
         echo "# VirtualBox Options" >> /etc/make.conf
         echo "emulators_virtualbox-ose_SET=GUESTADDITIONS" >> /etc/make.conf
