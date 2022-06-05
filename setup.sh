@@ -11,12 +11,12 @@ clear
 echo "Welcome to the FreeBSD post-install setup script. This script simply asks you what desktop environment you want to use.
 After you select your desktop environment, this script will launch your specified desktop's setup script."
 echo ""
-read -p "Which desktop environment do you want to use? Please enter it's corresponding number.
+read -p "Which desktop environment do you want to use? Please enter it's corresponding number/letter.
 1.) MATE
 2.) Xfce
 3.) Katana (fork of KDE4)
 4.) KDE Plasma 5
-5.) Enlightenment
+5.) LXQT
 -> " resp
 if [ "$resp" = 1 ]; then
 ./setup_mate.sh
@@ -30,7 +30,7 @@ fi
 if [ "$resp" = 4 ]; then
 ./setup_kde.sh
 if [ "$resp" = 5 ]; then
-./setup_enlightenment.sh
+./setup_lxqt.sh
 fi
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
