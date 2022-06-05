@@ -29,6 +29,7 @@ if [ "$resp" = 3 ]; then
 fi
 if [ "$resp" = 4 ]; then
 ./setup_kde.sh
+fi
 if [ "$resp" = 5 ]; then
 ./setup_lxqt.sh
 fi
