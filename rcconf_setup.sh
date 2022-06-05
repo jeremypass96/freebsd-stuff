@@ -65,7 +65,7 @@ pkg install -y xf86-video-amdgpu
 fi
 #
 if [ "$resp" = 2 ]; then
-sysrc kld_list+=radeon
+sysrc kld_list+=radeonkms
 pkg install -y xf86-video-ati
 fi
 #
