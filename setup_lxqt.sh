@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji lxqt k3b sddm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font office-code-pro webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji lxqt k3b sddm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -141,11 +141,11 @@ cd /usr/ports/sysutils/fusefs-simple-mtpfs && make install clean
 cd /usr/ports/converters/unix2dos && make install clean
 cd /usr/ports/sysutils/smartmontools && make install clean
 cd /usr/ports/x11-fonts/ubuntu-font && make install clean
-cd /usr/ports/x11-fonts/office-code-pro && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/x11-fonts/droid-fonts-ttf && make install clean
 cd /usr/ports/x11-fonts/materialdesign-ttf && make install clean
 cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
+cd /usr/ports/x11-fonts/plex-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 cd /usr/ports/sysutils/colorize && make install clean
