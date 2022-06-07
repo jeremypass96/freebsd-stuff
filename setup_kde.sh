@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview sddm plasma5-sddm-kcm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -129,6 +129,7 @@ cd /usr/ports/x11/kde5 && make install clean
 cd /usr/ports/sysutils/k3b && make install clean
 cd /usr/ports/graphics/spectacle && make install clean
 cd /usr/ports/graphics/gwenview && make install clean
+cd /usr/ports/audio/juk && make install clean
 cd /usr/ports/x11/sddm && make install clean
 cd /usr/ports/deskutils/plasma5-sddm-kcm && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
