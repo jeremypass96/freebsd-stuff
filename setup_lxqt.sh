@@ -180,7 +180,3 @@ cat << EOF > /home/$USER/.xinitrc
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
-
-# Fix micro truecolor support.
-echo "# Micro truecolor support" >> /home/$USER/.xinitrc
-echo "export MICRO_TRUECOLOR=1" >> /home/$USER/.xinitrc
