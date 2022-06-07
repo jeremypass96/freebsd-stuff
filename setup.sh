@@ -34,6 +34,11 @@ if [ "$resp" = 5 ]; then
 ./setup_lxqt.sh
 fi
 
+# Configure doas.
+cat << EOF > /usr/local/etc/doas.conf
+permit keepenv :wheel as root
+EOF
+
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
 sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
