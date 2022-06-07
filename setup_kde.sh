@@ -165,11 +165,6 @@ fi
 
 clear
 
-# Configure doas.
-cat << EOF > /usr/local/etc/doas.conf
-permit keepenv :wheel as root
-EOF
-
 # Enable SDDM (Simple Desktop Display Manager) on boot.
 sysrc sddm_enable="YES"
 
