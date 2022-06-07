@@ -73,6 +73,10 @@ clear
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
+# Install cursor theme.
+echo "Installing the "Volantes Light Cursors" cursor theme..."
+tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"
 
