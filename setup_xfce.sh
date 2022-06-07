@@ -176,11 +176,6 @@ clear
 # Install Mousepad text editor color scheme.
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-3.0/styles/onedark-bright.xml
 
-# Configure doas.
-cat << EOF > /usr/local/etc/doas.conf
-permit keepenv :wheel as root
-EOF
-
 # Setup Xfce4 Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 chown $USER:$USER /home/$USER/.config/xfce4/terminal
