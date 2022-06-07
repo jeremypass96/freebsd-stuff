@@ -63,11 +63,6 @@ clear
 # Install packages.
 pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize
 
-# Configure doas.
-cat << EOF > /usr/local/etc/doas.conf
-permit keepenv :wheel as root
-EOF
-
 clear
 
 # Setup rc.conf file.
