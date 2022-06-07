@@ -164,6 +164,10 @@ clear
 # Install Pluma text editor color scheme.
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-4/styles/onedark-bright.xml
 
+# Install cursor theme.
+echo "Installing the "Volantes Light Cursors" cursor theme..."
+tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+
 # Setup LightDM.
 sysrc lightdm_enable="YES"
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
