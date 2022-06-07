@@ -164,15 +164,6 @@ clear
 # Install Pluma text editor color scheme.
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-4/styles/onedark-bright.xml
 
-# Configure doas.
-cat << EOF > /usr/local/etc/doas.conf
-permit keepenv :wheel as root
-EOF
-
-# Install cursor theme.
-echo "Installing the "Volantes Light Cursors" cursor theme..."
-tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
-
 # Setup LightDM.
 sysrc lightdm_enable="YES"
 sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
@@ -199,7 +190,7 @@ theme-name = Papirus-Light
 icon-theme-name = Skeuos-Blue-Light
 EOF
 
-# Setup qt5ct, fix GTK/QT antialiasing, and fix micro truecolor support.
+# Setup qt5ct and fix GTK/QT antialiasing.
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/.xinitrc /home/$USER/.xinitrc
 cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
