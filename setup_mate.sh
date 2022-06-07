@@ -199,7 +199,7 @@ theme-name = Papirus-Light
 icon-theme-name = Skeuos-Blue-Light
 EOF
 
-# Setup qt5ct and fix GTK/QT antialiasing
+# Setup qt5ct, fix GTK/QT antialiasing, and fix micro truecolor support.
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/.xinitrc /home/$USER/.xinitrc
 cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
