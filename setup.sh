@@ -94,7 +94,7 @@ sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cac
 xdg-user-dirs-update
 
 # Update FreeBSD base.
-freebsd-update fetch install
+PAGER=cat freebsd-update fetch install
 
 # Reboot in 5 seconds.
 shutdown -r +5s
