@@ -49,6 +49,8 @@ sysrc rcshutdown_timeout="10"
 # Setup DRM kmod support for graphics cards.
 pkg install -y drm-kmod
 
+clear
+
 read -p "FreeBSD DRM kmod graphics support has been installed. What kind of graphics card do you have?
 
 1.) AMD GPU
