@@ -215,3 +215,6 @@ chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 # Fix MATE error on first boot.
 mkdir /home/$USER/.config/caja
 chown $USER:$USER /home/$USER/.config/caja
+
+chown $USER:$USER /home/$USER/.xinitrc
+chown $USER:$USER /home/$USER/.config
