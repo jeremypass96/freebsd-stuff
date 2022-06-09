@@ -178,3 +178,6 @@ cat << EOF > /home/$USER/.xinitrc
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
+
+chown $USER:$USER /home/$USER/.xinitrc
+chown $USER:$USER /home/$USER/.config
