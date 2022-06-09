@@ -334,3 +334,6 @@ cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 #####
+
+chown $USER:$USER /home/$USER/.xinitrc
+chown $USER:$USER /home/$USER/.config
