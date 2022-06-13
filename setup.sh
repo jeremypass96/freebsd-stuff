@@ -16,7 +16,6 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 2.) Xfce
 3.) Katana (fork of KDE4)
 4.) KDE Plasma 5
-5.) LXQT
 -> " resp
 if [ "$resp" = 1 ]; then
 ./setup_mate.sh
@@ -30,9 +29,6 @@ fi
 if [ "$resp" = 4 ]; then
 ./setup_kde.sh
 fi
-if [ "$resp" = 5 ]; then
-./setup_lxqt.sh
-fi
 
 # Configure doas.
 cat << EOF > /usr/local/etc/doas.conf
@@ -45,7 +41,9 @@ sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
 sed -i '' s/ttyu2/#ttyu2/g /etc/ttys
 sed -i '' s/ttyu3/#ttyu3/g /etc/ttys
 sed -i '' s/dcons/#dcons/g /etc/ttys
-sed -i 'ttyv*' s/secure/insecure/g /etc/ttys
+sed -i '' s/xc0/#xc0/g /etc/ttys
+sed -i '' s/rcons/#rcons/g /etc/ttys
+sed -i '' s/secure/insecure/g /etc/ttys
 
 # Add /proc filesystem to /etc/fstab.
 echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
@@ -74,6 +72,9 @@ fetch https://fonts.google.com/download?family=Poppins -o Poppins.zip
 unzip Poppins.zip -d /usr/local/share/fonts/Poppins
 rm Poppins.zip
 
+# Install the Source Sans Pro font.
+fetch https://fonts.google.com/download?family=Source_Sans_Pro
+
 # Fix font rendering.
 ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/fonts/conf.d/
 ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts/conf.d/
@@ -85,7 +86,6 @@ echo "export MICRO_TRUECOLOR=1" >> /home/$USER/.xinitrc
 # Cleanup boot process.
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
-#sed -i '' s/'echo "Autoloading module: ${m}"'/'# echo "Autoloading module: ${m}"'/g /etc/rc.d/devmatch
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
 sed -i '' s/'run_rc_script ${_rc_elem} ${_boot}'/'run_rc_script ${_rc_elem} ${_boot} > \/dev\/null/'g /etc/rc
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool

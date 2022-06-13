@@ -172,6 +172,22 @@ sysrc sddm_enable="YES"
 echo "Installing the "Volantes Light Cursors" cursor theme..."
 tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
+# Download Konsole colors.
+mkdir -p /home/$USER/.local/share/konsole
+fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/konsole/Andromeda.colorscheme -o /home/$USER/.local/share/konsole
+
+# Hide menu items.
+echo "Hidden=true" >> /usr/local/share/applications/org.kde.cuttlefish.desktop
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.themeexplorer.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasmaengineexplorer.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.lookandfeelexplorer.desktop
+
+# Fix duplicate Gnumeric menu entry.
+sed -i '' s/Science/\/g /usr/local/share/applications/gnumeric.desktop
+sed -i '' s/Math/\/g /usr/local/share/applications/gnumeric.desktop
+
 # Fix GTK/QT antialiasing
 cat << EOF > /home/$USER/.xinitrc
 # GTK/QT Antialiasing
