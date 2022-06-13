@@ -73,8 +73,8 @@ unzip Poppins.zip -d /usr/local/share/fonts/Poppins
 rm Poppins.zip
 
 # Install the Source Sans Pro font.
-fetch https://fonts.google.com/download?family=Source_Sans_Pro -o Source_Sans_Pro.zip
-unzip Source_Sans_Pro.zip -d /usr/local/share/fonts/Source_Sans_Pro
+fetch https://fonts.google.com/download?family=Source%20Sans%20Pro -o Source_Sans_Pro.zip
+unzip Source_Sans_Pro.zip -d /usr/local/share/fonts/SourceSansPro
 rm Source_Sans_Pro.zip
 
 # Fix font rendering.
