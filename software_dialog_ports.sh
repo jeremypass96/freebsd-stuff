@@ -48,6 +48,6 @@ do
         echo machdep.max_ldt_segment=2048 >> /boot/loader.conf;;
         n) continue
     esac
-    portmaster -y $port
+    portmaster --no-confirm $port
     clear
 done
