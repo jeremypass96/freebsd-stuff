@@ -217,7 +217,7 @@ icon-theme-name = Skeuos-Blue-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/.xinitrc /home/$USER/.xinitrc
+cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/.xinitrc /home/$USER/.xinitrc
 cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
@@ -238,6 +238,7 @@ chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 mkdir /home/$USER/.config/caja
 chown $USER:$USER /home/$USER/.config/caja
 
-# Fix user directory permissions.
+# Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+# Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
