@@ -203,7 +203,6 @@ cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/terminal/terminalr
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal
 cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
-#####
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules
@@ -340,18 +339,17 @@ cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Setup qt5ct
-#####
 mkdir /home/$USER/.config/qt5ct
 chown $USER:$USER /home/$USER/.config/qt5ct/.
 mkdir /usr/share/skel/dot.config/qt5ct
-#####
-
-#####
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-#####
 
-# Fix user directory permissions.
+# Hide "QT5 linguist" menu item.
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
+
+# Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+# Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
