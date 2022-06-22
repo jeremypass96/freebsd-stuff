@@ -31,7 +31,8 @@ FreeBSD: {
 }
 EOF
 pkg update
-echo ""
+
+clear
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
@@ -65,6 +66,14 @@ clear
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
 pkg clean -y
+
+# Install BSDstats.
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
 fi
 
 if [ "$resp" = ports ]; then
@@ -169,6 +178,14 @@ cd /home/$USER/freebsd-setup-scripts
 
 # Install 3rd party software.
 ./software_dialog_ports.sh
+
+# Install BSDstats.
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+portmaster --no-confirm sysutils/bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
 fi
 
 clear
@@ -335,5 +352,6 @@ cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5c
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 #####
 
+# Fix user directory permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 chown $USER:$USER /home/$USER/.config
