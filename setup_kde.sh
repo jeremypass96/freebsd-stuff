@@ -65,6 +65,14 @@ clear
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
 pkg clean -y
+
+# Install BSDstats.
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
 fi
 
 if [ "$resp" = ports ]; then
@@ -161,6 +169,14 @@ cd /home/$USER/freebsd-setup-scripts
 
 # Install 3rd party software.
 ./software_dialog_ports.sh
+
+# Install BSDstats.
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+portmaster --no-confirm sysutils/bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
 fi
 
 clear
@@ -195,5 +211,6 @@ export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
+# Fix user directory permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 chown $USER:$USER /home/$USER/.config
