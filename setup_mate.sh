@@ -188,7 +188,7 @@ fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/
 
 # Install cursor theme.
 echo "Installing the "Volantes Light Cursors" cursor theme..."
-tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
 # Setup LightDM.
 sysrc lightdm_enable="YES"
