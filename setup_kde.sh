@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme 
 
 clear
 
@@ -211,6 +211,7 @@ export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
-# Fix user directory permissions.
+# Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+# Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
