@@ -186,7 +186,7 @@ sysrc sddm_enable="YES"
 
 # Install cursor theme.
 echo "Installing the "Volantes Light Cursors" cursor theme..."
-tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
 # Download Konsole colors.
 mkdir -p /home/$USER/.local/share/konsole
@@ -214,5 +214,6 @@ EOF
 
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+
 # Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
