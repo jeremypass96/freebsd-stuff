@@ -79,6 +79,15 @@ sysrc kdm_enable="YES"
 ./software_dialog_pkgs.sh
 pkg clean -y
 
+# BSDstats...
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
+fi
+
 # Fix GTK/QT antialiasing
 cat << EOF > /home/$USER/.xinitrc
 # GTK/QT Antialiasing
@@ -86,5 +95,6 @@ export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
+# Fix user directory permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 chown $USER:$USER /home/$USER/.config
