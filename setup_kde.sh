@@ -196,6 +196,7 @@ fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/ko
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.cuttlefish.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.themeexplorer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasmaengineexplorer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.lookandfeelexplorer.desktop
