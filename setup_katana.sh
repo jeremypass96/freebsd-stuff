@@ -61,7 +61,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 chromium webfonts micro xclip zsh ohmyzsh neofetch mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize
 
 clear
 
@@ -70,7 +70,7 @@ clear
 
 # Install cursor theme.
 echo "Installing the "Volantes Light Cursors" cursor theme..."
-tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"
@@ -95,7 +95,11 @@ export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
+# Hide "QT5 linguist" menu item.
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
+
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+
 # Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
