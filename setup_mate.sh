@@ -56,7 +56,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
@@ -222,23 +222,22 @@ cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Setup qt5ct
-#####
 mkdir /home/$USER/.config/qt5ct
 chown $USER:$USER /home/$USER/.config/qt5ct/.
 mkdir /usr/share/skel/dot.config/qt5ct
-#####
-
-#####
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-#####
 
 # Fix MATE error on first boot.
 mkdir /home/$USER/.config/caja
 chown $USER:$USER /home/$USER/.config/caja
 
+# Hide "QT5 linguist" menu item.
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
+
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+
 # Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
