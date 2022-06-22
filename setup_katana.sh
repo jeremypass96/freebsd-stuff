@@ -95,6 +95,7 @@ export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
-# Fix user directory permissions.
+# Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+# Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
