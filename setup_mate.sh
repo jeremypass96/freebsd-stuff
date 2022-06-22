@@ -64,6 +64,14 @@ pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries not
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
 pkg clean -y
+
+# Install BSDstats.
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
 fi
 
 if [ "$resp" = ports ]; then
@@ -151,12 +159,26 @@ cd /usr/ports/sysutils/colorize && make install clean
 cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
+clear
+
 # Setup rc.conf file.
 cd /home/$USER/freebsd-setup-scripts
 ./rcconf_setup_ports.sh
 
+clear
+
 # Install 3rd party software.
 ./software_dialog_ports.sh
+
+clear
+
+# Install BSDstats.
+read -p "Would you like to enable BSDstats? (y/n): " resp
+if [ "$resp" = y ]; then
+portmaster --no-confirm sysutils/bsdstats
+sysrc bsdstats_enable="YES"
+if [ "$resp" = n ]; then
+continue
 fi
 
 clear
@@ -216,5 +238,6 @@ chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 mkdir /home/$USER/.config/caja
 chown $USER:$USER /home/$USER/.config/caja
 
+# Fix user directory permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 chown $USER:$USER /home/$USER/.config
