@@ -351,5 +351,6 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+
 # Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
