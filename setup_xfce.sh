@@ -229,7 +229,7 @@ pw group mod operator -m $USER
 
 # Install cursor theme.
 echo "Installing the "Volantes Light Cursors" cursor theme..."
-tar -xf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
 # Setup Xfce preferences.
 #####
