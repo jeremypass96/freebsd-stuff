@@ -1,12 +1,12 @@
 #!/bin/sh
-cd
-#
 clear
 # Get wallpaper!
 echo "Getting wallpaper..."
 fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg?inline=false -o /usr/local/share/backgrounds/0188.jpg
 doas chown root:wheel /usr/local/share/backgrounds/0188.jpg
+
 clear
+
 # Set wallpaper.
 gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/0188.jpg
 # Set window titlebar font.
@@ -36,6 +36,5 @@ gsettings set org.mate.sound input-feedback-sounds true
 # Setup Caja preferences.
 gsettings set org.mate.caja.preferences enable-delete true
 gsettings set org.mate.caja.preferences preview-sound never
-cd
-#
+
 echo "Your FreeBSD MATE desktop has been set up for you automatically! Enjoy."
