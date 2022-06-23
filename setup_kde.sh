@@ -217,3 +217,12 @@ chown $USER:$USER /home/$USER/.xinitrc
 
 # Fix user config directory permissions.
 chown $USER:$USER /home/$USER/.config
+
+# Install Ulauncher theme.
+mkdir -p /home/$USER/.config/ulauncher/user-themes
+git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
+chown -R $USER:$USER /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
+mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
+cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
+chown -R $USER:$USER /home/$USER/.config/ulauncher
+cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
