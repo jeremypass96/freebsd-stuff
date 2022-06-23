@@ -346,7 +346,8 @@ cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 
-# Hide "QT5 linguist" menu item.
+# Hide menu items.
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
 
 # Fix user's .xinitrc permissions.
