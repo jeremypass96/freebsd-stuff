@@ -233,7 +233,8 @@ chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 mkdir /home/$USER/.config/caja
 chown $USER:$USER /home/$USER/.config/caja
 
-# Hide "QT5 linguist" menu item.
+# Hide menu items.
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
 
 # Fix user's .xinitrc permissions.
