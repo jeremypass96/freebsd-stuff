@@ -95,7 +95,8 @@ export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
-# Hide "QT5 linguist" menu item.
+# Hide menu items.
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
 
 # Fix user's .xinitrc permissions.
