@@ -101,6 +101,3 @@ xdg-user-dirs-update
 
 # Update FreeBSD base.
 PAGER=cat freebsd-update fetch install
-
-# Reboot in 5 seconds.
-shutdown -r +5s
