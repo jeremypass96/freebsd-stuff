@@ -31,8 +31,7 @@ if [ "$resp" = 4 ]; then
 ./setup_kde.sh
 fi
 if [ "$resp" = 5 ]; then
-continue
-#./setup_gnustep.sh
+./setup_gnustep.sh
 fi
 
 # Configure doas.
