@@ -56,7 +56,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries windowmaker wdm wmforecast gnustep-app noto-basic noto-emoji skeuos-gtk-themes papirus-icon-theme font-manager qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries windowmaker wdm wmforecast gnustep-app noto-basic noto-emoji skeuos-gtk-themes papirus-icon-theme font-manager ulauncher qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -137,6 +137,7 @@ cd /usr/ports/x11/gnustep-app && make install clean
 cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
 cd /usr/ports/x11-fonts/font-manager && make install clean
+cd /usr/ports/x11/ulauncher && make install clean
 cd /usr/ports/misc/qt5ct && make install clean
 cd /usr/ports/x11-themes/qt5-style-plugins && make install clean
 cd /usr/ports/www/chromium && make install clean
@@ -229,5 +230,13 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
+
 # Fix user's config directory permissions.
 chown -R $USER:$USER /home/$USER/.config
+
+# Install Ulauncher theme.
+mkdir -p /home/$USER/.config/ulauncher/user-themes
+git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
+chown -R $USER /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
+mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
+cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
