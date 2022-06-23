@@ -28,16 +28,14 @@ mkdir -p /home/$USER/.config/neofetch
 cp -v config/neofetch/config.conf /home/$USER/.config/neofetch/
 mkdir -p /usr/share/skel/dot.config/neofetch
 cp -v config/neofetch/config.conf /usr/share/skel/dot.config/neofetch/
-chown $USER:$USER /home/$USER/.config/neofetch
-chown $USER:$USER /home/$USER/.config/neofetch/*
+chown -R $USER:$USER /home/$USER/.config/neofetch
 
 # Copy over micro config.
 mkdir -p /home/$USER/.config/micro
 cp -v config/micro/settings.json /home/$USER/.config/micro/
 mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
-chown $USER:$USER /home/$USER/.config/micro
-chown $USER:$USER /home/$USER/.config/micro/*
+chown -R $USER:$USER /home/$USER/.config/micro
 
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
