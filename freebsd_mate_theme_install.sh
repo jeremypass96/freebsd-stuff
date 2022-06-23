@@ -21,8 +21,8 @@ gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Dark"
 gsettings set org.mate.interface icon-theme Papirus-Dark
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "IBM Plex Mono 10"
-gsettings set org.mate.interface font-name "Roboto 10"
-gsettings set org.mate.caja.desktop font "Roboto 10"
+gsettings set org.mate.interface font-name "Source Sans Pro 10"
+gsettings set org.mate.caja.desktop font "Source Sans Pro 10"
 # Turn off a couple useless menus.
 gsettings set org.mate.interface show-input-method-menu false
 gsettings set org.mate.interface show-unicode-menu false
