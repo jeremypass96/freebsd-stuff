@@ -76,6 +76,7 @@ fi
 if [ "$resp" = n ]; then
 continue
 fi
+fi
 
 if [ "$resp" = ports ]; then
 
@@ -189,6 +190,7 @@ sysrc bsdstats_enable="YES"
 fi
 if [ "$resp" = n ]; then
 continue
+fi
 fi
 
 clear
@@ -356,7 +358,8 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 
-# Fix user config directory permissions.
+# Fix user's config directory permissions.
+mkdir /home/$USER/.config
 chown $USER:$USER /home/$USER/.config
 
 # Install Ulauncher theme.
