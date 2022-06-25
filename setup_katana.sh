@@ -88,6 +88,7 @@ fi
 if [ "$resp" = n ]; then
 continue
 fi
+fi
 
 # Fix GTK/QT antialiasing
 cat << EOF > /home/$USER/.xinitrc
@@ -103,7 +104,8 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 
-# Fix user config directory permissions.
+# Fix user's config directory permissions.
+mkdir /home/$USER/.config
 chown $USER:$USER /home/$USER/.config
 
 # Install Ulauncher theme.
