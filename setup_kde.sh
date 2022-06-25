@@ -75,6 +75,7 @@ fi
 if [ "$resp" = n ]; then
 continue
 fi
+fi
 
 if [ "$resp" = ports ]; then
 
@@ -181,6 +182,7 @@ fi
 if [ "$resp" = n ]; then
 continue
 fi
+fi
 
 clear
 
@@ -218,7 +220,7 @@ EOF
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
 
-# Fix user config directory permissions.
+# Fix user's config directory permissions.
 mkdir /home/$USER/.config
 chown $USER:$USER /home/$USER/.config
 
