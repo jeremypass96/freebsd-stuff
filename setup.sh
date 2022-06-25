@@ -16,7 +16,7 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 2.) Xfce
 3.) Katana (fork of KDE4)
 4.) KDE Plasma 5
-5.) WindowMaker + GNUstep [Work-In-Progress! Does nothing. You can run './setup_gnustep.sh' after this script has finished executing.]
+5.) WindowMaker + GNUstep [Work-In-Progress!]
 -> " resp
 if [ "$resp" = 1 ]; then
 ./setup_mate.sh
