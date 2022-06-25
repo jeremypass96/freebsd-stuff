@@ -84,6 +84,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
+fi
 if [ "$resp" = n ]; then
 continue
 fi
