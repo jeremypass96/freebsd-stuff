@@ -71,6 +71,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
+fi
 if [ "$resp" = n ]; then
 continue
 fi
@@ -176,6 +177,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 portmaster --no-confirm sysutils/bsdstats
 sysrc bsdstats_enable="YES"
+fi
 if [ "$resp" = n ]; then
 continue
 fi
