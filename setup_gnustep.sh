@@ -76,6 +76,7 @@ fi
 if [ "$resp" = n ]; then
 continue
 fi
+fi
 
 if [ "$resp" = ports ]; then
 
@@ -234,6 +235,7 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Fix user's config directory permissions.
+mkdir /home/$USER/.config
 chown -R $USER:$USER /home/$USER/.config
 
 # Install Ulauncher theme.
