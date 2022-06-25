@@ -219,6 +219,7 @@ EOF
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Fix user config directory permissions.
+mkdir /home/$USER/.config
 chown $USER:$USER /home/$USER/.config
 
 # Install Ulauncher theme.
