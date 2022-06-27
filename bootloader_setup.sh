@@ -23,7 +23,7 @@ fi
 sysrc -f /boot/loader.conf loader_delay=0
 sysrc -f /boot/loader.conf autoboot_delay=-1
 sysrc -f /boot/loader.conf beastie_disable="YES"
-sysrc -f /boot/loader.conf boot_mute="YES"
+#sysrc -f /boot/loader.conf boot_mute="YES"
 sysrc -f /boot/loader.conf cpu_microcode_load="YES"
 sysrc -f /boot/loader.conf cpu_microcode_name="/boot/firmware/intel-ucode.bin"
 sysrc -f /boot/loader.conf fusefs_load="YES"
