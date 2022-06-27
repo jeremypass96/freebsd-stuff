@@ -235,7 +235,7 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Fix user's config directory permissions.
-chown -R $USER:$USER /home/$USER/.config/
+chown -R $USER:$USER /home/$USER/.config
 
 # Install Ulauncher theme.
 mkdir -p /home/$USER/.config/ulauncher/user-themes
