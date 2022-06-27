@@ -228,15 +228,11 @@ chown $USER:$USER /home/$USER/.xinitrc
 
 # Setup qt5ct
 mkdir /home/$USER/.config/qt5ct
-chown $USER:$USER /home/$USER/.config/qt5ct/.
+chown -R $USER:$USER /home/$USER/.config/qt5ct
 mkdir /usr/share/skel/dot.config/qt5ct
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-
-# Fix MATE error on first boot.
-mkdir /home/$USER/.config/caja
-chown $USER:$USER /home/$USER/.config/caja
 
 # Hide menu items.
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
@@ -246,13 +242,12 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 chown $USER:$USER /home/$USER/.xinitrc
 
 # Fix user's config directory permissions.
-chown -R $USER:$USER /home/$USER/.config/
+chown -R $USER:$USER /home/$USER/.config
 
 # Install Ulauncher theme.
 mkdir -p /home/$USER/.config/ulauncher/user-themes
 git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
-chown -R $USER:$USER /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
+chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-chown -R $USER:$USER /home/$USER/.config/ulauncher
 cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
