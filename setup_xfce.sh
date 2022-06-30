@@ -356,6 +356,9 @@ chown $USER:$USER /home/$USER/.xinitrc
 # Fix user's config directory permissions.
 chown -R $USER:$USER /home/$USER/.config
 
+# Fix user's local directory permissions.
+chown -R $USER:$USER /home/$USER/.local
+
 # Install Ulauncher theme.
 mkdir -p /home/$USER/.config/ulauncher/user-themes
 git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
