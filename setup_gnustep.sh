@@ -98,7 +98,7 @@ clear
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 sed -i '' '13s/$/ CUPS/' /etc/make.conf
-sed -i '' '23s/$/print_hplip_UNSET=X11/' /etc/make.conf
+sed -i '' '24s/$/print_hplip_UNSET=X11/' /etc/make.conf
 echo "" >> /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
@@ -125,7 +125,7 @@ clear
 
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
-cd /usr/ports/security/doas && make install clean
+cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
 cd /usr/ports/x11/xclip && make install clean
 cd /usr/ports/shells/zsh && make install clean
