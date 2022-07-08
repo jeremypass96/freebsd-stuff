@@ -88,7 +88,6 @@ echo "export MICRO_TRUECOLOR=1" >> /home/$USER/.xinitrc
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
-sed -i '' s/'run_rc_script ${_rc_elem} ${_boot}'/'run_rc_script ${_rc_elem} ${_boot} > \/dev\/null/'g /etc/rc
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
 
 # Setup user's home directory with common folders.
