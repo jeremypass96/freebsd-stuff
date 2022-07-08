@@ -56,7 +56,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash doas xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
@@ -94,7 +94,7 @@ portsnap auto
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 sed -i '' '13s/$/ CUPS/' /etc/make.conf
-sed -i '' '23s/$/print_hplip_UNSET=X11/' /etc/make.conf
+sed -i '' '24s/$/print_hplip_UNSET=X11/' /etc/make.conf
 echo "" >> /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
@@ -121,7 +121,7 @@ clear
 
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
-cd /usr/ports/security/doas && make install clean
+cd /usr/ports/security/sudo && make install clean
 cd /usr/ports/editors/micro && make install clean
 cd /usr/ports/x11/xclip && make install clean
 cd /usr/ports/shells/zsh && make install clean
