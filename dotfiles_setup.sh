@@ -40,7 +40,6 @@ chown -R $USER:$USER /home/$USER/.config/micro
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
 
-# Get "zsh-autosuggestions," "zsh-syntax-highlighting," and "doas-zsh" Oh My Zsh plugins.
+# Get "zsh-autosuggestions" and "zsh-syntax-highlighting" and "doas-zsh" Oh My Zsh plugins.
 git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/local/share/ohmyzsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/local/share/ohmyzsh/custom/plugins/zsh-syntax-highlighting
-git clone https://github.com/anatolykopyl/doas-zsh-plugin.git /usr/local/share/ohmyzsh/custom/plugins/doas
