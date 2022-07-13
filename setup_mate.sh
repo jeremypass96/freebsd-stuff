@@ -41,11 +41,11 @@ sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
 sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
-read -p "Paper size? (Letter/A4): " resp
-if [ "$resp" = Letter ]; then
+read -p "Paper size? (letter/a4): " resp
+if [ "$resp" = letter ]; then
 pkg install -y papersize-default-letter
 fi
-if [ "$resp" = A4 ]; then
+if [ "$resp" = a4 ]; then
 pkg install -y papersize-default-a4
 fi
 fi
@@ -104,11 +104,11 @@ sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
 sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
-read -p "Paper size? (Letter/A4): " resp
-if [ "$resp" = Letter ]; then
+read -p "Paper size? (letter/a4): " resp
+if [ "$resp" = letter ]; then
 cd /usr/ports/print/papersize-default-letter && make install clean
 fi
-if [ "$resp" = A4 ]; then
+if [ "$resp" = a4 ]; then
 cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
 fi
@@ -188,7 +188,7 @@ fi
 
 clear
 
-# Install Pluma text editor color scheme.
+# Download Pluma text editor color scheme.
 fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-4/styles/onedark-bright.xml
 
 # Install cursor theme.
