@@ -12,13 +12,13 @@ gsettings set org.mate.background picture-options zoom && gsettings set org.mate
 # Set window titlebar font.
 gsettings set org.mate.Marco.general titlebar-font "Poppins Bold 10"
 # Set window theme.
-gsettings set org.mate.Marco.general theme "Skeuos-Blue-Dark"
+gsettings set org.mate.Marco.general theme "Skeuos-Blue-Light"
 # Turn off middle click on window titlebar.
 gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
-gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Dark"
+gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Light"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme Papirus-Dark
+gsettings set org.mate.interface icon-theme Papirus-Light
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "IBM Plex Mono 10"
 gsettings set org.mate.interface font-name "Source Sans Pro 10"
