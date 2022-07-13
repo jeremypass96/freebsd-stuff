@@ -46,11 +46,11 @@ sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
 sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
-read -p "Paper size? (Letter/A4): " resp
-if [ "$resp" = Letter ]; then
+read -p "Paper size? (letter/a4): " resp
+if [ "$resp" = letter ]; then
 pkg install -y papersize-default-letter
 fi
-if [ "$resp" = A4 ]; then
+if [ "$resp" = a4 ]; then
 pkg install -y papersize-default-a4
 fi
 fi
