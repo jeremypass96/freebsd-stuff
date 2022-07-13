@@ -3,7 +3,7 @@ clear
 # Get wallpaper!
 echo "Getting wallpaper..."
 fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg?inline=false -o /usr/local/share/backgrounds/0188.jpg
-doas chown root:wheel /usr/local/share/backgrounds/0188.jpg
+sudo chown root:wheel /usr/local/share/backgrounds/0188.jpg
 
 clear
 
