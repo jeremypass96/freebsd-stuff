@@ -200,7 +200,7 @@ sed -i '' '82s/no/yes'/g /usr/local/etc/slim.conf
 sed -i '' '86s/no/yes'/g /usr/local/etc/slim.conf
 sed -i '' '90s/default/slim-freebsd-dark-theme'/g /usr/local/etc/slim.conf
 cat << EOF > /home/$USER/.xinitrc
-exec windowmaker
+exec wmaker
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
