@@ -54,6 +54,30 @@ echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
 ./freebsd_symlinks.sh
 ./dotfiles_setup.sh
 
+# Change umask from 022 to 077. More secure.
+sed -i '' s/umask=022/umask=077/g /etc/login.conf
+cap_mkdb /etc/login.conf
+
+# Make system files read-only to non-privileged users.
+chmod o= /etc/fstab
+chmod o= /etc/ftpusers
+chmod o= /etc/group
+chmod o= /etc/hosts
+chmod o= /etc/hosts.allow
+chmod o= /etc/hosts.equiv
+chmod o= /etc/hosts.lpd
+chmod o= /etc/inetd.conf
+chmod o= /etc/login.access
+chmod o= /etc/login.conf
+chmod o= /etc/newsyslog.conf
+chmod o= /etc/rc.conf
+chmod o= /etc/sysctl.conf
+chmod o= /etc/ttys
+
+# Prevent viewing of the root directory and log file directory by non-privileged users.
+chmod 710 /root
+chmod o= /var/log
+
 # Configure S.M.A.R.T. disk monitoring daemon.
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
