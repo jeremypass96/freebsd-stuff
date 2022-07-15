@@ -35,14 +35,22 @@ if [ "$resp" = 5 ]; then
 fi
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
-sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
-sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
-sed -i '' s/ttyu2/#ttyu2/g /etc/ttys
-sed -i '' s/ttyu3/#ttyu3/g /etc/ttys
-sed -i '' s/dcons/#dcons/g /etc/ttys
-sed -i '' s/xc0/#xc0/g /etc/ttys
-sed -i '' s/rcons/#rcons/g /etc/ttys
-sed -i '' s/secure/insecure/g /etc/ttys
+sed -i '' '44s/ttyu0/#ttyu0'/g /etc/ttys
+sed -i '' '45s/ttyu1/#ttyu1'/g /etc/ttys
+sed -i '' '46s/ttyu2/#ttyu2'/g /etc/ttys
+sed -i '' '47s/ttyu3/#ttyu3'/g /etc/ttys
+sed -i '' '49s/dcons/#dcons'/g /etc/ttys
+sed -i '' '51s/xc0/#xc0'/g /etc/ttys
+sed -i '' '53s/rcons/#rcons'/g /etc/ttys
+sed -i '' '32s/secure/insecure'/g /etc/ttys
+sed -i '' '34s/secure/insecure'/g /etc/ttys
+sed -i '' '35s/secure/insecure'/g /etc/ttys
+sed -i '' '36s/secure/insecure'/g /etc/ttys
+sed -i '' '37s/secure/insecure'/g /etc/ttys
+sed -i '' '38s/secure/insecure'/g /etc/ttys
+sed -i '' '39s/secure/insecure'/g /etc/ttys
+sed -i '' '40s/secure/insecure'/g /etc/ttys
+sed -i '' '41s/secure/insecure'/g /etc/ttys
 
 # Add /proc filesystem to /etc/fstab.
 echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
