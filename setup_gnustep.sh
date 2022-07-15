@@ -56,7 +56,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries windowmaker wmforecast gnustep-back gworkspace gworkspace-gwmetadata helpviewer gmines gspdf imageviewer terminal.app gnustep-cdplayer gnustep-preview noto-basic noto-emoji skeuos-gtk-themes papirus-icon-theme font-manager ulauncher qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg slim slim-freebsd-dark-theme mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries windowmaker wmforecast gnustep-back gworkspace helpviewer gmines gspdf imageviewer terminal.app gnustep-cdplayer gnustep-preview noto-basic noto-emoji skeuos-gtk-themes papirus-icon-theme font-manager ulauncher qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg slim slim-freebsd-dark-theme mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -136,7 +136,6 @@ cd /usr/ports/x11-wm/windowmaker && make install clean
 cd /usr/ports/misc/wmforecast && make install clean
 cd /usr/ports/x11-toolkits/gnustep-back && make install clean
 cd /usr/ports/deskutils/gworkspace && make install clean
-cd /usr/ports/deskutils/gworkspace-gwmetadata && make install clean
 cd /usr/ports/deskutils/helpviewer && make install clean
 cd /usr/ports/games/gmines && make install clean
 cd /usr/ports/print/gspdf && make install clean
