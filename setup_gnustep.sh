@@ -56,7 +56,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries windowmaker wdm wmforecast gnustep-back noto-basic noto-emoji skeuos-gtk-themes papirus-icon-theme font-manager ulauncher qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries windowmaker wmforecast gnustep-back noto-basic noto-emoji skeuos-gtk-themes papirus-icon-theme font-manager ulauncher qt5ct qt5-style-plugins chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg slim slim-freebsd-dark-theme mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
 
 clear
 
@@ -133,7 +133,6 @@ cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11-wm/windowmaker && make install clean
-cd /usr/ports/x11/wdm && make install clean
 cd /usr/ports/misc/wmforecast && make install clean
 cd /usr/ports/x11-toolkits/gnustep-back && make install clean
 cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
@@ -146,7 +145,8 @@ cd /usr/ports/www/chromium && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
-cd /usr/ports/x11/slick-greeter && make install clean
+cd /usr/ports/x11/slim && make install clean
+cd /usr/ports/x11-themes/slim-freebsd-dark-theme && make install clean
 cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11/numlockx && make install clean
 cd /usr/ports/sysutils/devcpu-data && make install clean
@@ -189,34 +189,27 @@ clear
 echo "Installing the "Volantes Light Cursors" cursor theme..."
 tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
-# Setup LightDM.
-sysrc lightdm_enable="YES"
-sed -i '' s/#pam-autologin-service=lightdm-autologin/pam-autologin-service=lightdm-autologin/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#allow-user-switching=true/allow-user-switching=true/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#allow-guest=true/allow-guest=false/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/"#greeter-setup-script=/greeter-setup-script=numlockx on"/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user=/autologin-user=$USER/g /usr/local/etc/lightdm/lightdm.conf
-sed -i '' s/#autologin-user-timeout=0/autologin-user-timeout=0/g /usr/local/etc/lightdm/lightdm.conf
-mkdir /usr/local/etc/lightdm/wallpaper
-fetch https://raw.githubusercontent.com/broozar/installDesktopFreeBSD/DarkMate13.0/files/wallpaper/centerFlat_grey-4k.png -o /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
-chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
-
-# Setup slick greeter.
-cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
-[Greeter]
-background = /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
-draw-user-backgrounds = false
-draw-grid = false
-show-hostname = true
-show-a11y = false
-show-keyboard = false
-clock-format = %I:%M %p
-theme-name = Skeuos-Blue-Light
-icon-theme-name = Papirus-Light
+# Setup slim.
+sysrc slim_enable="YES"
+sed -i '' s/'# numlock'/'numlock'/g /usr/local/etc/slim.conf
+sed -i '' s/'# hidecursor'/'hidecursor'/g /usr/local/etc/slim.conf
+sed -i '' s/'#default_user'/'default_user'/g /usr/local/etc/slim.conf
+sed -i '' s/"simone/$USER"/g /usr/local/etc/slim.conf
+sed -i '' s/'#focus_password'/'focus_password'/g /usr/local/etc/slim.conf
+sed -i '' '82s/no/yes'/g /usr/local/etc/slim.conf
+sed -i '' '86s/no/yes'/g /usr/local/etc/slim.conf
+sed -i '' '90s/default/slim-freebsd-dark-theme'/g /usr/local/etc/slim.conf
+cat << EOF > /home/$USER/.xinitrc
+exec windowmaker
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/.xinitrc /home/$USER/.xinitrc
+echo "# qt5ct
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# GTK/QT Antialiasing
+export QT_XFT=1
+export GDK_USE_XFT=1" >> /home/$USER/.xinitrc
 cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
