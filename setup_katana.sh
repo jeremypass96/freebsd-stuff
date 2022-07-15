@@ -84,7 +84,6 @@ if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
 fi
-fi
 if [ "$resp" = n ]; then
 continue
 fi
