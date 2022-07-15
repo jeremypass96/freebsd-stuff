@@ -77,7 +77,6 @@ fi
 if [ "$resp" = n ]; then
 continue
 fi
-fi
 
 if [ "$resp" = ports ]; then
 
@@ -182,7 +181,6 @@ fi
 fi
 if [ "$resp" = n ]; then
 continue
-fi
 fi
 
 clear
