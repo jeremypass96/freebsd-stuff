@@ -53,7 +53,6 @@ fi
 if [ "$resp" = a4 ]; then
 pkg install -y papersize-default-a4
 fi
-fi
 if [ "$resp" = n ]; then
 continue
 fi
