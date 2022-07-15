@@ -194,7 +194,7 @@ sysrc slim_enable="YES"
 sed -i '' s/'# numlock'/'numlock'/g /usr/local/etc/slim.conf
 sed -i '' s/'# hidecursor'/'hidecursor'/g /usr/local/etc/slim.conf
 sed -i '' s/'#default_user'/'default_user'/g /usr/local/etc/slim.conf
-sed -i '' s/"simone/$USER"/g /usr/local/etc/slim.conf
+sed -i '' '78s/simone/$USER"/g /usr/local/etc/slim.conf
 sed -i '' s/'#focus_password'/'focus_password'/g /usr/local/etc/slim.conf
 sed -i '' '82s/no/yes'/g /usr/local/etc/slim.conf
 sed -i '' '86s/no/yes'/g /usr/local/etc/slim.conf
