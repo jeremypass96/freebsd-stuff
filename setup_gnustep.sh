@@ -73,9 +73,9 @@ if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
 fi
-fi
 if [ "$resp" = n ]; then
 continue
+fi
 fi
 
 if [ "$resp" = ports ]; then
@@ -178,9 +178,9 @@ if [ "$resp" = y ]; then
 portmaster --no-confirm sysutils/bsdstats
 sysrc bsdstats_enable="YES"
 fi
-fi
 if [ "$resp" = n ]; then
 continue
+fi
 fi
 
 clear
