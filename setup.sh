@@ -16,7 +16,7 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 2.) Xfce
 3.) Katana (fork of KDE4)
 4.) KDE Plasma 5
-5.) WindowMaker + GNUstep [Work-In-Progress!]
+5.) WindowMaker + GNUstep
 -> " resp
 if [ "$resp" = 1 ]; then
 ./setup_mate.sh
@@ -63,7 +63,7 @@ echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
 ./dotfiles_setup.sh
 
 # Change umask from 022 to 077. More secure.
-sed -i '' s/umask=022/umask=077/g /etc/login.conf
+sed -i '' '50s/022/077'/g /etc/login.conf
 cap_mkdb /etc/login.conf
 
 # Make system files read-only to non-privileged users.
