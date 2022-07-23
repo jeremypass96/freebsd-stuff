@@ -116,7 +116,13 @@ echo "export MICRO_TRUECOLOR=1" >> /home/$USER/.xinitrc
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
+read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
+if [ "$resp" = y ]; then
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
+fi
+if [ "$resp" = n ]; then
+continue
+fi
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
