@@ -119,10 +119,17 @@ sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;aut
 read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
 if [ "$resp" = y ]; then
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
+# Turn off atime. Reduces disk writes/wear.
+zfs set atime=off zroot
 fi
 if [ "$resp" = n ]; then
 continue
 fi
+
+# Make login quieter.
+touch /home/$USER/.hushlogin
+chown $USER /home/$USER/.hushlogin
+touch /usr/share/skel/.hushlogin
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
