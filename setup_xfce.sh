@@ -235,8 +235,8 @@ tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
 
 # Setup Xfce preferences.
 #####
-chown -R $USER:$USER /home/$USER/.config/xfce4/xfconf
 mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
+chown -R $USER:$USER /home/$USER/.config/xfce4/xfconf
 chown -R $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
 mkdir -p /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml
 #####
@@ -362,6 +362,7 @@ chown $USER:$USER /home/$USER/.xinitrc
 chown -R $USER:$USER /home/$USER/.config
 
 # Fix user's local directory permissions.
+mkdir /home/$USER/.local
 chown -R $USER:$USER /home/$USER/.local
 
 # Install Ulauncher theme.
