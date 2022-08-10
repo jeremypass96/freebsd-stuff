@@ -240,6 +240,7 @@ chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
 
 # Hide menu items.
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
+echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.gnome.Glade.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.gtk.Demo4.desktop
