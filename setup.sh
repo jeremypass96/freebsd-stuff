@@ -85,6 +85,7 @@ chmod o= /var/log
 # Configure S.M.A.R.T. disk monitoring daemon.
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
+echo 'daily_status_smart_devices="/dev/ada0"' >> /etc/periodic.conf
 
 # Setup automoumt.
 cat << EOF > /usr/local/etc/automount.conf
