@@ -14,9 +14,10 @@ cd Dotfiles/
 cp -v .profile /home/$USER
 cp -v .profile /usr/share/skel/dot.profile
 chown $USER:$USER /home/$USER/.profile
-echo "EDITOR=micro;    export EDITOR" >> /etc/profile
+echo "EDITOR=micro;   export EDITOR" >> /etc/profile
+echo "EDITOR=micro;   export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
-echo "MANPAGER=less;    export MANPAGER" >> /etc/profile
+echo "MANPAGER=less;   export MANPAGER" >> /etc/profile
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
@@ -33,6 +34,7 @@ chown -R $USER:$USER /home/$USER/.config/neofetch
 # Copy over micro config.
 mkdir -p /home/$USER/.config/micro
 cp -v config/micro/settings.json /home/$USER/.config/micro/
+cp -v config/micro/settings.json /root/.config/micro/
 mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
 chown -R $USER:$USER /home/$USER/.config/micro
