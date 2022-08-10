@@ -60,7 +60,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme rkhunter chkrootkit
 
 clear
 
@@ -83,6 +83,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
+echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
 fi
 if [ "$resp" = n ]; then
 continue
@@ -116,3 +117,9 @@ chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
 cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+
+# Configure rkhunter (rootkit malware scanner).
+echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
+echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
+echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
+echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
