@@ -71,6 +71,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
+echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
 fi
 if [ "$resp" = n ]; then
 continue
@@ -178,6 +179,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 portmaster --no-confirm sysutils/bsdstats
 sysrc bsdstats_enable="YES"
+echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
 fi
 if [ "$resp" = n ]; then
 continue
