@@ -33,19 +33,19 @@ sysrc devfs_system_ruleset="devfsrules_common"
 sed -i '' s/"#link cd0 cdrom/link	cd0	cdrom"/g /etc/devfs.conf
 sed -i '' s/"#link cd0 dvd/link	cd0	dvd"/g /etc/devfs.conf
 #
-echo "# Allow all users to access CD/DVD drives" >> /etc/devfs.conf
-echo "perm 	/dev/acd* 					0666" >> /etc/devfs.conf
-echo "perm 	/dev/cd* 					0666" >> /etc/devfs.conf
+echo "# Allow all users to access CD/DVD drives." >> /etc/devfs.conf
+echo "perm 	/dev/acd* 0666" >> /etc/devfs.conf
+echo "perm 	/dev/cd*  0666" >> /etc/devfs.conf
 
-echo "# Allow all users to access USB devices" >> /etc/devfs.conf
-echo "perm 	/dev/da* 					0666" >> /etc/devfs.conf
+echo "# Allow all users to access USB devices." >> /etc/devfs.conf
+echo "perm 	/dev/da*  0666" >> /etc/devfs.conf
 
-echo "# Misc. other devices" >> /etc/devfs.conf
-echo "perm 	/dev/pass* 					0666" >> /etc/devfs.conf
-echo "perm 	/dev/xpt0 					0666" >> /etc/devfs.conf
-echo "perm 	/dev/uscanner* 				0666" >> /etc/devfs.conf
-echo "perm 	/dev/video* 				0666" >> /etc/devfs.conf
-echo "perm 	/dev/tuner0 				0666" >> /etc/devfs.conf
-echo "perm    /dev/dvb/adapter0/demux0    	0666" >> /etc/devfs.conf
-echo "perm    /dev/dvb/adapter0/dvr       	0666" >> /etc/devfs.conf
-echo "perm    /dev/dvb/adapter0/frontend0 	0666" >> /etc/devfs.conf
+echo "# Misc. other devices." >> /etc/devfs.conf
+echo "perm 	/dev/pass*  0666" >> /etc/devfs.conf
+echo "perm 	/dev/xpt0  0666" >> /etc/devfs.conf
+echo "perm 	/dev/uscanner*  0666" >> /etc/devfs.conf
+echo "perm 	/dev/video* 0666" >> /etc/devfs.conf
+echo "perm 	/dev/tuner0 0666" >> /etc/devfs.conf
+echo "perm    /dev/dvb/adapter0/demux0  0666" >> /etc/devfs.conf
+echo "perm    /dev/dvb/adapter0/dvr 0666" >> /etc/devfs.conf
+echo "perm    /dev/dvb/adapter0/frontend0 0666" >> /etc/devfs.conf
