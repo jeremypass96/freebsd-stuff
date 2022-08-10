@@ -111,6 +111,7 @@ ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts
 # Fix micro truecolor support.
 echo "# Micro truecolor support." >> /home/$USER/.profile
 echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /home/$USER/.profile
+echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
 
 # Cleanup boot process.
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
