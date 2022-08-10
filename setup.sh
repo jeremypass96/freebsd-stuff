@@ -47,6 +47,13 @@ sed -i '' '38s/secure/insecure'/g /etc/ttys
 sed -i '' '39s/secure/insecure'/g /etc/ttys
 sed -i '' '40s/secure/insecure'/g /etc/ttys
 sed -i '' '41s/secure/insecure'/g /etc/ttys
+sed -i '' '44s/secure/insecure'/g /etc/ttys
+sed -i '' '45s/secure/insecure'/g /etc/ttys
+sed -i '' '46s/secure/insecure'/g /etc/ttys
+sed -i '' '47s/secure/insecure'/g /etc/ttys
+sed -i '' '49s/secure/insecure'/g /etc/ttys
+sed -i '' '51s/secure/insecure'/g /etc/ttys
+sed -i '' '53s/secure/insecure'/g /etc/ttys
 
 # Add /proc filesystem to /etc/fstab.
 echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
