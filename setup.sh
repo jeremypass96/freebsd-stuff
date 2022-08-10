@@ -84,10 +84,17 @@ chmod o= /etc/newsyslog.conf
 chmod o= /etc/rc.conf
 chmod o= /etc/sysctl.conf
 chmod o= /etc/ttys
+chmod o= /etc/crontab
+chmod o= /etc/motd
+chmod o= /etc/ssh/sshd_config
+chmod o= /etc/cron.d
 
 # Prevent viewing of the root directory and log file directory by non-privileged users.
 chmod 710 /root
 chmod o= /var/log
+
+# Prevent viewing/access of user's home directory by other users.
+chmod 700 /home/$USER
 
 # Configure S.M.A.R.T. disk monitoring daemon.
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
