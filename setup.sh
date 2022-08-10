@@ -109,8 +109,8 @@ ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/f
 ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts/conf.d/
 
 # Fix micro truecolor support.
-echo "# Micro truecolor support" >> /home/$USER/.xinitrc
-echo "export MICRO_TRUECOLOR=1" >> /home/$USER/.xinitrc
+echo "# Micro truecolor support." >> /home/$USER/.profile
+echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /home/$USER/.profile
 
 # Cleanup boot process.
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
