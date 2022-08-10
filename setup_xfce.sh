@@ -56,7 +56,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme rkhunter chkrootkit
 
 clear
 
@@ -72,6 +72,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 pkg install -y bsdstats
 sysrc bsdstats_enable="YES"
+echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
 fi
 if [ "$resp" = n ]; then
 continue
@@ -173,6 +174,9 @@ cd /usr/ports/x11-fonts/plex-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 cd /usr/ports/sysutils/colorize && make install clean
+cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
+cd /usr/ports/security/rkhunter && make install clean
+cd /usr/ports/security/chkrootkit && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Setup rc.conf file.
@@ -187,6 +191,7 @@ read -p "Would you like to enable BSDstats? (y/n): " resp
 if [ "$resp" = y ]; then
 portmaster --no-confirm sysutils/bsdstats
 sysrc bsdstats_enable="YES"
+echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
 fi
 if [ "$resp" = n ]; then
 continue
@@ -372,3 +377,9 @@ chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
 cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+
+# Configure rkhunter (rootkit malware scanner).
+echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
+echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
+echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
+echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
