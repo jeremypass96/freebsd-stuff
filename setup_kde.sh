@@ -55,7 +55,7 @@ fi
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme 
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme rkhunter chkrootkit
 
 clear
 
@@ -165,6 +165,9 @@ cd /usr/ports/x11-fonts/plex-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 cd /usr/ports/sysutils/colorize && make install clean
+cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
+cd /usr/ports/security/rkhunter && make install clean
+cd /usr/ports/security/chkrootkit && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Setup rc.conf file.
@@ -235,3 +238,9 @@ chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
 cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+
+# Configure rkhunter (rootkit malware scanner).
+echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
+echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
+echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
+echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
