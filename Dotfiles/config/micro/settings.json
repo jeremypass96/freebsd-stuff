@@ -2,6 +2,8 @@
     "autosu": true,
     "backup": false,
     "colorscheme": "material-tc",
+    "eofnewline": false,
+    "hlsearch": true,
     "keymenu": true,
     "mkparents": true,
     "rmtrailingws": true,
