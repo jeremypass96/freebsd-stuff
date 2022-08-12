@@ -58,13 +58,6 @@ sed -i '' '53s/secure/insecure'/g /etc/ttys
 # Add /proc filesystem to /etc/fstab.
 echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
 
-# Setup system files for desktop use.
-./sysctl_setup.sh
-./bootloader_setup.sh
-./devfs_setup.sh
-./freebsd_symlinks.sh
-./dotfiles_setup.sh
-
 # Change umask from 022 to 077. More secure.
 sed -i '' '50s/022/077'/g /etc/login.conf
 cap_mkdb /etc/login.conf
@@ -150,6 +143,13 @@ fi
 touch /home/$USER/.hushlogin
 chown $USER /home/$USER/.hushlogin
 touch /usr/share/skel/.hushlogin
+
+# Setup system files for desktop use.
+./sysctl_setup.sh
+./bootloader_setup.sh
+./devfs_setup.sh
+./freebsd_symlinks.sh
+./dotfiles_setup.sh
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
