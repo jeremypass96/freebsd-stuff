@@ -128,13 +128,15 @@ echo "# Micro truecolor support." >> /home/$USER/.profile
 echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /home/$USER/.profile
 echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
 
-# Cleanup boot process.
+# Cleanup boot process/adjust ZFS options for desktop useage.
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
 read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
 if [ "$resp" = y ]; then
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
+# Adjust ZFS ARC cache size.
+echo 'vfs.zfs.arc_max="512M"' >> /boot/loader.conf
 # Turn off atime. Reduces disk writes/wear.
 zfs set atime=off zroot
 fi
