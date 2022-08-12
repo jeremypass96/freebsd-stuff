@@ -13,6 +13,7 @@ echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
 
 read -p "Do you have an AMD CPU installed in your computer? (y/n): " resp
 if [ "$resp" = y ]; then
+echo "# Load AMD southbridge watchdog timers and CPU thermal sensor." >> /boot/loader.conf
 sysrc -f /boot/loader.conf amdsbwd_load="YES"
 sysrc -f /boot/loader.conf amdtemp_load="YES"
 fi
