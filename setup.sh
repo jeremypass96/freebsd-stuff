@@ -136,7 +136,9 @@ read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
 if [ "$resp" = y ]; then
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
 # Adjust ZFS ARC cache size.
+echo "# Adjust ZFS ARC cache size." >> /boot/loader.conf
 echo 'vfs.zfs.arc_max="512M"' >> /boot/loader.conf
+echo "" >> /boot/loader.conf
 # Turn off atime. Reduces disk writes/wear.
 zfs set atime=off zroot
 fi
