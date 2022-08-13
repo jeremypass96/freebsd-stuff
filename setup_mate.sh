@@ -31,8 +31,13 @@ FreeBSD: {
 }
 EOF
 pkg update
+echo ""
 
-clear
+# Make pkg use sane defaults.
+echo "" >> /usr/local/etc/pkg.conf
+echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
+echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
+echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
@@ -53,17 +58,16 @@ if [ "$resp" = n ]; then
 continue
 fi
 
-clear
-
 # Install packages.
 pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf colorize freedesktop-sound-theme rkhunter chkrootkit
+
+clear
 
 # Setup rc.conf file.
 ./rcconf_setup.sh
 
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
-pkg clean -y
 
 # Install BSDstats.
 read -p "Would you like to enable BSDstats? (y/n): " resp
@@ -94,8 +98,8 @@ portsnap auto
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-sed -i '' '13s/$/ CUPS/' /etc/make.conf
-sed -i '' '24s/$/print_hplip_UNSET=X11/' /etc/make.conf
+sed -i '' '14s/$/ CUPS/' /etc/make.conf
+sed -i '' '25s/$/print_hplip_UNSET=X11/' /etc/make.conf
 echo "" >> /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
@@ -114,7 +118,7 @@ cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
 fi
 if [ "$resp" = n ]; then
-sed -i '' '14s/$/ CUPS/' /etc/make.conf
+sed -i '' '15s/$/ CUPS/' /etc/make.conf
 continue
 fi
 
