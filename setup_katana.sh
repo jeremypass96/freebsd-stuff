@@ -36,8 +36,13 @@ Katana: {
 }
 EOF
 pkg update
+echo ""
 
-clear
+# Make pkg use sane defaults.
+echo "" >> /usr/local/etc/pkg.conf
+echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
+echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
+echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
