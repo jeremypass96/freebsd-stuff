@@ -31,8 +31,13 @@ FreeBSD: {
 }
 EOF
 pkg update
+echo ""
 
-clear
+# Make pkg use sane defaults.
+echo "" >> /usr/local/etc/pkg.conf
+echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
+echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
+echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
@@ -65,7 +70,6 @@ clear
 
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
-pkg clean -y
 
 # Install BSDstats.
 read -p "Would you like to enable BSDstats? (y/n): " resp
@@ -98,8 +102,8 @@ clear
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-sed -i '' '13s/$/ CUPS/' /etc/make.conf
-sed -i '' '24s/$/print_hplip_UNSET=X11/' /etc/make.conf
+sed -i '' '14s/$/ CUPS/' /etc/make.conf
+sed -i '' '25s/$/print_hplip_UNSET=X11/' /etc/make.conf
 echo "" >> /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/gutenprint && make install clean
@@ -118,7 +122,7 @@ cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
 fi
 if [ "$resp" = n ]; then
-sed -i '' '14s/$/ CUPS/' /etc/make.conf
+sed -i '' '15s/$/ CUPS/' /etc/make.conf
 continue
 fi
 
