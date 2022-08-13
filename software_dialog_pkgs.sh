@@ -38,7 +38,8 @@ do
         echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
         echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf;;
         13) pkg="wine wine-mono wine-gecko"
-        echo "# Wine fix" >> /boot/loader.conf
+        echo "" >> /boot/loader.conf
+        echo "# Wine fix." >> /boot/loader.conf
         echo machdep.max_ldt_segment=2048 >> /boot/loader.conf;;
         n) continue
     esac
