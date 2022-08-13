@@ -45,7 +45,7 @@ do
         echo "# Wine Options" >> /etc/make.conf
         echo "emulators_wine_SET=MONO" >> /etc/make.conf
         echo "" >> /boot/loader.conf
-        echo "# Wine fix" >> /boot/loader.conf
+        echo "# Wine fix." >> /boot/loader.conf
         echo machdep.max_ldt_segment=2048 >> /boot/loader.conf;;
         n) continue
     esac
