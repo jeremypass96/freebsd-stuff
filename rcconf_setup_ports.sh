@@ -83,18 +83,19 @@ sed -i '' '17s/$/INTEL/' /etc/make.conf
 fi
 #
 if [ "$resp" = 5 ]; then
-cd /usr/ports/emulators/virtualbox-ose-additions-legacy && make install clean
+cd /usr/ports/emulators/virtualbox-ose-additions && make install clean
+sed -i '' '17s/$/VMWARE/' /etc/make.conf
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 service vboxguest enable ; service vboxservice enable
-sed -i '' '17s/$/VMWARE/' /etc/make.conf
+sysrc kldload_vbox="vboxdrv"
 pw groupmod vboxusers -m $USER
 fi
 #
 if [ "$resp" = 6 ]; then
+sed -i '' '17s/$/VMWARE VMMOUSE/' /etc/make.conf
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 cd /usr/ports/x11-drivers/xf86-input-vmmouse && make install clean
 cd /usr/ports/emulators/open-vm-tools && make install clean
-sed -i '' '17s/$/VMWARE VMMOUSE/' /etc/make.conf
 sysrc powerd_enable="NO"
 sysrc smartd_enable="NO"
 fi
