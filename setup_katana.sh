@@ -81,7 +81,6 @@ sysrc kdm_enable="YES"
 
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
-pkg clean -y
 
 # BSDstats...
 read -p "Would you like to enable BSDstats? (y/n): " resp
