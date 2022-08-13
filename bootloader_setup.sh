@@ -32,7 +32,7 @@ sysrc -f /boot/loader.conf beastie_disable="YES"
 echo "" >> /boot/loader.conf
 
 # Driver for the AES and SHA accelerator on	x86 CPUs.
-echo "# Driver for the AES and SHA accelerator on	x86 CPUs." >> /boot/loader.conf
+echo "# Driver for the AES and SHA accelerator on x86 CPUs." >> /boot/loader.conf
 sysrc -f /boot/loader.conf aesni_load="YES"
 echo "" >> /boot/loader.conf
 
