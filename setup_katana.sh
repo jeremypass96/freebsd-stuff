@@ -46,9 +46,11 @@ echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-pkg install -y cups gutenprint system-config-printer hplip
+pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer hplip
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
+sysrc avahi_daemon_enable="YES"
+sysrc avahi_dnsconfd_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
 sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
 read -p "Paper size? (letter/a4): " resp
