@@ -204,13 +204,10 @@ fi
 
 clear
 
-# Install Mousepad text editor color scheme.
-fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-3.0/styles/onedark-bright.xml
-
 # Setup Xfce4 Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 chown -R $USER:$USER /home/$USER/.config/xfce4/terminal
-fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Andromeda.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Andromeda.theme
+fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Firewatch.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Firewatch.theme
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal
