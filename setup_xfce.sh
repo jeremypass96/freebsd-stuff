@@ -204,10 +204,8 @@ fi
 
 clear
 
-# Setup Xfce4 Terminal colors.
-mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
+# Setup Xfce4 Terminal.
 chown -R $USER:$USER /home/$USER/.config/xfce4/terminal
-fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/xfce4terminal/colorschemes/Firewatch.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/Firewatch.theme
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal
