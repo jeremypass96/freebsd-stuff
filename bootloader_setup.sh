@@ -87,25 +87,25 @@ echo "# Power off devices without an attached driver." >> /boot/loader.conf
 echo hw.pci.do_power_nodriver=2 >> /boot/loader.conf
 echo "" >> /boot/loader.conf
 
-########################################################################
-### Custom VT Colors - Firewatch (from iTerm2 Color Schemes project) ###
-### Console background color is black instead of dark grey           ###
-### (console was too bright and made the text barely readable.)      ###
-########################################################################
-kern.vt.color.0.rgb="#000000"
-kern.vt.color.1.rgb="#d95360"
-kern.vt.color.2.rgb="#5ab977"
-kern.vt.color.3.rgb="#dfb563"
-kern.vt.color.4.rgb="#4d89c4"
-kern.vt.color.5.rgb="#d55119"
-kern.vt.color.6.rgb="#44a8b6"
-kern.vt.color.7.rgb="#9ba2b2"
-kern.vt.color.8.rgb="#585f6d"
-kern.vt.color.9.rgb="#d95360"
-kern.vt.color.10.rgb="#5ab977"
-kern.vt.color.11.rgb="#dfb563"
-kern.vt.color.12.rgb="#4c89c5"
-kern.vt.color.13.rgb="#d55119"
-kern.vt.color.14.rgb="#44a8b6"
-kern.vt.color.15.rgb="#e6e5ff"
-########################################################################
+echo ######################################################################## >> /boot/loader.conf
+echo ### Custom VT Colors - Firewatch (from iTerm2 Color Schemes project) ### >> /boot/loader.conf
+echo ### Console background color is black instead of dark grey           ### >> /boot/loader.conf
+echo ### (console was too bright and made the text barely readable.)      ### >> /boot/loader.conf
+echo ######################################################################## >> /boot/loader.conf
+echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
+echo 'kern.vt.color.1.rgb="#d95360"' >> /boot/loader.conf
+echo 'kern.vt.color.2.rgb="#5ab977"' >> /boot/loader.conf
+echo 'kern.vt.color.3.rgb="#dfb563"' >> /boot/loader.conf
+echo 'kern.vt.color.4.rgb="#4d89c4"' >> /boot/loader.conf
+echo 'kern.vt.color.5.rgb="#d55119"' >> /boot/loader.conf
+echo 'kern.vt.color.6.rgb="#44a8b6"' >> /boot/loader.conf
+echo 'kern.vt.color.7.rgb="#9ba2b2"' >> /boot/loader.conf
+echo 'kern.vt.color.8.rgb="#585f6d"' >> /boot/loader.conf
+echo 'kern.vt.color.9.rgb="#d95360"' >> /boot/loader.conf
+echo 'kern.vt.color.10.rgb="#5ab977"' >> /boot/loader.conf
+echo 'kern.vt.color.11.rgb="#dfb563"' >> /boot/loader.conf
+echo 'kern.vt.color.12.rgb="#4c89c5"' >> /boot/loader.conf
+echo 'kern.vt.color.13.rgb="#d55119"' >> /boot/loader.conf
+echo 'kern.vt.color.14.rgb="#44a8b6"' >> /boot/loader.conf
+echo 'kern.vt.color.15.rgb="#e6e5ff"' >> /boot/loader.conf
+echo ######################################################################## >> /boot/loader.conf
