@@ -1,8 +1,4 @@
 [Configuration]
-ColorForeground=#e5e5e5
-ColorBackground=#262a33
-ColorCursor=#f8f8f0
-ColorPalette=#000000;#cd3131;#05bc79;#e5e512;#2472c8;#bc3fbc;#0fa8cd;#e5e5e5;#666666;#cd3131;#05bc79;#e5e512;#2472c8;#bc3fbc;#0fa8cd;#e5e5e5
 MiscAlwaysShowTabs=FALSE
 MiscBell=TRUE
 MiscBellUrgent=TRUE
@@ -30,5 +26,11 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=TRUE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
-FontUseSystem=TRUE
 ShortcutsNoMenukey=TRUE
+MiscRightClickAction=TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU
+FontUseSystem=TRUE
+ColorPalette=#585f6d;#d95360;#5ab977;#dfb563;#4d89c4;#d55119;#44a8b6;#e6e5ff;#585f6d;#d95360;#5ab977;#dfb563;#4c89c5;#d55119;#44a8b6;#e6e5ff
+ColorBackground=#1e2027
+ColorCursor=#f6f7ec
+ColorForeground=#9ba2b2
+ColorCursorUseDefault=FALSE
