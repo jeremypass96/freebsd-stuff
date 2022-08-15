@@ -37,7 +37,8 @@ do
         echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
         echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
         echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
-        echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf;;
+        echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
+        pw group mod vboxusers -m $USER;;
         13) pkg="wine wine-mono wine-gecko"
         echo "" >> /boot/loader.conf
         echo "# Wine fix." >> /boot/loader.conf
