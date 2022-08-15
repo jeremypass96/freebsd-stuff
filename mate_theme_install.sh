@@ -25,6 +25,10 @@ sudo fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg
 sudo fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0252.jpg
 sudo fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg
 sudo fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg
+sudo fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Field_Of_Lightning.jpg
+sudo fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Lake_View.jpg
+sudo fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Mountain_View.jpg
+sudo fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Wood_Trail.jpg
 cd
 
 clear
