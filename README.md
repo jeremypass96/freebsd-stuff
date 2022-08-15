@@ -5,3 +5,9 @@ Binary package: <code>pkg install git-lite</code>
 
 Port:
 <code>cd /usr/ports/devel/git && make install clean</code>
+
+For a minimal "git-lite" build, deselect the following configuration options:
+<code>CONTRIB</code>
+<code>GITWEB</code>
+<code>PERL</code>
+<code>SEND_EMAIL</code>
