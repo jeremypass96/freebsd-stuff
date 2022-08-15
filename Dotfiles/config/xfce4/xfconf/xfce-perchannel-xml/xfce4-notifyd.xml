@@ -11,4 +11,5 @@
   <property name="theme" type="string" value="Default"/>
   <property name="do-slideout" type="bool" value="true"/>
   <property name="do-fadeout" type="bool" value="true"/>
+  <property name="notification-log" type="bool" value="true"/>
 </channel>
