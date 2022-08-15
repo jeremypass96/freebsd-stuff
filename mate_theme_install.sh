@@ -34,7 +34,7 @@ cd
 clear
 
 # Set wallpaper.
-gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/0188.jpg
+gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/Wood_Trail.jpg
 # Set window titlebar font.
 gsettings set org.mate.Marco.general titlebar-font "Poppins Bold 10"
 # Set window theme.
