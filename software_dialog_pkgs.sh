@@ -33,7 +33,8 @@ do
         12) pkg="virtualbox-ose virtualbox-ose-kmod"
         sysrc vboxnet_enable="YES"
         sysrc kldload_vbox="vboxdrv"
-        echo "### VirtualBox stuff ###" >> /etc/sysctl.conf
+        echo "" >> /etc/sysctl.conf
+        echo "# VirtualBox stuff." >> /etc/sysctl.conf
         echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
         echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
         echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
