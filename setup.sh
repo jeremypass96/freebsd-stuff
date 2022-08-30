@@ -142,7 +142,7 @@ fi
 # Make login quieter.
 touch /home/$USER/.hushlogin
 chown $USER /home/$USER/.hushlogin
-touch /usr/share/skel/.hushlogin
+touch /usr/share/skel/dot.hushlogin
 
 # Setup system files for desktop use.
 ./sysctl_setup.sh
