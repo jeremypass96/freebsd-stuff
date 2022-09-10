@@ -345,17 +345,15 @@ icon-theme-name = Papirus-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/.xinitrc /home/$USER/.xinitrc
-cp -v /home/$USER/.xinitrc /usr/share/skel/dot.xinitrc
-chown $USER:$USER /home/$USER/.xinitrc
-
-# Setup qt5ct
 mkdir /home/$USER/.config/qt5ct
 chown -R $USER:$USER /home/$USER/.config/qt5ct
 mkdir /usr/share/skel/dot.config/qt5ct
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
+cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/.xinitrc /home/$USER/.xinitrc
+cp -v /home/$USER/.xinitrc /usr/share/skel/dot.xinitrc
+chown $USER:$USER /home/$USER/.xinitrc
 
 # Hide menu items.
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
@@ -366,7 +364,6 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 #echo "Hidden=true" >> /usr/local/share/applications/org.gtk.IconBrowser4.desktop
 #echo "Hidden=true" >> /usr/local/share/applications/org.gtk.PrintEditor.desktop
 #echo "Hidden=true" >> /usr/local/share/applications/org.gtk.WidgetFactory4.desktop
-
 
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
