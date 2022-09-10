@@ -135,7 +135,7 @@ sed -i '' s/'if \[ \${harvest_mask} -gt 0 ]; then'/'# if \[ \${harvest_mask} -gt
 sed -i '' s/"echo -n 'Setting up harvesting: '"/"# echo -n 'Setting up harvesting: '"/g /etc/rc.d/random
 sed -i '' s/'\${SYSCTL} kern.random.harvest.mask=\${harvest_mask} > \/dev\/null'/'# \${SYSCTL} kern.random.harvest.mask=\${harvest_mask} > \/dev\/null'/g /etc/rc.d/random
 sed -i '' s/'\${SYSCTL_N} kern.random.harvest.mask_symbolic'/'# \${SYSCTL_N} kern.random.harvest.mask_symbolic'/g /etc/rc.d/random
-sed -i '' s/'fi'/'# fi'/g /etc/rc.d/random
+sed -i '' 54s/'fi'/'# fi'/g /etc/rc.d/random
 sed -i '' s/"echo -n 'Feeding entropy: '"/"echo -n 'Feeding entropy:'"/g /etc/rc.d/random
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
