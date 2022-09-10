@@ -87,10 +87,10 @@ echo "# Power off devices without an attached driver." >> /boot/loader.conf
 echo hw.pci.do_power_nodriver=2 >> /boot/loader.conf
 echo "" >> /boot/loader.conf
 
-echo ################################################################################## >> /boot/loader.conf
-echo ### Custom VT Colors - Based off Firewatch, Andromeda, and PaulMillr themes.   ### >> /boot/loader.conf
-echo ### From the iTerm2 Color Schemes project. 					                          ### >> /boot/loader.conf
-echo ################################################################################## >> /boot/loader.conf
+echo '##################################################################################' >> /boot/loader.conf
+echo '### Custom VT Colors - Based off Firewatch, Andromeda, and PaulMillr themes.   ###' >> /boot/loader.conf
+echo '### From the iTerm2 Color Schemes project. 					                          ###' >> /boot/loader.conf
+echo '##################################################################################' >> /boot/loader.conf
 echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
 echo 'kern.vt.color.1.rgb="#d95360"' >> /boot/loader.conf
 echo 'kern.vt.color.2.rgb="#5ab977"' >> /boot/loader.conf
@@ -107,4 +107,4 @@ echo 'kern.vt.color.12.rgb="#4c89c5"' >> /boot/loader.conf
 echo 'kern.vt.color.13.rgb="#bc3fbc"' >> /boot/loader.conf
 echo 'kern.vt.color.14.rgb="#7adff2"' >> /boot/loader.conf
 echo 'kern.vt.color.15.rgb="#e6e5ff"' >> /boot/loader.conf
-echo ################################################################################## >> /boot/loader.conf
+echo '##################################################################################' >> /boot/loader.conf
