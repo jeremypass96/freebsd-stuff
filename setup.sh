@@ -127,16 +127,16 @@ echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
 
 # Cleanup boot process/adjust ZFS options for desktop useage.
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
-sed -i '' s/'check_startmsgs && echo 'ELF ldconfig path:' \${_LDC}'/'check_startmsgs && echo 'ELF ldconfig path:' \${_LDC} 1> \/dev\/null'/g /etc/rc.d/ldconfig
-sed -i '' s/'echo '32-bit compatibility ldconfig path:' \${_LDC}'/echo '32-bit compatibility ldconfig path:' \${_LDC} 1> \/dev\/null'/g /etc/rc.d/ldconfig
-sed -i '' s/'/sbin/ifconfig \${ifn}'/'/sbin/ifconfig \${ifn} 1> \/dev\/null 2> \/dev\/null'/g /etc/rc.d/netif
-sed -i '' s/'rpc.umntall -k'/'rpc.umntall -k 2> \/dev\/null' /g /etc/rc.d/nfsclient
-sed -i '' s/'if [ \${harvest_mask} -gt 0 ]; then'/'# if [ \${harvest_mask} -gt 0 ]; then'/g /etc/rc.d/random
-sed -i '' s/'echo -n 'Setting up harvesting: ''/'# echo -n 'Setting up harvesting: ''/g /etc/rc.d/random
+sed -i '' s/"check_startmsgs \&& echo 'ELF ldconfig path:' \${_LDC}"/"check_startmsgs \&\& echo 'ELF ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
+sed -i '' s/"echo '32-bit compatibility ldconfig path:' \${_LDC}"/"echo '32-bit compatibility ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
+sed -i '' s/'ifconfig \${ifn}'/'ifconfig \${ifn} 1> \/dev\/null 2> \/dev\/null'/g /etc/rc.d/netif
+sed -i '' s/'rpc.umntall -k'/'rpc.umntall -k 2> \/dev\/null'/g /etc/rc.d/nfsclient
+sed -i '' s/'if \[ \${harvest_mask} -gt 0 ]; then'/'# if \[ \${harvest_mask} -gt 0 ]; then'/g /etc/rc.d/random
+sed -i '' s/"echo -n 'Setting up harvesting: '"/"# echo -n 'Setting up harvesting: '"/g /etc/rc.d/random
 sed -i '' s/'\${SYSCTL} kern.random.harvest.mask=\${harvest_mask} > \/dev\/null'/'# \${SYSCTL} kern.random.harvest.mask=\${harvest_mask} > \/dev\/null'/g /etc/rc.d/random
 sed -i '' s/'\${SYSCTL_N} kern.random.harvest.mask_symbolic'/'# \${SYSCTL_N} kern.random.harvest.mask_symbolic'/g /etc/rc.d/random
 sed -i '' s/'fi'/'# fi'/g /etc/rc.d/random
-sed -i '' s/'echo -n 'Feeding entropy: ''/'echo -n 'Feeding entropy:''/g /etc/rc.d/random
+sed -i '' s/"echo -n 'Feeding entropy: '"/"echo -n 'Feeding entropy:'"/g /etc/rc.d/random
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
