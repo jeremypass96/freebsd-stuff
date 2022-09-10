@@ -89,7 +89,7 @@ echo "" >> /boot/loader.conf
 
 echo '##################################################################################' >> /boot/loader.conf
 echo '### Custom VT Colors - Based off Firewatch, Andromeda, and PaulMillr themes.   ###' >> /boot/loader.conf
-echo '### From the iTerm2 Color Schemes project. 					                          ###' >> /boot/loader.conf
+echo '### From the iTerm2 Color Schemes project. 					                   ###' >> /boot/loader.conf
 echo '##################################################################################' >> /boot/loader.conf
 echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
 echo 'kern.vt.color.1.rgb="#d95360"' >> /boot/loader.conf
