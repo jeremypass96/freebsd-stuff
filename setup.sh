@@ -16,6 +16,7 @@ read -p "Which desktop environment do you want to use? Please enter it's corresp
 2.) Xfce
 3.) Katana (fork of KDE4)
 4.) KDE Plasma 5
+5.) Basic Xorg (no desktop)
 -> " resp
 if [ "$resp" = 1 ]; then
 ./setup_mate.sh
@@ -28,6 +29,9 @@ if [ "$resp" = 3 ]; then
 fi
 if [ "$resp" = 4 ]; then
 ./setup_kde.sh
+fi
+if [ "$resp" = 5 ]; then
+./setup_basicxorg.sh
 fi
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
@@ -125,6 +129,7 @@ echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
+sed -i '' s/'echo "Autoloading module: ${m}"'/'# echo "Autoloading module: \${m}"'/g /etc/rc.d/devmatch
 read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
 if [ "$resp" = y ]; then
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
