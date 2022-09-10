@@ -136,8 +136,11 @@ sed -i '' s/"echo -n 'Setting up harvesting: '"/"# echo -n 'Setting up harvestin
 sed -i '' s/'\${SYSCTL} kern.random.harvest.mask=\${harvest_mask} > \/dev\/null'/'# \${SYSCTL} kern.random.harvest.mask=\${harvest_mask} > \/dev\/null'/g /etc/rc.d/random
 sed -i '' s/'\${SYSCTL_N} kern.random.harvest.mask_symbolic'/'# \${SYSCTL_N} kern.random.harvest.mask_symbolic'/g /etc/rc.d/random
 sed -i '' 54s/'fi'/'# fi'/g /etc/rc.d/random
+sed -i '' s/'eval static_\${_a} delete \$_if'/'eval static_\${_a} delete \$_if 1> \/dev\/null 2> \/dev\/null'/g /etc/rc.d/routing
+sed -i '' 97s/'static_\$2 add \$3'/'static_\$2 add \$3 1> \/dev\/null 2> \/dev\/null'/g /etc/rc.d/routing
+sed -i '' 104s/'static_\$2 add \$3'/'static_\$2 add \$3 add \$3 1> \/dev\/null 2> \/dev\/null'/g /etc/rc.d/routing
 sed -i '' s/"echo -n 'Feeding entropy: '"/"echo -n 'Feeding entropy:'"/g /etc/rc.d/random
-grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'netif|ldconfig'
+grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
 read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
 if [ "$resp" = y ]; then
