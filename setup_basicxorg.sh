@@ -61,7 +61,7 @@ continue
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade
 
 clear
 
@@ -173,6 +173,7 @@ cd /usr/ports/sysutils/colorize && make install clean
 cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
 cd /usr/ports/security/rkhunter && make install clean
 cd /usr/ports/security/chkrootkit && make install clean
+cd /usr/ports/sysutils/topgrade && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 clear
