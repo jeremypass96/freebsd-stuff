@@ -56,6 +56,12 @@ if [ "$resp" = a4 ]; then
 pkg install -y papersize-default-a4
 fi
 fi
+read -p "Do you own an HP printer? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y hplip
+if [ "$resp" = n ]; then
+continue
+fi
 if [ "$resp" = n ]; then
 continue
 fi
@@ -108,7 +114,6 @@ cd /usr/ports/print/cups-filters && make install clean
 cd /usr/ports/print/cups-pk-helper && make install clean
 cd /usr/ports/print/gutenprint && make install clean
 cd /usr/ports/print/system-config-printer && make install clean
-cd /usr/ports/print/hplip && make install clean
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sysrc avahi_daemon_enable="YES"
@@ -122,6 +127,12 @@ fi
 if [ "$resp" = a4 ]; then
 cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
+fi
+read -p "Do you own an HP printer? (y/n): " resp
+if [ "$resp" = y ]; then
+cd /usr/ports/print/hplip && make install clean
+if [ "$resp" = n ]; then
+continue
 fi
 if [ "$resp" = n ]; then
 sed -i '' '15s/$/ CUPS/' /etc/make.conf
