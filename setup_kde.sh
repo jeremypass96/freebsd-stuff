@@ -41,7 +41,7 @@ echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer hplip
+pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sysrc avahi_daemon_enable="YES"
@@ -109,14 +109,12 @@ clear
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
 sed -i '' '14s/$/ CUPS/' /etc/make.conf
-sed -i '' '25s/$/print_hplip_UNSET=X11/' /etc/make.conf
 echo "" >> /etc/make.conf
 cd /usr/ports/print/cups && make install clean
 cd /usr/ports/print/cups-filters && make install clean
 cd /usr/ports/print/cups-pk-helper && make install clean
 cd /usr/ports/print/gutenprint && make install clean
 cd /usr/ports/print/system-config-printer && make install clean
-cd /usr/ports/print/hplip && make install clean
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sysrc avahi_daemon_enable="YES"
@@ -134,6 +132,7 @@ fi
 read -p "Do you own an HP printer? (y/n): " resp
 if [ "$resp" = y ]; then
 cd /usr/ports/print/hplip && make install clean
+sed -i '' '25s/$/print_hplip_UNSET=X11/' /etc/make.conf
 if [ "$resp" = n ]; then
 continue
 fi
