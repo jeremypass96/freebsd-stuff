@@ -56,6 +56,12 @@ if [ "$resp" = a4 ]; then
 pkg install -y papersize-default-a4
 fi
 fi
+read -p "Do you own an HP printer? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y hplip
+if [ "$resp" = n ]; then
+continue
+fi
 if [ "$resp" = n ]; then
 continue
 fi
@@ -124,6 +130,12 @@ fi
 if [ "$resp" = a4 ]; then
 cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
+fi
+read -p "Do you own an HP printer? (y/n): " resp
+if [ "$resp" = y ]; then
+cd /usr/ports/print/hplip && make install clean
+if [ "$resp" = n ]; then
+continue
 fi
 if [ "$resp" = n ]; then
 sed -i '' '15s/$/ CUPS/' /etc/make.conf
