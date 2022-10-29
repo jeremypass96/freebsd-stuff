@@ -46,7 +46,7 @@ echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer hplip
+pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sysrc avahi_daemon_enable="YES"
@@ -59,6 +59,13 @@ pkg install -y papersize-default-letter
 fi
 if [ "$resp" = a4 ]; then
 pkg install -y papersize-default-a4
+fi
+fi
+read -p "Do you own an HP printer? (y/n): " resp
+if [ "$resp" = y ]; then
+pkg install -y hplip
+if [ "$resp" = n ]; then
+continue
 fi
 if [ "$resp" = n ]; then
 continue
