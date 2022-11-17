@@ -68,7 +68,7 @@ continue
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd
 
 clear
 
@@ -193,6 +193,8 @@ cd /usr/ports/security/rkhunter && make install clean
 cd /usr/ports/security/chkrootkit && make install clean
 cd /usr/ports/sysutils/topgrade && make install clean
 cd /usr/ports/textproc/bat && make install clean
+cd /usr/ports/sysutils/fd && make install clean
+cd /usr/ports/sysutils/lsd && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Setup rc.conf file.
