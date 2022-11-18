@@ -100,4 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias df="df -h"
+alias ls="lsd"
+alias cat="bat"
 neofetch
