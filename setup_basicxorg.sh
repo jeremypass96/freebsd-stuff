@@ -183,7 +183,7 @@ cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 cd /usr/ports/sysutils/btop && make install clean
 cd /usr/ports/sysutils/colorize && make install clean
-cd /usr/ports/audio/freedesktop-sound-theme && sudo make install clean
+cd /usr/ports/audio/freedesktop-sound-theme && make install clean
 cd /usr/ports/security/rkhunter && make install clean
 cd /usr/ports/security/chkrootkit && make install clean
 cd /usr/ports/sysutils/topgrade && make install clean

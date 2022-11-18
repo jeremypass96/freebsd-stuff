@@ -54,7 +54,7 @@ gsettings set org.mate.interface show-input-method-menu false
 gsettings set org.mate.interface show-unicode-menu false
 # Set mouse cursor.
 gsettings set org.mate.peripherals-mouse cursor-theme volantes_light_cursors
-gsettings set org.mate.peripherals-mouse cursor-szie 32
+gsettings set org.mate.peripherals-mouse cursor-size 32
 # Set up FreeDesktop sound theme.
 gsettings set org.mate.sound enable-esd true
 gsettings set org.mate.sound event-sounds true

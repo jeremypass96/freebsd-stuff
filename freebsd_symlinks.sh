@@ -7,7 +7,8 @@ exit
 fi
 
 # Symlink bash executable to /bin/bash so that scripts written on/for Linux can run properly.
-echo "Making a bash symlink to /bin/bash for Linux shell script compatability..."
+echo "Making a bash symlink to /bin/bash for Linux shell script
+compatibility..."
 ln -sv /usr/local/bin/bash /bin/bash
 
 # Symlink themes/icons directories to enable installation of Linux themes.
