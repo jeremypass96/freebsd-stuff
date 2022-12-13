@@ -48,6 +48,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/local/sh
 # Copy over lsd config.
 mkdir -p /home/$USER/.config/lsd
 cp -v config/lsd/config.yaml /home/$USER/.config/lsd/
+mkdir -p /root/.config/lsd/
 cp -v config/lsd/config.yaml /root/.config/lsd/
 mkdir -p /usr/share/skel/dot.config/lsd
 cp -v config/lsd/config.yaml /usr/share/skel/dot.config/lsd/
