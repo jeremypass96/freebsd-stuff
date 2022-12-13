@@ -15,9 +15,8 @@ cp -v .profile /home/$USER
 cp -v .profile /usr/share/skel/dot.profile
 chown $USER:$USER /home/$USER/.profile
 echo "EDITOR=micro;   export EDITOR" >> /etc/profile
-echo "EDITOR=micro;   export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
-echo "MANPAGER=less;   export MANPAGER" >> /etc/profile
+echo "BAT_THEME="1337";	export BAT_THEME" >> /etc/profile
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
