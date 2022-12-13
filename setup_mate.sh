@@ -284,7 +284,8 @@ chown -R $USER:$USER /home/$USER/.config
 # Fix user's local directory permissions.
 chown -R $USER:$USER /home/$USER/.local
 
-# Fix user's caja config directory permissions.
+# Create and fix user's caja config directory permissions.
+mkdir -p /home/$USER/.config/caja
 chown -R $USER:$USER /home/$USER/.config/caja
 
 # Install Ulauncher theme.
