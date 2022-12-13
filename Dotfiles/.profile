@@ -18,6 +18,9 @@ EDITOR=micro;   export EDITOR
 PAGER=less;   export PAGER
 BAT_THEME="1337";	export BAT_THEME
 
+# Micro truecolor support.
+MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR
+
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV
 
