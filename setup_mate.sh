@@ -10,7 +10,7 @@ fi
 clear
 
 echo "Welcome to the FreeBSD MATE setup script."
-echo "This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo "This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use. Also, don't forget to run './mate_theme_install.sh' after you reboot."
 echo ""
 read -p "Press the Enter key to continue..." resp
 
