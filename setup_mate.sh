@@ -257,7 +257,7 @@ EOF
 # Setup qt5ct and fix GTK/QT antialiasing.
 mkdir /home/$USER/.config/qt5ct
 chown -R $USER:$USER /home/$USER/.config/qt5ct
-mkdir /usr/share/skel/dot.config/qt5ct
+mkdir -p /usr/share/skel/dot.config/qt5ct
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
