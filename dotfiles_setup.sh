@@ -26,6 +26,8 @@ chown $USER:$USER /home/$USER/.zshrc
 # Copy over neofetch config.
 mkdir -p /home/$USER/.config/neofetch
 cp -v config/neofetch/config.conf /home/$USER/.config/neofetch/
+mkdir -p /root/.config/neofetch/
+cp -v config/neofetch/config.conf /root/.config/neofetch/
 mkdir -p /usr/share/skel/dot.config/neofetch
 cp -v config/neofetch/config.conf /usr/share/skel/dot.config/neofetch/
 chown -R $USER:$USER /home/$USER/.config/neofetch
@@ -33,6 +35,7 @@ chown -R $USER:$USER /home/$USER/.config/neofetch
 # Copy over micro config.
 mkdir -p /home/$USER/.config/micro
 cp -v config/micro/settings.json /home/$USER/.config/micro/
+mkdir -p /root/.config/micro/
 cp -v config/micro/settings.json /root/.config/micro/
 mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
