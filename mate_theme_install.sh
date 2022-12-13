@@ -44,7 +44,7 @@ gsettings set org.mate.Marco.general action-middle-click-titlebar none
 # Set theme.
 gsettings set org.mate.interface gtk-theme "Skeuos-Blue-Dark"
 # Set icon theme.
-gsettings set org.mate.interface icon-theme Papirus-Light
+gsettings set org.mate.interface icon-theme Papirus-Dark
 # Set fonts.
 gsettings set org.mate.interface monospace-font-name "IBM Plex Mono 10"
 gsettings set org.mate.interface font-name "Source Sans Pro 10"
