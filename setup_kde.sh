@@ -68,7 +68,7 @@ continue
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
 
 clear
 
@@ -157,6 +157,7 @@ cd /usr/ports/x11/xclip && make install clean
 cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
+cd /usr/ports/sysutils/pfetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11/kde5 && make install clean
 cd /usr/ports/sysutils/k3b && make install clean
