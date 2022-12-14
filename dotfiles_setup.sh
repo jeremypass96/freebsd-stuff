@@ -17,6 +17,8 @@ chown $USER:$USER /home/$USER/.profile
 echo "EDITOR=micro;   export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
 echo "BAT_THEME="1337";	export BAT_THEME" >> /etc/profile
+echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /etc/profile
+echo  "export PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO" >> /etc/profile
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
