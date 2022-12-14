@@ -18,6 +18,7 @@ EDITOR=micro;   export EDITOR
 PAGER=less;   export PAGER
 BAT_THEME="1337";	export BAT_THEME
 QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME
+PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO
 
 # Micro truecolor support.
 MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR
