@@ -58,3 +58,13 @@ cp -v config/lsd/config.yaml /root/.config/lsd/
 mkdir -p /usr/share/skel/dot.config/lsd
 cp -v config/lsd/config.yaml /usr/share/skel/dot.config/lsd/
 chown -R $USER:$USER /home/$USER/.config/lsd
+
+# Configure "bat," nicer (and better) cat alternative.
+bat --generate-config-file
+sed -i '' s/'#--theme="TwoDark"'/'--theme="1337"'/g /root/.config/bat/config
+sed -i '' s/'#--italic-text=always'/'--italic-text=always'/g /root/.config/bat/config
+mkdir -p /home/$USER/.config/bat
+cp -v /root/.config/bat/config /home/$USER/.config/bat/config
+mkdir -p /usr/share/skel/dot.config/bat
+cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat/config
+chown -R $USER:$USER /home/$USER/.config/bat
