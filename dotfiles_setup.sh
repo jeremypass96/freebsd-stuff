@@ -10,14 +10,24 @@ fi
 
 cd Dotfiles/
 
-# Copy over .profile & fix system profile file.
-cp -v .profile /home/$USER
-cp -v .profile /usr/share/skel/dot.profile
-chown $USER:$USER /home/$USER/.profile
+# Export options to system and user profile files.
 echo "EDITOR=micro;   export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
 echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /etc/profile
-echo  "export PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO" >> /etc/profile
+echo "export PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO" >> /etc/profile
+echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /etc/profile
+
+echo "EDITOR=micro;   export EDITOR" >> /home/$USER/.profile
+echo "PAGER=less;   export PAGER" >> /home/$USER/.profile
+echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /home/$USER/.profile
+echo "export PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO" >> /home/$USER/.profile
+echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /home/$USER/.profile
+
+echo "EDITOR=micro;   export EDITOR" >> /usr/share/skel/dot.profile
+echo "PAGER=less;   export PAGER" >> /usr/share/skel/dot.profile
+echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /usr/share/skel/dot.profile
+echo "export PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO" >> /usr/share/skel/dot.profile
+echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /usr/share/skel/dot.profile
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
