@@ -222,8 +222,9 @@ fi
 clear
 
 # Install cursor theme.
-echo "Installing the "Volantes Light Cursors" cursor theme..."
-tar -xvf volantes_light_cursors.tar.gz -C /usr/local/share/icons
+echo "Installing the "Bibata Modern Ice" cursor theme..."
+fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
+tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
 
 # Setup LightDM.
 sysrc lightdm_enable="YES"
