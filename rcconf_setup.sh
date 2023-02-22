@@ -83,7 +83,7 @@ fi
 #
 if [ "$resp" = 5 ]; then
 pkg install -y virtualbox-ose-additions xf86-video-vmware
-service vboxguest enable ; service vboxservice enable
+service vboxguest enable && service vboxservice enable
 sysrc kldload_vbox="vboxdrv"
 pw groupmod vboxusers -m $USER
 fi
