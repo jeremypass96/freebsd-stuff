@@ -173,3 +173,7 @@ xdg-user-dirs-update
 
 # Update FreeBSD base.
 PAGER=cat freebsd-update fetch install
+
+# Set mixer levels.
+mixer vol 100
+mixer pcm 100
