@@ -93,6 +93,9 @@ chmod o= /var/log
 # Prevent viewing/access of user's home directory by other users.
 chmod 700 /home/$USER
 
+# Enable process accounting.
+sysrc accounting_enable="YES" && service accounting start
+
 # Configure S.M.A.R.T. disk monitoring daemon.
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
