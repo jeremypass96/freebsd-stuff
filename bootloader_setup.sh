@@ -43,9 +43,15 @@ sysrc -f /boot/loader.conf geom_eli_load="YES"
 echo "" >> /boot/loader.conf
 
 # Hide boot messages.
+read -p "Do you want to hide boot messages? (y/n): " resp
+if [ "$resp" = y ]; then
 echo "# Hide boot messages." >> /boot/loader.conf
 sysrc -f /boot/loader.conf boot_mute="YES"
 echo "" >> /boot/loader.conf
+fi
+if [ "$resp" = n ]; then
+continue
+fi
 
 # Load CPU microcode.
 echo "# Load CPU microcode." >> /boot/loader.conf
