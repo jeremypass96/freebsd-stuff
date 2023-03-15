@@ -72,7 +72,7 @@ pkg install -y xf86-video-ati
 fi
 #
 if [ "$resp" = 3 ]; then
-pkg install -y nvidia-driver
+pkg install -y nvidia-driver nvidia-xconfig
 sysrc kld_list+=nvidia nvidia-modeset
 fi
 #
