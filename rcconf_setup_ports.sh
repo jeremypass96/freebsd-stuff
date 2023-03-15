@@ -76,6 +76,7 @@ if [ "$resp" = 3 ]; then
 cd /usr/ports/x11/nvidia-driver && make install clean
 cd /usr/ports/x11/nvidia-xconfig && make install clean
 sysrc kld_list+=nvidia nvidia-modeset
+nvidia-xconfig
 fi
 #
 if [ "$resp" = 4 ]; then
