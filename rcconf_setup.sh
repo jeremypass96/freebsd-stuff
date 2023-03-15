@@ -74,6 +74,7 @@ fi
 if [ "$resp" = 3 ]; then
 pkg install -y nvidia-driver nvidia-xconfig
 sysrc kld_list+=nvidia nvidia-modeset
+nvidia-xconfig
 fi
 #
 if [ "$resp" = 4 ]; then
