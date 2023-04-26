@@ -86,6 +86,7 @@ clear
 echo "Installing the "Bibata Modern Ice" cursor theme..."
 fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
 tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
 
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"
