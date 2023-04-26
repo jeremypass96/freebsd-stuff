@@ -87,6 +87,7 @@ pkg install -y virtualbox-ose-additions xf86-video-vmware
 service vboxguest enable && service vboxservice enable
 sysrc kldload_vbox="vboxdrv"
 pw groupmod vboxusers -m $USER
+sed -i '' s/hw.acpi.power_button_state=S3/\/g /etc/sysctl.conf
 fi
 #
 if [ "$resp" = 6 ]; then
