@@ -277,6 +277,8 @@ echo "Hidden=true" >> /usr/local/share/applications/org.gtk.Demo4.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.gtk.IconBrowser4.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.gtk.PrintEditor.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.gtk.WidgetFactory4.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.gtk.gtk4.NodeEditor.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.gtk.PrintEditor4.desktop
 
 # Fix user's .xinitrc permissions.
 chown $USER:$USER /home/$USER/.xinitrc
