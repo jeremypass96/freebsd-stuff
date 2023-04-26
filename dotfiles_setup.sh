@@ -77,3 +77,9 @@ cp -v /root/.config/bat/config /home/$USER/.config/bat/config
 mkdir -p /usr/share/skel/dot.config/bat
 cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat/config
 chown -R $USER:$USER /home/$USER/.config/bat
+
+# Setup root shell aliases.
+echo "" >> /root/.cshrc
+echo 'alias df="df -h"' >> /root/.cshrc
+echo 'alias ls="lsd"' >> /root/.cshrc
+echo 'alias cat="bat"' >> /root/.cshrc
