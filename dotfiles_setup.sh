@@ -32,6 +32,8 @@ echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /usr/share/skel/dot.profile
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
 cp -v .zshrc /usr/share/skel/dot.zshrc
+sed -i '' s/neofetch/\/g /usr/share/skel/dot.zshrc
+cp -v /usr/share/skel/dot.zshrc /root/.zshrc
 chown $USER:$USER /home/$USER/.zshrc
 
 # Copy over neofetch config.
@@ -78,8 +80,5 @@ mkdir -p /usr/share/skel/dot.config/bat
 cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat/config
 chown -R $USER:$USER /home/$USER/.config/bat
 
-# Setup root shell aliases.
-echo "" >> /root/.cshrc
-echo 'alias df="df -h"' >> /root/.cshrc
-echo 'alias ls="lsd"' >> /root/.cshrc
-echo 'alias cat="bat"' >> /root/.cshrc
+# Change root shell to use "zsh" instead of "csh."
+chsh -s /usr/local/bin/zsh root
