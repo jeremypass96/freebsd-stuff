@@ -144,7 +144,8 @@ continue
 fi
 
 # make.conf options for KDE.
-echo "KDE Options" >> /etc/make.conf
+echo "" >> /etc/make.conf
+echo "# KDE Options" >> /etc/make.conf
 echo "x11_kde5_UNSET=KDEEDU KDEGAMES KDEGRAPHICS KDEMULTIMEDIA KDENETWORK KDEPIM" >> /etc/make.conf
 
 clear
