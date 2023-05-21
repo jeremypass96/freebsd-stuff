@@ -278,3 +278,12 @@ echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
+
+# Fix KDE power buttons not appearing on application launcher menu.
+cat << EOF > /usr/local/etc/polkit-1/rules.d/40-wheel-group.rules
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
