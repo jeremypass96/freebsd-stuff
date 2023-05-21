@@ -14,7 +14,7 @@ cd Dotfiles/
 echo "EDITOR=micro;   export EDITOR" >> /etc/profile
 echo "PAGER=less;   export PAGER" >> /etc/profile
 echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /etc/profile
-echo "export PF_INFO="ascii os kernel uptime pkgs shell de memory";  export PF_INFO" >> /etc/profile
+echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /etc/profile
 echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /etc/profile
 
 echo "EDITOR=micro;   export EDITOR" >> /home/$USER/.profile
