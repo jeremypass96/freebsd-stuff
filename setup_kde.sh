@@ -236,7 +236,12 @@ rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
 
 # Download Konsole colors.
 mkdir -p /home/$USER/.local/share/konsole
-fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/konsole/Andromeda.colorscheme -o /home/$USER/.local/share/konsole
+mkdir -p /usr/share/skel/dot.local/share/konsole
+git clone https://github.com/catppuccin/konsole.git
+cd konsole/
+cp -v Catppuccin-Mocha.colorscheme /home/$USER/.local/share/konsole
+cp -v Catppuccin-Mocha.colorscheme /usr/share/skel/dot.local/share/konsole
+cd && rm -rf konsole/
 
 # Hide menu items.
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.cuttlefish.desktop
@@ -246,6 +251,7 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_lingui
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.themeexplorer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasmaengineexplorer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.lookandfeelexplorer.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.kde.kuserfeedback-console.desktop
 
 # Fix duplicate Gnumeric menu entry.
 sed -i '' s/Science/\/g /usr/local/share/applications/gnumeric.desktop
