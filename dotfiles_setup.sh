@@ -31,27 +31,27 @@ echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /usr/share/skel/dot.profile
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
-cp -v .zshrc /usr/share/skel/dot.zshrc
+cp -v .zshrc /usr/share/skel/
 sed -i '' s/neofetch/\/g /usr/share/skel/dot.zshrc
-cp -v /usr/share/skel/dot.zshrc /root/.zshrc
+cp -v /usr/share/skel/dot.zshrc /root/
 chown $USER:$USER /home/$USER/.zshrc
 
 # Copy over neofetch config.
 mkdir -p /home/$USER/.config/neofetch
-cp -v config/neofetch/config.conf /home/$USER/.config/neofetch/
-mkdir -p /root/.config/neofetch/
-cp -v config/neofetch/config.conf /root/.config/neofetch/
+cp -v config/neofetch/config.conf /home/$USER/.config/neofetch
+mkdir -p /root/.config/neofetch
+cp -v config/neofetch/config.conf /root/.config/neofetch
 mkdir -p /usr/share/skel/dot.config/neofetch
-cp -v config/neofetch/config.conf /usr/share/skel/dot.config/neofetch/
+cp -v config/neofetch/config.conf /usr/share/skel/dot.config/neofetch
 chown -R $USER:$USER /home/$USER/.config/neofetch
 
 # Copy over micro config.
 mkdir -p /home/$USER/.config/micro
-cp -v config/micro/settings.json /home/$USER/.config/micro/
-mkdir -p /root/.config/micro/
-cp -v config/micro/settings.json /root/.config/micro/
+cp -v config/micro/settings.json /home/$USER/.config/micro
+mkdir -p /root/.config/micro
+cp -v config/micro/settings.json /root/.config/micro
 mkdir -p /usr/share/skel/dot.config/micro
-cp -v config/micro/settings.json /usr/share/skel/dot.config/micro/
+cp -v config/micro/settings.json /usr/share/skel/dot.config/micro
 chown -R $USER:$USER /home/$USER/.config/micro
 
 # Change shell to zsh.
@@ -63,11 +63,11 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/local/sh
 
 # Copy over lsd config.
 mkdir -p /home/$USER/.config/lsd
-cp -v config/lsd/config.yaml /home/$USER/.config/lsd/
-mkdir -p /root/.config/lsd/
-cp -v config/lsd/config.yaml /root/.config/lsd/
+cp -v config/lsd/config.yaml /home/$USER/.config/lsd
+mkdir -p /root/.config/lsd
+cp -v config/lsd/config.yaml /root/.config/lsd
 mkdir -p /usr/share/skel/dot.config/lsd
-cp -v config/lsd/config.yaml /usr/share/skel/dot.config/lsd/
+cp -v config/lsd/config.yaml /usr/share/skel/dot.config/lsd
 chown -R $USER:$USER /home/$USER/.config/lsd
 
 # Configure "bat," nicer (and better) cat alternative.
@@ -75,10 +75,20 @@ bat --generate-config-file
 sed -i '' s/#--theme='"TwoDark"'/--theme='"1337"'/g /root/.config/bat/config
 sed -i '' s/#--italic-text=always/--italic-text=always/g /root/.config/bat/config
 mkdir -p /home/$USER/.config/bat
-cp -v /root/.config/bat/config /home/$USER/.config/bat/config
+cp -v /root/.config/bat/config /home/$USER/.config/bat
 mkdir -p /usr/share/skel/dot.config/bat
-cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat/config
+cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat
 chown -R $USER:$USER /home/$USER/.config/bat
 
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
+
+# Install Catppuccin theme for micro.
+mkdir -p /home/$USER/.config/micro/colorschemes
+mkdir -p /usr/share/skel/dot.config/micro/colorschemes
+git clone https://github.com/catppuccin/micro.git
+cd micro/src
+cp -v catppuccin-mocha.micro /home/$USER/.config/micro/colorschemes
+chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
+cp -v catppuccin-mocha.micro /usr/share/skel/dot.config/micro/colorschemes
+cd && rm -rf micro
