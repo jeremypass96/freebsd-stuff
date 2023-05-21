@@ -68,7 +68,7 @@ continue
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kdeutils k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
 
 clear
 
@@ -146,7 +146,7 @@ fi
 # make.conf options for KDE.
 echo "" >> /etc/make.conf
 echo "# KDE Options" >> /etc/make.conf
-echo "x11_kde5_UNSET=KDEEDU KDEGAMES KDEGRAPHICS KDEMULTIMEDIA KDENETWORK KDEPIM" >> /etc/make.conf
+echo "x11_kde5_UNSET=KDEEDU KDEGAMES KDEGRAPHICS KDEMULTIMEDIA KDENETWORK KDEPIM KDEUTILS" >> /etc/make.conf
 
 clear
 
@@ -168,7 +168,6 @@ cd /usr/ports/audio/juk && make install clean
 cd /usr/ports/x11/sddm && make install clean
 cd /usr/ports/deskutils/plasma5-sddm-kcm && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
-cd /usr/ports/x11/ulauncher && make install clean
 cd /usr/ports/www/ungoogled-chromium && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
@@ -235,7 +234,7 @@ mkdir -p /home/$USER/.local/share/konsole
 fetch https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/konsole/Andromeda.colorscheme -o /home/$USER/.local/share/konsole
 
 # Hide menu items.
-echo "Hidden=true" >> /usr/local/share/applications/org.kde.cuttlefish.desktop
+echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.cuttlefish.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
@@ -262,14 +261,6 @@ chown -R $USER:$USER /home/$USER/.config
 
 # Fix user's local directory permissions.
 chown -R $USER:$USER /home/$USER/.local
-
-# Install Ulauncher theme.
-mkdir -p /home/$USER/.config/ulauncher/user-themes
-git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
-chown -R $USER:$USER /home/$USER/.config/ulauncher
-mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
-cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
