@@ -41,7 +41,7 @@ echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 read -p "Do you plan to use a printer? (y/n): " resp
 if [ "$resp" = y ]; then
-pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
+pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer print-manager
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sysrc avahi_daemon_enable="YES"
@@ -68,7 +68,7 @@ continue
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
 
 clear
 
@@ -116,6 +116,7 @@ cd /usr/ports/print/cups-filters && make install clean
 cd /usr/ports/print/cups-pk-helper && make install clean
 cd /usr/ports/print/gutenprint && make install clean
 cd /usr/ports/print/system-config-printer && make install clean
+cd /usr/ports/print/print-manager && make install clean
 sysrc cupsd_enable="YES"
 sysrc cups_browsed_enable="YES"
 sysrc avahi_daemon_enable="YES"
@@ -161,6 +162,10 @@ cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/sysutils/pfetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
 cd /usr/ports/x11/kde5 && make install clean
+cd /usr/ports/math/kcalc && make install clean
+cd /usr/ports/deskutils/kcharselect && make install clean
+cd /usr/ports/security/kwalletmanager && make install clean
+cd /usr/ports/archivers/ark && make install clean
 cd /usr/ports/sysutils/k3b && make install clean
 cd /usr/ports/graphics/spectacle && make install clean
 cd /usr/ports/graphics/gwenview && make install clean
