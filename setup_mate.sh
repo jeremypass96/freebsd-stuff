@@ -329,3 +329,4 @@ fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Fiel
 fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Lake_View.jpg -o /usr/local/share/backgrounds
 fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Mountain_View.jpg -o /usr/local/share/backgrounds
 fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Wood_Trail.jpg -o /usr/local/share/backgrounds
+fetch https://w.wallhaven.cc/full/5g/wallhaven-5gkk65.jpg -o /usr/local/share/backgrounds
