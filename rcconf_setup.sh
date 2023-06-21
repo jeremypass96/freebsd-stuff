@@ -92,5 +92,6 @@ fi
 #
 if [ "$resp" = 6 ]; then
 pkg install -y xf86-video-vmware xf86-input-vmmouse open-vm-tools
-sysrc smartd_enable="NO"
+sed -i '' s/hw.acpi.power_button_state=S3/\/g /etc/sysctl.conf
+service smartd delete
 fi
