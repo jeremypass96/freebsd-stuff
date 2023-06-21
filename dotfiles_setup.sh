@@ -11,20 +11,20 @@ fi
 cd Dotfiles/
 
 # Export options to system and user profile files.
-echo "EDITOR=micro;   export EDITOR" >> /etc/profile
-echo "PAGER=less;   export PAGER" >> /etc/profile
+sed -i '' s/EDITOR=vi/EDITOR=micro/g /etc/profile
+echo "" >> /etc/profile
 echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /etc/profile
 echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /etc/profile
 echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /etc/profile
 
-echo "EDITOR=micro;   export EDITOR" >> /home/$USER/.profile
-echo "PAGER=less;   export PAGER" >> /home/$USER/.profile
+sed -i '' s/EDITOR=vi/EDITOR=micro/g /home/$USER/.profile
+echo "" >> /home/$USER/.profile
 echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /home/$USER/.profile
 echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /home/$USER/.profile
 echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /home/$USER/.profile
 
-echo "EDITOR=micro;   export EDITOR" >> /usr/share/skel/dot.profile
-echo "PAGER=less;   export PAGER" >> /usr/share/skel/dot.profile
+sed -i '' s/EDITOR=vi/EDITOR=micro/g /usr/share/skel/dot.profile
+echo "" >> /usr/share/skel/dot.profile
 echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /usr/share/skel/dot.profile
 echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /usr/share/skel/dot.profile
 echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /usr/share/skel/dot.profile
@@ -92,3 +92,14 @@ cp -v catppuccin-mocha.micro /home/$USER/.config/micro/colorschemes
 chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
 cp -v catppuccin-mocha.micro /usr/share/skel/dot.config/micro/colorschemes
 cd && rm -rf micro
+
+# Configure btop.
+mkdir -p /home/$USER/.config/btop/themes
+cd && git clone https://github.com/catppuccin/btop.git
+cd btop/themes && cp -v *.theme /home/$USER/.config/btop/themes/
+cd && rm -rf btop
+mkdir -p /home/$USER/.config/btop && cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /home/$USER/.config/btop/btop.conf
+sudo mkdir -p /usr/share/skel/dot.config/btop
+sudo cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /usr/share/skel/dot.config/btop/btop.conf
+sudo mkdir -p /root/.config/btop
+sudo cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /root/.config/btop/btop.conf
