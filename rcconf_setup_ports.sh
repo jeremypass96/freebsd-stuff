@@ -98,7 +98,8 @@ sed -i '' '17s/$/VMWARE VMMOUSE/' /etc/make.conf
 cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
 cd /usr/ports/x11-drivers/xf86-input-vmmouse && make install clean
 cd /usr/ports/emulators/open-vm-tools && make install clean
-sysrc smartd_enable="NO"
+sed -i '' s/hw.acpi.power_button_state=S3/\/g /etc/sysctl.conf
+service smartd delete
 fi
 
 cd /home/$USER/freebsd-setup-scripts
