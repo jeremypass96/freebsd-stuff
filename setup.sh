@@ -114,7 +114,7 @@ fetch https://fonts.google.com/download?family=Poppins -o /home/$USER/Poppins.zi
 unzip -d /usr/local/share/fonts/Poppins -x OFL.txt /home/$USER/Poppins.zip
 rm /home/$USER/Poppins.zip
 
-# Install the Source Sans Pro font.
+# Install the Source Sans 3 font.
 fetch https://fonts.google.com/download\?family\=Source+Sans+3 -o /home/$USER/Source_Sans_3.zip
 unzip -d /usr/local/share/fonts/SourceSansPro -x README.txt -x OFL.txt -x SourceSans3-VariableFont_wght.ttf -x SourceSans3-Italic-VariableFont_wght.ttf /home/$USER/Source_Sans_3.zip
 rm /home/$USER/Source_Sans_3.zip
