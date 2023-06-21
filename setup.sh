@@ -110,14 +110,14 @@ ATIME=NO
 EOF
 
 # Install the Poppins font.
-fetch https://fonts.google.com/download?family=Poppins -o Poppins.zip
-unzip Poppins.zip -d /usr/local/share/fonts/Poppins
-rm Poppins.zip
+fetch https://fonts.google.com/download?family=Poppins -o /home/$USER/Poppins.zip
+unzip -d /usr/local/share/fonts/Poppins -x OFL.txt /home/$USER/Poppins.zip
+rm /home/$USER/Poppins.zip
 
 # Install the Source Sans Pro font.
-fetch https://fonts.google.com/download?family=Source%20Sans%20Pro -o Source_Sans_Pro.zip
-unzip Source_Sans_Pro.zip -d /usr/local/share/fonts/SourceSansPro
-rm Source_Sans_Pro.zip
+fetch https://fonts.google.com/download\?family\=Source+Sans+3 -o /home/$USER/Source_Sans_3.zip
+unzip -d /usr/local/share/fonts/SourceSansPro -x README.txt -x OFL.txt -x SourceSans3-VariableFont_wght.ttf -x SourceSans3-Italic-VariableFont_wght.ttf /home/$USER/Source_Sans_3.zip
+rm /home/$USER/Source_Sans_3.zip
 
 # Fix font rendering.
 ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/fonts/conf.d/
