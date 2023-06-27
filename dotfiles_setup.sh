@@ -86,20 +86,24 @@ chsh -s /usr/local/bin/zsh root
 # Install Catppuccin theme for micro.
 mkdir -p /home/$USER/.config/micro/colorschemes
 mkdir -p /usr/share/skel/dot.config/micro/colorschemes
-git clone https://github.com/catppuccin/micro.git
+mkdir -p /root/.config/micro/colorschemes
+cd && git clone https://github.com/catppuccin/micro.git
 cd micro/src
 cp -v catppuccin-mocha.micro /home/$USER/.config/micro/colorschemes
 chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
 cp -v catppuccin-mocha.micro /usr/share/skel/dot.config/micro/colorschemes
+cp -v catppuccin-mocha.micro /root/.config/micro/colorschemes
 cd && rm -rf micro
 
 # Configure btop.
 mkdir -p /home/$USER/.config/btop/themes
 cd && git clone https://github.com/catppuccin/btop.git
 cd btop/themes && cp -v *.theme /home/$USER/.config/btop/themes/
+chown -R $USER:$USER /home/$USER/.config/btop/themes
 cd && rm -rf btop
 mkdir -p /home/$USER/.config/btop && cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /home/$USER/.config/btop/btop.conf
-sudo mkdir -p /usr/share/skel/dot.config/btop
-sudo cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /usr/share/skel/dot.config/btop/btop.conf
-sudo mkdir -p /root/.config/btop
-sudo cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /root/.config/btop/btop.conf
+chown -R $USER:$USER /home/$USER/.config/btop
+mkdir -p /usr/share/skel/dot.config/btop
+cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /usr/share/skel/dot.config/btop/btop.conf
+mkdir -p /root/.config/btop
+cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /root/.config/btop/btop.conf
