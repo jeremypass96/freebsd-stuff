@@ -1,5 +1,5 @@
 #!/usr/local/bin/bash
-cmd=(dialog --separate-output --no-cancel --checklist "Would you like to install any extra 3rd party software?" 21 70 21)
+cmd=(dialog --menu "Would you like to install any extra 3rd party software? If you don't want to install any software, just select the Cancel button." 21 70 21)
 options=(1 "Audacity (audio editor)" off
          2 "Handbrake (video file converter)" off
          3 "ISO Master (ISO file editor)" off
@@ -12,10 +12,8 @@ options=(1 "Audacity (audio editor)" off
          10 "Pinta (image editor similar to Paint.NET on Windows)" off
          11 "Shotwell (photo organizer/editor)" off
          12 "VirtualBox (run multiple operating systems on your PC)" off
-         13 "Wine (run Windows applications)" off
-         n "No, don't install any 3rd party software." off)
+         13 "Wine (run Windows applications)" off)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-clear
 for choice in $choices
 do
     case $choice in
