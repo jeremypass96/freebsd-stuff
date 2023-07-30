@@ -101,9 +101,9 @@ cd && git clone https://github.com/catppuccin/btop.git
 cd btop/themes && cp -v *.theme /home/$USER/.config/btop/themes/
 chown -R $USER:$USER /home/$USER/.config/btop/themes
 cd && rm -rf btop
-mkdir -p /home/$USER/.config/btop && cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /home/$USER/.config/btop/btop.conf
+mkdir -p /home/$USER/.config/btop && cp -v /home/$USER/freebsd-stuff/Dotfiles/config/btop/btop.conf /home/$USER/.config/btop/btop.conf
 chown -R $USER:$USER /home/$USER/.config/btop
 mkdir -p /usr/share/skel/dot.config/btop
-cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /usr/share/skel/dot.config/btop/btop.conf
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/btop/btop.conf /usr/share/skel/dot.config/btop/btop.conf
 mkdir -p /root/.config/btop
-cp -v /home/$USER/linux-stuff/Dotfiles/config/btop/btop.conf /root/.config/btop/btop.conf
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/btop/btop.conf /root/.config/btop/btop.conf
