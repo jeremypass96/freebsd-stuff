@@ -5,4 +5,4 @@ showPreviews=true
 showWindowCount=false
 indicatorStyle=0
 indicatorOrientation=0
-pinned=/usr/local/share/applications//chromium-browser.desktop;/usr/local/share/applications//thunar.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//galculator.desktop;
+pinned=/usr/local/share/applications//ungoogled-chromium.desktop;/usr/local/share/applications//thunar.desktop;/usr/local/share/applications//org.xfce.mousepad.desktop;/usr/local/share/applications//xfburn.desktop;/usr/local/share/applications//xfce4-terminal.desktop;/usr/local/share/applications//galculator.desktop;
