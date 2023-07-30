@@ -1,5 +1,5 @@
 layout=1
-date_font=Roboto 9
-time_font=Roboto 9
+date_font=Source Sans 3 9
+time_font=Source Sans 3 9
 date_format=%m/%d/%Y
 time_format=%l:%M %p
