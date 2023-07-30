@@ -202,7 +202,7 @@ cd /usr/ports/x11-fonts/nerd-fonts && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Setup rc.conf file.
-cd /home/$USER/freebsd-setup-scripts
+cd /home/$USER/freebsd-stuff
 ./rcconf_setup_ports.sh
 
 # Install 3rd party software.
@@ -224,7 +224,7 @@ clear
 
 # Setup Xfce4 Terminal.
 chown -R $USER:$USER /home/$USER/.config/xfce4/terminal
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal
 cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
@@ -266,43 +266,43 @@ mkdir -p /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
 #####
@@ -314,19 +314,19 @@ mkdir -p /usr/share/skel/dot.config/xfce4/panel
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/panel/whiskermenu-8.rc /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/whiskermenu-8.rc /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 cp -v /home/$USER/.config/xfce4/panel/whiskermenu-8.rc /usr/share/skel/dot.config/xfce4/panel/whiskermenu-8.rc
 chown $USER:$USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/panel/docklike-7.rc /home/$USER/.config/xfce4/panel/docklike-7.rc
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/docklike-7.rc /home/$USER/.config/xfce4/panel/docklike-7.rc
 cp -v /home/$USER/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
 chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 #####
 
 #####
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/xfce4/panel/datetime-16.rc /home/$USER/.config/xfce4/panel/datetime-16.rc
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/datetime-16.rc /home/$USER/.config/xfce4/panel/datetime-16.rc
 cp -v /home/$USER/.config/xfce4/panel/datetime-16.rc /usr/share/skel/dot.config/xfce4/panel/datetime-16.rc
 chown $USER:$USER /home/$USER/.config/xfce4/panel/datetime-16.rc
 #####
@@ -361,10 +361,10 @@ EOF
 mkdir /home/$USER/.config/qt5ct
 chown -R $USER:$USER /home/$USER/.config/qt5ct
 mkdir /usr/share/skel/dot.config/qt5ct
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/.xinitrc /home/$USER/.xinitrc
+cp -v /home/$USER/freebsd-stuff/Dotfiles/.xinitrc /home/$USER/.xinitrc
 cp -v /home/$USER/.xinitrc /usr/share/skel/dot.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
@@ -394,7 +394,7 @@ git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ula
 chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+cp -rv /home/$USER/freebsd-stuff/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
