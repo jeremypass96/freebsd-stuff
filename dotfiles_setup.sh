@@ -31,7 +31,7 @@ echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /usr/share/skel/dot.profile
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
-cp -v .zshrc /usr/share/skel/
+cp -v .zshrc /usr/share/skel/dot.zshrc
 sed -i '' s/neofetch/\/g /usr/share/skel/dot.zshrc
 cp -v /usr/share/skel/dot.zshrc /root/
 chown $USER:$USER /home/$USER/.zshrc
