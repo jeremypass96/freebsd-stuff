@@ -18,16 +18,9 @@ clear
 
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
-cat << EOF > /usr/local/etc/pkg/repos/FreeBSD.conf
-FreeBSD: {
-  url: "pkg+http://pkg.FreeBSD.org/\${ABI}/latest",
-  mirror_type: "srv",
-  signature_type: "fingerprints",
-  fingerprints: "/usr/share/keys/pkg",
-  enabled: yes
-}
-EOF
-#
+sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
+
+# Add Katana desktop repo.
 cat << EOF > /usr/local/etc/pkg/repos/Katana.conf
 Katana: {
   url: "pkg+https://raw.githubusercontent.com/fluxer/katana-freebsd/master",
