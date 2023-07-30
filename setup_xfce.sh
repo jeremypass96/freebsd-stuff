@@ -223,6 +223,7 @@ fi
 clear
 
 # Setup Xfce4 Terminal.
+mkdir -p /home/$USER/.config/xfce4/terminal
 chown -R $USER:$USER /home/$USER/.config/xfce4/terminal
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
@@ -254,7 +255,7 @@ pw group mod operator -m $USER
 # Install cursor theme.
 echo "Installing the "Bibata Modern Ice" cursor theme..."
 fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+tar -xf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
 rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
 
 # Setup Xfce preferences.
