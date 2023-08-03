@@ -40,11 +40,14 @@ sysrc avahi_daemon_enable="YES"
 sysrc avahi_dnsconfd_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
 sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
-read -p "Paper size? (letter/a4): " resp
-if [ "$resp" = letter ]; then
+read -p "Paper size?
+1. Letter
+2. A4
+--> " resp
+if [ "$resp" = 1 ]; then
 pkg install -y papersize-default-letter
 fi
-if [ "$resp" = a4 ]; then
+if [ "$resp" = 2 ]; then
 pkg install -y papersize-default-a4
 fi
 read -p "Do you own an HP printer? (y/n): " resp
@@ -112,11 +115,14 @@ sysrc avahi_daemon_enable="YES"
 sysrc avahi_dnsconfd_enable="YES"
 sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
 sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
-read -p "Paper size? (letter/a4): " resp
-if [ "$resp" = letter ]; then
+read -p "Paper size?
+1. Letter
+2. A4
+--> " resp
+if [ "$resp" = 1 ]; then
 cd /usr/ports/print/papersize-default-letter && make install clean
 fi
-if [ "$resp" = a4 ]; then
+if [ "$resp" = 2 ]; then
 cd /usr/ports/print/papersize-default-a4 && make install clean
 fi
 read -p "Do you own an HP printer? (y/n): " resp
