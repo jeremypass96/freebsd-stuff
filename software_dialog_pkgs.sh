@@ -1,49 +1,96 @@
-#!/usr/local/bin/bash
-cmd=(dialog --checklist "Would you like to install any extra 3rd party software? If you don't want to install any software, just select the Cancel button." 21 70 21)
-options=(1 "Audacity (audio editor)" off
-         2 "Handbrake (video file converter)" off
-         3 "ISO Master (ISO file editor)" off
-         4 "AbiWord (word processor)" off
-         5 "Gnumeric (speadsheet)" off
-         6 "Transmission (torrent downloader)" off
-         7 "Asunder (CD ripper)" off
-         8 "GIMP (image editor)" off
-         9 "Inkskape (vector graphics editor)" off
-         10 "Pinta (image editor similar to Paint.NET on Windows)" off
-         11 "Shotwell (photo organizer/editor)" off
-         12 "VirtualBox (run multiple operating systems on your PC)" off
-         13 "Wine (run Windows applications)" off)
-choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-for choice in $choices
-do
-    case $choice in
-        1) pkg="audacity";;
-        2) pkg="handbrake";;
-        3) pkg="isomaster";;
-        4) pkg="abiword";;
-        5) pkg="gnumeric";;
-        6) pkg="transmission-gtk";;
-        7) pkg="asunder";;
-        8) pkg="gimp";;
-        9) pkg="inkscape";;
-        10) pkg="pinta";;
-        11) pkg="shotwell";;
-        12) pkg="virtualbox-ose virtualbox-ose-kmod"
-        sysrc vboxnet_enable="YES"
-        sysrc kldload_vbox="vboxdrv"
-        echo "" >> /etc/sysctl.conf
-        echo "# VirtualBox stuff." >> /etc/sysctl.conf
-        echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
-        echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
-        echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
-        echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
-        pw group mod vboxusers -m $USER;;
-        13) pkg="wine wine-mono wine-gecko"
-        echo "" >> /boot/loader.conf
-        echo "# Wine fix." >> /boot/loader.conf
-        echo machdep.max_ldt_segment=2048 >> /boot/loader.conf;;
-        n) continue
-    esac
-    pkg install -y $pkg
-    clear
+#!/bin/bash
+
+# Check if dialog is installed
+if ! command -v dialog >/dev/null 2>&1; then
+  echo "Error: dialog not found. Please install dialog first."
+  exit 1
+fi
+
+# Array of software options to be installed with descriptions
+software_options=(
+    "Audaicty"
+    "Handbrake"
+    "ISO Master"
+    "AbiWord"
+    "Gnumeric"
+    "Transmission"
+    "Asunder"
+    "GIMP"
+    "Inkscape"
+    "Pinta"
+    "Shotwell"
+    "VirtualBox"
+    "Wine"
+)
+
+# Create a string containing the options and their statuses (initially all options are off)
+checklist_options=()
+for option in "${software_options[@]}"; do
+    checklist_options+=("$option" "" off)
 done
+
+# Display the checklist dialog and save the selected descriptions to the variable
+selected_descriptions=$(dialog --title "Software Installation" --checklist "Select software to install:" 21 35 21 "${checklist_options[@]}" 2>&1 >/dev/tty)
+
+# Install the selected software packages using the package manager (pkg in FreeBSD)
+if [ -n "$selected_descriptions" ]; then
+    echo "Installing selected software packages with descriptions: $selected_descriptions"
+
+    # Function to map descriptions to package names
+    map_descriptions_to_packages() {
+        case "$1" in
+            "Audaicty") echo "audacity" ;;
+            "Handbrake") echo "handbrake" ;;
+            "ISO Master") echo "isomaster" ;;
+            "AbiWord") echo "abiword" ;;
+            "Gnumeric") echo "gnumeric" ;;
+            "Transmission") echo "transmission-gtk" ;;
+            "Asunder") echo "asunder" ;;
+            "GIMP") echo "gimp" ;;
+            "Inkscape") echo "inkscape" ;;
+            "Pinta") echo "pinta" ;;
+            "Shotwell") echo "shotwell" ;;
+            "VirtualBox") echo "virtualBox-ose virtualbox-ose-kmod" ;;
+            "Wine") echo "wine wine-mono wine-geck" ;;
+            *) echo "" ;;
+        esac
+    }
+
+    selected_packages=""
+    for description in $selected_descriptions; do
+        package=$(map_descriptions_to_packages "$description")
+        if [ -n "$package" ]; then
+            selected_packages="$selected_packages $package"
+        fi
+    done
+
+    pkg install $selected_packages
+
+    # Execute post-install commands for specific packages
+    for package in $selected_packages; do
+        case "$package" in
+            "virtualBox-ose virtualbox-ose-kmod")
+                # Post-install commands for VirtualBox.
+                echo "Running post-install commands for VirtualBox..."
+                sysrc vboxnet_enable="YES"
+                sysrc kldload_vbox="vboxdrv"
+                echo "" >> /etc/sysctl.conf
+                echo "# VirtualBox stuff." >> /etc/sysctl.conf
+                echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
+                echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
+                echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
+                echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
+                pw group mod vboxusers -m $USER
+                ;;
+            "wine wine-mono wine-gecko")
+                # Post-install commands for Wine.
+                echo "Running post-install commands for Wine..."
+                echo "" >> /boot/loader.conf
+                echo "# Wine fix." >> /boot/loader.conf
+                echo machdep.max_ldt_segment=2048 >> /boot/loader.conf
+                ;;
+        esac
+    done
+else
+    echo "No software selected. Exiting."
+fi
