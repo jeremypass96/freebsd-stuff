@@ -64,7 +64,7 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-    pkg install $selected_packages
+    pkg install -y $selected_packages
 
     # Execute post-install commands for specific packages
     for package in $selected_packages; do
