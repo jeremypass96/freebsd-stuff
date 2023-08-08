@@ -74,12 +74,12 @@ install_graphics_driver() {
   case "$selected_driver" in
     1)
       sysrc kld_list+=amdgpu
-      sed -i '' '17s/$/AMDGPU/' /etc/make.conf
+      sed -i '' '16s/$/AMDGPU/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-amdgpu && make install clean
       ;;
     2)
       sysrc kld_list+=radeonkms
-      sed -i '' '17s/$/ATI/' /etc/make.conf
+      sed -i '' '16s/$/ATI/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-ati && make install clean
       ;;
     3)
@@ -90,12 +90,12 @@ install_graphics_driver() {
       ;;
     4)
       sysrc kld_list+=i915kms
-      sed -i '' '17s/$/INTEL/' /etc/make.conf
+      sed -i '' '16s/$/INTEL/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-intel && make install clean
       ;;
     5)
       cd /usr/ports/emulators/virtualbox-ose-additions && make install clean
-      sed -i '' '17s/$/VMWARE/' /etc/make.conf
+      sed -i '' '16s/$/VMWARE/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"
@@ -103,7 +103,7 @@ install_graphics_driver() {
       sed -i '' s/hw.acpi.power_button_state=S3/\/g /etc/sysctl.conf
       ;;
     6)
-      sed -i '' '17s/$/VMWARE VMMOUSE/' /etc/make.conf
+      sed -i '' '16s/$/VMWARE VMMOUSE/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
       cd /usr/ports/x11-drivers/xf86-input-vmmouse && make install clean
       cd /usr/ports/emulators/open-vm-tools && make install clean
