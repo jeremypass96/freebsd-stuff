@@ -15,3 +15,4 @@ sudo sh -c 'mkdir -p "$(bat --config-dir)/themes"; cp /usr/home/$SUDO_USER/bat/*
 
 echo "Catppuccin 'mocha' theme for bat has been installed for both your user and root."
 rm -rf $HOME/bat
+sudo rm -rf root/bat
