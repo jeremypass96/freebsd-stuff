@@ -2,37 +2,42 @@
 
 # Checking to see if we're running as root.
 if [ $(id -u) -ne 0 ]; then
-echo "Please run this setup script as root via 'su'! Thanks."
-exit
+  dialog --title "Root Privileges Required" --msgbox "Please run this setup script as root via 'su'! Thanks." 10 50
+  exit
 fi
 
+# Clear the screen
 clear
 
-echo "Welcome to the FreeBSD post-install setup script. This script simply asks you what desktop environment you want to use.
-After you select your desktop environment, this script will launch your specified desktop's setup script."
-echo ""
-read -p "Which desktop environment do you want to use? Please enter it's corresponding number.
-1.) MATE
-2.) Xfce
-3.) Katana (fork of KDE4)
-4.) KDE Plasma 5
-5.) Basic Xorg (no desktop)
--> " resp
-if [ "$resp" = 1 ]; then
-./setup_mate.sh
-fi
-if [ "$resp" = 2 ]; then
-./setup_xfce.sh
-fi
-if [ "$resp" = 3 ]; then
-./setup_katana.sh
-fi
-if [ "$resp" = 4 ]; then
-./setup_kde.sh
-fi
-if [ "$resp" = 5 ]; then
-./setup_basicxorg.sh
-fi
+# Welcome message
+dialog --title "FreeBSD Post-Install Setup" --msgbox "Welcome to the FreeBSD post-install setup script.\nThis script helps you configure your system and choose a desktop environment." 10 50
+
+# Menu to select a desktop environment
+resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a desktop environment:" 15 50 5 \
+  1 "MATE" \
+  2 "Xfce" \
+  3 "Katana (fork of KDE4)" \
+  4 "KDE Plasma 5" \
+  5 "Basic Xorg (no desktop)" \
+  2>&1 >/dev/tty)
+
+case "$resp" in
+  1)
+    ./setup_mate.sh
+    ;;
+  2)
+    ./setup_xfce.sh
+    ;;
+  3)
+    ./setup_katana.sh
+    ;;
+  4)
+    ./setup_kde.sh
+    ;;
+  5)
+    ./setup_basicxorg.sh
+    ;;
+esac
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
@@ -180,3 +185,6 @@ PAGER=cat freebsd-update fetch install
 # Set mixer levels.
 mixer vol 100
 mixer pcm 100
+
+# Display final completion message
+dialog --title "Setup Complete" --msgbox "Post-install setup is complete. Your system is now configured." 10 50
