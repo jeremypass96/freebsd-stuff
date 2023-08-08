@@ -10,10 +10,10 @@ fi
 clear
 
 # Welcome message
-dialog --title "FreeBSD Post-Install Setup" --msgbox "Welcome to the FreeBSD post-install setup script.\nThis script helps you configure your system and choose a desktop environment." 10 50
+dialog --title "FreeBSD Post-Install Setup" --msgbox "Welcome to the FreeBSD post-install setup script.\n\nThis script helps you configure your system and choose a desktop environment." 8 85
 
 # Menu to select a desktop environment
-resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a desktop environment:" 15 50 5 \
+resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a desktop environment:" 15 40 5 \
   1 "MATE" \
   2 "Xfce" \
   3 "Katana (fork of KDE4)" \
@@ -187,4 +187,4 @@ mixer vol 100
 mixer pcm 100
 
 # Display final completion message
-dialog --title "Setup Complete" --msgbox "Post-install setup is complete. Your system is now configured." 10 50
+dialog --title "Setup Complete" --msgbox "Post-install setup is complete. Your system is now configured." 5 70
