@@ -13,6 +13,6 @@ sed -i '' 's/1337/Catppuccin-mocha/g' "$HOME/.config/bat/config"
 # Install the theme for root as well
 sudo sh -c 'mkdir -p "$(bat --config-dir)/themes"; cp /usr/home/$SUDO_USER/bat/*.tmTheme "$(bat --config-dir)/themes"; bat cache --build; sed -i "" "s/1337/Catppuccin-mocha/g" "/root/.config/bat/config"'
 
-echo "Catppuccin 'mocha' theme for bat has been installed for both your user and root."
+echo "Bat syntax highlighter has been configured with the Catppuccin 'mocha' theme for both your user and root."
 rm -rf $HOME/bat
 sudo rm -rf root/bat
