@@ -32,75 +32,145 @@ configure_rc_conf() {
     fi
   }
 
-  sendmail_msp_queueenable=$(sysrc -n sendmail_msp_queueenable)
+  # Set and display sendmail_msp_queueenable
+  sendmail_msp_queueenable="NO"
+  sysrc sendmail_msp_queueenable="$sendmail_msp_queueenable"
   echo -n "sendmail_msp_queueenable: "; add_color_output "$sendmail_msp_queueenable"
-  sendmail_outbound_enable=$(sysrc -n sendmail_outbound_enable)
+  # Set and display sendmail_outbound_enable
+  sendmail_outbound_enable="NO"
+  sysrc sendmail_outbound_enable="$sendmail_outbound_enable"
   echo -n "sendmail_outbound_enable: "; add_color_output "$sendmail_outbound_enable"
-  sendmail_submit_enable=$(sysrc -n sendmail_submit_enable)
+  # Set and display sendmail_submit_enable
+  sendmail_submit_enable="NO"
+  sysrc sendmail_submit_enable="$sendmail_submit_enable"
   echo -n "sendmail_submit_enable: "; add_color_output "$sendmail_submit_enable"
-  ntpd_enable=$(sysrc -n ntpd_enable)
+  # Set and display ntpd_enable
+  ntpd_enable="YES"
+  sysrc ntpd_enable="$ntpd_enable"
   echo -n "ntpd_enable: "; add_color_output "$ntpd_enable"
-  ntpd_flags=$(sysrc -n ntpd_flags)
+  # Set and display ntpd_flags
+  ntpd_flags="-g"
+  sysrc ntpd_flags="$ntpd_flags"
   echo -n "ntpd_flags: "; add_color_output "$ntpd_flags"
-  ntpd_sync_on_start=$(sysrc -n ntpd_sync_on_start)
+  # Set and display ntpd_sync_on_start
+  ntpd_sync_on_start="YES"
+  sysrc ntpd_sync_on_start="$ntpd_sync_on_start"
   echo -n "ntpd_sync_on_start: "; add_color_output "$ntpd_sync_on_start"
-  ntpd_oomprotect=$(sysrc -n ntpd_oomprotect)
+  # Set and display ntpd_oomprotect
+  ntpd_oomprotect="YES"
+  sysrc ntpd_oomprotect="$ntpd_oomprotect"
   echo -n "ntpd_oomprotect: "; add_color_output "$ntpd_oomprotect"
-  inetd_enable=$(sysrc -n inetd_enable)
+  # Set and display inetd_enable
+  inetd_enable="NO"
+  sysrc inetd_enable="$inetd_enable"
   echo -n "inetd_enable: "; add_color_output "$inetd_enable"
-  icmp_drop_redirect=$(sysrc -n icmp_drop_redirect)
+  # Set and display icmp_drop_redirect
+  icmp_drop_redirect="YES"
+  sysrc icmp_drop_redirect="$icmp_drop_redirect"
   echo -n "icmp_drop_redirect: "; add_color_output "$icmp_drop_redirect"
-  icmp_log_redirect=$(sysrc -n icmp_log_redirect)
+  # Set and display icmp_log_redirect
+  icmp_log_redirect="YES"
+  sysrc icmp_log_redirect="$icmp_log_redirect"
   echo -n "icmp_log_redirect: "; add_color_output "$icmp_log_redirect"
-  nfs_server_enable=$(sysrc -n nfs_server_enable)
+  # Set and display nfs_server_enable
+  nfs_server_enable="NO"
+  sysrc nfs_server_enable="$nfs_server_enable"
   echo -n "nfs_server_enable: "; add_color_output "$nfs_server_enable"
-  nfs_client_enable=$(sysrc -n nfs_client_enable)
+  # Set and display nfs_client_enable
+  nfs_client_enable="NO"
+  sysrc nfs_client_enable="$nfs_client_enable"
   echo -n "nfs_client_enable: "; add_color_output "$nfs_client_enable"
-  sshd_enable=$(sysrc -n sshd_enable)
+  # Set and display sshd_enable
+  sshd_enable="NO"
+  sysrc sshd_enable="$sshd_enable"
   echo -n "sshd_enable: "; add_color_output "$sshd_enable"
-  portmap_enable=$(sysrc -n portmap_enable)
+  # Set and display portmap_enable
+  portmap_enable="NO"
+  sysrc portmap_enable="$portmap_enable"
   echo -n "portmap_enable: "; add_color_output "$portmap_enable"
-  mixer_enable=$(sysrc -n mixer_enable)
+  # Set and display mixer_enable
+  mixer_enable="YES"
+  sysrc mixer_enable="$mixer_enable"
   echo -n "mixer_enable: "; add_color_output "$mixer_enable"
-  allscreens_flags=$(sysrc -n allscreens_flags)
+  # Set and display allscreens_flags
+  allscreens_flags="-f vgarom-8x16.fnt"
+  sysrc allscreens_flags="$allscreens_flags"
   echo -n "allscreens_flags: "; add_color_output "$allscreens_flags"
-  keyrate=$(sysrc -n keyrate)
+  # Set and display keyrate
+  keyrate="fast"
+  sysrc keyrate="$keyrate"
   echo -n "keyrate: "; add_color_output "$keyrate"
-  service_delete_empty=$(sysrc -n service_delete_empty)
+  # Set and display service_delete_empty
+  service_delete_empty="YES"
+  sysrc service_delete_empty="$service_delete_empty"
   echo -n "service_delete_empty: "; add_color_output "$service_delete_empty"
-  firewall_enable=$(sysrc -n firewall_enable)
+  # Set and display firewall_enable
+  firewall_enable="YES"
+  sysrc firewall_enable="$firewall_enable"
   echo -n "firewall_enable: "; add_color_output "$firewall_enable"
-  firewall_type=$(sysrc -n firewall_type)
+  # Set and display firewall_type
+  firewall_type="workstation"
+  sysrc firewall_type="$firewall_type"
   echo -n "firewall_type: "; add_color_output "$firewall_type"
-  firewall_quiet=$(sysrc -n firewall_quiet)
+  # Set and display firewall_quiet
+  firewall_quiet="YES"
+  sysrc firewall_quiet="$firewall_quiet"
   echo -n "firewall_quiet: "; add_color_output "$firewall_quiet"
-  firewall_logdeny=$(sysrc -n firewall_logdeny)
+  # Set and display firewall_logdeny
+  firewall_logdeny="YES"
+  sysrc firewall_logdeny="$firewall_logdeny"
   echo -n "firewall_logdeny: "; add_color_output "$firewall_logdeny"
-  autoboot=$(sysrc -n autoboot)
+  # Set and display autoboot
+  autoboot="YES"
+  sysrc autoboot="$autoboot"
   echo -n "autoboot: "; add_color_output "$autoboot"
-  rc_fast=$(sysrc -n rc_fast)
+  # Set and display rc_fast
+  rc_fast="YES"
+  sysrc rc_fast="$rc_fast"
   echo -n "rc_fast: "; add_color_output "$rc_fast"
-  rc_startmsgs=$(sysrc -n rc_startmsgs)
+  # Set and display rc_startmsgs
+  rc_startmsgs="NO"
+  sysrc rc_startmsgs="$rc_startmsgs"
   echo -n "rc_startmsgs: "; add_color_output "$rc_startmsgs"
-  background_dhclient=$(sysrc -n background_dhclient)
+  # Set and display background_dhclient
+  background_dhclient="YES"
+  sysrc background_dhclient="$background_dhclient"
   echo -n "background_dhclient: "; add_color_output "$background_dhclient"
-  dbus_enable=$(sysrc -n dbus_enable)
+  # Set and display dbus_enable
+  dbus_enable="YES"
+  sysrc dbus_enable="$dbus_enable"
   echo -n "dbus_enable: "; add_color_output "$dbus_enable"
-  blanktime=$(sysrc -n blanktime)
+  # Set and display blanktime
+  blanktime="1200"
+  sysrc blanktime="$blanktime"
   echo -n "blanktime: "; add_color_output "$blanktime"
-  savecore_enable=$(sysrc -n savecore_enable)
+  # Set and display savecore_enable
+  savecore_enable="NO"
+  sysrc savecore_enable="$savecore_enable"
   echo -n "savecore_enable: "; add_color_output "$savecore_enable"
-  virecover_enable=$(sysrc -n virecover_enable)
+  # Set and display virecover_enable
+  virecover_enable="NO"
+  sysrc virecover_enable="$virecover_enable"
   echo -n "virecover_enable: "; add_color_output "$virecover_enable"
-  smartd_enable=$(sysrc -n smartd_enable)
+  # Set and display smartd_enable
+  smartd_enable="YES"
+  sysrc smartd_enable="$smartd_enable"
   echo -n "smartd_enable: "; add_color_output "$smartd_enable"
-  dumpdev=$(sysrc -n dumpdev)
+  # Set and display dumpdev
+  dumpdev="NO"
+  sysrc dumpdev="$dumpdev"
   echo -n "dumpdev: "; add_color_output "$dumpdev"
-  apm_enable=$(sysrc -n apm_enable)
+  # Set and display apm_enable
+  apm_enable="YES"
+  sysrc apm_enable="$apm_enable"
   echo -n "apm_enable: "; add_color_output "$apm_enable"
-  defaultroute_delay=$(sysrc -n defaultroute_delay)
+  # Set and display defaultroute_delay
+  defaultroute_delay="0"
+  sysrc defaultroute_delay="$defaultroute_delay"
   echo -n "defaultroute_delay: "; add_color_output "$defaultroute_delay"
-  rcshutdown_timeout=$(sysrc -n rcshutdown_timeout)
+  # Set and display rcshutdown_timeout
+  rcshutdown_timeout="10"
+  sysrc rcshutdown_timeout="$rcshutdown_timeout"
   echo -n "rcshutdown_timeout: "; add_color_output "$rcshutdown_timeout"
 
   echo ""
