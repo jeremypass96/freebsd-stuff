@@ -61,7 +61,7 @@ configure_rc_conf() {
 
 # Function to install graphics driver based on selection
 install_graphics_driver() {
-  selected_driver=$(dialog --title "Install Graphics Driver" --menu "Select a graphics driver:" 12 60 6 \
+  selected_driver=$(dialog --title "Install Graphics Driver" --menu "Select a graphics driver:" 15 30 6 \
     1 "AMD GPU" \
     2 "ATI Radeon" \
     3 "NVIDIA" \
