@@ -4,35 +4,25 @@
 
 # Checking to see if we're running as root.
 if [ $(id -u) -ne 0 ]; then
-echo "Please run this setup script as root via 'su'! Thanks."
-exit
+    echo "Please run this setup script as root via 'su'! Thanks."
+    exit
 fi
 
 cd Dotfiles/
 
 # Export options to system and user profile files.
-sed -i '' s/EDITOR=vi/EDITOR=micro/g /etc/profile
-echo "" >> /etc/profile
-echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /etc/profile
-echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /etc/profile
-echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /etc/profile
-
-sed -i '' s/EDITOR=vi/EDITOR=micro/g /home/$USER/.profile
-echo "" >> /home/$USER/.profile
-echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /home/$USER/.profile
-echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /home/$USER/.profile
-echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /home/$USER/.profile
-
-sed -i '' s/EDITOR=vi/EDITOR=micro/g /usr/share/skel/dot.profile
-echo "" >> /usr/share/skel/dot.profile
-echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> /usr/share/skel/dot.profile
-echo "PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO" >> /usr/share/skel/dot.profile
-echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> /usr/share/skel/dot.profile
+for profile in /etc/profile /home/$USER/.profile /usr/share/skel/dot.profile; do
+    sed -i '' 's/EDITOR=vi/EDITOR=micro/g' "$profile"
+    echo "" >> "$profile"
+    echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> "$profile"
+    echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> "$profile"
+    echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> "$profile"
+done
 
 # Copy over zsh config.
 cp -v .zshrc /home/$USER
 cp -v .zshrc /usr/share/skel/dot.zshrc
-sed -i '' s/neofetch/\/g /usr/share/skel/dot.zshrc
+sed -i '' '/neofetch/\/g' /usr/share/skel/dot.zshrc
 cp -v /usr/share/skel/dot.zshrc /root/
 chown $USER:$USER /home/$USER/.zshrc
 
@@ -54,6 +44,37 @@ mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro
 chown -R $USER:$USER /home/$USER/.config/micro
 
+# Install Catppuccin color schemes for micro.
+mkdir -p /home/$USER/.config/micro/colorschemes
+mkdir -p /usr/share/skel/dot.config/micro/colorschemes
+mkdir -p /root/.config/micro/colorschemes
+cd && git clone https://github.com/catppuccin/micro.git
+cd micro/src
+
+echo "Which Catppuccin colors do you want for micro?"
+echo "1.) Latte"
+echo "2.) Frappé"
+echo "3.) Macchiato"
+echo "4.) Mocha"
+read -p "-> " resp
+
+if [ "$resp" = 1 ]; then
+    chosen_scheme="catppuccin-latte.micro"
+elif [ "$resp" = 2 ]; then
+    chosen_scheme="catppuccin-frappe.micro"
+elif [ "$resp" = 3 ]; then
+    chosen_scheme="catppuccin-macchiato.micro"
+elif [ "$resp" = 4 ]; then
+    chosen_scheme="catppuccin-mocha.micro"
+fi
+
+cp -v "$chosen_scheme" /home/$USER/.config/micro/colorschemes
+chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
+cp -v "$chosen_scheme" /usr/share/skel/dot.config/micro/colorschemes
+cp -v "$chosen_scheme" /root/.config/micro/colorschemes
+
+cd && rm -rf micro
+
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
 
@@ -72,8 +93,8 @@ chown -R $USER:$USER /home/$USER/.config/lsd
 
 # Configure "bat," nicer (and better) cat alternative.
 bat --generate-config-file
-sed -i '' s/#--theme='"TwoDark"'/--theme='"1337"'/g /root/.config/bat/config
-sed -i '' s/#--italic-text=always/--italic-text=always/g /root/.config/bat/config
+sed -i '' 's/#--theme='"'"'TwoDark'"'"'/--theme='"'"'1337'"'"'/g' /root/.config/bat/config
+sed -i '' 's/#--italic-text=always/--italic-text=always/g' /root/.config/bat/config
 mkdir -p /home/$USER/.config/bat
 cp -v /root/.config/bat/config /home/$USER/.config/bat
 mkdir -p /usr/share/skel/dot.config/bat
@@ -82,18 +103,6 @@ chown -R $USER:$USER /home/$USER/.config/bat
 
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
-
-# Install Catppuccin theme for micro.
-mkdir -p /home/$USER/.config/micro/colorschemes
-mkdir -p /usr/share/skel/dot.config/micro/colorschemes
-mkdir -p /root/.config/micro/colorschemes
-cd && git clone https://github.com/catppuccin/micro.git
-cd micro/src
-cp -v catppuccin-mocha.micro /home/$USER/.config/micro/colorschemes
-chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
-cp -v catppuccin-mocha.micro /usr/share/skel/dot.config/micro/colorschemes
-cp -v catppuccin-mocha.micro /root/.config/micro/colorschemes
-cd && rm -rf micro
 
 # Configure btop.
 mkdir -p /home/$USER/.config/btop/themes
