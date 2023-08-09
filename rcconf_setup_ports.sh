@@ -62,7 +62,7 @@ configure_rc_conf() {
 
 # Function to install graphics driver from ports tree
 install_graphics_driver() {
-  selected_driver=$(dialog --title "Install Graphics Driver" --menu "Select a graphics driver to install from the FreeBSD ports tree:" 15 30 6 \
+  selected_driver=$(dialog --title "Install Graphics Driver" --menu "Select a graphics driver to install from the FreeBSD ports tree:" 15 40 6 \
     1 "x11-drivers/xf86-video-amdgpu" \
     2 "x11-drivers/xf86-video-ati" \
     3 "x11/nvidia-driver" \
