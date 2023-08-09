@@ -166,7 +166,7 @@ install_graphics_driver() {
 # Install graphics driver
 install_graphics_driver
 
-# Automatically configure rc.conf variables in the background
-configure_rc_conf &
+# Automatically configure rc.conf variables
+clear & configure_rc_conf
 
 # End of script
