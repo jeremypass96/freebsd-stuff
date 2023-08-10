@@ -17,7 +17,6 @@ for profile in /etc/profile /home/$USER/.profile /usr/share/skel/dot.profile; do
     echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> "$profile"
     echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> "$profile"
     echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> "$profile"
-    echo "CLICOLOR=yes;    export CLICOLOR=yes" >> "$profile"
 done
 
 # Copy over zsh config.
