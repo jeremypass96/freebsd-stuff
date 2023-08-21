@@ -94,7 +94,7 @@ install_graphics_driver() {
       pkg install -y xf86-video-ati
       ;;
     3)
-      pkg install -y nvidia-driver nvidia-xconfig
+      pkg install -y nvidia-driver nvidia-xconfig nvidia-drm-kmod
       sysrc kld_list+="nvidia nvidia-modeset"
       nvidia-xconfig
       ;;
