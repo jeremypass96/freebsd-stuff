@@ -76,12 +76,12 @@ configure_rc_conf() {
 # Function to install graphics driver from ports tree
 install_graphics_driver() {
   selected_driver=$(dialog --title "Install Graphics Driver" --menu "Select a graphics driver to install from the FreeBSD ports tree:" 15 45 6 \
-    1 "x11-drivers/xf86-video-amdgpu" \
-    2 "x11-drivers/xf86-video-ati" \
-    3 "x11/nvidia-driver" \
-    4 "x11-drivers/xf86-video-intel" \
-    5 "virtualbox-ose-additions" \
-    6 "x11-drivers/xf86-video-vmware" \
+    1 "AMD GPU" \
+    2 "ATI" \
+    3 "NVIDIA" \
+    4 "Intel" \
+    5 "VirtualBox Additions" \
+    6 "VMware" \
     2>&1 >/dev/tty)
 
   case "$selected_driver" in
@@ -98,6 +98,7 @@ install_graphics_driver() {
     3)
       cd /usr/ports/x11/nvidia-driver && make install clean
       cd /usr/ports/x11/nvidia-xconfig && make install clean
+      cd /usr/ports/graphics/nvidia-drm-kmod && make install clean
       sysrc kld_list+=nvidia nvidia-modeset
       nvidia-xconfig
       ;;
