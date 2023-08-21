@@ -87,30 +87,30 @@ install_graphics_driver() {
   case "$selected_driver" in
     1)
       sysrc kld_list+="amdgpu"
-      pkg install -y xf86-video-amdgpu drm-kmod
+      pkg install -y drm-kmod xf86-video-amdgpu
       ;;
     2)
       sysrc kld_list+="radeonkms"
-      pkg install -y xf86-video-ati drm-kmod
+      pkg install -y drm-kmod xf86-video-ati
       ;;
     3)
-      pkg install -y nvidia-driver nvidia-xconfig nvidia-drm-kmod
+      pkg install -y nvidia-drm-kmod nvidia-driver nvidia-xconfig
       sysrc kld_list+="nvidia nvidia-modeset"
       nvidia-xconfig
       ;;
     4)
       sysrc kld_list+="i915kms"
-      pkg install -y xf86-video-intel drm-kmod
+      pkg install -y drm-kmod xf86-video-intel
       ;;
     5)
-      pkg install -y virtualbox-ose-additions xf86-video-vmware drm-kmod
+      pkg install -y drm-kmod virtualbox-ose-additions xf86-video-vmware
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"
       pw groupmod vboxusers -m $USER
       sed -i '' s/hw.acpi.power_button_state=S3/\#hw.acpi.power_button_state=S3/g /etc/sysctl.conf
       ;;
     6)
-      pkg install -y xf86-video-vmware xf86-input-vmmouse open-vm-tools drm-kmod
+      pkg install -y drm-kmod xf86-video-vmware xf86-input-vmmouse open-vm-tools
       sed -i '' s/hw.acpi.power_button_state=S3/\#hw.acpi.power_button_state=S3/g /etc/sysctl.conf
       service smartd delete
       ;;
