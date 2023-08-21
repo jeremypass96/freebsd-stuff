@@ -88,26 +88,30 @@ install_graphics_driver() {
     1)
       sysrc kld_list+=amdgpu
       sed -i '' '16s/$/AMDGPU/' /etc/make.conf
+      cd /usr/ports/graphics/drm-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-amdgpu && make install clean
       ;;
     2)
       sysrc kld_list+=radeonkms
       sed -i '' '16s/$/ATI/' /etc/make.conf
+      cd /usr/ports/graphics/drm-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-ati && make install clean
       ;;
     3)
+      cd /usr/ports/graphics/nvidia-drm-kmod && make install clean
       cd /usr/ports/x11/nvidia-driver && make install clean
       cd /usr/ports/x11/nvidia-xconfig && make install clean
-      cd /usr/ports/graphics/nvidia-drm-kmod && make install clean
       sysrc kld_list+=nvidia nvidia-modeset
       nvidia-xconfig
       ;;
     4)
       sysrc kld_list+=i915kms
       sed -i '' '16s/$/INTEL/' /etc/make.conf
+      cd /usr/ports/graphics/drm-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-intel && make install clean
       ;;
     5)
+      cd /usr/ports/graphics/drm-kmod && make install clean
       cd /usr/ports/emulators/virtualbox-ose-additions && make install clean
       sed -i '' '16s/$/VMWARE/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
@@ -118,6 +122,7 @@ install_graphics_driver() {
       ;;
     6)
       sed -i '' '16s/$/VMWARE VMMOUSE/' /etc/make.conf
+      cd /usr/ports/graphics/drm-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
       cd /usr/ports/x11-drivers/xf86-input-vmmouse && make install clean
       cd /usr/ports/emulators/open-vm-tools && make install clean
