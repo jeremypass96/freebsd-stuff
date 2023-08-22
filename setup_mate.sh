@@ -85,6 +85,7 @@ if [ $resp -eq 0 ]; then
     pkg install -y bsdstats
     sysrc bsdstats_enable="YES"
     echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+    fi
 fi
 
 if [ "$resp" = ports ]; then
