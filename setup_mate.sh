@@ -31,6 +31,7 @@ echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
 echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
 echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
+# Printer support.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
