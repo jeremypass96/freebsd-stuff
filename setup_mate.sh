@@ -102,6 +102,7 @@ sed -i '' s/'# REFUSE korean polish portuguese russian ukrainian vietnamese'/'RE
 # Pull in Ports tree, extract, and update it.
 portsnap auto
 
+# Printer support.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
