@@ -37,35 +37,37 @@ echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
 echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
 echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
-read -p "Do you plan to use a printer? (y/n): " resp
-if [ "$resp" = y ]; then
-pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
-sysrc cupsd_enable="YES"
-sysrc cups_browsed_enable="YES"
-sysrc avahi_daemon_enable="YES"
-sysrc avahi_dnsconfd_enable="YES"
-sed -i '' s/JobPrivateAccess/#JobPrivateAccess/g /usr/local/etc/cups/cupsd.conf
-sed -i '' s/JobPrivateValues/#JobPrivateValues/g /usr/local/etc/cups/cupsd.conf
-read -p "Paper size?
-1. Letter
-2. A4
---> " resp
-if [ "$resp" = 1 ]; then
-pkg install -y papersize-default-letter
-fi
-if [ "$resp" = 2 ]; then
-pkg install -y papersize-default-a4
-fi
-read -p "Do you own an HP printer? (y/n): " resp
-if [ "$resp" = y ]; then
-pkg install -y hplip
-fi
-if [ "$resp" = n ]; then
-continue
-fi
-fi
-if [ "$resp" = n ]; then
-continue
+# Printer support.
+dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
+resp=$?
+
+if [ $resp -eq 0 ]; then
+    pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
+    sysrc cupsd_enable="YES"
+    sysrc cups_browsed_enable="YES"
+    sysrc avahi_daemon_enable="YES"
+    sysrc avahi_dnsconfd_enable="YES"
+    sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
+    sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
+    
+    dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
+        1 "Letter" \
+        2 "A4" 2> /tmp/papersize_resp
+    
+    papersize_resp=$(cat /tmp/papersize_resp)
+    
+    if [ "$papersize_resp" = 1 ]; then
+        pkg install -y papersize-default-letter
+    elif [ "$papersize_resp" = 2 ]; then
+        pkg install -y papersize-default-a4
+    fi
+    
+    dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
+    hp_resp=$?
+    
+    if [ $hp_resp -eq 0 ]; then
+        pkg install -y hplip
+    fi
 fi
 
 clear
@@ -79,10 +81,16 @@ clear
 ./rcconf_setup.sh
 
 # Install cursor theme.
-echo "Installing the "Bibata Modern Ice" cursor theme..."
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
+dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
+resp=$?
+
+if [ $resp -eq 0 ]; then
+    dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
+    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
+    tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+    rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
+    dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
+fi
 
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"
@@ -90,16 +98,17 @@ sysrc kdm_enable="YES"
 # Install 3rd party software.
 ./software_dialog_pkgs.sh
 
-# BSDstats...
-read -p "Would you like to enable BSDstats? (y/n): " resp
-if [ "$resp" = y ]; then
-pkg install -y bsdstats
-sysrc bsdstats_enable="YES"
-echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
-fi
-if [ "$resp" = n ]; then
-continue
-fi
+# Install BSDstats.
+dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
+resp=$?
+
+if [ $resp -eq 0 ]; then
+    dialog --infobox "Installing BSDstats..." 5 40
+    sleep 2
+    pkg install -y bsdstats
+    sysrc bsdstats_enable="YES"
+    echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+    fi
 fi
 
 # Fix GTK/QT antialiasing
