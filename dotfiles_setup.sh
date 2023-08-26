@@ -92,13 +92,6 @@ cp -v config/lsd/config.yaml /usr/share/skel/dot.config/lsd
 chown -R $USER:$USER /home/$USER/.config/lsd
 
 # Configure "bat," nicer (and better) cat alternative.
-bat --generate-config-file
-sed -i '' 's/#--italic-text=always/--italic-text=always/g' /root/.config/bat/config
-mkdir -p /home/$USER/.config/bat
-cp -v /root/.config/bat/config /home/$USER/.config/bat
-mkdir -p /usr/share/skel/dot.config/bat
-cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat
-chown -R $USER:$USER /home/$USER/.config/bat
 ./bat_setup.sh
 
 # Change root shell to use "zsh" instead of "csh."
