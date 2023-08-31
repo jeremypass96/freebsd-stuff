@@ -111,5 +111,13 @@ umask 077
 # Disable highlighting of pasted text
 zle_highlight=('paste:none')
 
+# Apply sensible history settings.
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+
 alias ls="lsd"
 alias cat="bat"
