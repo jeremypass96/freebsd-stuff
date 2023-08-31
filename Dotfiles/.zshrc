@@ -105,10 +105,10 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-# Set the default umask
+# Set the default umask.
 umask 077
 
-# Disable highlighting of pasted text
+# Disable highlighting of pasted text.
 zle_highlight=('paste:none')
 
 # Apply sensible history settings.
