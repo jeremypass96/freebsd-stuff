@@ -149,8 +149,9 @@ sed -i '' 104s/'static_\$2 add \$3'/'static_\$2 add \$3 add \$3 1> \/dev\/null 2
 sed -i '' s/"echo -n 'Feeding entropy: '"/"echo -n 'Feeding entropy:'"/g /etc/rc.d/random
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
-read -p "Did you install FreeBSD with the ZFS filesystem? (y/n) " resp
-if [ "$resp" = y ]; then
+read -p "Did you install FreeBSD with the ZFS filesystem? (Y/n) " resp
+resp=${resp:-Y}
+if [ "$resp" = Y ] || [ "$resp" = y ]; then
 sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
 # Adjust ZFS ARC cache size.
 echo "" >> /boot/loader.conf
