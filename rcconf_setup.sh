@@ -128,5 +128,3 @@ clear & configure_rc_conf
 
 # Filter out color escape codes in /etc/rc.conf using sed
 sed -i -E 's/\x1B\[[0-9;]*[a-zA-Z]//g' /etc/rc.conf
-
-# End of script
