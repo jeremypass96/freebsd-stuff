@@ -67,7 +67,7 @@ echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
 chown -R $USER:$USER /home/$USER/.config/bat
 
 # Copy themes to user's home directory.
-sudo -u $USER sh -c 'mkdir -p /home/$USER/.config/bat/themes; cp *.tmTheme /home/$USER/.config/bat/themes; bat cache --build'
+sh -c 'mkdir -p /home/$USER/.config/bat/themes; cp *.tmTheme /home/$USER/.config/bat/themes; sudo -u $USER bat cache --build'
 chown -R $USER:$USER /home/$USER/.config/bat/themes
 
 echo "Bat syntax highlighter has been configured with the selected theme ($selected_theme) for both your user and root."
