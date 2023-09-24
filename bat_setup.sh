@@ -62,8 +62,8 @@ sh -c 'mkdir -p /usr/share/skel/dot.config/bat/themes; cp *.tmTheme /usr/share/s
 # Modify the configuration settings for the user.
 sed -i 's/#--theme="TwoDark"/--theme="$selected_theme"/g' /home/$USER/.config/bat/config
 sed -i 's/#--italic-text=always/--italic-text=always/g' /home/$USER/.config/bat/config
-echo '--map-syntax "*.conf:INI"' >> "/home/$USER/.config/bat/config"
-echo '--map-syntax "config:INI"' >> "/home/$USER/.config/bat/config"
+echo '--map-syntax "*.conf:INI"' >> /home/$USER/.config/bat/config
+echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
 
 # Copy themes to user's home directory.
 sh -c 'mkdir -p /home/$USER/.config/bat/themes; cp *.tmTheme /home/$USER/.config/bat/themes; bat cache --build'
