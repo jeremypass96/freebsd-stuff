@@ -67,26 +67,29 @@ if [ -n "$selected_descriptions" ]; then
     pkg install -y $selected_packages
 
     # Execute post-install commands for specific packages
-    for package in $selected_packages; do
-        case "$package" in
-            "virtualBox-ose virtualbox-ose-kmod")
-                # Post-install commands for VirtualBox.
-                echo "Running post-install commands for VirtualBox..."
-                sysrc vboxnet_enable="YES"
-                sysrc kldload_vbox="vboxdrv"
-                echo "# VirtualBox stuff." >> /etc/sysctl.conf
-                echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
-                echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
-                echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
-                echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
-                pw group mod vboxusers -m $USER
-                ;;
-            "wine wine-mono wine-gecko")
-                # Post-install commands for Wine.
-                echo "Running post-install commands for Wine..."
-                echo "# Wine fix." >> /boot/loader.conf
-                echo machdep.max_ldt_segment=2048 >> /boot/loader.conf
-                ;;
+for package in $selected_packages; do
+    case "$package" in
+        "virtualBox-ose")
+            # Post-install commands for VirtualBox.
+            echo "Running post-install commands for VirtualBox..."
+            sysrc vboxnet_enable="YES"
+            sysrc kldload_vbox="vboxdrv"
+            echo "# VirtualBox stuff." >> /etc/sysctl.conf
+            echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
+            echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
+            echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
+            echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
+            pw group mod vboxusers -m $USER
+            ;;
+        "wine")
+            # Post-install commands for Wine.
+            echo "Running post-install commands for Wine..."
+            echo "# Wine fix." >> /boot/loader.conf
+            echo machdep.max_ldt_segment=2048 >> /boot/loader.conf
+            ;;
+        *)
+            echo "No post-install commands for package: $package"
+            ;;
         esac
     done
 else
