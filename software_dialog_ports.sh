@@ -76,22 +76,18 @@ if [ -n "$selected_descriptions" ]; then
                 sysrc vboxnet_enable="YES"
                 sysrc kld_list="vboxdrv"
                 sysrc kldload_vboxdrv="YES"
-                cat << EOF >> /etc/sysctl.conf
-                # VirtualBox stuff.
-                vfs.aio.max_buf_aio=8192
-                vfs.aio.max_aio_queue_per_proc=65536
-                vfs.aio.max_aio_per_proc=8192
-                vfs.aio.max_aio_queue=65536
-EOF
+                echo "# VirtualBox stuff." >> /etc/sysctl.conf
+                echo vfs.aio.max_buf_aio=8192 >> /etc/sysctl.conf
+                echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
+                echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
+                echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
                 pw group mod vboxusers -m $USER
                 ;;
             "emulators/wine")
                 # Post-install commands for Wine.
                 echo "Running post-install commands for Wine..."
-                cat << EOF >> /boot/loader.conf
-                # Wine fix.
-                machdep.max_ldt_segment=2048
-EOF
+                echo "# Wine fix." >> /boot/loader.conf
+                echo machdep.max_ldt_segment=2048 >> /boot/loader.conf
                 ;;
         esac
     done
