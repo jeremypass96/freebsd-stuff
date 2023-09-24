@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Redirect stderr to a file
-exec 2>/tmp/script_error.log
-
 # Check if dialog is installed
 if ! command -v dialog >/dev/null 2>&1; then
   echo "Error: dialog not found. Please install dialog first."
