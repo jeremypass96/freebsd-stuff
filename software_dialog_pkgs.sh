@@ -67,8 +67,8 @@ if [ -n "$selected_descriptions" ]; then
     pkg install -y $selected_packages
 
     # Execute post-install commands for specific packages
-for package in $selected_packages; do
-    case "$package" in
+    for package in $selected_packages; do
+        case "$package" in
         "virtualBox-ose")
             # Post-install commands for VirtualBox.
             echo "Running post-install commands for VirtualBox..."
