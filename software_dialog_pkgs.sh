@@ -51,7 +51,7 @@ if [ -n "$selected_descriptions" ]; then
             "Pinta") echo "pinta" ;;
             "Shotwell") echo "shotwell" ;;
             "VirtualBox") echo "virtualBox-ose virtualbox-ose-kmod" ;;
-            "Wine") echo "wine wine-mono wine-geck" ;;
+            "Wine") echo "wine wine-mono wine-gecko" ;;
             *) echo "" ;;
         esac
     }
