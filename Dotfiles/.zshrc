@@ -100,7 +100,7 @@ plugins=(git colored-man-pages safe-paste sudo copypath zsh-autosuggestions zsh-
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
+  mkdir -p $ZSH_CACHE_DIR
 fi
 
 source $ZSH/oh-my-zsh.sh
