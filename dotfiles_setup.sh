@@ -75,6 +75,8 @@ cp -v "$chosen_scheme" /root/.config/micro/colorschemes
 
 cd && rm -rf micro
 
+cd /home/$USER/freebsd-stuff
+
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
 
@@ -92,7 +94,7 @@ cp -v /home/$USER/freebsd-stuff/Dotfiles/config/lsd/config.yaml /usr/share/skel/
 chown -R $USER:$USER /home/$USER/.config/lsd
 
 # Configure "bat," nicer (and better) cat alternative.
-./home/$USER/freebsd-stuff/bat_setup.sh
+./bat_setup.sh
 
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
