@@ -3,10 +3,10 @@
 
 # Prompt the user to choose a theme
 echo "Select a theme for the 'bat' syntax highlighter:"
-echo "1. Latte"
-echo "2. Frappé"
-echo "3. Macchiato"
-echo "4. Mocha"
+echo "1.) Latte"
+echo "2.) Frappé"
+echo "3.) Macchiato"
+echo "4.) Mocha"
 read -p "Enter the number of your choice: " theme_choice
 
 case $theme_choice in
@@ -39,11 +39,11 @@ echo '--map-syntax "config:INI"' >> "$HOME/.config/bat/config"
 
 # Copy the user configuration to /usr/share/skel so new users get the same setup.
 sudo mkdir -p /usr/share/skel/dot.config/bat
-sudo cp -v "$HOME/.config/bat/config" /usr/share/skel/dot.config/bat
+sudo cp -v "$/home/$USER/.config/bat/config" /usr/share/skel/dot.config/bat
 
 # Copy the user configuration to root's configuration.
 sudo mkdir -p /root/.config/bat
-sudo cp -v "$HOME/.config/bat/config" /root/.config/bat/
+sudo cp -v "/home/$USER/.config/bat/config" /root/.config/bat/
 
 # Setup the Catppuccin theme for bat.
 cd "$HOME" || exit
