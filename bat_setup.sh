@@ -44,7 +44,7 @@ echo '--map-syntax "config:INI"' >> $HOME/.config/bat/config
 
 # Copy the user configuration to /usr/share/skel so new users get the same setup.
 mkdir -p /usr/share/skel/dot.config/bat
-cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat
+cp -v $HOME/.config/bat/config /usr/share/skel/dot.config/bat
 
 # Copy root's configuration to the user's configuration.
 mkdir -p /home/$USER/.config/bat
