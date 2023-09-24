@@ -32,8 +32,8 @@ esac
 bat --generate-config-file
 
 # Modify the configuration settings for current user.
-sed -i 's/#--theme="TwoDark"/--theme="$selected_theme"/g' "$HOME/.config/bat/config"
-sed -i 's/#--italic-text=always/--italic-text=always/g' "$HOME/.config/bat/config"
+sed -i 's/#--theme="TwoDark"/--theme="$selected_theme"/g' "/home/$USER/.config/bat/config"
+sed -i 's/#--italic-text=always/--italic-text=always/g' "/home/$USER/.config/bat/config"
 echo '--map-syntax "*.conf:INI"' >> "$HOME/.config/bat/config"
 echo '--map-syntax "config:INI"' >> "$HOME/.config/bat/config"
 
