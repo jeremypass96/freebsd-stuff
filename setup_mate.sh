@@ -10,7 +10,7 @@ fi
 clear
 
 echo "Welcome to the FreeBSD MATE setup script."
-echo "This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use. Also, don't forget to run './mate_theme_install.sh' after you reboot."
+echo "This script will setup Xorg, MATE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
 read -p "Press the Enter key to continue..." resp
 
@@ -360,3 +360,6 @@ fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Lake
 fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Mountain_View.jpg -o /usr/local/share/backgrounds
 fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Wood_Trail.jpg -o /usr/local/share/backgrounds
 fetch https://w.wallhaven.cc/full/5g/wallhaven-5gkk65.jpg -o /usr/local/share/backgrounds
+
+# Setup MATE desktop.
+sudo -u $USER ./mate_theme_install.sh
