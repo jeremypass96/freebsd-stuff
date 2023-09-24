@@ -80,7 +80,7 @@ if [ -n "$selected_descriptions" ]; then
                 vfs.aio.max_aio_queue_per_proc=65536
                 vfs.aio.max_aio_per_proc=8192
                 vfs.aio.max_aio_queue=65536
-                EOF
+EOF
                 pw group mod vboxusers -m $USER
                 ;;
             "wine wine-mono wine-gecko")
@@ -89,7 +89,7 @@ if [ -n "$selected_descriptions" ]; then
                 cat << EOF >> /boot/loader.conf
                 # Wine fix.
                 machdep.max_ldt_segment=2048
-                EOF
+EOF
                 ;;
         esac
     done
