@@ -43,22 +43,22 @@ if [ $resp -eq 0 ]; then
     sysrc avahi_dnsconfd_enable="YES"
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
-    
+
     dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
         1 "Letter" \
         2 "A4" 2> /tmp/papersize_resp
-    
+
     papersize_resp=$(cat /tmp/papersize_resp)
-    
+
     if [ "$papersize_resp" = 1 ]; then
         pkg install -y papersize-default-letter
     elif [ "$papersize_resp" = 2 ]; then
         pkg install -y papersize-default-a4
     fi
-    
+
     dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
     hp_resp=$?
-    
+
     if [ $hp_resp -eq 0 ]; then
         pkg install -y hplip
     fi
@@ -110,39 +110,39 @@ resp=$?
 if [ $resp -eq 0 ]; then
     sed -i '' '13s/$/ CUPS/' /etc/make.conf
     echo "" >> /etc/make.conf
-    
+
     dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
     sleep 2
-    
+
     dialog --title "Installing CUPS" --infobox "Installing CUPS..." 5 40
     cd /usr/ports/print/cups && make install clean
-    
+
     dialog --title "Installing Cups Filters" --infobox "Installing cups-filters..." 5 40
     cd /usr/ports/print/cups-filters && make install clean
-    
+
     dialog --title "Installing CUPS PK Helper" --infobox "Installing cups-pk-helper..." 5 40
     cd /usr/ports/print/cups-pk-helper && make install clean
-    
+
     dialog --title "Installing Gutenprint" --infobox "Installing gutenprint..." 5 40
     cd /usr/ports/print/gutenprint && make install clean
-    
+
     dialog --title "Installing System Config Printer" --infobox "Installing system-config-printer..." 5 40
     cd /usr/ports/print/system-config-printer && make install clean
-    
+
     sysrc cupsd_enable="YES"
     sysrc cups_browsed_enable="YES"
     sysrc avahi_daemon_enable="YES"
     sysrc avahi_dnsconfd_enable="YES"
-    
+
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
-    
+
     dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
         1 "Letter" \
         2 "A4" 2> /tmp/papersize_resp
-    
+
     papersize_resp=$(cat /tmp/papersize_resp)
-    
+
     if [ "$papersize_resp" = 1 ]; then
         dialog --title "Installing Letter Paper Size" --infobox "Installing papersize-default-letter..." 5 40
         cd /usr/ports/print/papersize-default-letter && make install clean
@@ -150,10 +150,10 @@ if [ $resp -eq 0 ]; then
         dialog --title "Installing A4 Paper Size" --infobox "Installing papersize-default-a4..." 5 40
         cd /usr/ports/print/papersize-default-a4 && make install clean
     fi
-    
+
     dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
     hp_resp=$?
-    
+
     if [ $hp_resp -eq 0 ]; then
         dialog --title "Installing HPLIP" --infobox "Installing hplip..." 5 40
         cd /usr/ports/print/hplip && make install clean
@@ -240,6 +240,7 @@ if [ $resp -eq 0 ]; then
     portmaster --no-confirm sysutils/bsdstats
     sysrc bsdstats_enable="YES"
     echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+    fi
 fi
 
 clear
