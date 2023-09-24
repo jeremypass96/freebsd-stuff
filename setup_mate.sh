@@ -317,6 +317,7 @@ chown $USER:$USER /home/$USER/.xinitrc
 chown -R $USER:$USER /home/$USER/.config
 
 # Fix user's local directory permissions.
+mkdir -p /home/$USER/.local
 chown -R $USER:$USER /home/$USER/.local
 
 # Create and fix user's caja config directory permissions.
@@ -329,7 +330,7 @@ git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ula
 chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-cp -rv /home/$USER/freebsd-stuff/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+cp -r /home/$USER/freebsd-stuff/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
