@@ -54,10 +54,10 @@ cp -v $HOME/.config/bat/config /home/$USER/.config/bat/config
 cd $HOME
 git clone https://github.com/catppuccin/bat.git
 cd bat
-mkdir -p "$(bat --config-dir)/themes"; cp *.tmTheme "$(bat --config-dir)/themes"; bat cache --build
+sh -c 'mkdir -p "$(bat --config-dir)/themes"; cp *.tmTheme "$(bat --config-dir)/themes"; bat cache --build'
 
 # Copy themes to /etc/skel.
-mkdir -p /usr/share/skel/dot.config/bat/themes; cp *.tmTheme /usr/share/skel/dot.config/bat/themes; bat cache --build
+sh -c 'mkdir -p /usr/share/skel/dot.config/bat/themes; cp *.tmTheme /usr/share/skel/dot.config/bat/themes; bat cache --build'
 
 # Modify the configuration settings for the user.
 sed -i '' 's/#--theme="TwoDark"/--theme="\'$selected_theme'\"'/g /home/$USER/.config/bat/config
@@ -67,7 +67,7 @@ echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
 chown -R $USER:$USER /home/$USER/.config/bat
 
 # Copy themes to user's home directory.
-mkdir -p /home/$USER/.config/bat/themes; cp *.tmTheme /home/$USER/.config/bat/themes; bat cache --build
+sh -c 'mkdir -p /home/$USER/.config/bat/themes; cp *.tmTheme /home/$USER/.config/bat/themes; bat cache --build'
 chown -R $USER:$USER /home/$USER/.config/bat/themes
 
 echo "Bat syntax highlighter has been configured with the selected theme ($selected_theme) for both your user and root."
