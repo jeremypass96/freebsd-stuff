@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Function to run gsettings commands
 run_gsettings() {
