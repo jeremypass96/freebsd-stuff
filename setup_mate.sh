@@ -220,7 +220,7 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 clear
 
 # Setup rc.conf file.
-cd /home/$USER/freebsd-setup-scripts
+cd /home/$USER/freebsd-stuff
 ./rcconf_setup_ports.sh
 
 clear
@@ -290,10 +290,10 @@ EOF
 mkdir /home/$USER/.config/qt5ct
 chown -R $USER:$USER /home/$USER/.config/qt5ct
 mkdir -p /usr/share/skel/dot.config/qt5ct
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
 cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
 chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/.xinitrc /home/$USER/.xinitrc
+cp -v /home/$USER/freebsd-stuff/Dotfiles/.xinitrc /home/$USER/.xinitrc
 cp -v /home/$USER/.xinitrc /usr/share/skel/.xinitrc
 chown $USER:$USER /home/$USER/.xinitrc
 
@@ -329,7 +329,7 @@ git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ula
 chown -R $USER:$USER /home/$USER/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
 cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+cp -rv /home/$USER/freebsd-stuff/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
