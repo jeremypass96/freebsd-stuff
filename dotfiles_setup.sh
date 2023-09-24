@@ -23,7 +23,7 @@ done
 cp -v .zshrc /home/$USER
 cp -v .zshrc /usr/share/skel/dot.zshrc
 sed -i '' '/neofetch/\/g' /usr/share/skel/dot.zshrc
-cp -v /usr/share/skel/dot.zshrc /root/
+cp -v /usr/share/skel/dot.zshrc /root/.zshrc
 chown $USER:$USER /home/$USER/.zshrc
 
 # Copy over neofetch config.
