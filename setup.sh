@@ -176,6 +176,7 @@ touch /usr/share/skel/dot.hushlogin
 ./devfs_setup.sh
 ./freebsd_symlinks.sh
 ./dotfiles_setup.sh
+./locale_fix.sh
 
 # Setup user's home directory with common folders.
 xdg-user-dirs-update
