@@ -317,6 +317,12 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-des
 #####
 
 #####
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+#####
+
+#####
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
@@ -347,9 +353,21 @@ chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-not
 #####
 
 #####
+mkdir -p /home/$USER/.config/xfce4/panel
+chown -R $USER:$USER /home/$USER/.config/xfce4/panel
+mkdir -p /usr/share/skel/dot.config/xfce4/panel
+#####
+
+#####
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/whiskermenu-8.rc /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
 cp -v /home/$USER/.config/xfce4/panel/whiskermenu-8.rc /usr/share/skel/dot.config/xfce4/panel/whiskermenu-8.rc
 chown $USER:$USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+#####
+
+#####
+cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/docklike-7.rc /home/$USER/.config/xfce4/panel/docklike-7.rc
+cp -v /home/$USER/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
+chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
 #####
 
 #####

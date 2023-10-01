@@ -16,9 +16,10 @@ dialog --title "FreeBSD Post-Install Setup" --msgbox "Welcome to the FreeBSD pos
 resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a desktop environment:" 15 40 5 \
   1 "MATE" \
   2 "Xfce" \
-  3 "Katana (fork of KDE4)" \
-  4 "KDE Plasma 5" \
-  5 "Basic Xorg (no desktop)" \
+  3 "Xfce (Windows-esque)" \
+  4 "Katana (fork of KDE4)" \
+  5 "KDE Plasma 5" \
+  6 "Basic Xorg (no desktop)" \
   2>&1 >/dev/tty)
 
 case "$resp" in
@@ -29,12 +30,15 @@ case "$resp" in
     ./setup_xfce.sh
     ;;
   3)
-    ./setup_katana.sh
+    ./setup_xfce_win.sh
     ;;
   4)
-    ./setup_kde.sh
+    ./setup_katana.sh
     ;;
   5)
+    ./setup_kde.sh
+    ;;
+  6)
     ./setup_basicxorg.sh
     ;;
 esac
