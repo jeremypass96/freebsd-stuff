@@ -104,9 +104,6 @@ mkdir -p /usr/share/skel/dot.config/lsd
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/lsd/config.yaml /usr/share/skel/dot.config/lsd
 chown -R $USER:$USER /home/$USER/.config/lsd
 
-# Configure "bat," nicer (and better) cat alternative.
-./bat_setup.sh
-
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
 
