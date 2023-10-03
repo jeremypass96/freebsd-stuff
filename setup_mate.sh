@@ -246,7 +246,13 @@ fi
 clear
 
 # Download Pluma text editor color scheme.
-fetch https://raw.githubusercontent.com/isdampe/gedit-gtk-one-dark-style-scheme/master/onedark-bright.xml -o /usr/local/share/gtksourceview-4/styles/onedark-bright.xml
+cd && git clone https://github.com/catppuccin/gedit.git && cd gedit
+cp themes/catppuccin-frappe.xml /usr/local/share/gtksourceview-4/styles/
+cp themes/catppuccin-latte.xml /usr/local/share/gtksourceview-4/styles/
+cp themes/catppuccin-macchiato.xml /usr/local/share/gtksourceview-4/styles/
+cp themes/catppuccin-mocha.xml /usr/local/share/gtksourceview-4/styles/
+chmod og=r /usr/local/share/gtksourceview-4/styles/catppuccin-*.xml
+cd && rm -rf gedit
 
 # Install cursor theme.
 dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
