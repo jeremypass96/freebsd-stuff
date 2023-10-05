@@ -53,13 +53,19 @@ dialog --title "Downloading Wallpapers" --gauge "Downloading wallpapers..." 10 5
     download_wallpapers
 )
 
+# Check if any errors occurred during the download.
+if [ $? -ne 0 ]; then
+    dialog --title "Error" --msgbox "An error occurred while downloading wallpapers." 10 40
+    exit 1
+fi
+
 # Download and extract some FreeBSD-based wallpapers.
 fetch -q -o "$HOME/wallpapers-freebsd.tar.gz" "https://github.com/vermaden/scripts/raw/master/distfiles/wallpapers-freebsd.tar.gz"
 tar -xzf "$HOME/wallpapers-freebsd.tar.gz" -C "$HOME"
 
-# Check if any errors occurred during the download.
+# Check if any errors occurred during the extraction.
 if [ $? -ne 0 ]; then
-    dialog --title "Error" --msgbox "An error occurred while downloading wallpapers." 10 40
+    dialog --title "Error" --msgbox "An error occurred while extracting wallpapers-freebsd.tar.gz." 10 40
     exit 1
 fi
 
