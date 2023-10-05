@@ -61,7 +61,14 @@ fi
 
 # Download and extract some FreeBSD-based wallpapers.
 fetch -q -o "$HOME/wallpapers-freebsd.tar.gz" "https://github.com/vermaden/scripts/raw/master/distfiles/wallpapers-freebsd.tar.gz"
-tar -xzf "$HOME/wallpapers-freebsd.tar.gz" -C "$HOME"
+
+# Extract tar.gz archive.
+extract() {
+destdir="$(basename "$1" .tar.gz)"
+mkdir "$destdir"
+tar -C "$destdir" -xf "$1"
+}
+extract wallpapers-freebsd.tar.gz
 
 # Check if any errors occurred during the extraction.
 if [ $? -ne 0 ]; then
