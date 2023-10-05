@@ -29,7 +29,7 @@ wallpaper_urls=(
 )
 
 # Destination directory for wallpapers.
-wallpaper_dir="/usr/share/wallpapers"
+wallpaper_dir="/usr/local/share/backgrounds"
 
 # Initialize a counter for the progress bar.
 count=0
