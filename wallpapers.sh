@@ -53,28 +53,29 @@ dialog --title "Downloading Wallpapers" --gauge "Downloading wallpapers..." 10 5
     download_wallpapers
 )
 
+# Download and extract some FreeBSD-based wallpapers.
+fetch -q -o "$HOME/wallpapers-freebsd.tar.gz" "https://github.com/vermaden/scripts/raw/master/distfiles/wallpapers-freebsd.tar.gz"
+tar -xzf "$HOME/wallpapers-freebsd.tar.gz" -C "$HOME"
+
 # Check if any errors occurred during the download.
 if [ $? -ne 0 ]; then
     dialog --title "Error" --msgbox "An error occurred while downloading wallpapers." 10 40
     exit 1
 fi
 
-# Download and extract some FreeBSD-based wallpapers.
-curl -L "https://github.com/vermaden/scripts/raw/master/distfiles/wallpapers-freebsd.tar.gz" | tar --one-top-level -xf - -C "$HOME"
-
 # Copy the specified wallpapers to /usr/share/wallpapers.
-cp -v "$HOME/wallpapers/freebsd-think-correctly-black.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/freebsd-x-black-small.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/freebsd-warm-grey-computer.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/jurasic-park-unix-system.jpg" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/unix-highway-to-shell-white.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/unix-too-hot.jpg" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/freebsd-stripes-light-colors.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/freebsd-stripes-dark-colors.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/freebsd-11.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers/unix-this-is-mdh3ll.jpg" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/freebsd-think-correctly-black.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/freebsd-x-black-small.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/freebsd-warm-grey-computer.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/jurasic-park-unix-system.jpg" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/unix-highway-to-shell-white.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/unix-too-hot.jpg" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/freebsd-stripes-light-colors.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/freebsd-stripes-dark-colors.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/freebsd-11.png" "$wallpaper_dir"
+cp -v "$HOME/wallpapers-freebsd/unix-this-is-mdh3ll.jpg" "$wallpaper_dir"
 
 # Remove base directory and .tar.gz file.
-rm -rf $HOME/wallpapers && rm $HOME/wallpapers-freebsd.tar.gz
+rm -rf $HOME/wallpapers-freebsd && rm -f $HOME/wallpapers-freebsd.tar.gz
 
 dialog --title "Download Complete" --msgbox "Wallpapers downloaded and saved to $wallpaper_dir." 10 40
