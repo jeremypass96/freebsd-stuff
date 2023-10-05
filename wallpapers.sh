@@ -60,7 +60,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Download and extract some FreeBSD-based wallpapers.
-fetch -q -o "$HOME/wallpapers-freebsd.tar.gz" "https://github.com/vermaden/scripts/raw/master/distfiles/wallpapers-freebsd.tar.gz"
+cd && fetch -q -o "$HOME/wallpapers-freebsd.tar.gz" "https://github.com/vermaden/scripts/raw/master/distfiles/wallpapers-freebsd.tar.gz"
 
 # Extract tar.gz archive.
 extract() {
