@@ -77,7 +77,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Fix permissions and copy the specified wallpapers to /usr/share/wallpapers.
-chmod og=r "$HOME/wallpapers-freebsd/*.*"
+chmod og=r $HOME/wallpapers-freebsd/*.*
 cp "$HOME/wallpapers-freebsd/freebsd-think-correctly-black.png" "$wallpaper_dir"
 cp "$HOME/wallpapers-freebsd/freebsd-x-black-small.png" "$wallpaper_dir"
 cp "$HOME/wallpapers-freebsd/freebsd-warm-grey-computer.png" "$wallpaper_dir"
