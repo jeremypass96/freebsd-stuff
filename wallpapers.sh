@@ -77,16 +77,16 @@ if [ $? -ne 0 ]; then
 fi
 
 # Copy the specified wallpapers to /usr/share/wallpapers.
-cp -v "$HOME/wallpapers-freebsd/freebsd-think-correctly-black.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/freebsd-x-black-small.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/freebsd-warm-grey-computer.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/jurasic-park-unix-system.jpg" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/unix-highway-to-shell-white.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/unix-too-hot.jpg" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/freebsd-stripes-light-colors.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/freebsd-stripes-dark-colors.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/freebsd-11.png" "$wallpaper_dir"
-cp -v "$HOME/wallpapers-freebsd/unix-this-is-mdh3ll.jpg" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/freebsd-think-correctly-black.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/freebsd-x-black-small.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/freebsd-warm-grey-computer.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/jurasic-park-unix-system.jpg" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/unix-highway-to-shell-white.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/unix-too-hot.jpg" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/freebsd-stripes-light-colors.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/freebsd-stripes-dark-colors.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/freebsd-11.png" "$wallpaper_dir"
+cp "$HOME/wallpapers-freebsd/unix-this-is-mdh3ll.jpg" "$wallpaper_dir"
 
 # Remove base directory and .tar.gz file.
 rm -rf $HOME/wallpapers-freebsd && rm -f $HOME/wallpapers-freebsd.tar.gz
