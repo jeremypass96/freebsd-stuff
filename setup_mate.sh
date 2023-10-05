@@ -344,8 +344,8 @@ echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
 
-# Download wallpapers.
-./wallpapers.sh
-
 # Setup MATE desktop.
 sudo -u $USER ./mate_theme_install.sh
+
+# Download wallpapers.
+./wallpapers.sh
