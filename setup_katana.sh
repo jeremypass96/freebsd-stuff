@@ -49,22 +49,22 @@ if [ $resp -eq 0 ]; then
     sysrc avahi_dnsconfd_enable="YES"
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
-    
+
     dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
         1 "Letter" \
         2 "A4" 2> /tmp/papersize_resp
-    
+
     papersize_resp=$(cat /tmp/papersize_resp)
-    
+
     if [ "$papersize_resp" = 1 ]; then
         pkg install -y papersize-default-letter
     elif [ "$papersize_resp" = 2 ]; then
         pkg install -y papersize-default-a4
     fi
-    
+
     dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
     hp_resp=$?
-    
+
     if [ $hp_resp -eq 0 ]; then
         pkg install -y hplip
     fi
@@ -145,3 +145,6 @@ echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
+
+# Download wallpapers.
+./wallpapers.sh

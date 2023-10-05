@@ -322,3 +322,6 @@ polkit.addRule(function(action, subject) {
     }
 });
 EOF
+
+# Download wallpapers.
+./wallpapers.sh

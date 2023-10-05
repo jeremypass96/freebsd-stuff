@@ -447,25 +447,5 @@ echo 'daily_rkhunter_update_flags="--update"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
 
-# Get wallpapers!
-echo "Getting wallpapers..."
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0004.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0011.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0023.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0036.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0037.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0042.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0057.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0058.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0065.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0076.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0252.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg -o /usr/local/share/backgrounds
-fetch https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg -o /usr/local/share/backgrounds
-fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Field_Of_Lightning.jpg -o /usr/local/share/backgrounds
-fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Lake_View.jpg -o /usr/local/share/backgrounds
-fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Mountain_View.jpg -o /usr/local/share/backgrounds
-fetch https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Wood_Trail.jpg -o /usr/local/share/backgrounds
-fetch https://w.wallhaven.cc/full/5g/wallhaven-5gkk65.jpg -o /usr/local/share/backgrounds
+# Download wallpapers.
+./wallpapers.sh
