@@ -37,7 +37,6 @@ configure_rc_conf() {
   sysrc sendmail_outbound_enable=$(add_color_output "NO")
   sysrc sendmail_submit_enable=$(add_color_output "NO")
   sysrc ntpd_enable=$(add_color_output "YES")
-  sysrc ntpd_flags=$(add_color_output "-g")
   sysrc ntpd_sync_on_start=$(add_color_output "YES")
   sysrc ntpd_oomprotect=$(add_color_output "YES")
   sysrc inetd_enable=$(add_color_output "NO")
