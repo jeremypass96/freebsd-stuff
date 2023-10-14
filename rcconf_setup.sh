@@ -68,6 +68,7 @@ configure_rc_conf() {
   sysrc apmd_enable=$(add_color_output "YES")
   sysrc defaultroute_delay=$(add_color_output "0")
   sysrc rcshutdown_timeout=$(add_color_output "10")
+  sysrc cleanvar_enable=$(add_color_output "YES")
 
   echo ""
   echo -e "\033[1;36mrc.conf variables configured.\033[0m"  # Bold Cyan
