@@ -100,8 +100,8 @@ sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER=`sysctl -n hw.ncpu`/g /etc/make.c
 sed -i '' s/'# REFUSE arabic chinese french german hebrew hungarian japanese'/'REFUSE arabic chinese french german hebrew hungarian japanese'/g /etc/portsnap.conf
 sed -i '' s/'# REFUSE korean polish portuguese russian ukrainian vietnamese'/'REFUSE korean polish portuguese russian ukrainian vietnamese'/g /etc/portsnap.conf
 
-# Pull in Ports tree, extract, and update it.
-portsnap auto
+# Pull in Ports tree with git.
+git clone https://git.FreeBSD.org/ports.git /usr/ports
 
 # Printer support.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
