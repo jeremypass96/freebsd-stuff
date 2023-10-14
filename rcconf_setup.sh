@@ -65,7 +65,7 @@ configure_rc_conf() {
   sysrc virecover_enable=$(add_color_output "NO")
   sysrc smartd_enable=$(add_color_output "YES")
   sysrc dumpdev=$(add_color_output "NO")
-  sysrc apm_enable=$(add_color_output "YES")
+  sysrc apmd_enable=$(add_color_output "YES")
   sysrc defaultroute_delay=$(add_color_output "0")
   sysrc rcshutdown_timeout=$(add_color_output "10")
 
