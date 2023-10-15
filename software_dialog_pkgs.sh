@@ -67,14 +67,14 @@ if [ -n "$selected_descriptions" ]; then
     # Count the number of packages to be installed
     num_packages=$(echo "$selected_packages" | tr -s ' ' '\n' | wc -l)
 
-   # Initialize the progress bar
-    dialog --title "Installation Progress" --gauge "Installing software..." 7 50 0
+# Initialize the progress bar
+dialog --title "Installation Progress" --gauge "Installing software..." 7 50 0
 
-    # Counter for installed packages
-    installed_packages=0
+# Counter for installed packages
+installed_packages=0
 
-    # Install the selected software packages and update the progress bar
-    for package in $selected_packages; do
+# Install the selected software packages and update the progress bar
+for package in $selected_packages; do
     # Install the package
     pkg install -y "$package"
 
@@ -86,7 +86,15 @@ if [ -n "$selected_descriptions" ]; then
 
     # Update the progress bar in the dialog
     echo "$progress" | dialog --title "Installation Progress" --gauge "Installing software..." 7 50
-    done
+done
+
+# Close the progress bar
+dialog --infobox "Installation complete!" 5 40
+sleep 2
+
+# Clean up
+dialog --clear
+
 
     # Execute post-install commands for specific packages
     for package in $selected_packages; do
