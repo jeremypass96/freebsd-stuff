@@ -32,11 +32,29 @@ echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
 echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 # Printer support.
+# Function to install packages with a progress bar.
+install_packages_with_progress() {
+    dialog --title "Installing Packages" --gauge "Installing $1..." 5 40
+    pkg install -y "$1"
+    echo "100"
+}
+
+# Function to display a menu and return the selected option.
+display_menu() {
+    dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
+    menu_resp=$(cat /tmp/menu_resp)
+    echo "$menu_resp"
+}
+
+# Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
 if [ $resp -eq 0 ]; then
-    pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
+    (
+        install_packages_with_progress "cups cups-filters cups-pk-helper gutenprint system-config-printer"
+    ) | dialog --title "Installing Printer Packages" --gauge "Installing printer-related packages..." 10 50 0
+
     sysrc cupsd_enable="YES"
     sysrc cups_browsed_enable="YES"
     sysrc avahi_daemon_enable="YES"
@@ -44,23 +62,25 @@ if [ $resp -eq 0 ]; then
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
 
-    dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
-        1 "Letter" \
-        2 "A4" 2> /tmp/papersize_resp
+    selected_option=$(display_menu "Paper Size" "Select paper size:" "1" "Letter" "2" "A4")
 
-    papersize_resp=$(cat /tmp/papersize_resp)
-
-    if [ "$papersize_resp" = 1 ]; then
-        pkg install -y papersize-default-letter
-    elif [ "$papersize_resp" = 2 ]; then
-        pkg install -y papersize-default-a4
+    if [ "$selected_option" = 1 ]; then
+        (
+            install_packages_with_progress "papersize-default-letter"
+        ) | dialog --title "Installing Letter Paper Size" --gauge "Installing papersize-default-letter..." 10 50 0
+    elif [ "$selected_option" = 2 ]; then
+        (
+            install_packages_with_progress "papersize-default-a4"
+        ) | dialog --title "Installing A4 Paper Size" --gauge "Installing papersize-default-a4..." 10 50 0
     fi
 
     dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
     hp_resp=$?
 
     if [ $hp_resp -eq 0 ]; then
-        pkg install -y hplip
+        (
+            install_packages_with_progress "hplip"
+        ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
     fi
 fi
 
@@ -130,30 +150,47 @@ sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER=`sysctl -n hw.ncpu`/g /etc/make.c
 git clone https://git.FreeBSD.org/ports.git /usr/ports
 
 # Printer support.
-dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
-resp=$?
+# Function to install printer-related ports.
+    install_printer_ports() {
+        sed -i '' '13s/$/ CUPS/' /etc/make.conf
+        echo "" >> /etc/make.conf
 
-if [ $resp -eq 0 ]; then
-    sed -i '' '13s/$/ CUPS/' /etc/make.conf
-    echo "" >> /etc/make.conf
+        dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
 
-    dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
-    sleep 2
+        ports_to_install=("print/cups" "print/cups-filters" "print/cups-pk-helper" "print/gutenprint" "print/system-config-printer")
 
-    dialog --title "Installing CUPS" --infobox "Installing CUPS..." 5 40
-    cd /usr/ports/print/cups && make install clean
+        for port in "${ports_to_install[@]}"; do
+            port_name=$(basename "$port")
+            (
+                dialog --title "Installing $port_name" --gauge "Installing $port_name..." 5 40
+                cd /usr/ports/$port && make install clean
+                echo "100"
+            ) | dialog --title "Installing $port_name" --gauge "Installing $port_name..." 10 50 0
+            result=$?
+            if [ $result -ne 0 ]; then
+                dialog --title "Error" --msgbox "An error occurred during $port_name installation." 10 40
+                exit 1
+            fi
+        done
+    }
 
-    dialog --title "Installing Cups Filters" --infobox "Installing cups-filters..." 5 40
-    cd /usr/ports/print/cups-filters && make install clean
+    # Printer support with progress bar.
+    dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
+    resp=$?
 
-    dialog --title "Installing CUPS PK Helper" --infobox "Installing cups-pk-helper..." 5 40
-    cd /usr/ports/print/cups-pk-helper && make install clean
-
-    dialog --title "Installing Gutenprint" --infobox "Installing gutenprint..." 5 40
-    cd /usr/ports/print/gutenprint && make install clean
-
-    dialog --title "Installing System Config Printer" --infobox "Installing system-config-printer..." 5 40
-    cd /usr/ports/print/system-config-printer && make install clean
+    if [ $resp -eq 0 ]; then
+        (
+            install_printer_ports
+            echo "100"
+        ) | dialog --title "Printer Setup" --gauge "Setting up printer support..." 10 50 0
+        result=$?
+        if [ $result -ne 0 ]; then
+            dialog --title "Error" --msgbox "An error occurred during printer setup." 10 40
+            exit 1
+        else
+            dialog --title "Setup Complete" --msgbox "Printer support has been installed and configured." 10 40
+        fi
+    fi
 
     sysrc cupsd_enable="YES"
     sysrc cups_browsed_enable="YES"
@@ -163,28 +200,43 @@ if [ $resp -eq 0 ]; then
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
 
-    dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
+# Function to install a port with progress bar.
+install_port_with_progress() {
+    local port_name="$1"
+    local title="$2"
+    dialog --title "$title" --gauge "Installing $port_name..." 5 40
+    cd /usr/ports/print/"$port_name" && make install clean
+    echo "100"
+}
+
+# Paper Size Setup
+dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
         1 "Letter" \
         2 "A4" 2> /tmp/papersize_resp
 
-    papersize_resp=$(cat /tmp/papersize_resp)
+papersize_resp=$(cat /tmp/papersize_resp)
 
-    if [ "$papersize_resp" = 1 ]; then
-        dialog --title "Installing Letter Paper Size" --infobox "Installing papersize-default-letter..." 5 40
-        cd /usr/ports/print/papersize-default-letter && make install clean
-    elif [ "$papersize_resp" = 2 ]; then
-        dialog --title "Installing A4 Paper Size" --infobox "Installing papersize-default-a4..." 5 40
-        cd /usr/ports/print/papersize-default-a4 && make install clean
-    fi
+if [ "$papersize_resp" = 1 ]; then
+    (
+        install_port_with_progress "papersize-default-letter" "Installing Letter Paper Size"
+    ) | dialog --title "Installing Letter Paper Size" --gauge "Installing Letter Paper Size..." 10 50 0
+elif [ "$papersize_resp" = 2 ]; then
+    (
+        install_port_with_progress "papersize-default-a4" "Installing A4 Paper Size"
+    ) | dialog --title "Installing A4 Paper Size" --gauge "Installing A4 Paper Size..." 10 50 0
+fi
 
-    dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
-    hp_resp=$?
+# HP Printer Setup
+dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
+hp_resp=$?
 
-    if [ $hp_resp -eq 0 ]; then
-        dialog --title "Installing HPLIP" --infobox "Installing hplip..." 5 40
-        cd /usr/ports/print/hplip && make install clean
+if [ $hp_resp -eq 0 ]; then
+    (
         sed -i '' '24s/$/print_hplip_UNSET=X11/' /etc/make.conf
-    fi
+        dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 5 40
+        cd /usr/ports/print/hplip && make install clean
+        echo "100"
+    ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
 else
     sed -i '' '14s/$/ CUPS/' /etc/make.conf
 fi
@@ -257,13 +309,24 @@ clear
 clear
 
 # Install BSDstats.
+# Function to install a port with progress bar.
+install_port_with_progress() {
+    local port_name="$1"
+    local title="$2"
+    dialog --title "$title" --gauge "Installing $port_name..." 5 40
+    portmaster --no-confirm "$port_name"
+    echo "100"
+}
+
+# Install BSDstats
 dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
 resp=$?
 
 if [ $resp -eq 0 ]; then
-    dialog --title "Installing BSDstats" --infobox "Installing BSDstats..." 5 40
-    sleep 2
-    portmaster --no-confirm sysutils/bsdstats
+    (
+        install_port_with_progress "sysutils/bsdstats" "Installing BSDstats"
+    ) | dialog --title "Installing BSDstats" --gauge "Installing BSDstats..." 10 50 0
+
     sysrc bsdstats_enable="YES"
     echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
     fi

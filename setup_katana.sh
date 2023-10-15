@@ -38,11 +38,29 @@ echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
 echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 # Printer support.
+# Function to install packages with a progress bar.
+install_packages_with_progress() {
+    dialog --title "Installing Packages" --gauge "Installing $1..." 5 40
+    pkg install -y "$1"
+    echo "100"
+}
+
+# Function to display a menu and return the selected option.
+display_menu() {
+    dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
+    menu_resp=$(cat /tmp/menu_resp)
+    echo "$menu_resp"
+}
+
+# Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
 if [ $resp -eq 0 ]; then
-    pkg install -y cups cups-filters cups-pk-helper gutenprint system-config-printer
+    (
+        install_packages_with_progress "cups cups-filters cups-pk-helper gutenprint system-config-printer"
+    ) | dialog --title "Installing Printer Packages" --gauge "Installing printer-related packages..." 10 50 0
+
     sysrc cupsd_enable="YES"
     sysrc cups_browsed_enable="YES"
     sysrc avahi_daemon_enable="YES"
@@ -50,23 +68,25 @@ if [ $resp -eq 0 ]; then
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
 
-    dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
-        1 "Letter" \
-        2 "A4" 2> /tmp/papersize_resp
+    selected_option=$(display_menu "Paper Size" "Select paper size:" "1" "Letter" "2" "A4")
 
-    papersize_resp=$(cat /tmp/papersize_resp)
-
-    if [ "$papersize_resp" = 1 ]; then
-        pkg install -y papersize-default-letter
-    elif [ "$papersize_resp" = 2 ]; then
-        pkg install -y papersize-default-a4
+    if [ "$selected_option" = 1 ]; then
+        (
+            install_packages_with_progress "papersize-default-letter"
+        ) | dialog --title "Installing Letter Paper Size" --gauge "Installing papersize-default-letter..." 10 50 0
+    elif [ "$selected_option" = 2 ]; then
+        (
+            install_packages_with_progress "papersize-default-a4"
+        ) | dialog --title "Installing A4 Paper Size" --gauge "Installing papersize-default-a4..." 10 50 0
     fi
 
     dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
     hp_resp=$?
 
     if [ $hp_resp -eq 0 ]; then
-        pkg install -y hplip
+        (
+            install_packages_with_progress "hplip"
+        ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
     fi
 fi
 
