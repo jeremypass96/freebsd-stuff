@@ -82,6 +82,10 @@ if [ $resp -eq 0 ]; then
             install_packages_with_progress "hplip"
         ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
     fi
+
+    # Add the final dialog to inform the user that the setup is complete.
+    dialog --title "Setup Complete" --infobox "Printer support has been installed and configured." 5 40
+    sleep 3
 fi
 
 # Install packages.
@@ -100,7 +104,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-dialog --title "Installation Complete" --msgbox "Packages have been installed." 10 40
+dialog --title "Installation Complete" --infobox "Packages have been installed." 5 40
+sleep 3
 ####################
 
 clear
@@ -133,7 +138,8 @@ clear
             dialog --title "Error" --msgbox "An error occurred during BSDstats installation." 10 40
             exit 1
         else
-            dialog --title "Installation Complete" --msgbox "BSDstats has been installed and enabled." 10 40
+            dialog --title "Installation Complete" --infobox "BSDstats has been installed and enabled." 5 40
+            sleep 3
         fi
     fi
 fi
@@ -196,7 +202,8 @@ clear
             dialog --title "Error" --msgbox "An error occurred during printer setup." 10 40
             exit 1
         else
-            dialog --title "Setup Complete" --msgbox "Printer support has been installed and configured." 10 40
+            dialog --title "Setup Complete" --infobox "Printer support has been installed and configured." 5 40
+            sleep 3
         fi
     fi
 
