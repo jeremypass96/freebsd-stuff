@@ -136,8 +136,6 @@ clear
             sleep 3
         fi
     fi
-fi
-fi
 
 if [ "$resp" = ports ]; then
 
