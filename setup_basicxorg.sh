@@ -65,7 +65,23 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
+####################
+# Create a list of packages to install.
+packages_to_install="bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts"
+
+# Use dialog to create a progress bar for package installation.
+dialog --title "Package Installation" --gauge "Installing packages..." 10 50 < <(
+    pkg install -y $packages_to_install
+)
+
+# Check if any errors occurred during the installation.
+if [ $? -ne 0 ]; then
+    dialog --title "Error" --msgbox "An error occurred while installing packages." 10 40
+    exit 1
+fi
+
+dialog --title "Installation Complete" --msgbox "Packages have been installed." 10 40
+####################
 
 clear
 
@@ -76,15 +92,29 @@ clear
 ./software_dialog_pkgs.sh
 
 # Install BSDstats.
-dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
-resp=$?
+# Function to install BSDstats and enable it.
+    install_bsdstats() {
+        pkg install -y bsdstats
+        sysrc bsdstats_enable="YES"
+        echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+    }
 
-if [ $resp -eq 0 ]; then
-    dialog --infobox "Installing BSDstats..." 5 40
-    sleep 2
-    pkg install -y bsdstats
-    sysrc bsdstats_enable="YES"
-    echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+    # Install BSDstats with a progress bar.
+    dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
+    resp=$?
+
+    if [ $resp -eq 0 ]; then
+        (
+            install_bsdstats
+            echo "100"
+        ) | dialog --title "BSDstats Installation" --gauge "Installing BSDstats..." 10 50 0
+        result=$?
+        if [ $result -ne 0 ]; then
+            dialog --title "Error" --msgbox "An error occurred during BSDstats installation." 10 40
+            exit 1
+        else
+            dialog --title "Installation Complete" --msgbox "BSDstats has been installed and enabled." 10 40
+        fi
     fi
 fi
 
