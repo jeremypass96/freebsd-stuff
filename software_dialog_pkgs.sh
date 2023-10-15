@@ -64,20 +64,13 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-    # Count the number of packages to be installed
-    num_packages=$(echo "$selected_packages" | tr -s ' ' '\n' | wc -l)
+    # Display a progress message while installing packages
+    dialog --title "Installation Progress" --infobox "Installing selected software packages..." 5 40
 
-    # Display the progress bar
-    (
-        # Initialize the progress bar
-        installed_packages=0
-        for package in $selected_packages; do
-            pkg install -y "$package"  # Install the package
-            installed_packages=$(expr $installed_packages + 1)  # Increment the counter
-            progress=$(expr $installed_packages \* 100 / $num_packages)  # Calculate the progress percentage
-            echo "$progress"  # Output progress
-        done
-    ) | dialog --title "Installation Progress" --gauge "Installing software..." 7 50
+    # Install the selected packages
+    for package in $selected_packages; do
+        pkg install -y "$package"
+    done
 
     # Execute post-install commands for specific packages
     for package in $selected_packages; do
@@ -106,7 +99,7 @@ if [ -n "$selected_descriptions" ]; then
         esac
     done
 
-    # Close the progress bar
+    # Close the progress message
     dialog --infobox "Installation complete!" 5 40
     sleep 2
 

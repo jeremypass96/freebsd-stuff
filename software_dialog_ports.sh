@@ -64,20 +64,13 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-    # Count the number of ports to be installed
-    num_ports=$(echo "$selected_ports" | tr -s ' ' '\n' | wc -l)
+    # Display a progress message while installing ports
+    dialog --title "Port Installation Progress" --infobox "Installing selected ports..." 5 40
 
-    # Display the progress bar
-    (
-        # Initialize the progress bar
-        installed_ports=0
-        for port in $selected_ports; do
-            portmaster -ad --no-confirm "$port"  # Install the port
-            installed_ports=$(expr $installed_ports + 1)  # Increment the counter
-            progress=$(expr $installed_ports \* 100 / $num_ports)  # Calculate the progress percentage
-            echo "$progress"  # Output progress
-        done
-    ) | dialog --title "Port Installation Progress" --gauge "Installing ports..." 7 50
+    # Install the selected ports
+    for port in $selected_ports; do
+        portmaster -ad --no-confirm "$port"
+    done
 
     # Execute post-install commands for specific ports
     for port in $selected_ports; do
@@ -106,7 +99,7 @@ if [ -n "$selected_descriptions" ]; then
         esac
     done
 
-    # Close the progress bar
+    # Close the progress message
     dialog --infobox "Installation complete!" 5 40
     sleep 2
 

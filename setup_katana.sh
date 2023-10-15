@@ -38,11 +38,9 @@ echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
 echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
 
 # Printer support.
-# Function to install packages with a progress bar.
+# Function to install packages with a progress message.
 install_packages_with_progress() {
-    dialog --title "Installing Packages" --gauge "Installing $1..." 5 40
     pkg install -y "$1"
-    echo "100"
 }
 
 # Function to display a menu and return the selected option.
@@ -57,9 +55,7 @@ dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
 if [ $resp -eq 0 ]; then
-    (
-        install_packages_with_progress "cups cups-filters cups-pk-helper gutenprint system-config-printer"
-    ) | dialog --title "Installing Printer Packages" --gauge "Installing printer-related packages..." 10 50 0
+    install_packages_with_progress "cups cups-filters cups-pk-helper gutenprint system-config-printer"
 
     sysrc cupsd_enable="YES"
     sysrc cups_browsed_enable="YES"
@@ -71,22 +67,16 @@ if [ $resp -eq 0 ]; then
     selected_option=$(display_menu "Paper Size" "Select paper size:" "1" "Letter" "2" "A4")
 
     if [ "$selected_option" = 1 ]; then
-        (
-            install_packages_with_progress "papersize-default-letter"
-        ) | dialog --title "Installing Letter Paper Size" --gauge "Installing papersize-default-letter..." 10 50 0
+        install_packages_with_progress "papersize-default-letter"
     elif [ "$selected_option" = 2 ]; then
-        (
-            install_packages_with_progress "papersize-default-a4"
-        ) | dialog --title "Installing A4 Paper Size" --gauge "Installing papersize-default-a4..." 10 50 0
+        install_packages_with_progress "papersize-default-a4"
     fi
 
     dialog --title "HP Printer" --yesno "Do you own an HP printer?" 8 40
     hp_resp=$?
 
     if [ $hp_resp -eq 0 ]; then
-        (
-            install_packages_with_progress "hplip"
-        ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
+        install_packages_with_progress "hplip"
     fi
 
     # Add the final dialog to inform the user that the setup is complete.
