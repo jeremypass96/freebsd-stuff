@@ -94,9 +94,7 @@ fi
 packages_to_install="bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum-qt5"
 
 # Use dialog to create a progress bar for package installation.
-dialog --title "Package Installation" --gauge "Installing packages..." 10 50 < <(
-    pkg install -y $packages_to_install
-)
+dialog --title "Package Installation" --gauge "Installing packages..." 10 50 < <(pkg install -y $packages_to_install)
 
 # Check if any errors occurred during the installation.
 if [ $? -ne 0 ]; then
