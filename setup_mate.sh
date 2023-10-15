@@ -90,11 +90,21 @@ fi
 
 # Install packages.
 ####################
-# Create a list of packages to install.
-packages_to_install="bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts"
+# Display the progress bar
+(
+    # Create a list of packages to install.
+    selected_packages="bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts"
+    num_packages=$(echo "$selected_packages" | wc -w)
+    installed_packages=0
 
-# Use dialog to create a progress bar for package installation.
-dialog --title "Package Installation" --gauge "Installing packages..." 10 50 < <(pkg install -y $packages_to_install)
+    # Loop through the selected packages and install them
+    for package in $selected_packages; do
+        pkg install -y "$package"  # Install the package
+        ((installed_packages++))  # Increment the counter
+        progress=$((installed_packages * 100 / num_packages))  # Calculate the progress percentage
+        echo "$progress"  # Output progress
+    done
+) | dialog --title "Installation Progress" --gauge "Installing software..." 7 50
 
 # Check if any errors occurred during the installation.
 if [ $? -ne 0 ]; then
