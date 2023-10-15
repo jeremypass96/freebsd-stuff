@@ -163,6 +163,15 @@ git clone https://git.FreeBSD.org/ports.git /usr/ports
 clear
 
 # Printer support.
+# Function to install a port with progress bar.
+install_port_with_progress() {
+    local port_name="$1"
+    local title="$2"
+    dialog --title "$title" --gauge "Installing $port_name..." 5 40
+    cd /usr/ports/print/"$port_name" && make install clean
+    echo "100"
+}
+
 # Function to install printer-related ports.
 install_printer_ports() {
     sed -i '' '13s/$/ CUPS/' /etc/make.conf
@@ -170,9 +179,9 @@ install_printer_ports() {
 
     dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
 
-    ports_to_install=("print/cups" "print/cups-filters" "print/cups-pk-helper" "print/gutenprint" "print/system-config-printer")
+    ports_to_install="print/cups print/cups-filters print/cups-pk-helper print/gutenprint print/system-config-printer"
 
-    for port in "${ports_to_install[@]}"; do
+    for port in $ports_to_install; do
         port_name=$(basename "$port")
         (
             dialog --title "Installing $port_name" --gauge "Installing $port_name..." 5 40
@@ -187,7 +196,7 @@ install_printer_ports() {
     done
 }
 
-# Printer support with progress bar.
+    # Printer support with progress bar.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
@@ -213,15 +222,6 @@ fi
 
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
-
-# Function to install a port with progress bar.
-install_port_with_progress() {
-    local port_name="$1"
-    local title="$2"
-    dialog --title "$title" --gauge "Installing $port_name..." 5 40
-    cd /usr/ports/print/"$port_name" && make install clean
-    echo "100"
-}
 
 # Paper Size Setup
 dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \

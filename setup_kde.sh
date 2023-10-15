@@ -172,57 +172,6 @@ git clone https://git.FreeBSD.org/ports.git /usr/ports
 clear
 
 # Printer support.
-# Function to install printer-related ports.
-    install_printer_ports() {
-        sed -i '' '13s/$/ CUPS/' /etc/make.conf
-        echo "" >> /etc/make.conf
-
-        dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
-
-        ports_to_install=("print/cups" "print/cups-filters" "print/cups-pk-helper" "print/gutenprint" "print/system-config-printer")
-
-        for port in "${ports_to_install[@]}"; do
-            port_name=$(basename "$port")
-            (
-                dialog --title "Installing $port_name" --gauge "Installing $port_name..." 5 40
-                cd /usr/ports/$port && make install clean
-                echo "100"
-            ) | dialog --title "Installing $port_name" --gauge "Installing $port_name..." 10 50 0
-            result=$?
-            if [ $result -ne 0 ]; then
-                dialog --title "Error" --msgbox "An error occurred during $port_name installation." 10 40
-                exit 1
-            fi
-        done
-    }
-
-    # Printer support with progress bar.
-    dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
-    resp=$?
-
-    if [ $resp -eq 0 ]; then
-        (
-            install_printer_ports
-            echo "100"
-        ) | dialog --title "Printer Setup" --gauge "Setting up printer support..." 10 50 0
-        result=$?
-        if [ $result -ne 0 ]; then
-            dialog --title "Error" --msgbox "An error occurred during printer setup." 10 40
-            exit 1
-        else
-            dialog --title "Setup Complete" --infobox "Printer support has been installed and configured." 5 40
-            sleep 3
-        fi
-    fi
-
-    sysrc cupsd_enable="YES"
-    sysrc cups_browsed_enable="YES"
-    sysrc avahi_daemon_enable="YES"
-    sysrc avahi_dnsconfd_enable="YES"
-
-    sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
-    sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
-
 # Function to install a port with progress bar.
 install_port_with_progress() {
     local port_name="$1"
@@ -231,6 +180,57 @@ install_port_with_progress() {
     cd /usr/ports/print/"$port_name" && make install clean
     echo "100"
 }
+
+# Function to install printer-related ports.
+install_printer_ports() {
+    sed -i '' '13s/$/ CUPS/' /etc/make.conf
+    echo "" >> /etc/make.conf
+
+    dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
+
+    ports_to_install="print/cups print/cups-filters print/cups-pk-helper print/gutenprint print/system-config-printer"
+
+    for port in $ports_to_install; do
+        port_name=$(basename "$port")
+        (
+            dialog --title "Installing $port_name" --gauge "Installing $port_name..." 5 40
+            cd /usr/ports/$port && make install clean
+            echo "100"
+        ) | dialog --title "Installing $port_name" --gauge "Installing $port_name..." 10 50 0
+        result=$?
+        if [ $result -ne 0 ]; then
+            dialog --title "Error" --msgbox "An error occurred during $port_name installation." 10 40
+            exit 1
+        fi
+    done
+}
+
+    # Printer support with progress bar.
+dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
+resp=$?
+
+if [ $resp -eq 0 ]; then
+    (
+        install_printer_ports
+        echo "100"
+    ) | dialog --title "Printer Setup" --gauge "Setting up printer support..." 10 50 0
+    result=$?
+    if [ $result -ne 0 ]; then
+        dialog --title "Error" --msgbox "An error occurred during printer setup." 10 40
+        exit 1
+    else
+        dialog --title "Setup Complete" --infobox "Printer support has been installed and configured." 5 40
+        sleep 3
+    fi
+fi
+
+    sysrc cupsd_enable="YES"
+    sysrc cups_browsed_enable="YES"
+    sysrc avahi_daemon_enable="YES"
+    sysrc avahi_dnsconfd_enable="YES"
+
+    sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
+    sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
 
 # Paper Size Setup
 dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
