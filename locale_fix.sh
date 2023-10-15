@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Display a dialog box explaining the purpose of the script
-dialog --title "Locale Configuration" --msgbox "This script is for applying the correct locale for your system." 10 30
+dialog --title "Locale Configuration" --msgbox "This script is for applying the correct locale for your system." 8 30
 
 locale=$(dialog --title "Select Locale" --menu "Please select your desired locale:" 25 50 16 \
     "1" "Afrikaans (South Africa)" \
@@ -77,7 +77,7 @@ locale=$(dialog --title "Select Locale" --menu "Please select your desired local
     3>&1 1>&2 2>&3)
 # Check if the user canceled the selection
 if [ $? -ne 0 ]; then
-    dialog --title "Locale Configuration" --msgbox "No locale selected. Exiting." 10 50
+    dialog --title "Locale Configuration" --msgbox "No locale selected. Exiting." 7 30
     exit 1
 fi
 
@@ -157,7 +157,7 @@ esac
 
 # Check if the user canceled the selection
 if [ $? -ne 0 ]; then
-    dialog --title "Locale Configuration" --msgbox "No locale selected. Exiting." 10 30
+    dialog --title "Locale Configuration" --msgbox "No locale selected. Exiting." 7 30
     exit 1
 fi
 

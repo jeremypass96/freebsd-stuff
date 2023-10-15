@@ -2,7 +2,7 @@
 
 # Checking if the script is running as root.
 if [ "$(id -u)" -ne 0 ]; then
-    dialog --title "Permission Denied" --msgbox "Please run this script as root via 'sudo' or 'su'. Thanks." 10 40
+    dialog --title "Permission Denied" --msgbox "Please run this script as root via 'sudo' or 'su'. Thanks." 5 65
     exit 1
 fi
 

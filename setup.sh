@@ -2,7 +2,7 @@
 
 # Checking to see if we're running as root.
 if [ $(id -u) -ne 0 ]; then
-  dialog --title "Root Privileges Required" --msgbox "Please run this setup script as root via 'su'! Thanks." 10 50
+  dialog --title "Root Privileges Required" --msgbox "Please run this setup script as root via 'su'! Thanks." 5 60
   exit
 fi
 
