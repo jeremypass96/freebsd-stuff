@@ -137,6 +137,7 @@ clear
         fi
     fi
 fi
+fi
 
 if [ "$resp" = ports ]; then
 
