@@ -85,7 +85,7 @@ if [ -n "$selected_descriptions" ]; then
         progress=$((installed_ports * 100 / num_ports))
 
         # Update the progress bar
-        echo "$progress"
+        echo "$progress" | dialog --title "Installation Progress" --gauge "Installing ports..." 7 50
     done
 
     # Execute post-install commands for specific ports
