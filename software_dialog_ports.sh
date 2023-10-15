@@ -73,8 +73,8 @@ if [ -n "$selected_descriptions" ]; then
         installed_ports=0
         for port in $selected_ports; do
             portmaster -ad --no-confirm "$port"  # Install the port
-            ((installed_ports++))  # Increment the counter
-            progress=$((installed_ports * 100 / num_ports))  # Calculate the progress percentage
+            installed_ports=$(expr $installed_ports + 1)  # Increment the counter
+            progress=$(expr $installed_ports \* 100 / $num_ports)  # Calculate the progress percentage
             echo "$progress"  # Output progress
         done
     ) | dialog --title "Port Installation Progress" --gauge "Installing ports..." 7 50

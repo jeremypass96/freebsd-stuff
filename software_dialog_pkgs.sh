@@ -73,8 +73,8 @@ if [ -n "$selected_descriptions" ]; then
         installed_packages=0
         for package in $selected_packages; do
             pkg install -y "$package"  # Install the package
-            ((installed_packages++))  # Increment the counter
-            progress=$((installed_packages * 100 / num_packages))  # Calculate the progress percentage
+            installed_packages=$(expr $installed_packages + 1)  # Increment the counter
+            progress=$(expr $installed_packages \* 100 / $num_packages)  # Calculate the progress percentage
             echo "$progress"  # Output progress
         done
     ) | dialog --title "Installation Progress" --gauge "Installing software..." 7 50
