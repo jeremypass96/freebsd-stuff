@@ -64,9 +64,6 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-    # Display a progress message while installing packages
-    dialog --title "Installation Progress" --infobox "Installing selected software packages..." 5 40
-
     # Install the selected packages
     for package in $selected_packages; do
         pkg install -y "$package"

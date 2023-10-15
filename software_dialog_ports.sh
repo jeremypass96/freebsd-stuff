@@ -64,9 +64,6 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-    # Display a progress message while installing ports
-    dialog --title "Port Installation Progress" --infobox "Installing selected ports..." 5 40
-
     # Install the selected ports
     for port in $selected_ports; do
         portmaster -ad --no-confirm "$port"
