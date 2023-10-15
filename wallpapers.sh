@@ -30,6 +30,7 @@ wallpaper_urls=(
 
 # Destination directory for wallpapers.
 wallpaper_dir="/usr/local/share/backgrounds"
+mkdir -p $wallpaper_dir
 
 # Initialize a counter for the progress bar.
 count=0
@@ -76,7 +77,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Fix permissions and copy the specified wallpapers to /usr/share/wallpapers.
+# Fix permissions and copy the specified wallpapers to /usr/local/share/backgrounds.
 chmod og=r $HOME/wallpapers-freebsd/*.*
 cp "$HOME/wallpapers-freebsd/freebsd-think-correctly-black.png" "$wallpaper_dir"
 cp "$HOME/wallpapers-freebsd/freebsd-x-black-small.png" "$wallpaper_dir"
