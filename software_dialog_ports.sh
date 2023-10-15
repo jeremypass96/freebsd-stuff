@@ -64,13 +64,34 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-    # Use portmaster to install selected ports with --no-confirm
-    portmaster -ad --no-confirm $selected_ports
+    # Count the number of ports to be installed
+    num_ports=$(echo "$selected_ports" | tr -s ' ' '\n' | wc -l)
+
+    # Initialize the progress bar
+    dialog --title "Port Installation Progress" --gauge "Installing ports..." 7 50 0
+
+    # Counter for installed ports
+    installed_ports=0
+
+    # Install the selected ports and update the progress bar
+    for port in $selected_ports; do
+        # Install the port
+        portmaster -ad --no-confirm "$port"
+
+        # Increment the counter
+        ((installed_ports++))
+
+        # Calculate the progress percentage
+        progress=$((installed_ports * 100 / num_ports))
+
+        # Update the progress bar
+        echo "$progress"
+    done
 
     # Execute post-install commands for specific ports
-    for package in $selected_packages; do
-        case "$package" in
-        "virtualBox-ose")
+    for port in $selected_ports; do
+        case "$port" in
+        "emulators/virtualbox-ose")
             # Post-install commands for VirtualBox.
             echo "Running post-install commands for VirtualBox..."
             sysrc vboxnet_enable="YES"
@@ -82,17 +103,25 @@ if [ -n "$selected_descriptions" ]; then
             echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
             pw group mod vboxusers -m $USER
             ;;
-        "wine")
+        "emulators/wine")
             # Post-install commands for Wine.
             echo "Running post-install commands for Wine..."
             echo "# Wine fix." >> /boot/loader.conf
             echo machdep.max_ldt_segment=2048 >> /boot/loader.conf
             ;;
         *)
-            echo "No post-install commands for package: $package"
+            echo "No post-install commands for port: $port"
             ;;
         esac
     done
+
+    # Close the progress bar
+    dialog --infobox "Installation complete!" 5 40
+    sleep 2
+
+    # Clean up
+    dialog --clear
+
 else
     echo "No ports selected. Exiting."
 fi
