@@ -60,33 +60,24 @@ if [ -n "$selected_descriptions" ]; then
     for description in $selected_descriptions; do
         port=$(map_descriptions_to_ports "$description")
         if [ -n "$port" ]; then
-        selected_ports="$selected_ports $port"
+            selected_ports="$selected_ports $port"
         fi
     done
 
     # Count the number of ports to be installed
     num_ports=$(echo "$selected_ports" | tr -s ' ' '\n' | wc -l)
 
-    # Initialize the progress bar
-    dialog --title "Port Installation Progress" --gauge "Installing ports..." 7 50 0
-
-    # Counter for installed ports
-    installed_ports=0
-
-    # Install the selected ports and update the progress bar
-    for port in $selected_ports; do
-        # Install the port
-        portmaster -ad --no-confirm "$port"
-
-        # Increment the counter
-        ((installed_ports++))
-
-        # Calculate the progress percentage
-        progress=$((installed_ports * 100 / num_ports))
-
-        # Update the progress bar
-        echo "$progress"
-    done
+    # Display the progress bar
+    (
+        # Initialize the progress bar
+        installed_ports=0
+        for port in $selected_ports; do
+            portmaster -ad --no-confirm "$port"  # Install the port
+            ((installed_ports++))  # Increment the counter
+            progress=$((installed_ports * 100 / num_ports))  # Calculate the progress percentage
+            echo "$progress"  # Output progress
+        done
+    ) | dialog --title "Port Installation Progress" --gauge "Installing ports..." 7 50
 
     # Execute post-install commands for specific ports
     for port in $selected_ports; do
