@@ -60,7 +60,7 @@ if [ -n "$selected_descriptions" ]; then
     for description in $selected_descriptions; do
         port=$(map_descriptions_to_ports "$description")
         if [ -n "$port" ]; then
-            selected_ports="$selected_ports $port"
+        selected_ports="$selected_ports $port"
         fi
     done
 
@@ -85,7 +85,7 @@ if [ -n "$selected_descriptions" ]; then
         progress=$((installed_ports * 100 / num_ports))
 
         # Update the progress bar
-        echo "$progress" | dialog --title "Installation Progress" --gauge "Installing ports..." 7 50
+        echo "$progress"
     done
 
     # Execute post-install commands for specific ports
