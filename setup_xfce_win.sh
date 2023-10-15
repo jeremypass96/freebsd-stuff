@@ -53,11 +53,16 @@ if [ $resp -eq 0 ]; then
     sed -i '' 's/JobPrivateAccess/#JobPrivateAccess/g' /usr/local/etc/cups/cupsd.conf
     sed -i '' 's/JobPrivateValues/#JobPrivateValues/g' /usr/local/etc/cups/cupsd.conf
 
-    selected_option=$(display_menu "Paper Size" "Select paper size:" "1" "Letter" "2" "A4")
+    # Paper Size Setup
+    dialog --title "Paper Size" --menu "Select paper size:" 12 40 2 \
+        1 "Letter" \
+        2 "A4" 2> /tmp/papersize_resp
 
-    if [ "$selected_option" = 1 ]; then
+    papersize_resp=$(cat /tmp/papersize_resp)
+
+    if [ "$papersize_resp" = 1 ]; then
         pkg install -y papersize-default-letter
-    elif [ "$selected_option" = 2 ]; then
+    elif [ "$papersize_resp" = 2 ]; then
         pkg install -y papersize-default-a4
     fi
 
@@ -76,27 +81,7 @@ fi
 clear
 
 # Install packages.
-####################
-####################
-# Display the progress bar
-(
-    # Create a list of packages to install.
-    selected_packages="bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts"
-    num_packages=$(echo "$selected_packages" | wc -w)
-    installed_packages=0
-
-    # Loop through the selected packages and install them
-    for package in $selected_packages; do
-        pkg install -y "$package"  # Install the package
-        installed_packages=$(expr $installed_packages + 1)  # Increment the counter
-        progress=$(expr $installed_packages \* 100 / $num_packages)  # Calculate the progress percentage
-        echo "$progress"  # Output progress
-    done
-) | dialog --title "Installation Progress" --gauge "Installing software..." 7 50
-
-dialog --title "Installation Complete" --infobox "Packages have been installed." 5 40
-sleep 3
-####################
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
 
 clear
 
