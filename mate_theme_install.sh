@@ -9,7 +9,7 @@ run_gsettings() {
 
 # Set up MATE settings
 mate_settings=(
-    "gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/Wood_Trail.jpg"
+    "gsettings set org.mate.background picture-options zoom && gsettings set org.mate.background picture-filename /usr/local/share/backgrounds/freebsd-think-correctly-black.png"
     "gsettings set org.mate.Marco.general titlebar-font 'Poppins Bold 10'"
     "gsettings set org.mate.Marco.general theme 'Skeuos-Blue-Dark'"
     "gsettings set org.mate.Marco.general action-middle-click-titlebar none"
