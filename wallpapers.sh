@@ -26,6 +26,7 @@ wallpaper_urls=(
     "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Field_Of_Lightning.jpg"
     "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Lake_View.jpg"
     "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Mountain_View.jpg"
+    "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Wood_Trail.jpg"
 )
 
 # Destination directory for wallpapers.
