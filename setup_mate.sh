@@ -131,7 +131,7 @@ install_port_with_progress() {
 
 # Function to install printer-related ports.
 install_printer_ports() {
-    sed -i '' '13s/$/ CUPS/' /etc/make.conf
+    sed -i '' '16s/$/ CUPS/' /etc/make.conf
     echo "" >> /etc/make.conf
 
     dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
@@ -203,13 +203,13 @@ hp_resp=$?
 
 if [ $hp_resp -eq 0 ]; then
     (
-        sed -i '' '24s/$/print_hplip_UNSET=X11/' /etc/make.conf
+        sed -i '' '27s/$/print_hplip_UNSET=X11/' /etc/make.conf
         dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 5 40
         cd /usr/ports/print/hplip && make install clean
         echo "100"
     ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
 else
-    sed -i '' '14s/$/ CUPS/' /etc/make.conf
+    sed -i '' '17s/$/ CUPS/' /etc/make.conf
 fi
 
 clear
