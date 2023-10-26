@@ -132,7 +132,7 @@ clear
 install_port_with_progress() {
     local port_name="$1"
     local title="$2"
-    dialog --title "$title" --gauge "Installing $port_name..." 5 40
+    dialog --title "$title" --infobox "Installing $port_name..." 5 40
     cd /usr/ports/print/"$port_name" && make install clean
     echo "100"
 }
@@ -149,10 +149,10 @@ install_printer_ports() {
     for port in $ports_to_install; do
         port_name=$(basename "$port")
         (
-            dialog --title "Installing $port_name" --gauge "Installing $port_name..." 5 40
+            dialog --title "Installing $port_name" --infobox "Installing $port_name..." 5 40
             cd /usr/ports/$port && make install clean
             echo "100"
-        ) | dialog --title "Installing $port_name" --gauge "Installing $port_name..." 10 50 0
+        ) | dialog --title "Installing $port_name" --infobox "Installing $port_name..." 10 50 0
         result=$?
         if [ $result -ne 0 ]; then
             dialog --title "Error" --msgbox "An error occurred during $port_name installation." 10 40
@@ -169,7 +169,7 @@ if [ $resp -eq 0 ]; then
     (
         install_printer_ports
         echo "100"
-    ) | dialog --title "Printer Setup" --gauge "Setting up printer support..." 10 50 0
+    ) | dialog --title "Printer Setup" --infobox "Setting up printer support..." 10 50 0
     result=$?
     if [ $result -ne 0 ]; then
         dialog --title "Error" --msgbox "An error occurred during printer setup." 10 40
@@ -198,11 +198,11 @@ papersize_resp=$(cat /tmp/papersize_resp)
 if [ "$papersize_resp" = 1 ]; then
     (
         install_port_with_progress "papersize-default-letter" "Installing Letter Paper Size"
-    ) | dialog --title "Installing Letter Paper Size" --gauge "Installing Letter Paper Size..." 10 50 0
+    ) | dialog --title "Installing Letter Paper Size" --infobox "Installing Letter Paper Size..." 10 50 0
 elif [ "$papersize_resp" = 2 ]; then
     (
         install_port_with_progress "papersize-default-a4" "Installing A4 Paper Size"
-    ) | dialog --title "Installing A4 Paper Size" --gauge "Installing A4 Paper Size..." 10 50 0
+    ) | dialog --title "Installing A4 Paper Size" --infobox "Installing A4 Paper Size..." 10 50 0
 fi
 
 # HP Printer Setup
@@ -212,10 +212,10 @@ hp_resp=$?
 if [ $hp_resp -eq 0 ]; then
     (
         sed -i '' '27s/$/print_hplip_UNSET=X11/' /etc/make.conf
-        dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 5 40
+        dialog --title "Installing HPLIP" --infobox "Installing HPLIP..." 5 40
         cd /usr/ports/print/hplip && make install clean
         echo "100"
-    ) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
+    ) | dialog --title "Installing HPLIP" --infobox "Installing HPLIP..." 10 50 0
 else
     sed -i '' '17s/$/ CUPS/' /etc/make.conf
 fi
@@ -293,7 +293,7 @@ cd /home/$USER/freebsd-setup-scripts
 install_port_with_progress() {
     local port_name="$1"
     local title="$2"
-    dialog --title "$title" --gauge "Installing $port_name..." 5 40
+    dialog --title "$title" --infobox "Installing $port_name..." 5 40
     portmaster --no-confirm "$port_name"
     echo "100"
 }
@@ -305,7 +305,7 @@ resp=$?
 if [ $resp -eq 0 ]; then
     (
         install_port_with_progress "sysutils/bsdstats" "Installing BSDstats"
-    ) | dialog --title "Installing BSDstats" --gauge "Installing BSDstats..." 10 50 0
+    ) | dialog --title "Installing BSDstats" --infobox "Installing BSDstats..." 10 50 0
 
     sysrc bsdstats_enable="YES"
     echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
