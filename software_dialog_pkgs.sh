@@ -50,7 +50,7 @@ if [ -n "$selected_descriptions" ]; then
             "Inkscape") echo "inkscape" ;;
             "Pinta") echo "pinta" ;;
             "Shotwell") echo "shotwell" ;;
-            "VirtualBox") echo "virtualBox-ose virtualbox-ose-kmod" ;;
+            "VirtualBox") echo "virtualbox-ose virtualbox-ose-kmod" ;;
             "Wine") echo "wine wine-mono wine-gecko" ;;
             *) echo "" ;;
         esac
@@ -72,7 +72,7 @@ if [ -n "$selected_descriptions" ]; then
     # Execute post-install commands for specific packages
     for package in $selected_packages; do
         case "$package" in
-        "virtualBox-ose")
+        "virtualbox-ose")
             # Post-install commands for VirtualBox.
             echo "Running post-install commands for VirtualBox..."
             sysrc vboxnet_enable="YES"
