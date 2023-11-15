@@ -189,8 +189,11 @@ xdg-user-dirs-update
 PAGER=cat freebsd-update fetch install
 
 # Set mixer levels.
-mixer vol 100
-mixer pcm 100
+mixer vol.volume=100
+mixer pcm.volume=100
+
+# Make "line in" the default recording source.
+mixer line.recsrc=+
 
 # Display final completion message
 dialog --title "Setup Complete" --msgbox "Post-install setup is complete. Your system is now configured." 5 70
