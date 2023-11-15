@@ -138,8 +138,8 @@ echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
 
 # Cleanup boot process/adjust ZFS options for desktop useage.
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
-sed -i '' s/"check_startmsgs \&& echo 'ELF ldconfig path:' \${_LDC}"/"check_startmsgs \&\& echo 'ELF ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
-sed -i '' s/"echo '32-bit compatibility ldconfig path:' \${_LDC}"/"echo '32-bit compatibility ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
+sed -i '' s/"startmsg 'ELF ldconfig path:' \${_LDC}"/"startmsg 'ELF ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
+sed -i '' s/"startmsg '32-bit compatibility ldconfig path:' \${_LDC}"/"startmsg '32-bit compatibility ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
 sed -i '' s/'ifconfig \${ifn}'/'ifconfig \${ifn} 1> \/dev\/null 2> \/dev\/null'/g /etc/rc.d/netif
 sed -i '' s/'rpc.umntall -k'/'rpc.umntall -k 2> \/dev\/null'/g /etc/rc.d/nfsclient
 sed -i '' s/'if \[ \${harvest_mask} -gt 0 ]; then'/'# if \[ \${harvest_mask} -gt 0 ]; then'/g /etc/rc.d/random
