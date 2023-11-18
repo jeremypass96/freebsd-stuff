@@ -10,9 +10,6 @@ fi
 cat << EOF >> /etc/sysctl.conf
 #########################
 
-# Disable terminal beep.
-kern.vt.enable_bell=0
-
 # Enable users to mount drives.
 vfs.usermount=1
 
