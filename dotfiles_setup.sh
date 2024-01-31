@@ -12,21 +12,21 @@ cd Dotfiles/
 
 # Export options to system and user profile files.
 for profile in /etc/profile /home/$USER/.profile /usr/share/skel/dot.profile; do
-    sed -i '' 's/EDITOR=vi/EDITOR=micro/g' "$profile"
-    echo "" >> "$profile"
-    echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> "$profile"
-    echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> "$profile"
-    echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> "$profile"
-    cat << EOF >> "$profile"
+    sed -i '' 's/EDITOR=vi/EDITOR=micro/g' $profile
+    echo "" >> $profile
+    echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> $profile
+    echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> $profile
+    echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> $profile
+    cat << EOF >> $profile
 # Generate bat cache.
-flag_file="$HOME/.bat_cache"
+flag_file=$HOME/.bat_cache
 
 # Check if the flag file exists
-if [ ! -f "$flag_file" ]; then
+if [ ! -f $flag_file ]; then
     # Run the command only if the flag file doesn't exist
     sudo -u $USER bat cache --build
     # Create the flag file to indicate that the command has been executed
-    touch "$flag_file"
+    touch $flag_file
 fi
 EOF
 done
@@ -79,10 +79,10 @@ elif [ "$resp" = 4 ]; then
     chosen_scheme="catppuccin-mocha.micro"
 fi
 
-cp -v "$chosen_scheme" /home/$USER/.config/micro/colorschemes
+cp -v $chosen_scheme /home/$USER/.config/micro/colorschemes
 chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
-cp -v "$chosen_scheme" /usr/share/skel/dot.config/micro/colorschemes
-cp -v "$chosen_scheme" /root/.config/micro/colorschemes
+cp -v $chosen_scheme /usr/share/skel/dot.config/micro/colorschemes
+cp -v $chosen_scheme /root/.config/micro/colorschemes
 
 cd && rm -rf micro
 
@@ -92,8 +92,10 @@ cd /home/$USER/freebsd-stuff
 chsh -s /usr/local/bin/zsh $USER
 
 # Get "zsh-autosuggestions" and "zsh-syntax-highlighting" Oh My Zsh plugins.
-git clone https://github.com/zsh-users/zsh-autosuggestions.git /usr/local/share/ohmyzsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/local/share/ohmyzsh/custom/plugins/zsh-syntax-highlighting
+ZSH_CUSTOM=/usr/local/share/oh-my-zsh/custom
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+unset ZSH_CUSTOM
 
 # Copy over lsd config.
 mkdir -p /home/$USER/.config/lsd
@@ -153,7 +155,7 @@ esac
 bat --generate-config-file
 
 # Modify the configuration settings for the root user.
-sed -i '' 's/#--theme="TwoDark"/--theme="'"$selected_theme"'"'/g "$HOME/.config/bat/config"
+sed -i '' 's/#--theme="TwoDark"/--theme="'"$selected_theme"'"'/g $HOME/.config/bat/config
 sed -i '' 's/#--italic-text=always/--italic-text=always'/g $HOME/.config/bat/config
 echo '--map-syntax "*.conf:INI"' >> $HOME/.config/bat/config
 echo '--map-syntax "config:INI"' >> $HOME/.config/bat/config
@@ -170,7 +172,7 @@ cp -v $HOME/.config/bat/config /home/$USER/.config/bat/config
 cd $HOME
 git clone https://github.com/catppuccin/bat.git
 cd bat
-sh -c 'mkdir -p "$(bat --config-dir)/themes"; cp *.tmTheme "$(bat --config-dir)/themes"; bat cache --build'
+sh -c 'mkdir -p $(bat --config-dir)/themes; cp *.tmTheme $(bat --config-dir)/themes; bat cache --build'
 
 # Copy themes to /etc/skel.
 sh -c 'mkdir -p /usr/share/skel/dot.config/bat/themes; cp *.tmTheme /usr/share/skel/dot.config/bat/themes'
