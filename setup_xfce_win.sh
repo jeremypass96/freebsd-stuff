@@ -20,10 +20,10 @@ read -p "Do you plan to install software via pkg (binary packages) or ports (Fre
 if [ "$resp" = pkg ]; then
 
 # Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update
-echo ""
+#mkdir -p /usr/local/etc/pkg/repos
+#sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
+#pkg update
+#echo ""
 
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf

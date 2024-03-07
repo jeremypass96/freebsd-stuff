@@ -17,8 +17,10 @@ read -p "Press the Enter key to continue..." resp
 clear
 
 # Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
+#mkdir -p /usr/local/etc/pkg/repos
+#sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
+#pkg update
+#echo ""
 
 # Add Katana desktop repo.
 cat << EOF > /usr/local/etc/pkg/repos/Katana.conf
