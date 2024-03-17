@@ -134,20 +134,20 @@ read -p "Enter the number of your choice: " theme_choice
 
 case $theme_choice in
     1)
-        selected_theme="Catppuccin-latte"
+        selected_theme="Catppuccin Latte"
         ;;
     2)
-        selected_theme="Catppuccin-frappe"
+        selected_theme="Catppuccin Frappe"
         ;;
     3)
-        selected_theme="Catppuccin-macchiato"
+        selected_theme="Catppuccin Macchiato"
         ;;
     4)
-        selected_theme="Catppuccin-mocha"
+        selected_theme="Catppuccin Mocha"
         ;;
     *)
         echo "Invalid choice. Defaulting to 'Mocha' theme."
-        selected_theme="Catppuccin-mocha"
+        selected_theme="Catppuccin Mocha"
         ;;
 esac
 
@@ -171,7 +171,7 @@ cp -v $HOME/.config/bat/config /home/$USER/.config/bat/config
 # Setup the Catppuccin theme for bat.
 cd $HOME
 git clone https://github.com/catppuccin/bat.git
-cd bat
+cd bat/themes
 sh -c 'mkdir -p $(bat --config-dir)/themes; cp *.tmTheme $(bat --config-dir)/themes; bat cache --build'
 
 # Copy themes to /etc/skel.
