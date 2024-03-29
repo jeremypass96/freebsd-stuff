@@ -55,37 +55,6 @@ mkdir -p /usr/share/skel/dot.config/micro
 cp -v config/micro/settings.json /usr/share/skel/dot.config/micro
 chown -R $USER:$USER /home/$USER/.config/micro
 
-# Install Catppuccin color schemes for micro.
-mkdir -p /home/$USER/.config/micro/colorschemes
-mkdir -p /usr/share/skel/dot.config/micro/colorschemes
-mkdir -p /root/.config/micro/colorschemes
-cd && git clone https://github.com/catppuccin/micro.git
-cd micro/src
-
-echo "Which Catppuccin colors do you want for micro?"
-echo "1.) Latte"
-echo "2.) Frappé"
-echo "3.) Macchiato"
-echo "4.) Mocha"
-read -p "-> " resp
-
-if [ "$resp" = 1 ]; then
-    chosen_scheme="catppuccin-latte.micro"
-elif [ "$resp" = 2 ]; then
-    chosen_scheme="catppuccin-frappe.micro"
-elif [ "$resp" = 3 ]; then
-    chosen_scheme="catppuccin-macchiato.micro"
-elif [ "$resp" = 4 ]; then
-    chosen_scheme="catppuccin-mocha.micro"
-fi
-
-cp -v $chosen_scheme /home/$USER/.config/micro/colorschemes
-chown -R $USER:$USER /home/$USER/.config/micro/colorschemes
-cp -v $chosen_scheme /usr/share/skel/dot.config/micro/colorschemes
-cp -v $chosen_scheme /root/.config/micro/colorschemes
-
-cd && rm -rf micro
-
 cd /home/$USER/freebsd-stuff
 
 # Change shell to zsh.
@@ -109,53 +78,13 @@ chown -R $USER:$USER /home/$USER/.config/lsd
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
 
-# Configure btop.
-mkdir -p /home/$USER/.config/btop/themes
-cd && git clone https://github.com/catppuccin/btop.git
-cd btop/themes && cp -v *.theme /home/$USER/.config/btop/themes/
-chown -R $USER:$USER /home/$USER/.config/btop/themes
-cd && rm -rf btop
-mkdir -p /home/$USER/.config/btop && cp -v /home/$USER/freebsd-stuff/Dotfiles/config/btop/btop.conf /home/$USER/.config/btop/btop.conf
-chown -R $USER:$USER /home/$USER/.config/btop
-mkdir -p /usr/share/skel/dot.config/btop
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/btop/btop.conf /usr/share/skel/dot.config/btop/btop.conf
-mkdir -p /root/.config/btop
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/btop/btop.conf /root/.config/btop/btop.conf
-
 # Configure bat, a nicer and prettier cat clone.
-##
-# Prompt the user to choose a theme
-echo "Select a theme for the 'bat' syntax highlighter:"
-echo "1.) Latte"
-echo "2.) Frappé"
-echo "3.) Macchiato"
-echo "4.) Mocha"
-read -p "Enter the number of your choice: " theme_choice
-
-case $theme_choice in
-    1)
-        selected_theme="Catppuccin Latte"
-        ;;
-    2)
-        selected_theme="Catppuccin Frappe"
-        ;;
-    3)
-        selected_theme="Catppuccin Macchiato"
-        ;;
-    4)
-        selected_theme="Catppuccin Mocha"
-        ;;
-    *)
-        echo "Invalid choice. Defaulting to 'Mocha' theme."
-        selected_theme="Catppuccin Mocha"
-        ;;
-esac
 
 # Generate initial configuration file for bat (this script is running as root, remember?)
 bat --generate-config-file
 
 # Modify the configuration settings for the root user.
-sed -i '' 's/#--theme="TwoDark"/--theme="'"$selected_theme"'"'/g $HOME/.config/bat/config
+sed -i '' 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g $HOME/.config/bat/config
 sed -i '' 's/#--italic-text=always/--italic-text=always'/g $HOME/.config/bat/config
 echo '--map-syntax "*.conf:INI"' >> $HOME/.config/bat/config
 echo '--map-syntax "config:INI"' >> $HOME/.config/bat/config
@@ -168,26 +97,12 @@ cp -v $HOME/.config/bat/config /usr/share/skel/dot.config/bat
 mkdir -p /home/$USER/.config/bat
 cp -v $HOME/.config/bat/config /home/$USER/.config/bat/config
 
-# Setup the Catppuccin theme for bat.
-cd $HOME
-git clone https://github.com/catppuccin/bat.git
-cd bat/themes
-sh -c 'mkdir -p $(bat --config-dir)/themes; cp *.tmTheme $(bat --config-dir)/themes; bat cache --build'
-
-# Copy themes to /etc/skel.
-sh -c 'mkdir -p /usr/share/skel/dot.config/bat/themes; cp *.tmTheme /usr/share/skel/dot.config/bat/themes'
-
 # Modify the configuration settings for the user.
-sed -i -E 's/#--theme="TwoDark"/--theme="'"$selected_theme"'"'/g "/home/$USER/.config/bat/config"
+sed -i -E 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g "/home/$USER/.config/bat/config"
 sed -i -E 's/#--italic-text=always/--italic-text=always'/g "/home/$USER/.config/bat/config"
 echo '--map-syntax "*.conf:INI"' >> /home/$USER/.config/bat/config
 echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
 chown -R $USER:$USER /home/$USER/.config/bat
 
-# Copy themes to user's home directory.
-sh -c 'mkdir -p /home/$USER/.config/bat/themes; cp *.tmTheme /home/$USER/.config/bat/themes; sudo -u $USER bat cache --build'
-chown -R $USER:$USER /home/$USER/.config/bat/themes
-
-echo "Bat syntax highlighter has been configured with the selected theme ($selected_theme) for both your user and root."
-rm -rf $HOME/bat
+echo "Bat syntax highlighter has been configured with the OneHalfDark theme for both your user and root."
 ##

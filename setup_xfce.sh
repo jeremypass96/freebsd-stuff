@@ -323,10 +323,7 @@ cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/x
 
 # Install Xfce Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
-fetch https://raw.githubusercontent.com/catppuccin/xfce4-terminal/main/src/catppuccin-frappe.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/catppuccin-frappe.theme
-fetch https://raw.githubusercontent.com/catppuccin/xfce4-terminal/main/src/catppuccin-latte.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/catppuccin-latte.theme
-fetch https://raw.githubusercontent.com/catppuccin/xfce4-terminal/main/src/catppuccin-macchiato.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/catppuccin-macchiato.theme
-fetch https://raw.githubusercontent.com/catppuccin/xfce4-terminal/main/src/catppuccin-mocha.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/catppuccin-mocha.theme
+fetch https://raw.githubusercontent.com/sonph/onehalf/master/xfce4-terminal/OneHalfDark.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules
