@@ -85,11 +85,7 @@ cp -v $HOME/.config/bat/config /usr/share/skel/dot.config/bat
 mkdir -p /home/$USER/.config/bat
 cp -v $HOME/.config/bat/config /home/$USER/.config/bat/config
 
-# Modify the configuration settings for the user.
-sed -i -E 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g "/home/$USER/.config/bat/config"
-sed -i -E 's/#--italic-text=always/--italic-text=always'/g "/home/$USER/.config/bat/config"
-echo '--map-syntax "*.conf:INI"' >> /home/$USER/.config/bat/config
-echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
+# Fix permission settings for your user.
 chown -R $USER:$USER /home/$USER/.config/bat
 
 echo "Bat syntax highlighter has been configured with the OneHalfDark theme for both your user and root."
