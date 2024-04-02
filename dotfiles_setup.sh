@@ -17,18 +17,6 @@ for profile in /etc/profile /home/$USER/.profile /usr/share/skel/dot.profile; do
     echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> $profile
     echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> $profile
     echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> $profile
-    cat << EOF >> $profile
-# Generate bat cache.
-flag_file=$HOME/.bat_cache
-
-# Check if the flag file exists
-if [ ! -f $flag_file ]; then
-    # Run the command only if the flag file doesn't exist
-    sudo -u $USER bat cache --build
-    # Create the flag file to indicate that the command has been executed
-    touch $flag_file
-fi
-EOF
 done
 
 # Copy over zsh config.
