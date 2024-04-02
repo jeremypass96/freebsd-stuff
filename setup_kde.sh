@@ -330,13 +330,25 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Download Konsole colors.
-mkdir -p /home/$USER/.local/share/konsole
-mkdir -p /usr/share/skel/dot.local/share/konsole
-git clone https://github.com/catppuccin/konsole.git
-cd konsole/
-cp -v Catppuccin-Mocha.colorscheme /home/$USER/.local/share/konsole
-cp -v Catppuccin-Mocha.colorscheme /usr/share/skel/dot.local/share/konsole
-cd && rm -rf konsole/
+
+read -p "Which Konsole colorscheme do you want?
+1. Catppuccin
+2. OneHalf-Dark
+-> " $resp
+if [ "$resp" = 1 ]; then
+	mkdir -p /home/$USER/.local/share/konsole
+	mkdir -p /usr/share/skel/dot.local/share/konsole
+	git clone https://github.com/catppuccin/konsole.git
+	cd konsole/
+	cp -v *.colorscheme /home/$USER/.local/share/konsole
+	cp -v *.colorscheme /usr/share/skel/dot.local/share/konsole
+	cd && rm -rf konsole/
+fi
+if [ "$resp" = 2 ]; then
+	wget https://raw.githubusercontent.com/sonph/onehalf/master/konsole/onehalf-dark.colorscheme
+	sudo mv onehalf-dark.colorscheme /usr/local/share/konsole
+	sudo chmod 644 /usr/local/share/konsole/onehalf-dark.colorscheme
+fi
 
 # Hide menu items.
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.cuttlefish.desktop

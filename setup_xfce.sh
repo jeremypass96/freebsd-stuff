@@ -318,12 +318,14 @@ mkdir -p /home/$USER/.config/xfce4/terminal
 chown -R $USER:$USER /home/$USER/.config/xfce4/terminal
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
 chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
-mkdir -p /usr/share/skel/dot.config/xfce4/terminal
 cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
 
 # Install Xfce Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
+mkdir -p /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
 fetch https://raw.githubusercontent.com/sonph/onehalf/master/xfce4-terminal/OneHalfDark.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
+cp -v /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules
