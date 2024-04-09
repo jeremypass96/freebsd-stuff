@@ -15,14 +15,14 @@ echo "" >> /boot/loader.conf
 read -p "Do you have an AMD CPU installed in your computer? (Y/n): " resp
 resp=${resp:-Y}
 if [ "$resp" = Y ] || [ "$resp" = y ]; then
-echo "# Load AMD southbridge watchdog timers and CPU thermal sensor." >> /boot/loader.conf
-sysrc -f /boot/loader.conf amdsbwd_load="YES"
-sysrc -f /boot/loader.conf amdtemp_load="YES"
-echo "" >> /boot/loader.conf
+    echo "# Load AMD southbridge watchdog timers and CPU thermal sensor." >> /boot/loader.conf
+    sysrc -f /boot/loader.conf amdsbwd_load="YES"
+    sysrc -f /boot/loader.conf amdtemp_load="YES"
+    echo "" >> /boot/loader.conf
 fi
 if [ "$resp" = n ]; then
-sysrc -f /boot/loader.conf coretemp_load="YES"
-echo "" >> /boot/loader.conf
+    sysrc -f /boot/loader.conf coretemp_load="YES"
+    echo "" >> /boot/loader.conf
 fi
 
 # Disable boot menu/make booting faster.
@@ -47,12 +47,12 @@ echo "" >> /boot/loader.conf
 read -p "Do you want to hide boot messages? (Y/n): " resp
 resp=${resp:-Y}
 if [ "$resp" = Y ] || [ "$resp" = y ]; then
-echo "# Hide boot messages." >> /boot/loader.conf
-sysrc -f /boot/loader.conf boot_mute="YES"
-echo "" >> /boot/loader.conf
+    echo "# Hide boot messages." >> /boot/loader.conf
+    sysrc -f /boot/loader.conf boot_mute="YES"
+    echo "" >> /boot/loader.conf
 fi
 if [ "$resp" = n ]; then
-continue
+    continue
 fi
 
 # Load CPU microcode.

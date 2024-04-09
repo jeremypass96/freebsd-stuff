@@ -3,8 +3,8 @@
 
 # Checking to see if we're running as root.
 if [ $(id -u) -ne 0 ]; then
-echo "Please run this script as root! Thanks."
-exit
+    echo "Please run this script as root! Thanks."
+    exit
 fi
 
 cat << EOF >> /etc/sysctl.conf

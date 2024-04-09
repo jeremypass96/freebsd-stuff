@@ -111,9 +111,9 @@ install_graphics_driver() {
       cd /usr/ports/x11-drivers/xf86-video-intel && make install clean
       ;;
     5)
+      sed -i '' '16s/$/VMWARE/' /etc/make.conf
       cd /usr/ports/graphics/drm-kmod && make install clean
       cd /usr/ports/emulators/virtualbox-ose-additions && make install clean
-      sed -i '' '16s/$/VMWARE/' /etc/make.conf
       cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"

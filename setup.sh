@@ -156,17 +156,17 @@ grep -n -A 8 'random_start()' /etc/rc.d/random
 read -p "Did you install FreeBSD with the ZFS filesystem? (Y/n) " resp
 resp=${resp:-Y}
 if [ "$resp" = Y ] || [ "$resp" = y ]; then
-sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
-# Adjust ZFS ARC cache size.
-echo "" >> /boot/loader.conf
-echo "# Adjust ZFS ARC cache size." >> /boot/loader.conf
-echo 'vfs.zfs.arc_max="512M"' >> /boot/loader.conf
-echo "" >> /boot/loader.conf
-# Turn off atime. Reduces disk writes/wear.
-zfs set atime=off zroot
+  sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
+  # Adjust ZFS ARC cache size.
+  echo "" >> /boot/loader.conf
+  echo "# Adjust ZFS ARC cache size." >> /boot/loader.conf
+  echo 'vfs.zfs.arc_max="512M"' >> /boot/loader.conf
+  echo "" >> /boot/loader.conf
+  # Turn off atime. Reduces disk writes/wear.
+  zfs set atime=off zroot
 fi
 if [ "$resp" = n ]; then
-continue
+  continue
 fi
 
 # Make login quieter.

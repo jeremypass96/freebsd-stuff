@@ -166,7 +166,7 @@ install_printer_ports() {
     done
 }
 
-    # Printer support with progress bar.
+# Printer support with progress bar.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
 
