@@ -8,7 +8,6 @@ fi
 
 # Define an array of wallpaper URLs.
 wallpaper_urls=(
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0004.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0011.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0023.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0036.jpg"
@@ -20,7 +19,6 @@ wallpaper_urls=(
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0076.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0252.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg"
     "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Field_Of_Lightning.jpg"
