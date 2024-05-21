@@ -129,6 +129,7 @@ sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER=`sysctl -n hw.ncpu`/g /etc/make.c
 
 # Pull in Ports tree with git.
 git clone https://git.FreeBSD.org/ports.git /usr/ports
+git -C /usr/ports pull
 
 clear
 
