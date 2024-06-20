@@ -41,7 +41,6 @@ hw.ibrs_disable=0
 net.inet.udp.blackhole=1
 net.inet.tcp.blackhole=2
 net.inet.icmp.drop_redirect=1
-net.inet.ip.check_interface=1
 net.inet.ip.process_options=0
 net.inet.ip.random_id=1
 net.inet.ip.redirect=0
