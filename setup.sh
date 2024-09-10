@@ -1,8 +1,16 @@
 #!/bin/sh
 
+# Colors
+RESET="\033[0m"
+BOLD="\033[1m"
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+CYAN="\033[36m"
+
 # Checking to see if we're running as root.
 if [ $(id -u) -ne 0 ]; then
-  dialog --title "Root Privileges Required" --msgbox "Please run this setup script as root via 'su'! Thanks." 5 60
+  echo -e "${RED}Error:${RESET} ${YELLOW}Please run this setup script as root via 'su'! Thanks.${RESET}"
   exit
 fi
 
@@ -44,6 +52,7 @@ case "$resp" in
 esac
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
+echo -e "${CYAN}Configuring TTYs and security settings...${RESET}"
 sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
 sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
 sed -i '' s/ttyu2/#ttyu2/g /etc/ttys
@@ -69,13 +78,16 @@ sed -i '' '51s/secure/insecure'/g /etc/ttys
 sed -i '' '53s/secure/insecure'/g /etc/ttys
 
 # Add /proc filesystem to /etc/fstab.
+echo -e "${CYAN}Adding /proc filesystem to /etc/fstab...${RESET}"
 echo "procfs			/proc       procfs  rw  	0   0" >> /etc/fstab
 
 # Change umask from 022 to 077. More secure.
+echo -e "${CYAN}Changing umask to 077 for better security...${RESET}"
 sed -i '' '50s/022/077'/g /etc/login.conf
 cap_mkdb /etc/login.conf
 
 # Make system files read-only to non-privileged users.
+echo -e "${CYAN}Setting system files to read-only...${RESET}"
 chmod o= /etc/fstab
 chmod o= /etc/ftpusers
 chmod o= /etc/group
@@ -96,21 +108,26 @@ chmod o= /etc/ssh/sshd_config
 chmod o= /etc/cron.d
 
 # Prevent viewing of the root directory and log file directory by non-privileged users.
+echo -e "${CYAN}Securing root and log file directories...${RESET}"
 chmod 700 /root
 chmod o= /var/log
 
 # Prevent viewing/access of user's home directory by other users.
+echo -e "${CYAN}Securing user's home directory...${RESET}"
 chmod 700 /home/$USER
 
 # Enable process accounting.
+echo -e "${CYAN}Enabling process accounting...${RESET}"
 sysrc accounting_enable="YES" && service accounting start
 
 # Configure S.M.A.R.T. disk monitoring daemon.
+echo -e "${CYAN}Configuring S.M.A.R.T. disk monitoring...${RESET}"
 cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 echo "/dev/ada0 -H -l error -f" >> /usr/local/etc/smartd.conf
 echo 'daily_status_smart_devices="/dev/ada0"' >> /etc/periodic.conf
 
 # Setup automoumt.
+echo -e "${CYAN}Setting up automount...${RESET}"
 cat << EOF > /usr/local/etc/automount.conf
 USERUMOUNT=YES
 NICENAMES=YES
@@ -118,6 +135,7 @@ NOTIFY=YES
 ATIME=NO
 EOF
 
+echo -e "${CYAN}Installing fonts...${RESET}"
 # Install the Poppins font.
 fetch https://fonts.google.com/download?family=Poppins -o /home/$USER/Poppins.zip
 unzip -d /usr/local/share/fonts/Poppins -x OFL.txt /home/$USER/Poppins.zip
@@ -129,14 +147,17 @@ unzip -d /usr/local/share/fonts/SourceSansPro -x README.txt -x OFL.txt -x Source
 rm /home/$USER/Source_Sans_3.zip
 
 # Fix font rendering.
+echo -e "${CYAN}Fixing font rendering...${RESET}"
 ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/fonts/conf.d/
 ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts/conf.d/
 
 # Fix micro truecolor support.
+echo -e "${CYAN}Enabling micro truecolor support...${RESET}"
 echo "# Micro truecolor support." >> /root/.profile
 echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
 
 # Cleanup boot process/adjust ZFS options for desktop useage.
+echo -e "${CYAN}Cleaning up boot process and adjusting ZFS options for desktop useage...${RESET}"
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf
 sed -i '' s/"startmsg 'ELF ldconfig path:' \${_LDC}"/"startmsg 'ELF ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
 sed -i '' s/"startmsg '32-bit compatibility ldconfig path:' \${_LDC}"/"startmsg '32-bit compatibility ldconfig path:' \${_LDC} 1> \/dev\/null"/g /etc/rc.d/ldconfig
@@ -170,11 +191,13 @@ if [ "$resp" = n ]; then
 fi
 
 # Make login quieter.
+echo -e "${CYAN}Making login quieter...${RESET}"
 touch /home/$USER/.hushlogin
 chown $USER /home/$USER/.hushlogin
 touch /usr/share/skel/dot.hushlogin
 
 # Setup system files for desktop use.
+echo -e "${CYAN}Setting up system files for desktop use...${RESET}"
 ./sysctl_setup.sh
 ./bootloader_setup.sh
 ./devfs_setup.sh
@@ -183,16 +206,20 @@ touch /usr/share/skel/dot.hushlogin
 ./locale_fix.sh
 
 # Setup user's home directory with common folders.
+echo -e "${CYAN}Setting up user's home directory...${RESET}"
 xdg-user-dirs-update
 
 # Update FreeBSD base.
+echo -e "${CYAN}Updating FreeBSD base...${RESET}"
 PAGER=cat freebsd-update fetch install
 
 # Set mixer levels.
+echo -e "${CYAN}Setting volume mixer levels...${RESET}"
 mixer vol.volume=100
 mixer pcm.volume=100
 
 # Make "line in" the default recording source.
+echo -e "${CYAN}Setting default recording source...${RESET}"
 mixer line.recsrc=+
 
 # Display final completion message
