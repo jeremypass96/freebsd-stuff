@@ -63,6 +63,9 @@ mkdir -p /usr/share/skel/dot.config/lsd
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/lsd/config.yaml /usr/share/skel/dot.config/lsd
 chown -R $USER:$USER /home/$USER/.config/lsd
 
+# Copy over custom Oh My Zsh theme.
+cp -v /home/$USER/freebsd-stuff/jpassarelli.zsh-theme /usr/local/share/oh-my-zsh/custom/themes 
+
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
 
