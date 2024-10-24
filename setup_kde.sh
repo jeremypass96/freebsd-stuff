@@ -79,7 +79,7 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma5-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma5-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum-qt5
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg mp4v2 numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum-qt5
 
 clear
 
@@ -238,7 +238,7 @@ cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/neofetch && make install clean
 cd /usr/ports/sysutils/pfetch && make install clean
 cd /usr/ports/x11/xorg && make install clean
-cd /usr/ports/x11/kde5 && make install clean
+cd /usr/ports/x11/kde6 && make install clean
 cd /usr/ports/math/kcalc && make install clean
 cd /usr/ports/deskutils/kcharselect && make install clean
 cd /usr/ports/security/kwalletmanager && make install clean
@@ -248,7 +248,7 @@ cd /usr/ports/graphics/spectacle && make install clean
 cd /usr/ports/graphics/gwenview && make install clean
 cd /usr/ports/audio/juk && make install clean
 cd /usr/ports/x11/sddm && make install clean
-cd /usr/ports/deskutils/plasma5-sddm-kcm && make install clean
+cd /usr/ports/deskutils/plasma6-sddm-kcm && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
 cd /usr/ports/www/ungoogled-chromium && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
