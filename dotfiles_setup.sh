@@ -49,7 +49,7 @@ cd /home/$USER/freebsd-stuff
 chsh -s /usr/local/bin/zsh $USER
 
 # Get "zsh-autosuggestions" and "zsh-syntax-highlighting" Oh My Zsh plugins.
-ZSH_CUSTOM=/usr/local/share/oh-my-zsh/custom
+ZSH_CUSTOM=/usr/local/share/ohmyzsh/custom
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
 unset ZSH_CUSTOM
@@ -64,7 +64,7 @@ cp -v /home/$USER/freebsd-stuff/Dotfiles/config/lsd/config.yaml /usr/share/skel/
 chown -R $USER:$USER /home/$USER/.config/lsd
 
 # Copy over custom Oh My Zsh theme.
-cp -v /home/$USER/freebsd-stuff/jpassarelli.zsh-theme /usr/local/share/oh-my-zsh/custom/themes 
+cp -v /home/$USER/freebsd-stuff/jpassarelli.zsh-theme /usr/local/share/oh-my-zsh/custom/themes
 
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
