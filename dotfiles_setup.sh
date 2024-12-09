@@ -78,7 +78,7 @@ chown $USER:$USER /home/$USER/.config/bat/config
 
 # Modify the configuration settings.
 sed -i '' 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g /home/$USER/.config/bat/config
-sed -i '' 's/#--italic-text=always/--italic-text=always'/g /home/$$USER/.config/bat/config
+sed -i '' 's/#--italic-text=always/--italic-text=always'/g /home/$USER/.config/bat/config
 echo '--map-syntax "*.conf:INI"' >> /home/$USER/.config/bat/config
 echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
 
