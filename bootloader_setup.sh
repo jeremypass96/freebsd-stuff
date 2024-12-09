@@ -27,22 +27,6 @@ sysrc -f /boot/loader.conf cc_cubic_load="YES"
 echo 'kern.random.fortuna.minpoolsize="512"' >> /boot/loader.conf
 echo "" >> /boot/loader.conf
 
-read -p "Do you have an AMD CPU installed in your computer? (Y/n): " resp
-resp=${resp:-Y}
-if [ "$resp" = Y ] || [ "$resp" = y ]; then
-    echo -e "${YELLOW}Enabling AMD southbridge watchdog timers and CPU thermal sensor...${NC}"
-    echo "# Load AMD southbridge watchdog timers and CPU thermal sensor." >> /boot/loader.conf
-    sysrc -f /boot/loader.conf amdsbwd_load="YES"
-    sysrc -f /boot/loader.conf amdtemp_load="YES"
-    echo "" >> /boot/loader.conf
-elif [ "$resp" = n ]; then
-    echo -e "${YELLOW}Enabling Intel core temperature sensor...${NC}"
-    sysrc -f /boot/loader.conf coretemp_load="YES"
-    echo "" >> /boot/loader.conf
-else
-    echo -e "${RED}Invalid response. Proceeding without adding CPU specific modules.${NC}"
-fi
-
 echo -e "${YELLOW}Disabling boot menu and making booting faster...${NC}"
 echo "# Disable boot menu/make booting faster." >> /boot/loader.conf
 sysrc -f /boot/loader.conf loader_delay=0
@@ -74,11 +58,30 @@ else
     echo -e "${RED}Invalid response. Proceeding without hiding boot messages.${NC}"
 fi
 
-echo -e "${YELLOW}Enabling CPU microcode...${NC}"
-echo "# Load CPU microcode." >> /boot/loader.conf
-sysrc -f /boot/loader.conf cpu_microcode_load="YES"
-sysrc -f /boot/loader.conf cpu_microcode_name="/boot/firmware/intel-ucode.bin"
-echo "" >> /boot/loader.conf
+read -p "Do you have an AMD CPU installed in your computer? (Y/n): " resp
+resp=${resp:-Y}
+if [ "$resp" = Y ] || [ "$resp" = y ]; then
+    echo -e "${YELLOW}Enabling AMD southbridge watchdog timers and CPU thermal sensor...${NC}"
+    echo "# Load AMD southbridge watchdog timers and CPU thermal sensor." >> /boot/loader.conf
+    sysrc -f /boot/loader.conf amdsbwd_load="YES"
+    sysrc -f /boot/loader.conf amdtemp_load="YES"
+    echo "" >> /boot/loader.conf
+    echo -e "${YELLOW}Enabling AMD CPU microcode...${NC}"
+    echo "# Load CPU microcode." >> /boot/loader.conf
+    sysrc -f /boot/loader.conf cpu_microcode_load="YES"
+    sysrc -f /boot/loader.conf cpu_microcode_name="/boot/firmware/amd-ucode.bin"
+    echo "" >> /boot/loader.conf
+elif [ "$resp" = n ]; then
+    echo -e "${YELLOW}Enabling Intel core temperature sensor...${NC}"
+    sysrc -f /boot/loader.conf coretemp_load="YES"
+    echo "" >> /boot/loader.conf
+    echo -e "${YELLOW}Enabling Intel CPU microcode...${NC}"
+    sysrc -f /boot/loader.conf cpu_microcode_load="YES"
+    sysrc -f /boot/loader.conf cpu_microcode_name="/boot/firmware/intel-ucode.bin"
+    echo "" >> /boot/loader.conf
+else
+    echo -e "${RED}Invalid response. Proceeding without adding CPU specific modules.${NC}"
+fi
 
 echo -e "${YELLOW}Adding miscellaneous settings...${NC}"
 echo "# Misc. other stuff." >> /boot/loader.conf

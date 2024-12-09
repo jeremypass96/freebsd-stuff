@@ -79,7 +79,19 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx devcpu-data automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh neofetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts
+
+# Install CPU microcode.
+dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
+    1.) AMD \
+    2.) Intel 2> /tmp/microcode_resp
+
+microcode_resp=$(cat /tmp/microcode_resp)
+if [ "$microcode_resp" = 1 ]; then
+    pkg install -y cpu-microcode-amd
+elif [ "$microcode_resp" = 2 ]; then
+    pkg install -y cpu-microcode-intel
+fi
 
 clear
 
@@ -242,7 +254,6 @@ cd /usr/ports/multimedia/mp4v2 && make install clean
 cd /usr/ports/x11-themes/skeuos-gtk-themes && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
 cd /usr/ports/x11/numlockx && make install clean
-cd /usr/ports/sysutils/devcpu-data && make install clean
 cd /usr/ports/sysutils/automount && make install clean
 cd /usr/ports/sysutils/fusefs-simple-mtpfs && make install clean
 cd /usr/ports/converters/unix2dos && make install clean
@@ -266,6 +277,18 @@ cd /usr/ports/sysutils/fd && make install clean
 cd /usr/ports/sysutils/lsd && make install clean
 cd /usr/ports/x11-fonts/nerd-fonts && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
+
+# Install CPU microcode.
+dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
+    1.) AMD \
+    2.) Intel 2> /tmp/microcode_resp
+
+microcode_resp=$(cat /tmp/microcode_resp)
+if [ "$microcode_resp" = 1 ]; then
+    cd /usr/ports/sysutils/cpu-microcode-amd && make install clean
+elif [ "$microcode_resp" = 2 ]; then
+    cd /usr/ports/sysutils/cpu-microcode-intel && make install clean
+fi
 
 clear
 
