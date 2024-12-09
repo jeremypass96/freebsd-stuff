@@ -74,6 +74,7 @@ chsh -s /usr/local/bin/zsh root
 
 # Generate initial configuration file for bat (this script is running as root, remember?)
 bat --generate-config-file
+chown $USER:$USER /home/$USER/.config/bat/config
 
 # Modify the configuration settings.
 sed -i '' 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g /home/$USER/.config/bat/config
