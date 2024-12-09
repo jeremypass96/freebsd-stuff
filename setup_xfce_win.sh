@@ -356,7 +356,9 @@ cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/x
 
 # Install Xfce Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
+mkdir -p /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 fetch https://raw.githubusercontent.com/sonph/onehalf/master/xfce4-terminal/OneHalfDark.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
+cp -v /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules
@@ -474,7 +476,7 @@ sed -i '' s/'#allow-guest=true'/'allow-guest=false'/g /usr/local/etc/lightdm/lig
 sed -i '' s/'#greeter-setup-script='/'greeter-setup-script=numlockx on'/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/'#autologin-user='/'autologin-user=$USER'/g /usr/local/etc/lightdm/lightdm.conf
 sed -i '' s/'#autologin-user-timeout=0'/'autologin-user-timeout=0'/g /usr/local/etc/lightdm/lightdm.conf
-mkdir /usr/local/etc/lightdm/wallpaper
+mkdir -p /usr/local/etc/lightdm/wallpaper
 fetch https://raw.githubusercontent.com/broozar/installDesktopFreeBSD/DarkMate13.0/files/wallpaper/centerFlat_grey-4k.png -o /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 
