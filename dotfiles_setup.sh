@@ -48,11 +48,23 @@ cd /home/$USER/freebsd-stuff
 # Change shell to zsh.
 chsh -s /usr/local/bin/zsh $USER
 
-# Get "zsh-autosuggestions" and "zsh-syntax-highlighting" Oh My Zsh plugins.
+# Get "zsh-autosuggestions" Oh My Zsh plugin and "zsh-fast-syntax-highlighting" Zsh plugin.
 ZSH_CUSTOM=/usr/local/share/ohmyzsh/custom
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+chmod 755 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+chmod 755 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+chmod 755 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 unset ZSH_CUSTOM
+read -p "Installing Zsh syntax highlighting plugin... do you want the FreeBSD binary packge or the ports tree port? (pkg/port) " zsh_resp
+if [ "$zsh_resp" = pkg ]; then
+    pkg install -y zsh-fast-syntax-highlighting
+elif [ "$zsh_resp" = port ]; then
+    cd /usr/ports/shells/zsh-fast-syntax-highlighting && make install clean
+fi
+chmod 755 /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> /home/$USER/.zshrc
+
+cd /home/$USER/freebsd-stuff
 
 # Copy over lsd config.
 mkdir -p /home/$USER/.config/lsd
