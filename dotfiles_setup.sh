@@ -74,22 +74,19 @@ chsh -s /usr/local/bin/zsh root
 # Generate initial configuration file for bat (this script is running as root, remember?)
 bat --generate-config-file
 
-# Modify the configuration settings for the root user.
-sed -i '' 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g $HOME/.config/bat/config
-sed -i '' 's/#--italic-text=always/--italic-text=always'/g $HOME/.config/bat/config
-echo '--map-syntax "*.conf:INI"' >> $HOME/.config/bat/config
-echo '--map-syntax "config:INI"' >> $HOME/.config/bat/config
+# Modify the configuration settings.
+sed -i '' 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g /home/$USER/.config/bat/config
+sed -i '' 's/#--italic-text=always/--italic-text=always'/g /home/$$USER/.config/bat/config
+echo '--map-syntax "*.conf:INI"' >> /home/$USER/.config/bat/config
+echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
 
 # Copy the user configuration to /usr/share/skel so new users get the same setup.
 mkdir -p /usr/share/skel/dot.config/bat
-cp -v $HOME/.config/bat/config /usr/share/skel/dot.config/bat
+cp -v /home/$USER/.config/bat/config /usr/share/skel/dot.config/bat
 
-# Copy root's configuration to the user's configuration.
-mkdir -p /home/$USER/.config/bat
-cp -v $HOME/.config/bat/config /home/$USER/.config/bat/config
-
-# Fix permission settings for your user.
-chown -R $USER:$USER /home/$USER/.config/bat
+# Copy user's configuration to the root user's configuration.
+mkdir -p $HOME/.config/bat
+cp -v /home/$USER/.config/bat/config $HOME/.config/bat/config
 
 echo "Bat syntax highlighter has been configured with the OneHalfDark theme for both your user and root."
 ##
