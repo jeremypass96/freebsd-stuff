@@ -65,6 +65,7 @@ chown -R $USER:$USER /home/$USER/.config/lsd
 
 # Copy over custom Oh My Zsh theme.
 cp -v /home/$USER/freebsd-stuff/jpassarelli.zsh-theme /usr/local/share/ohmyzsh/custom/themes
+chmod og+r /usr/local/share/ohmyzsh/custom/themes/jpassarelli.zsh-theme
 
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
