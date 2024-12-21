@@ -348,8 +348,27 @@ cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/x
 # Install Xfce Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal/colorschemes
-fetch https://raw.githubusercontent.com/sonph/onehalf/master/xfce4-terminal/OneHalfDark.theme -o /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
-cp -v /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+dialog --title "Xfce Terminal Colorscheme" --menu "Which XFCE Terminal colorscheme do you want?" 12 40 12 \
+    1 "Catppuccin" \
+    2 "OneHalf-Dark" \
+    3 "Ayu Mirage" 2> /tmp/xfceterm_resp
+xfceterm_resp=$(cat /tmp/xfceterm_resp)
+if [ "$xfceterm_resp" = 1 ]; then
+	wcurl https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-frappe.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-latte.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-macchiato.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-mocha.theme
+	mv -v *.theme /home/$USER/.config/xfce4/terminal/colorschemes
+	chmod 644 /home/$USER/.config/xfce4/terminal/colorschemes/*.theme
+    cp -v /home/$USER/.config/xfce4/terminal/colorschemes/*.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+elif [ "$xfceterm_resp" = 2 ]; then
+	wcurl https://raw.githubusercontent.com/sonph/onehalf/master/xfce4-terminal/OneHalfDark.theme
+	mv -v OneHalfDark.theme /home/$USER/.config/xfce4/terminal/colorschemes
+	chmod 644 /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
+    cp -v /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+elif [ "$xfceterm_resp" = 3 ]; then
+	wcurl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/refs/heads/master/xfce4terminal/Ayu%20Mirage.theme -o AyuMirage.theme
+	mv -v AyuMirage.theme /home/$USER/.config/xfce4/terminal/colorschemes
+	chmod 644 /home/$USER/.config/xfce4/terminal/colorschemes/AyuMirage.theme
+    cp -v /home/$USER/.config/xfce4/terminal/colorschemes/AyuMirage.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+fi
 
 # Setup shutdown/sleep rules for Xfce.
 cat << EOF > /usr/local/etc/polkit-1/rules.d/60-shutdown.rules

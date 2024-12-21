@@ -356,8 +356,7 @@ dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you wa
     1 "Catppuccin" \
     2 "OneHalf-Dark" \
     3 "Ayu Mirage" 2> /tmp/konsole_resp
-
-microcode_resp=$(cat /tmp/konsole_resp)
+konsole_resp=$(cat /tmp/konsole_resp)
 if [ "$konsole_resp" = 1 ]; then
 	wcurl https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-frappe.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-latte.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-macchiato.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-mocha.colorscheme
 	mv -v *.colorscheme /usr/local/share/konsole
