@@ -142,7 +142,6 @@ if [ $resp -eq 0 ]; then
     install_bsdstats
     dialog --title "Installation Complete" --infobox "BSDstats has been installed and enabled." 5 40
     sleep 3
-    fi
 fi
 
 # Fix GTK/QT antialiasing

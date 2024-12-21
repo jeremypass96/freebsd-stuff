@@ -120,12 +120,6 @@ if [ $resp -eq 0 ]; then
     fi
 fi
 
-# Generate SDDM config file.
-sddm --example-config > /usr/local/etc/sddm.conf
-sed -i '' s/Relogin=false/Relogin=true/g /usr/local/etc/sddm.conf
-sed -i '' s/User=/User=$USER/g /usr/local/etc/sddm.conf
-fi
-
 if [ "$resp" = ports ]; then
 
 # Copying over make.conf file.
@@ -340,6 +334,10 @@ clear
 
 # Enable SDDM (Simple Desktop Display Manager) on boot.
 sysrc sddm_enable="YES"
+# Generate SDDM config file.
+sddm --example-config > /usr/local/etc/sddm.conf
+sed -i '' s/Relogin=false/Relogin=true/g /usr/local/etc/sddm.conf
+sed -i '' s/User=/User=$USER/g /usr/local/etc/sddm.conf
 
 # Install cursor theme.
 dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40

@@ -362,12 +362,12 @@ show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = Papirus-Light
-icon-theme-name = Skeuos-Blue-Light
+theme-name = Skeuos-Blue-Light
+icon-theme-name = Papirus-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
-mkdir /home/$USER/.config/qt5ct
+mkdir -p /home/$USER/.config/qt5ct
 chown -R $USER:$USER /home/$USER/.config/qt5ct
 mkdir /usr/share/skel/dot.config/qt5ct
 cp -v /home/$USER/freebsd-setup-scripts/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
