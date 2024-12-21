@@ -368,7 +368,7 @@ icon-theme-name = Papirus-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
-mkdir /home/$USER/.config/qt5ct
+mkdir -p /home/$USER/.config/qt5ct
 chown -R $USER:$USER /home/$USER/.config/qt5ct
 mkdir -p /usr/share/skel/dot.config/qt5ct
 cp -v /home/$USER/freebsd-stuff/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
@@ -404,7 +404,7 @@ chown -R $USER:$USER /home/$USER/.local
 # Create and fix user's caja config directory permissions.
 mkdir -p /home/$USER/.config/caja
 chown -R $USER:$USER /home/$USER/.config/caja
-chmod 660 /home/$USER/.config/caja
+chmod 755 /home/$USER/.config/caja
 
 # Install Ulauncher theme.
 mkdir -p /home/$USER/.config/ulauncher/user-themes
