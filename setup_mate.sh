@@ -280,8 +280,8 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
-    1.) AMD \
-    2.) Intel 2> /tmp/microcode_resp
+    1 "AMD" \
+    2 "Intel" 2> /tmp/microcode_resp
 
 microcode_resp=$(cat /tmp/microcode_resp)
 if [ "$microcode_resp" = 1 ]; then
@@ -329,15 +329,6 @@ fi
 
 clear
 
-# Download Pluma text editor color scheme.
-cd && git clone https://github.com/catppuccin/gedit.git && cd gedit
-cp themes/catppuccin-frappe.xml /usr/local/share/gtksourceview-4/styles/
-cp themes/catppuccin-latte.xml /usr/local/share/gtksourceview-4/styles/
-cp themes/catppuccin-macchiato.xml /usr/local/share/gtksourceview-4/styles/
-cp themes/catppuccin-mocha.xml /usr/local/share/gtksourceview-4/styles/
-chmod og=r /usr/local/share/gtksourceview-4/styles/catppuccin-*.xml
-cd && rm -rf gedit
-
 # Install cursor theme.
 dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
 resp=$?
@@ -372,8 +363,8 @@ show-hostname = true
 show-a11y = false
 show-keyboard = false
 clock-format = %I:%M %p
-theme-name = Papirus-Light
-icon-theme-name = Skeuos-Blue-Light
+theme-name = Skeuos-Blue-Light
+icon-theme-name = Papirus-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
@@ -413,6 +404,7 @@ chown -R $USER:$USER /home/$USER/.local
 # Create and fix user's caja config directory permissions.
 mkdir -p /home/$USER/.config/caja
 chown -R $USER:$USER /home/$USER/.config/caja
+chmod 660 /home/$USER/.config/caja
 
 # Install Ulauncher theme.
 mkdir -p /home/$USER/.config/ulauncher/user-themes

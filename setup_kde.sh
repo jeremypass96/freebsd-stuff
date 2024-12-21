@@ -295,8 +295,8 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
-    1.) AMD \
-    2.) Intel 2> /tmp/microcode_resp
+    1 "AMD" \
+    2 "Intel" 2> /tmp/microcode_resp
 
 microcode_resp=$(cat /tmp/microcode_resp)
 if [ "$microcode_resp" = 1 ]; then
@@ -354,24 +354,24 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Download Konsole colors.
+dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you want?" 12 40 12 \
+    1 "Catppuccin" \
+    2 "OneHalf-Dark" \
+    3 "Ayu Mirage" 2> /tmp/konsole_resp
 
-read -p "Which Konsole colorscheme do you want?
-1. Catppuccin
-2. OneHalf-Dark
--> " $resp
-if [ "$resp" = 1 ]; then
-	mkdir -p /home/$USER/.local/share/konsole
-	mkdir -p /usr/share/skel/dot.local/share/konsole
-	git clone https://github.com/catppuccin/konsole.git
-	cd konsole/
-	cp -v *.colorscheme /home/$USER/.local/share/konsole
-	cp -v *.colorscheme /usr/share/skel/dot.local/share/konsole
-	cd && rm -rf konsole/
-fi
-if [ "$resp" = 2 ]; then
-	wget https://raw.githubusercontent.com/sonph/onehalf/master/konsole/onehalf-dark.colorscheme
-	sudo mv onehalf-dark.colorscheme /usr/local/share/konsole
-	sudo chmod 644 /usr/local/share/konsole/onehalf-dark.colorscheme
+microcode_resp=$(cat /tmp/konsole_resp)
+if [ "$konsole_resp" = 1 ]; then
+	wcurl https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-frappe.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-latte.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-macchiato.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-mocha.colorscheme
+	mv -v *.colorscheme /usr/local/share/konsole
+	chmod 644 /usr/local/share/konsole/*.colorscheme
+elif [ "$konsole_resp" = 2 ]; then
+	wcurl https://raw.githubusercontent.com/sonph/onehalf/master/konsole/onehalf-dark.colorscheme
+	mv -v onehalf-dark.colorscheme /usr/local/share/konsole
+	chmod 644 /usr/local/share/konsole/onehalf-dark.colorscheme
+elif [ "$konsole_resp" = 3 ]; then
+	wcurl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/refs/heads/master/konsole/Ayu%20Mirage.colorscheme -o AyuMirage.colorscheme
+	mv -v AyuMirage.colorscheme /usr/local/share/konsole
+	chmod 644 /usr/local/share/konsole/AyuMirage.colorscheme
 fi
 
 # Hide menu items.

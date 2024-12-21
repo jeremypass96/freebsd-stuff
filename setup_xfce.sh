@@ -294,8 +294,8 @@ cd /usr/ports/ports-mgmt/portmaster && make install clean
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
-    1.) AMD \
-    2.) Intel 2> /tmp/microcode_resp
+    1 "AMD" \
+    2 "Intel" 2> /tmp/microcode_resp
 
 microcode_resp=$(cat /tmp/microcode_resp)
 if [ "$microcode_resp" = 1 ]; then
