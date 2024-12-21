@@ -117,26 +117,28 @@ echo hw.pci.do_power_nodriver=1 >> /boot/loader.conf
 echo "" >> /boot/loader.conf
 
 echo -e "${CYAN}Adding custom VT colors...${NC}"
-echo "##################################################################################" >> /boot/loader.conf
-echo "### Custom VT Colors - Based off Firewatch, Andromeda, and PaulMillr themes.   ###" >> /boot/loader.conf
-echo "### From the iTerm2 Color Schemes project. 					                   ###" >> /boot/loader.conf
-echo "##################################################################################" >> /boot/loader.conf
-echo 'kern.vt.color.0.rgb="#000000"' >> /boot/loader.conf
-echo 'kern.vt.color.1.rgb="#d95360"' >> /boot/loader.conf
-echo 'kern.vt.color.2.rgb="#5ab977"' >> /boot/loader.conf
-echo 'kern.vt.color.3.rgb="#e5e512"' >> /boot/loader.conf
-echo 'kern.vt.color.4.rgb="#4d89c4"' >> /boot/loader.conf
-echo 'kern.vt.color.5.rgb="#bc3fbc"' >> /boot/loader.conf
-echo 'kern.vt.color.6.rgb="#66ccff"' >> /boot/loader.conf
-echo 'kern.vt.color.7.rgb="#e5e5e5"' >> /boot/loader.conf
-echo 'kern.vt.color.8.rgb="#585f6d"' >> /boot/loader.conf
-echo 'kern.vt.color.9.rgb="#d95360"' >> /boot/loader.conf
-echo 'kern.vt.color.10.rgb="#5ab977"' >> /boot/loader.conf
-echo 'kern.vt.color.11.rgb="#e5e512"' >> /boot/loader.conf
-echo 'kern.vt.color.12.rgb="#4c89c5"' >> /boot/loader.conf
-echo 'kern.vt.color.13.rgb="#bc3fbc"' >> /boot/loader.conf
-echo 'kern.vt.color.14.rgb="#7adff2"' >> /boot/loader.conf
-echo 'kern.vt.color.15.rgb="#e6e5ff"' >> /boot/loader.conf
-echo "##################################################################################" >> /boot/loader.conf
+tee -a /boot/loader.conf > /dev/null << EOF
+###########################################################
+### Ayu Mirage VT Colors.				###
+### From the iTerm2 Color Schemes project.		###
+###########################################################
+kern.vt.color.0.rgb="#191e2a"
+kern.vt.color.1.rgb="#ed8274"
+kern.vt.color.2.rgb="#a6cc70"
+kern.vt.color.3.rgb="#fad07b"
+kern.vt.color.4.rgb="#6dcbfa"
+kern.vt.color.5.rgb="#cfbafa"
+kern.vt.color.6.rgb="#90e1c6"
+kern.vt.color.7.rgb="#cbccc6"
+kern.vt.color.8.rgb="#686868"
+kern.vt.color.9.rgb="#f28779"
+kern.vt.color.10.rgb="#bae67e"
+kern.vt.color.11.rgb="#ffd580"
+kern.vt.color.12.rgb="#73d0ff"
+kern.vt.color.13.rgb="#d4bfff"
+kern.vt.color.14.rgb="#95e6cb"
+kern.vt.color.15.rgb="#ffffff"
+##########################################################
+EOF
 
 echo -e "${GREEN}FreeBSD bootloader configuration completed.${NC}"
