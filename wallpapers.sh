@@ -90,16 +90,7 @@ cp "$HOME/wallpapers-freebsd/freebsd-11.png" "$wallpaper_dir"
 cp "$HOME/wallpapers-freebsd/unix-this-is-mdh3ll.jpg" "$wallpaper_dir"
 
 # Fix permissions on wallpapers so users can see them.
-chmod og=r "$wallpaper_dir"/freebsd-think-correctly-black.png
-chmod og=r "$wallpaper_dir"/freebsd-x-black-small.png
-chmod og=r "$wallpaper_dir"/freebsd-warm-grey-computer.png
-chmod og=r "$wallpaper_dir"/jurasic-park-unix-system.jpg
-chmod og=r "$wallpaper_dir"/unix-highway-to-shell-white.png
-chmod og=r "$wallpaper_dir"/unix-too-hot.jpg
-chmod og=r "$wallpaper_dir"/freebsd-stripes-light-colors.png
-chmod og=r "$wallpaper_dir"/freebsd-stripes-dark-colors.png
-chmod og=r "$wallpaper_dir"/freebsd-11.png
-chmod og=r "$wallpaper_dir"/unix-this-is-mdh3ll.jpg
+chmod 644 "$wallpaper_dir"/*.jpg "$wallpaper_dir"/*.png
 
 # Remove base directory and .tar.gz file.
 rm -rf $HOME/wallpapers-freebsd && rm -f $HOME/wallpapers-freebsd.tar.gz
