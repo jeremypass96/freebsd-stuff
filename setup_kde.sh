@@ -352,7 +352,7 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Download Konsole colors.
-dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you want?" 12 40 12 \
+dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you want?" 10 42 10 \
     1 "Catppuccin" \
     2 "OneHalf-Dark" \
     3 "Ayu Mirage" 2> /tmp/konsole_resp

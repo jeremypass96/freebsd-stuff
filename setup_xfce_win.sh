@@ -357,7 +357,7 @@ cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/x
 # Install Xfce Terminal colors.
 mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal/colorschemes
-dialog --title "Xfce Terminal Colorscheme" --menu "Which XFCE Terminal colorscheme do you want?" 12 40 12 \
+dialog --title "Xfce Terminal Colorscheme" --menu "Which XFCE Terminal colorscheme do you want?" 10 48 10 \
     1 "Catppuccin" \
     2 "OneHalf-Dark" \
     3 "Ayu Mirage" 2> /tmp/xfceterm_resp
