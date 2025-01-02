@@ -141,7 +141,10 @@ EOF
 
 # Configure vim.
 vim -es -u $vimrc_path -i NONE -c "PlugInstall" -c "qa"
-sudo cp -r /home/$USER/.vim/plugged /usr/share/skel/dot.config/.vim/plugged
+cp -r /home/$USER/.vim/plugged /usr/share/skel/dot.config/.vim/plugged
+
+# Copy vimrc to /usr/share/skel directory.
+cp -rv /home/$USER/.vim/vimrc /usr/share/skel/dot.config/.vim/
 
 # Fix vim folder permissions.
 chown -R $USER:$USER /home/$USER/.vim
