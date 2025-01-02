@@ -89,7 +89,7 @@ bat --generate-config-file
 chown $USER:$USER /home/$USER/.config/bat/config
 
 # Modify the configuration settings.
-sed -i '' 's/#--theme="TwoDark"/--theme="OneHalfDark"'/g /home/$USER/.config/bat/config
+sed -i '' 's/#--theme="TwoDark"/--theme="1337"'/g /home/$USER/.config/bat/config
 sed -i '' 's/#--italic-text=always/--italic-text=always'/g /home/$USER/.config/bat/config
 echo '--map-syntax "*.conf:INI"' >> /home/$USER/.config/bat/config
 echo '--map-syntax "config:INI"' >> /home/$USER/.config/bat/config
@@ -102,5 +102,46 @@ cp -v /home/$USER/.config/bat/config /usr/share/skel/dot.config/bat
 mkdir -p $HOME/.config/bat
 cp -v /home/$USER/.config/bat/config $HOME/.config/bat/config
 
-echo "Bat syntax highlighter has been configured with the OneHalfDark theme for both your user and root."
-##
+echo "Bat syntax highlighter has been configured with the '1337' theme for both your user and root."
+
+# Vim setup.
+# Install vim-plug.
+curl -fLo /home/$USER/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p /usr/share/skel/dot.config/.vim/autoload
+cp -v /home/$USER/.vim/autoload/plug.vim /usr/share/skel/dot.config/.vim/autoload/plug.vim
+
+# Configure the vimrc file.
+vimrc_path=/home/$USER/.vim/vimrc
+tee $vimrc_path > /dev/null << EOF
+set number
+set cursorline
+set linebreak
+set incsearch
+set hlsearch
+set spell
+set smoothscroll
+set termguicolors
+
+call plug#begin('~/.vim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'jiangmiao/auto-pairs'
+call plug#end()
+
+let g:lightline = {'colorscheme': 'ayu_mirage'}
+let g:one_allow_italics = 1
+let ayucolor="mirage"
+colorscheme ayu
+set laststatus=2
+set noshowmode
+set guifont=JetBrainsMonoNL\ NFM:h12:cDEFAULT
+set backspace=indent,eol,start
+EOF
+
+# Configure vim.
+vim -es -u $vimrc_path -i NONE -c "PlugInstall" -c "qa"
+sudo cp -r /home/$USER/.vim/plugged /usr/share/skel/dot.config/.vim/plugged
+
+# Fix vim folder permissions.
+chown -R $USER:$USER /home/$USER/.vim
