@@ -2,7 +2,7 @@
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
 exit
 fi
@@ -12,7 +12,7 @@ clear
 echo "Welcome to the FreeBSD Katana setup script."
 echo "This script will setup Xorg, the Katana desktop, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
-read -p "Press the Enter key to continue..." resp
+read -rp "Press the Enter key to continue..." resp
 
 clear
 
@@ -114,9 +114,9 @@ resp=$?
 
 if [ $resp -eq 0 ]; then
     dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
-    tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-    rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
+    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
+    tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+    rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
     dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 fi
 
@@ -145,7 +145,7 @@ if [ $resp -eq 0 ]; then
 fi
 
 # Fix GTK/QT antialiasing
-cat << EOF > /home/$USER/.xinitrc
+cat << EOF > /home/"$USER"/.xinitrc
 # GTK/QT Antialiasing
 export QT_XFT=1
 export GDK_USE_XFT=1
@@ -157,21 +157,21 @@ echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_design
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
 
 # Fix user's .xinitrc permissions.
-chown $USER:$USER /home/$USER/.xinitrc
+chown "$USER":"$USER" /home/"$USER"/.xinitrc
 
 # Fix user's config directory permissions.
-chown -R $USER:$USER /home/$USER/.config
+chown -R "$USER":"$USER" /home/"$USER"/.config
 
 # Fix user's local directory permissions.
-chown -R $USER:$USER /home/$USER/.local
+chown -R "$USER":"$USER" /home/"$USER"/.local
 
 # Install Ulauncher theme.
-mkdir -p /home/$USER/.config/ulauncher/user-themes
-git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
-chown -R $USER:$USER /home/$USER/.config/ulauncher
+mkdir -p /home/"$USER"/.config/ulauncher/user-themes
+git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/"$USER"/.config/ulauncher/user-themes/gruvbox-ulauncher
+chown -R "$USER":"$USER" /home/"$USER"/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
-cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-cp -rv /home/$USER/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+cp -r /home/"$USER"/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
+cp -rv /home/"$USER"/freebsd-setup-scripts/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf

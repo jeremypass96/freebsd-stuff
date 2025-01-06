@@ -164,7 +164,7 @@ fi
 # Extract the language code (first part of the country code) selected_locale=$(echo "$locale" | cut -d'_' -f1)
 # Apply the selected language to /etc/login.conf
 # Assuming you want to replace ":lang=C.UTF-8:" with the selected language
-sed -i -E s/:lang=C.UTF-8:/:lang=$selected_locale.UTF-8:/g /etc/login.conf
+sed -i -E s/:lang=C.UTF-8:/:lang="$selected_locale".UTF-8:/g /etc/login.conf
 
 # Reload the login.conf database
 cap_mkdb /etc/login.conf

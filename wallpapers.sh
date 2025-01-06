@@ -77,7 +77,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Fix permissions and copy the specified wallpapers to /usr/local/share/backgrounds.
-chmod og=r $HOME/wallpapers-freebsd/*.*
+chmod og=r "$HOME"/wallpapers-freebsd/*.*
 cp "$HOME/wallpapers-freebsd/freebsd-think-correctly-black.png" "$wallpaper_dir"
 cp "$HOME/wallpapers-freebsd/freebsd-x-black-small.png" "$wallpaper_dir"
 cp "$HOME/wallpapers-freebsd/freebsd-warm-grey-computer.png" "$wallpaper_dir"
@@ -93,6 +93,6 @@ cp "$HOME/wallpapers-freebsd/unix-this-is-mdh3ll.jpg" "$wallpaper_dir"
 chmod 644 "$wallpaper_dir"/*.jpg "$wallpaper_dir"/*.png
 
 # Remove base directory and .tar.gz file.
-rm -rf $HOME/wallpapers-freebsd && rm -f $HOME/wallpapers-freebsd.tar.gz
+rm -rf "$HOME"/wallpapers-freebsd && rm -f "$HOME"/wallpapers-freebsd.tar.gz
 
 dialog --title "Download Complete" --msgbox "Wallpapers downloaded and saved to $wallpaper_dir." 10 40

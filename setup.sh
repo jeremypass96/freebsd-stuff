@@ -9,7 +9,7 @@ YELLOW="\033[33m"
 CYAN="\033[36m"
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
   echo -e "${RED}Error:${RESET} ${YELLOW}Please run this setup script as root via 'su'! Thanks.${RESET}"
   exit
 fi
@@ -114,7 +114,7 @@ chmod o= /var/log
 
 # Prevent viewing/access of user's home directory by other users.
 echo -e "${CYAN}Securing user's home directory...${RESET}"
-chmod 700 /home/$USER
+chmod 700 /home/"$USER"
 
 # Enable process accounting.
 echo -e "${CYAN}Enabling process accounting...${RESET}"
@@ -190,7 +190,7 @@ sed -i '' 104s/'static_\$2 add \$3'/'static_\$2 add \$3 add \$3 1> \/dev\/null 2
 sed -i '' s/"echo -n 'Feeding entropy: '"/"echo -n 'Feeding entropy:'"/g /etc/rc.d/random
 grep -n -E '(1|2)> /dev/null' /etc/rc.d/* | grep -E 'routing|netif|ldconfig'
 grep -n -A 8 'random_start()' /etc/rc.d/random
-read -p "Did you install FreeBSD with the ZFS filesystem? (Y/n) " resp
+read -rp "Did you install FreeBSD with the ZFS filesystem? (Y/n) " resp
 resp=${resp:-Y}
 if [ "$resp" = Y ] || [ "$resp" = y ]; then
   sed -i '' s/'zpool import -c \$cachefile -a -N \&& break'/'zpool import -c \$cachefile -a -N 1> \/dev\/null 2> \/dev\/null \&\& break'/g /etc/rc.d/zpool
@@ -202,14 +202,11 @@ if [ "$resp" = Y ] || [ "$resp" = y ]; then
   # Turn off atime. Reduces disk writes/wear.
   zfs set atime=off zroot
 fi
-if [ "$resp" = n ]; then
-  continue
-fi
 
 # Make login quieter.
 echo -e "${CYAN}Making login quieter...${RESET}"
-touch /home/$USER/.hushlogin
-chown $USER /home/$USER/.hushlogin
+touch /home/"$USER"/.hushlogin
+chown "$USER" /home/"$USER"/.hushlogin
 touch /usr/share/skel/dot.hushlogin
 
 # Setup system files for desktop use.
@@ -227,7 +224,7 @@ xdg-user-dirs-update
 
 # Update FreeBSD base.
 echo -e "${CYAN}Updating FreeBSD base...${RESET}"
-PAGER=cat freebsd-update fetch install
+PAGER=$(cat freebsd-update fetch install)
 
 # Set mixer levels.
 echo -e "${CYAN}Setting volume mixer levels...${RESET}"

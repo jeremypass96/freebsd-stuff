@@ -2,7 +2,7 @@
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
 exit
 fi
@@ -12,11 +12,11 @@ clear
 echo "Welcome to the FreeBSD KDE setup script."
 echo "This script will setup Xorg, KDE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
-read -p "Press the Enter key to continue..." resp
+read -rp "Press the Enter key to continue..." resp
 
 clear
 
-read -p "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
+read -rp "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
 if [ "$resp" = pkg ]; then
 
 # Update repo to use latest packages.
@@ -126,7 +126,7 @@ if [ "$resp" = ports ]; then
 cp -v make.conf /etc/
 
 # Configure the MAKE_JOBS_NUMBER line in make.conf
-sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER=`sysctl -n hw.ncpu`/g /etc/make.conf
+sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER="$(sysctl -n hw.ncpu)"/g /etc/make.conf
 
 # Pull in Ports tree with git.
 git clone https://git.FreeBSD.org/ports.git /usr/ports
@@ -137,8 +137,8 @@ clear
 # Printer support.
 # Function to install a port with progress bar.
 install_port_with_progress() {
-    local port_name="$1"
-    local title="$2"
+    port_name="$1"
+    title="$2"
     dialog --title "$title" --infobox "Installing $port_name..." 5 40
     cd /usr/ports/print/"$port_name" && make install clean
     echo "100"
@@ -157,7 +157,7 @@ install_printer_ports() {
         port_name=$(basename "$port")
         (
             dialog --title "Installing $port_name" --infobox "Installing $port_name..." 5 40
-            cd /usr/ports/$port && make install clean
+            cd /usr/ports/"$port" && make install clean
             echo "100"
         ) | dialog --title "Installing $port_name" --infobox "Installing $port_name..." 10 50 0
         result=$?
@@ -301,7 +301,7 @@ elif [ "$microcode_resp" = 2 ]; then
 fi
 
 # Setup rc.conf file.
-cd /home/$USER/freebsd-setup-scripts
+cd /home/"$USER"/freebsd-setup-scripts || exit
 ./rcconf_setup_ports.sh
 
 # Install 3rd party software.
@@ -310,8 +310,8 @@ cd /home/$USER/freebsd-setup-scripts
 # Install BSDstats.
 # Function to install a port with progress bar.
 install_port_with_progress() {
-    local port_name="$1"
-    local title="$2"
+    port_name="$1"
+    title="$2"
     dialog --title "$title" --infobox "Installing $port_name..." 5 40
     portmaster --no-confirm "$port_name"
     echo "100"
@@ -338,7 +338,7 @@ sysrc sddm_enable="YES"
 # Generate SDDM config file.
 sddm --example-config > /usr/local/etc/sddm.conf
 sed -i '' s/Relogin=false/Relogin=true/g /usr/local/etc/sddm.conf
-sed -i '' s/User=/User=$USER/g /usr/local/etc/sddm.conf
+sed -i '' s/User=/User="$USER"/g /usr/local/etc/sddm.conf
 
 # Install cursor theme.
 dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
@@ -346,9 +346,9 @@ resp=$?
 
 if [ $resp -eq 0 ]; then
     dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
-    tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-    rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
+    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
+    tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+    rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
     dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 fi
 
@@ -387,20 +387,20 @@ sed -i '' s/Science/\/g /usr/local/share/applications/gnumeric.desktop
 sed -i '' s/Math/\/g /usr/local/share/applications/gnumeric.desktop
 
 # Fix GTK/QT antialiasing
-cat << EOF > /home/$USER/.xinitrc
+cat << EOF > /home/"$USER"/.xinitrc
 # GTK/QT Antialiasing
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
 # Fix user's .xinitrc permissions.
-chown $USER:$USER /home/$USER/.xinitrc
+chown "$USER":"$USER" /home/"$USER"/.xinitrc
 
 # Fix user's config directory permissions.
-chown -R $USER:$USER /home/$USER/.config
+chown -R "$USER":"$USER" /home/"$USER"/.config
 
 # Fix user's local directory permissions.
-chown -R $USER:$USER /home/$USER/.local
+chown -R "$USER":"$USER" /home/"$USER"/.local
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf

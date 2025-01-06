@@ -39,21 +39,27 @@ sed -i '' -e 's/#link cd0 cdrom/link cd0 cdrom/g' \
        -e 's/#link cd0 dvd/link cd0 dvd/g' /etc/devfs.conf
 
 # Allow all users to access CD/DVD drives
-echo "# Allow all users to access CD/DVD drives." >> /etc/devfs.conf
-echo "perm /dev/acd* 0666" >> /etc/devfs.conf
-echo "perm /dev/cd* 0666" >> /etc/devfs.conf
+tee -a /etc/devfs.conf > /dev/null << EOF
+# Allow all users to access CD/DVD drives.
+perm /dev/acd* 0666
+perm /dev/cd* 0666
+EOF
 
 # Allow all users to access USB devices
-echo "# Allow all users to access USB devices." >> /etc/devfs.conf
-echo "perm /dev/da* 0666" >> /etc/devfs.conf
+tee -a /etc/devfs.conf > /dev/null << EOF
+# Allow all users to access USB devices.
+perm /dev/da* 0666
+EOF
 
 # Misc. other devices
-echo "# Misc. other devices." >> /etc/devfs.conf
-echo "perm /dev/pass* 0666" >> /etc/devfs.conf
-echo "perm /dev/xpt0 0666" >> /etc/devfs.conf
-echo "perm /dev/uscanner* 0666" >> /etc/devfs.conf
-echo "perm /dev/video* 0666" >> /etc/devfs.conf
-echo "perm /dev/tuner0 0666" >> /etc/devfs.conf
-echo "perm /dev/dvb/adapter0/demux0 0666" >> /etc/devfs.conf
-echo "perm /dev/dvb/adapter0/dvr 0666" >> /etc/devfs.conf
-echo "perm /dev/dvb/adapter0/frontend0 0666" >> /etc/devfs.conf
+tee -a /etc/devfs.conf > /dev/null << EOF
+# Misc. other devices.
+perm /dev/pass* 0666
+perm /dev/xpt0 0666
+perm /dev/uscanner* 0666
+perm /dev/video* 0666
+perm /dev/tuner0 0666
+perm /dev/dvb/adapter0/demux0 0666
+perm /dev/dvb/adapter0/dvr 0666
+perm /dev/dvb/adapter0/frontend0 0666
+EOF

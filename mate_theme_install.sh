@@ -3,7 +3,7 @@
 # Function to run gsettings commands
 run_gsettings() {
     local command="$1"
-    sudo -u $USER sh -c "$command"
+    sudo -u "$USER" sh -c "$command"
     sudo sh -c "$command"
 }
 
@@ -30,7 +30,7 @@ mate_settings=(
 )
 
 # Checking to see if we're running as a normal user.
-if [ $(whoami) != $USER ]; then
+if [ "$(whoami)" != "$USER" ]; then
     echo "Please run this MATE post-install setup script as a normal user! Thanks."
     exit
 fi

@@ -2,7 +2,7 @@
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
 exit
 fi
@@ -12,11 +12,11 @@ clear
 echo "Welcome to the FreeBSD Xfce setup script."
 echo "This script will setup Xorg, Xfce, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
-read -p "Press the Enter key to continue..." resp
+read -rp "Press the Enter key to continue..." resp
 
 clear
 
-read -p "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
+read -rp "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
 if [ "$resp" = pkg ]; then
 
 # Update repo to use latest packages.
@@ -137,7 +137,7 @@ if [ "$resp" = ports ]; then
 cp -v make.conf /etc/
 
 # Configure the MAKE_JOBS_NUMBER line in make.conf
-sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER=`sysctl -n hw.ncpu`/g /etc/make.conf
+sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER="$(sysctl -n hw.ncpu)"/g /etc/make.conf
 
 # Pull in Ports tree with git.
 git clone https://git.FreeBSD.org/ports.git /usr/ports
@@ -148,8 +148,8 @@ clear
 # Printer support.
 # Function to install a port with progress bar.
 install_port_with_progress() {
-    local port_name="$1"
-    local title="$2"
+    port_name="$1"
+    title="$2"
     dialog --title "$title" --infobox "Installing $port_name..." 5 40
     cd /usr/ports/print/"$port_name" && make install clean
     echo "100"
@@ -168,7 +168,7 @@ install_printer_ports() {
         port_name=$(basename "$port")
         (
             dialog --title "Installing $port_name" --infobox "Installing $port_name..." 5 40
-            cd /usr/ports/$port && make install clean
+            cd /usr/ports/"$port" && make install clean
             echo "100"
         ) | dialog --title "Installing $port_name" --infobox "Installing $port_name..." 10 50 0
         result=$?
@@ -315,7 +315,7 @@ elif [ "$microcode_resp" = 2 ]; then
 fi
 
 # Setup rc.conf file.
-cd /home/$USER/freebsd-stuff
+cd /home/"$USER"/freebsd-stuff || exit
 ./rcconf_setup_ports.sh
 
 # Install 3rd party software.
@@ -324,8 +324,8 @@ cd /home/$USER/freebsd-stuff
 # Install BSDstats.
 # Function to install a port with progress bar.
 install_port_with_progress() {
-    local port_name="$1"
-    local title="$2"
+    port_name="$1"
+    title="$2"
     dialog --title "$title" --infobox "Installing $port_name..." 5 40
     portmaster --no-confirm "$port_name"
     echo "100"
@@ -348,15 +348,15 @@ fi
 clear
 
 # Setup Xfce Terminal.
-mkdir -p /home/$USER/.config/xfce4/terminal
-chown -R $USER:$USER /home/$USER/.config/xfce4/terminal
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/terminal/terminalrc /home/$USER/.config/xfce4/terminal/terminalrc
-chown $USER:$USER /home/$USER/.config/xfce4/terminal/terminalrc
+mkdir -p /home/"$USER"/.config/xfce4/terminal
+chown -R "$USER":"$USER" /home/"$USER"/.config/xfce4/terminal
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/terminal/terminalrc /home/"$USER"/.config/xfce4/terminal/terminalrc
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/terminal/terminalrc
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal
-cp -v /home/$USER/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
+cp -v /home/"$USER"/.config/xfce4/terminal/terminalrc /usr/share/skel/dot.config/xfce4/terminal/terminalrc
 
 # Install Xfce Terminal colors.
-mkdir -p /home/$USER/.config/xfce4/terminal/colorschemes
+mkdir -p /home/"$USER"/.config/xfce4/terminal/colorschemes
 mkdir -p /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 dialog --title "Xfce Terminal Colorscheme" --menu "Which XFCE Terminal colorscheme do you want?" 10 48 10 \
     1 "Catppuccin" \
@@ -365,19 +365,19 @@ dialog --title "Xfce Terminal Colorscheme" --menu "Which XFCE Terminal colorsche
 xfceterm_resp=$(cat /tmp/xfceterm_resp)
 if [ "$xfceterm_resp" = 1 ]; then
 	wcurl https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-frappe.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-latte.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-macchiato.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-mocha.theme
-	mv -v *.theme /home/$USER/.config/xfce4/terminal/colorschemes
-	chmod 644 /home/$USER/.config/xfce4/terminal/colorschemes/*.theme
-    cp -v /home/$USER/.config/xfce4/terminal/colorschemes/*.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+	mv -v *.theme /home/"$USER"/.config/xfce4/terminal/colorschemes
+	chmod 644 /home/"$USER"/.config/xfce4/terminal/colorschemes/*.theme
+    cp -v /home/"$USER"/.config/xfce4/terminal/colorschemes/*.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 elif [ "$xfceterm_resp" = 2 ]; then
 	wcurl https://raw.githubusercontent.com/sonph/onehalf/master/xfce4-terminal/OneHalfDark.theme
-	mv -v OneHalfDark.theme /home/$USER/.config/xfce4/terminal/colorschemes
-	chmod 644 /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
-    cp -v /home/$USER/.config/xfce4/terminal/colorschemes/OneHalfDark.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+	mv -v OneHalfDark.theme /home/"$USER"/.config/xfce4/terminal/colorschemes
+	chmod 644 /home/"$USER"/.config/xfce4/terminal/colorschemes/OneHalfDark.theme
+    cp -v /home/"$USER"/.config/xfce4/terminal/colorschemes/OneHalfDark.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 elif [ "$xfceterm_resp" = 3 ]; then
 	wcurl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/refs/heads/master/xfce4terminal/Ayu%20Mirage.theme -o AyuMirage.theme
-	mv -v AyuMirage.theme /home/$USER/.config/xfce4/terminal/colorschemes
-	chmod 644 /home/$USER/.config/xfce4/terminal/colorschemes/AyuMirage.theme
-    cp -v /home/$USER/.config/xfce4/terminal/colorschemes/AyuMirage.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
+	mv -v AyuMirage.theme /home/"$USER"/.config/xfce4/terminal/colorschemes
+	chmod 644 /home/"$USER"/.config/xfce4/terminal/colorschemes/AyuMirage.theme
+    cp -v /home/"$USER"/.config/xfce4/terminal/colorschemes/AyuMirage.theme /usr/share/skel/dot.config/xfce4/terminal/colorschemes
 fi
 
 # Setup shutdown/sleep rules for Xfce.
@@ -400,7 +400,7 @@ polkit.addRule(function (action, subject) {
 });
 EOF
 #####
-pw group mod operator -m $USER
+pw group mod operator -m "$USER"
 
 # Install cursor theme.
 dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
@@ -408,84 +408,84 @@ resp=$?
 
 if [ $resp -eq 0 ]; then
     dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/$USER/Bibata-Modern-Ice.tar.gz
-    tar -xvf /home/$USER/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-    rm -rf /home/$USER/Bibata-Modern-Ice.tar.gz
+    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
+    tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+    rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
     dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 fi
 
 # Setup Xfce preferences.
 #####
-mkdir -p /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
-chown -R $USER:$USER /home/$USER/.config/xfce4/xfconf
-chown -R $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml
+mkdir -p /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml
+chown -R "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf
+chown -R "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml
 mkdir -p /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
-cp -v /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
-chown $USER:$USER /home/$USER/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+cp -v /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml /usr/share/skel/dot.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
 #####
 
 #####
-mkdir -p /home/$USER/.config/xfce4/panel
-chown -R $USER:$USER /home/$USER/.config/xfce4/panel
+mkdir -p /home/"$USER"/.config/xfce4/panel
+chown -R "$USER":"$USER" /home/"$USER"/.config/xfce4/panel
 mkdir -p /usr/share/skel/dot.config/xfce4/panel
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/whiskermenu-8.rc /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
-cp -v /home/$USER/.config/xfce4/panel/whiskermenu-8.rc /usr/share/skel/dot.config/xfce4/panel/whiskermenu-8.rc
-chown $USER:$USER /home/$USER/.config/xfce4/panel/whiskermenu-8.rc
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/panel/whiskermenu-8.rc /home/"$USER"/.config/xfce4/panel/whiskermenu-8.rc
+cp -v /home/"$USER"/.config/xfce4/panel/whiskermenu-8.rc /usr/share/skel/dot.config/xfce4/panel/whiskermenu-8.rc
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/panel/whiskermenu-8.rc
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/docklike-7.rc /home/$USER/.config/xfce4/panel/docklike-7.rc
-cp -v /home/$USER/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
-chown $USER:$USER /home/$USER/.config/xfce4/panel/docklike-7.rc
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/panel/docklike-7.rc /home/"$USER"/.config/xfce4/panel/docklike-7.rc
+cp -v /home/"$USER"/.config/xfce4/panel/docklike-7.rc /usr/share/skel/dot.config/xfce4/panel/docklike-7.rc
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/panel/docklike-7.rc
 #####
 
 #####
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/xfce4/panel/datetime-16.rc /home/$USER/.config/xfce4/panel/datetime-16.rc
-cp -v /home/$USER/.config/xfce4/panel/datetime-16.rc /usr/share/skel/dot.config/xfce4/panel/datetime-16.rc
-chown $USER:$USER /home/$USER/.config/xfce4/panel/datetime-16.rc
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/xfce4/panel/datetime-16.rc /home/"$USER"/.config/xfce4/panel/datetime-16.rc
+cp -v /home/"$USER"/.config/xfce4/panel/datetime-16.rc /usr/share/skel/dot.config/xfce4/panel/datetime-16.rc
+chown "$USER":"$USER" /home/"$USER"/.config/xfce4/panel/datetime-16.rc
 #####
 
 # Setup LightDM.
@@ -515,15 +515,15 @@ icon-theme-name = Papirus-Light
 EOF
 
 # Setup qt5ct and fix GTK/QT antialiasing.
-mkdir -p /home/$USER/.config/qt5ct
-chown -R $USER:$USER /home/$USER/.config/qt5ct
+mkdir -p /home/"$USER"/.config/qt5ct
+chown -R "$USER":"$USER" /home/"$USER"/.config/qt5ct
 mkdir /usr/share/skel/dot.config/qt5ct
-cp -v /home/$USER/freebsd-stuff/Dotfiles/config/qt5ct/qt5ct.conf /home/$USER/.config/qt5ct/qt5ct.conf
-cp -v /home/$USER/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
-chown $USER:$USER /home/$USER/.config/qt5ct/qt5ct.conf
-cp -v /home/$USER/freebsd-stuff/Dotfiles/.xinitrc /home/$USER/.xinitrc
-cp -v /home/$USER/.xinitrc /usr/share/skel/dot.xinitrc
-chown $USER:$USER /home/$USER/.xinitrc
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/config/qt5ct/qt5ct.conf /home/"$USER"/.config/qt5ct/qt5ct.conf
+cp -v /home/"$USER"/.config/qt5ct/qt5ct.conf /usr/share/skel/dot.config/qt5ct/qt5ct.conf
+chown "$USER":"$USER" /home/"$USER"/.config/qt5ct/qt5ct.conf
+cp -v /home/"$USER"/freebsd-stuff/Dotfiles/.xinitrc /home/"$USER"/.xinitrc
+cp -v /home/"$USER"/.xinitrc /usr/share/skel/dot.xinitrc
+chown "$USER":"$USER" /home/"$USER"/.xinitrc
 
 # Hide menu items.
 echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
@@ -536,22 +536,22 @@ echo "Hidden=true" >> /usr/local/share/applications/org.gtk.PrintEditor.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.gtk.WidgetFactory4.desktop
 
 # Fix user's .xinitrc permissions.
-chown $USER:$USER /home/$USER/.xinitrc
+chown "$USER":"$USER" /home/"$USER"/.xinitrc
 
 # Fix user's config directory permissions.
-chown -R $USER:$USER /home/$USER/.config
+chown -R "$USER":"$USER" /home/"$USER"/.config
 
 # Fix user's local directory permissions.
-mkdir /home/$USER/.local
-chown -R $USER:$USER /home/$USER/.local
+mkdir /home/"$USER"/.local
+chown -R "$USER":"$USER" /home/"$USER"/.local
 
 # Install Ulauncher theme.
-mkdir -p /home/$USER/.config/ulauncher/user-themes
-git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher
-chown -R $USER:$USER /home/$USER/.config/ulauncher
+mkdir -p /home/"$USER"/.config/ulauncher/user-themes
+git clone https://github.com/SylEleuth/ulauncher-gruvbox /home/"$USER"/.config/ulauncher/user-themes/gruvbox-ulauncher
+chown -R "$USER":"$USER" /home/"$USER"/.config/ulauncher
 mkdir -p /usr/share/skel/dot.config/ulauncher/user-themes
-cp -r /home/$USER/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
-cp -rv /home/$USER/freebsd-stuff/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
+cp -r /home/"$USER"/.config/ulauncher/user-themes/gruvbox-ulauncher /usr/share/skel/dot.config/ulauncher/user-themes/gruvbox-ulauncher
+cp -rv /home/"$USER"/freebsd-stuff/Dotfiles/config/ulauncher/settings.json /usr/share/skel/dot.config/ulauncher/settings.json
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf

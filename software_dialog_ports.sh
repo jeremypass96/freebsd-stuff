@@ -82,7 +82,7 @@ if [ -n "$selected_descriptions" ]; then
             echo vfs.aio.max_aio_queue_per_proc=65536 >> /etc/sysctl.conf
             echo vfs.aio.max_aio_per_proc=8192 >> /etc/sysctl.conf
             echo vfs.aio.max_aio_queue=65536 >> /etc/sysctl.conf
-            pw group mod vboxusers -m $USER
+            pw group mod vboxusers -m "$USER"
             ;;
         "emulators/wine")
             # Post-install commands for Wine.

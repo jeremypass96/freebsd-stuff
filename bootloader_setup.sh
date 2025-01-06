@@ -13,7 +13,7 @@ echo -e "${CYAN}This script sets up FreeBSD's loader.conf bootloader variables f
 
 # Checking to see if we're running as root
 echo -e "${YELLOW}Checking if we are running as root...${NC}"
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
     echo -e "${RED}Please run this bootloader setup script as root! Thanks.${NC}"
     exit
 fi
@@ -45,7 +45,7 @@ sysrc -f /boot/loader.conf crypto_load="YES"
 sysrc -f /boot/loader.conf geom_eli_load="YES"
 echo "" >> /boot/loader.conf
 
-read -p "Do you want to hide boot messages? (Y/n): " resp
+read -rp "Do you want to hide boot messages? (Y/n): " resp
 resp=${resp:-Y}
 if [ "$resp" = Y ] || [ "$resp" = y ]; then
     echo -e "${YELLOW}Hiding boot messages...${NC}"
@@ -58,7 +58,7 @@ else
     echo -e "${RED}Invalid response. Proceeding without hiding boot messages.${NC}"
 fi
 
-read -p "Do you have an AMD CPU installed in your computer? (Y/n): " resp
+read -rp "Do you have an AMD CPU installed in your computer? (Y/n): " resp
 resp=${resp:-Y}
 if [ "$resp" = Y ] || [ "$resp" = y ]; then
     echo -e "${YELLOW}Enabling AMD southbridge watchdog timers and CPU thermal sensor...${NC}"

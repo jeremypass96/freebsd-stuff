@@ -17,7 +17,7 @@ fi
 
 # Function to add color output for "YES" or "NO" values
 add_color_output() {
-  local value=$1
+  local value="$1"
   if [ "$value" = "YES" ]; then
     echo -e "\033[1;32m$1\033[0m"  # Bold Green
   elif [ "$value" = "NO" ]; then
@@ -33,41 +33,41 @@ configure_rc_conf() {
   echo ""
 
   # Display colorized variables in rc.conf
-  sysrc sendmail_msp_queueenable=$(add_color_output "NO")
-  sysrc sendmail_outbound_enable=$(add_color_output "NO")
-  sysrc sendmail_submit_enable=$(add_color_output "NO")
-  sysrc ntpd_enable=$(add_color_output "YES")
-  sysrc ntpd_sync_on_start=$(add_color_output "YES")
-  sysrc ntpd_oomprotect=$(add_color_output "YES")
-  sysrc inetd_enable=$(add_color_output "NO")
-  sysrc icmp_drop_redirect=$(add_color_output "YES")
-  sysrc icmp_log_redirect=$(add_color_output "YES")
-  sysrc nfs_server_enable=$(add_color_output "NO")
-  sysrc nfs_client_enable=$(add_color_output "NO")
-  sysrc sshd_enable=$(add_color_output "NO")
-  sysrc portmap_enable=$(add_color_output "NO")
-  sysrc mixer_enable=$(add_color_output "YES")
-  sysrc allscreens_flags=$(add_color_output "-f vgarom-8x16.fnt")
-  sysrc keyrate=$(add_color_output "fast")
-  sysrc service_delete_empty=$(add_color_output "YES")
-  sysrc firewall_enable=$(add_color_output "YES")
-  sysrc firewall_type=$(add_color_output "workstation")
-  sysrc firewall_quiet=$(add_color_output "YES")
-  sysrc firewall_logdeny=$(add_color_output "YES")
-  sysrc autoboot=$(add_color_output "YES")
-  sysrc rc_fast=$(add_color_output "YES")
-  sysrc rc_startmsgs=$(add_color_output "NO")
-  sysrc background_dhclient=$(add_color_output "YES")
-  sysrc dbus_enable=$(add_color_output "YES")
-  sysrc blanktime=$(add_color_output "1200")
-  sysrc savecore_enable=$(add_color_output "NO")
-  sysrc virecover_enable=$(add_color_output "NO")
-  sysrc smartd_enable=$(add_color_output "YES")
-  sysrc dumpdev=$(add_color_output "NO")
-  sysrc apmd_enable=$(add_color_output "YES")
-  sysrc defaultroute_delay=$(add_color_output "0")
-  sysrc rcshutdown_timeout=$(add_color_output "10")
-  sysrc cleanvar_enable=$(add_color_output "YES")
+  sysrc sendmail_msp_queueenable="$(add_color_output "NO")"
+  sysrc sendmail_outbound_enable="$(add_color_output "NO")"
+  sysrc sendmail_submit_enable="$(add_color_output "NO")"
+  sysrc ntpd_enable="$(add_color_output "YES")"
+  sysrc ntpd_sync_on_start="$(add_color_output "YES")"
+  sysrc ntpd_oomprotect="$(add_color_output "YES")"
+  sysrc inetd_enable="$(add_color_output "NO")"
+  sysrc icmp_drop_redirect="$(add_color_output "YES")"
+  sysrc icmp_log_redirect="$(add_color_output "YES")"
+  sysrc nfs_server_enable="$(add_color_output "NO")"
+  sysrc nfs_client_enable="$(add_color_output "NO")"
+  sysrc sshd_enable="$(add_color_output "NO")"
+  sysrc portmap_enable="$(add_color_output "NO")"
+  sysrc mixer_enable="$(add_color_output "YES")"
+  sysrc allscreens_flags="$(add_color_output "-f vgarom-8x16.fnt")"
+  sysrc keyrate="$(add_color_output "fast")"
+  sysrc service_delete_empty="$(add_color_output "YES")"
+  sysrc firewall_enable="$(add_color_output "YES")"
+  sysrc firewall_type="$(add_color_output "workstation")"
+  sysrc firewall_quiet="$(add_color_output "YES")"
+  sysrc firewall_logdeny="$(add_color_output "YES")"
+  sysrc autoboot="$(add_color_output "YES")"
+  sysrc rc_fast="$(add_color_output "YES")"
+  sysrc rc_startmsgs="$(add_color_output "NO")"
+  sysrc background_dhclient="$(add_color_output "YES")"
+  sysrc dbus_enable="$(add_color_output "YES")"
+  sysrc blanktime="$(add_color_output "1200")"
+  sysrc savecore_enable="$(add_color_output "NO")"
+  sysrc virecover_enable="$(add_color_output "NO")"
+  sysrc smartd_enable="$(add_color_output "YES")"
+  sysrc dumpdev="$(add_color_output "NO")"
+  sysrc apmd_enable="$(add_color_output "YES")"
+  sysrc defaultroute_delay="$(add_color_output "0")"
+  sysrc rcshutdown_timeout="$(add_color_output "10")"
+  sysrc cleanvar_enable="$(add_color_output "YES")"
 
   echo ""
   echo -e "\033[1;36mrc.conf variables configured.\033[0m"  # Bold Cyan
@@ -117,7 +117,7 @@ install_graphics_driver() {
       cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"
-      pw groupmod vboxusers -m $USER
+      pw groupmod vboxusers -m "$USER"
       sed -i '' s/hw.acpi.power_button_state=S3/\/g /etc/sysctl.conf
       ;;
     6)

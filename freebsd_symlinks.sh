@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Check if the script is running as root.
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
   echo "Please run this script as root using 'su' or 'sudo'. Thanks."
   exit 1
 fi
