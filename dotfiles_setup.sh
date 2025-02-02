@@ -150,6 +150,7 @@ cp -r /home/"$USER"/.vim/plugged /usr/share/skel/dot.config/.vim/plugged
 cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.config/.vim/
 
 # Copy vimrc to root's home directory.
+mkdir -p "$HOME"/.vim
 cp -rv /home/"$USER"/.vim/vimrc "$HOME"/.vim/vimrc
 
 # Fix vim folder permissions.
