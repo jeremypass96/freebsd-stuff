@@ -111,8 +111,8 @@ echo "Bat syntax highlighter has been configured with the '1337' theme for both 
 # Install vim-plug.
 curl -fLo /home/"$USER"/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-mkdir -p /usr/share/skel/dot.config/.vim/autoload
-cp -v /home/"$USER"/.vim/autoload/plug.vim /usr/share/skel/dot.config/.vim/autoload/plug.vim
+mkdir -p /usr/share/skel/dot.vim/autoload
+cp -v /home/"$USER"/.vim/autoload/plug.vim /usr/share/skel/dot.vim/autoload/plug.vim
 
 # Configure the vimrc file.
 vimrc_path=/home/$USER/.vim/vimrc
@@ -144,10 +144,10 @@ EOF
 
 # Configure vim.
 vim -es -u "$vimrc_path" -i NONE -c "PlugInstall" -c "qa"
-cp -r /home/"$USER"/.vim/plugged /usr/share/skel/dot.config/.vim/plugged
+cp -r /home/"$USER"/.vim/plugged /usr/share/skel/dot.vim/plugged
 
 # Copy vimrc to /usr/share/skel directory.
-cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.config/.vim/
+cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.vim/
 
 # Copy vimrc to root's home directory.
 mkdir -p "$HOME"/.vim
