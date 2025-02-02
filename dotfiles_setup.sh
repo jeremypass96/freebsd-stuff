@@ -117,7 +117,7 @@ mkdir -p "$HOME"/.vim/autoload
 cp -v /usr/share/skel/dot.vim/autoload/plug.vim "$HOME"/.vim/autoload/plug.vim
 
 # Configure the vimrc file.
-vimrc_path=/home/$USER/.vim/vimrc
+vimrc_path=/home/"$USER"/.vim/vimrc
 root_vimrc="$HOME"/.vim/vimrc
 tee "$vimrc_path" > /dev/null << EOF
 set number
