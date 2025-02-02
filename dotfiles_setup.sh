@@ -149,16 +149,16 @@ EOF
 vim -es -u "$vimrc_path" -i NONE -c "PlugInstall" -c "qa"
 cp -r /home/"$USER"/.vim/plugged /usr/share/skel/dot.vim/plugged
 
+# Copy vimrc to root's home directory.
+mkdir -p "$HOME"/.vim
+cp -rv /home/"$USER"/.vim/vimrc "$HOME"/.vim/vimrc
+
 # Configure Vim for root.
 vim -es -u "$root_vimrc" -i NONE -c "PlugInstall" -c "qa"
 cp -r /usr/share/skel/dot.vim/plugged "$HOME"/.vim/plugged
 
 # Copy vimrc to /usr/share/skel directory.
 cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.vim/
-
-# Copy vimrc to root's home directory.
-mkdir -p "$HOME"/.vim
-cp -rv /home/"$USER"/.vim/vimrc "$HOME"/.vim/vimrc
 
 # Fix vim folder permissions.
 chown -R "$USER":"$USER" /home/"$USER"/.vim
