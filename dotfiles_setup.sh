@@ -55,6 +55,7 @@ chmod 755 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 chmod 755 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 chmod 755 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 unset ZSH_CUSTOM
+
 read -rp "Installing Zsh syntax highlighting plugin... do you want the FreeBSD binary packge or the ports tree port? (pkg/port) " zsh_resp
 if [ "$zsh_resp" = pkg ]; then
     pkg install -y zsh-fast-syntax-highlighting
@@ -63,6 +64,8 @@ elif [ "$zsh_resp" = port ]; then
 fi
 chmod 755 /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> /home/"$USER"/.zshrc
+echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> "$HOME"/.zshrc
+echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> /usr/share/skel/dot.zshrc
 
 cd /home/"$USER"/freebsd-stuff || exit
 
@@ -145,6 +148,9 @@ cp -r /home/"$USER"/.vim/plugged /usr/share/skel/dot.config/.vim/plugged
 
 # Copy vimrc to /usr/share/skel directory.
 cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.config/.vim/
+
+# Copy vimrc to root's home directory.
+cp -rv /home/"$USER"/.vim/vimrc "$HOME"/.vim/vimrc
 
 # Fix vim folder permissions.
 chown -R "$USER":"$USER" /home/"$USER"/.vim
