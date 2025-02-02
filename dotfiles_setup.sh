@@ -113,9 +113,12 @@ curl -fLo /home/"$USER"/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p /usr/share/skel/dot.vim/autoload
 cp -v /home/"$USER"/.vim/autoload/plug.vim /usr/share/skel/dot.vim/autoload/plug.vim
+mkdir -p "$HOME"/.vim/autoload
+cp -v /usr/share/skel/dot.vim/autoload/plug.vim "$HOME"/.vim/autoload/plug.vim
 
 # Configure the vimrc file.
 vimrc_path=/home/$USER/.vim/vimrc
+root_vimrc="$HOME"/.vim/vimrc
 tee "$vimrc_path" > /dev/null << EOF
 set number
 set cursorline
@@ -142,9 +145,13 @@ set guifont=JetBrainsMonoNL\ NFM:h12:cDEFAULT
 set backspace=indent,eol,start
 EOF
 
-# Configure vim.
+# Configure Vim for standard user.
 vim -es -u "$vimrc_path" -i NONE -c "PlugInstall" -c "qa"
 cp -r /home/"$USER"/.vim/plugged /usr/share/skel/dot.vim/plugged
+
+# Configure Vim for root.
+vim -es -u "$root_vimrc" -i NONE -c "PlugInstall" -c "qa"
+cp -r /usr/share/skel/dot.vim/plugged "$HOME"/.vim/plugged
 
 # Copy vimrc to /usr/share/skel directory.
 cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.vim/
