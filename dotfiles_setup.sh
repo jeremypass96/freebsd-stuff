@@ -155,7 +155,6 @@ cp -rv /home/"$USER"/.vim/vimrc "$HOME"/.vim/vimrc
 
 # Configure Vim for root.
 vim -es -u "$root_vimrc" -i NONE -c "PlugInstall" -c "qa"
-cp -r /usr/share/skel/dot.vim/plugged "$HOME"/.vim/plugged
 
 # Copy vimrc to /usr/share/skel directory.
 cp -rv /home/"$USER"/.vim/vimrc /usr/share/skel/dot.vim/
