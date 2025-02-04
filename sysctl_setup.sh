@@ -76,7 +76,6 @@ kern.ipc.shm_use_phys=1
 kern.ipc.shm_allow_removed=1
 kern.ipc.shmall=256000
 hw.snd.vpc_0db=1
-hw.snd.latency=5
 hw.snd.feeder_rate_quality=4
 kern.sched.slice=3
 kern.maxfiles=100000
