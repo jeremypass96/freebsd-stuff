@@ -160,11 +160,13 @@ wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-SemiBold.ttf -
 wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-SemiBoldItalic.ttf -P /usr/share/fonts/Poppins
 wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Thin.ttf -P /usr/share/fonts/Poppins
 wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ThinItalic.ttf -P /usr/share/fonts/Poppins
+chmod 644 /usr/share/fonts/Poppins/*
 
 # Install the Source Sans 3 font.
 mkdir -p /usr/share/fonts/SourceSans3
 wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf -P /usr/share/fonts/SourceSans3
 wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3-Italic%5Bwght%5D.ttf -P /usr/share/fonts/SourceSans3
+chmod 644 /usr/share/fonts/SourceSans3/*
 
 # Fix font rendering.
 echo -e "${CYAN}Fixing font rendering...${RESET}"
