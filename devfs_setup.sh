@@ -63,3 +63,8 @@ perm /dev/dvb/adapter0/frontend0 0666
 EOF
 
 echo "To apply changes, reboot or run: service devfs restart"
+
+# Allow users to mount and unmount CD/DVD-ROM drives.
+grep -q 'cd0' || tee -a /etc/fstab > /dev/null << EOF
+/dev/cd0   /cdrom   cd9660   ro,noauto,user   0   0
+EOF
