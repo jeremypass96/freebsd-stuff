@@ -20,7 +20,7 @@ mate_settings=(
     "gsettings set org.mate.interface icon-theme Papirus-Dark"
     "gsettings set org.mate.interface monospace-font-name 'JetBrainsMono Nerd Font Mono 10'"
     "gsettings set org.mate.interface font-name 'Source Sans 3 10'"
-    "gsettings set org.mate.caja.desktop font 'Source Sans 3 10'"
+    "gsettings set org.mate.caja.desktop font 'Roboto 10'"
     "gsettings set org.mate.interface show-input-method-menu false"
     "gsettings set org.mate.interface show-unicode-menu false"
     "gsettings set org.mate.peripherals-mouse cursor-theme 'Bibata-Modern-Ice'"
