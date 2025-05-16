@@ -7,9 +7,9 @@ if [ "$(id -u)" -ne 0 ]; then
     exit
 fi
 
-cat << EOF >> /etc/sysctl.conf
-#########################
-
+if ! grep -q 'desktop sysctl script' /etc/sysctl.conf; then
+  cat << 'EOF' >> /etc/sysctl.conf
+# ---- Added by FreeBSD desktop sysctl script ----
 # Enable users to mount drives.
 vfs.usermount=1
 
@@ -86,3 +86,4 @@ kern.geom.part.mbr.enforce_chs=0
 # Fix stuttering issue on AMD CPUs.
 kern.sched.steal_thresh=1
 EOF
+fi

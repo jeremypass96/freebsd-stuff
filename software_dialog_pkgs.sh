@@ -8,7 +8,7 @@ fi
 
 # Array of software options to be installed with descriptions
 software_options=(
-    "Audaicty"
+    "Audacity"
     "Handbrake"
     "ISO Master"
     "AbiWord"
@@ -39,7 +39,7 @@ if [ -n "$selected_descriptions" ]; then
     # Function to map descriptions to package names
     map_descriptions_to_packages() {
         case "$1" in
-            "Audaicty") echo "audacity" ;;
+            "Audacity") echo "audacity" ;;
             "Handbrake") echo "handbrake" ;;
             "ISO Master") echo "isomaster" ;;
             "AbiWord") echo "abiword" ;;
@@ -56,18 +56,28 @@ if [ -n "$selected_descriptions" ]; then
         esac
     }
 
+#    selected_packages=""
+#    for description in $selected_descriptions; do
+#        package=$(map_descriptions_to_packages "$description")
+#        if [ -n "$package" ]; then
+#            selected_packages="$selected_packages $package"
+#        fi
+#    done
+
     selected_packages=""
-    for description in $selected_descriptions; do
-        package=$(map_descriptions_to_packages "$description")
-        if [ -n "$package" ]; then
-            selected_packages="$selected_packages $package"
+    for desc in $(echo "$selected_descriptions" | tr -d '"'); do
+        pkgname=$(map_descriptions_to_packages "$desc")
+        if [ -n "$pkgname" ]; then
+            pkg install -y "$pkgname"
+        else
+            echo "Skipping unrecognized entry: $desc"
         fi
     done
 
-    # Install the selected packages
-    for package in $selected_packages; do
-        pkg install -y "$package"
-    done
+#    # Install the selected packages
+#    for package in $selected_packages; do
+#        pkg install -y "$package"
+#    done
 
     # Execute post-install commands for specific packages
     for package in $selected_packages; do

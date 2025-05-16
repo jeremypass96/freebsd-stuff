@@ -7,6 +7,9 @@ if [ "$(id -u)" -ne 0 ]; then
   exit
 fi
 
+# Use logname instead of $USER to get the actual invoking user when run as root.
+logged_in_user=$(logname)
+
 clear
 
 # Check if dialog is installed
@@ -15,62 +18,72 @@ if ! command -v dialog >/dev/null 2>&1; then
   exit 1
 fi
 
-# Function to add color output for "YES" or "NO" values
+# Function to colorize terminal output only (not rc.conf)
 add_color_output() {
-  local value="$1"
-  if [ "$value" = "YES" ]; then
-    echo -e "\033[1;32m$1\033[0m"  # Bold Green
-  elif [ "$value" = "NO" ]; then
-    echo -e "\033[1;31m$1\033[0m"  # Bold Red
-  else
-    echo "$1"  # Default color (no color change)
-  fi
+  case "$1" in
+    YES) echo "\033[1;32mYES\033[0m" ;;  # Bold Green
+    NO) echo "\033[1;31mNO\033[0m" ;;    # Bold Red
+    *) echo "$1" ;;
+  esac
 }
 
-# Function to automatically configure rc.conf variables
+# Function to safely apply a sysrc setting and echo it with color
+set_rc() {
+  local var="$1"
+  local val="$2"
+  sysrc "${var}=${val}" >/dev/null
+  echo "${var} = $(add_color_output "$val")"
+}
+
 configure_rc_conf() {
-  echo -e "\033[1;36mConfiguring rc.conf variables...\033[0m"  # Bold Cyan
+  echo -e "\033[1;36mConfiguring rc.conf variables...\033[0m"
   echo ""
 
-  # Display colorized variables in rc.conf
-  sysrc sendmail_msp_queueenable="$(add_color_output "NO")"
-  sysrc sendmail_outbound_enable="$(add_color_output "NO")"
-  sysrc sendmail_submit_enable="$(add_color_output "NO")"
-  sysrc ntpd_enable="$(add_color_output "YES")"
-  sysrc ntpd_sync_on_start="$(add_color_output "YES")"
-  sysrc ntpd_oomprotect="$(add_color_output "YES")"
-  sysrc inetd_enable="$(add_color_output "NO")"
-  sysrc icmp_drop_redirect="$(add_color_output "YES")"
-  sysrc icmp_log_redirect="$(add_color_output "YES")"
-  sysrc nfs_server_enable="$(add_color_output "NO")"
-  sysrc nfs_client_enable="$(add_color_output "NO")"
-  sysrc sshd_enable="$(add_color_output "NO")"
-  sysrc portmap_enable="$(add_color_output "NO")"
-  sysrc mixer_enable="$(add_color_output "YES")"
-  sysrc allscreens_flags="$(add_color_output "-f vgarom-8x16.fnt")"
-  sysrc keyrate="$(add_color_output "fast")"
-  sysrc service_delete_empty="$(add_color_output "YES")"
-  sysrc firewall_enable="$(add_color_output "YES")"
-  sysrc firewall_type="$(add_color_output "workstation")"
-  sysrc firewall_quiet="$(add_color_output "YES")"
-  sysrc firewall_logdeny="$(add_color_output "YES")"
-  sysrc autoboot="$(add_color_output "YES")"
-  sysrc rc_fast="$(add_color_output "YES")"
-  sysrc rc_startmsgs="$(add_color_output "NO")"
-  sysrc background_dhclient="$(add_color_output "YES")"
-  sysrc dbus_enable="$(add_color_output "YES")"
-  sysrc blanktime="$(add_color_output "1200")"
-  sysrc savecore_enable="$(add_color_output "NO")"
-  sysrc virecover_enable="$(add_color_output "NO")"
-  sysrc smartd_enable="$(add_color_output "YES")"
-  sysrc dumpdev="$(add_color_output "NO")"
-  sysrc apmd_enable="$(add_color_output "YES")"
-  sysrc defaultroute_delay="$(add_color_output "0")"
-  sysrc rcshutdown_timeout="$(add_color_output "10")"
-  sysrc cleanvar_enable="$(add_color_output "YES")"
+  # --- Mail ---
+  set_rc sendmail_msp_queueenable NO
+  set_rc sendmail_outbound_enable NO
+  set_rc sendmail_submit_enable NO
+
+  # --- Time Sync ---
+  set_rc ntpd_enable YES
+  set_rc ntpd_sync_on_start YES
+  set_rc ntpd_oomprotect YES
+
+  # --- Networking ---
+  set_rc inetd_enable NO
+  set_rc icmp_drop_redirect YES
+  set_rc icmp_log_redirect YES
+  set_rc nfs_server_enable NO
+  set_rc nfs_client_enable NO
+  set_rc sshd_enable NO
+  set_rc portmap_enable NO
+
+  # --- Desktop / Services ---
+  set_rc mixer_enable YES
+  set_rc allscreens_flags "-f vgarom-8x16.fnt"
+  set_rc keyrate fast
+  set_rc service_delete_empty YES
+  set_rc firewall_enable YES
+  set_rc firewall_type workstation
+  set_rc firewall_quiet YES
+  set_rc firewall_logdeny YES
+  set_rc autoboot YES
+  set_rc rc_fast YES
+  set_rc rc_startmsgs NO
+  set_rc background_dhclient YES
+  set_rc dbus_enable YES
+  set_rc blanktime 1200
+  set_rc savecore_enable NO
+  set_rc virecover_enable NO
+  set_rc smartd_enable YES
+  set_rc dumpdev NO
+  set_rc apmd_enable YES
+  set_rc defaultroute_delay 0
+  set_rc rcshutdown_timeout 10
+  set_rc cleanvar_enable YES
 
   echo ""
-  echo -e "\033[1;36mrc.conf variables configured.\033[0m"  # Bold Cyan
+  echo -e "\033[1;36mrc.conf variables configured.\033[0m"
 }
 
 # Function to install graphics driver based on selection
@@ -106,12 +119,12 @@ install_graphics_driver() {
       pkg install -y drm-kmod virtualbox-ose-additions xf86-video-vmware
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"
-      pw groupmod vboxusers -m "$USER"
-      sed -i '' s/hw.acpi.power_button_state=S3/\#hw.acpi.power_button_state=S3/g /etc/sysctl.conf
+      pw groupmod vboxusers -m "$logged_in_user"
+      sed -i '' 's/^hw.acpi.power_button_state=S3/#&/' /etc/sysctl.conf
       ;;
     6)
       pkg install -y drm-kmod xf86-video-vmware xf86-input-vmmouse open-vm-tools
-      sed -i '' s/hw.acpi.power_button_state=S3/\#hw.acpi.power_button_state=S3/g /etc/sysctl.conf
+      sed -i '' 's/^hw.acpi.power_button_state=S3/#&/' /etc/sysctl.conf
       service smartd delete
       ;;
     *)
@@ -126,5 +139,4 @@ install_graphics_driver
 # Automatically configure rc.conf variables
 clear & configure_rc_conf
 
-# Filter out color escape codes in /etc/rc.conf using sed
-sed -i -E 's/\x1B\[[0-9;]*[a-zA-Z]//g' /etc/rc.conf
+# End of script.

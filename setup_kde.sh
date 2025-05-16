@@ -1,11 +1,16 @@
 #!/bin/sh
+set -e
+
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
 if [ "$(id -u)" -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
-exit
+exit 1
 fi
+
+# Use logname instead of $USER to get the actual invoking user when run as root.
+logged_in_user=$(logname)
 
 clear
 
@@ -16,9 +21,19 @@ read -rp "Press the Enter key to continue..." resp
 
 clear
 
-read -rp "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
-if [ "$resp" = pkg ]; then
+# Ask user to choose pkg or ports, with validation
+while true; do
+  read -rp "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
+  resp=$(echo "$resp" | tr '[:upper:]' '[:lower:]')
 
+  if [ "$resp" = "pkg" ] || [ "$resp" = "ports" ]; then
+    break
+  fi
+
+  echo "Invalid input. Please type 'pkg' or 'ports'."
+done
+
+if [ "$resp" = pkg ]; then
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
@@ -28,16 +43,13 @@ echo ""
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
 echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
-echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
-echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
+grep -q "DEFAULT_ALWAYS_YES" /usr/local/etc/pkg.conf || echo "DEFAULT_ALWAYS_YES=yes" >> /usr/local/etc/pkg.conf
+grep -q "AUTOCLEAN" /usr/local/etc/pkg.conf || echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Printer support.
-# Function to display a menu and return the selected option.
-display_menu() {
-    dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
-    menu_resp=$(cat /tmp/menu_resp)
-    echo "$menu_resp"
-}
+dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
+menu_resp=$(cat /tmp/menu_resp)
+echo "$menu_resp"
 
 # Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
@@ -301,7 +313,7 @@ elif [ "$microcode_resp" = 2 ]; then
 fi
 
 # Setup rc.conf file.
-cd /home/"$USER"/freebsd-setup-scripts || exit
+cd /home/"$logged_in_user"/freebsd-setup-scripts || exit
 ./rcconf_setup_ports.sh
 
 # Install 3rd party software.
@@ -338,7 +350,7 @@ sysrc sddm_enable="YES"
 # Generate SDDM config file.
 sddm --example-config > /usr/local/etc/sddm.conf
 sed -i '' s/Relogin=false/Relogin=true/g /usr/local/etc/sddm.conf
-sed -i '' s/User=/User="$USER"/g /usr/local/etc/sddm.conf
+sed -i '' s/User=/User="$logged_in_user"/g /usr/local/etc/sddm.conf
 
 # Install cursor theme.
 dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
@@ -346,9 +358,9 @@ resp=$?
 
 if [ $resp -eq 0 ]; then
     dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
-    tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-    rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
+    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
+    tar -xvf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+    rm -rf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
     dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 fi
 
@@ -387,20 +399,20 @@ sed -i '' s/Science/\/g /usr/local/share/applications/gnumeric.desktop
 sed -i '' s/Math/\/g /usr/local/share/applications/gnumeric.desktop
 
 # Fix GTK/QT antialiasing
-cat << EOF > /home/"$USER"/.xinitrc
+cat << 'EOF' > /home/"$logged_in_user"/.xinitrc
 # GTK/QT Antialiasing
 export QT_XFT=1
 export GDK_USE_XFT=1
 EOF
 
 # Fix user's .xinitrc permissions.
-chown "$USER":"$USER" /home/"$USER"/.xinitrc
+chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
 
 # Fix user's config directory permissions.
-chown -R "$USER":"$USER" /home/"$USER"/.config
+chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config
 
 # Fix user's local directory permissions.
-chown -R "$USER":"$USER" /home/"$USER"/.local
+chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.local
 
 # Configure rkhunter (rootkit malware scanner).
 echo 'daily_rkhunter_update_enable="YES"' >> /etc/periodic.conf
@@ -409,7 +421,7 @@ echo 'daily_rkhunter_check_enable="YES"' >> /etc/periodic.conf
 echo 'daily_rkhunter_check_flags="--checkall --skip-keypress"' >> /etc/periodic.conf
 
 # Fix KDE power buttons not appearing on application launcher menu.
-cat << EOF >> /usr/local/etc/polkit-1/rules.d/40-wheel-group.rules
+cat << 'EOF' >> /usr/local/etc/polkit-1/rules.d/40-wheel-group.rules
 polkit.addRule(function(action, subject) {
     if (subject.isInGroup("wheel")) {
         return polkit.Result.YES;

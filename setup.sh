@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # Colors
 RESET="\033[0m"
@@ -11,8 +12,11 @@ CYAN="\033[36m"
 # Checking to see if we're running as root.
 if [ "$(id -u)" -ne 0 ]; then
   echo -e "${RED}Error:${RESET} ${YELLOW}Please run this setup script as root via 'su'! Thanks.${RESET}"
-  exit
+  exit 1
 fi
+
+# Use logname instead of $USER to get the actual invoking user when run as root.
+logged_in_user=$(logname)
 
 # Clear the screen
 clear
@@ -53,10 +57,10 @@ esac
 
 # Disable unneeded TTYs and secure the rest. This will make you enter root's password when booting into single user mode, but you can't login as root when booted into normal user mode.
 echo -e "${CYAN}Configuring TTYs and security settings...${RESET}"
-sed -i '' s/ttyu0/#ttyu0/g /etc/ttys
-sed -i '' s/ttyu1/#ttyu1/g /etc/ttys
-sed -i '' s/ttyu2/#ttyu2/g /etc/ttys
-sed -i '' s/ttyu3/#ttyu3/g /etc/ttys
+cp /etc/ttys /etc/ttys.bak
+for tty in ttyu0 ttyu1 ttyu2 ttyu3; do
+  sed -i '' "s/^$tty/#$tty/" /etc/ttys
+done
 sed -i '' s/dcons/#dcons/g /etc/ttys
 sed -i '' s/xc0/#xc0/g /etc/ttys
 sed -i '' s/rcons/#rcons/g /etc/ttys
@@ -114,7 +118,7 @@ chmod o= /var/log
 
 # Prevent viewing/access of user's home directory by other users.
 echo -e "${CYAN}Securing user's home directory...${RESET}"
-chmod 700 /home/"$USER"
+chmod 700 /home/"$logged_in_user"
 
 # Enable process accounting.
 echo -e "${CYAN}Enabling process accounting...${RESET}"
@@ -128,7 +132,7 @@ echo 'daily_status_smart_devices="/dev/ada0"' >> /etc/periodic.conf
 
 # Setup automoumt.
 echo -e "${CYAN}Setting up automount...${RESET}"
-cat << EOF > /usr/local/etc/automount.conf
+cat << 'EOF' > /usr/local/etc/automount.conf
 USERUMOUNT=YES
 NICENAMES=YES
 NOTIFY=YES
@@ -205,8 +209,8 @@ fi
 
 # Make login quieter.
 echo -e "${CYAN}Making login quieter...${RESET}"
-touch /home/"$USER"/.hushlogin
-chown "$USER" /home/"$USER"/.hushlogin
+touch /home/"$logged_in_user"/.hushlogin
+chown "$logged_in_user" /home/"$logged_in_user"/.hushlogin
 touch /usr/share/skel/dot.hushlogin
 
 # Setup system files for desktop use.

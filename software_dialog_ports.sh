@@ -8,7 +8,7 @@ fi
 
 # Array of port options to be installed with descriptions
 port_options=(
-    "Audaicty"
+    "Audacity"
     "Handbrake"
     "ISO Master"
     "AbiWord"
@@ -39,7 +39,7 @@ if [ -n "$selected_descriptions" ]; then
     # Function to map descriptions to port names
     map_descriptions_to_ports() {
         case "$1" in
-            "Audaicty") echo "audio/audacity" ;;
+            "Audacity") echo "audio/audacity" ;;
             "Handbrake") echo "multimedia/handbrake" ;;
             "ISO Master") echo "sysutils/isomaster" ;;
             "AbiWord") echo "editors/abiword" ;;
@@ -57,8 +57,8 @@ if [ -n "$selected_descriptions" ]; then
     }
 
     selected_ports=""
-    for description in $selected_descriptions; do
-        port=$(map_descriptions_to_ports "$description")
+    for desc in $(echo "$selected_descriptions" | tr -d '"'); do
+        port=$(map_descriptions_to_ports "$desc")
         if [ -n "$port" ]; then
             selected_ports="$selected_ports $port"
         fi

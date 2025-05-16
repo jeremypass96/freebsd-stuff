@@ -1,10 +1,12 @@
 #!/bin/sh
+set -e
+
 # This script will set up a complete FreeBSD desktop for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
 if [ "$(id -u)" -ne 0 ]; then
 echo "Please run this setup script as root via 'su'! Thanks."
-exit
+exit 1
 fi
 
 clear
@@ -16,9 +18,19 @@ read -rp "Press the Enter key to continue..." resp
 
 clear
 
-read -rp "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
-if [ "$resp" = pkg ]; then
+# Ask user to choose pkg or ports, with validation
+while true; do
+  read -rp "Do you plan to install software via pkg (binary packages) or ports (FreeBSD Ports tree)? (pkg/ports): " resp
+  resp=$(echo "$resp" | tr '[:upper:]' '[:lower:]')
 
+  if [ "$resp" = "pkg" ] || [ "$resp" = "ports" ]; then
+    break
+  fi
+
+  echo "Invalid input. Please type 'pkg' or 'ports'."
+done
+
+if [ "$resp" = pkg ]; then
 # Update repo to use latest packages.
 mkdir -p /usr/local/etc/pkg/repos
 sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
@@ -28,16 +40,13 @@ echo ""
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
 echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
-echo DEFAULT_ALWAYS_YES=yes >> /usr/local/etc/pkg.conf
-echo AUTOCLEAN=yes >> /usr/local/etc/pkg.conf
+grep -q "DEFAULT_ALWAYS_YES" /usr/local/etc/pkg.conf || echo "DEFAULT_ALWAYS_YES=yes" >> /usr/local/etc/pkg.conf
+grep -q "AUTOCLEAN" /usr/local/etc/pkg.conf || echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Printer support.
-# Function to display a menu and return the selected option.
-display_menu() {
-    dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
-    menu_resp=$(cat /tmp/menu_resp)
-    echo "$menu_resp"
-}
+dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
+menu_resp=$(cat /tmp/menu_resp)
+echo "$menu_resp"
 
 # Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
@@ -355,7 +364,7 @@ fetch https://raw.githubusercontent.com/broozar/installDesktopFreeBSD/DarkMate13
 chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 
 # Setup slick greeter.
-cat << EOF > /usr/local/etc/lightdm/slick-greeter.conf
+cat << 'EOF' > /usr/local/etc/lightdm/slick-greeter.conf
 [Greeter]
 background = /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 draw-user-backgrounds = false
