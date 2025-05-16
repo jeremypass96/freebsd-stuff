@@ -141,37 +141,42 @@ EOF
 
 echo -e "${CYAN}Installing fonts...${RESET}"
 # Install the Poppins font.
-mkdir -p /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Black.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-BlackItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Bold.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-BoldItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraBold.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraBoldItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraLight.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraLightItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Italic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Light.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-LightItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Medium.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-MediumItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Regular.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-SemiBold.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-SemiBoldItalic.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Thin.ttf -P /usr/share/fonts/Poppins
-wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ThinItalic.ttf -P /usr/share/fonts/Poppins
-chmod 644 /usr/share/fonts/Poppins/*
+mkdir -p /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Black.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-BlackItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Bold.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-BoldItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraBold.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraBoldItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraLight.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraLightItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Italic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Light.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-LightItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Medium.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-MediumItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Regular.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-SemiBold.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-SemiBoldItalic.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Thin.ttf -P /usr/local/share/fonts/Poppins
+wget https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ThinItalic.ttf -P /usr/local/share/fonts/Poppins
+chmod 755 /usr/local/share/fonts/Poppins/
+chmod 644 /usr/local/share/fonts/Poppins/*
 
 # Install the Source Sans 3 font.
-mkdir -p /usr/share/fonts/SourceSans3
-wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf -P /usr/share/fonts/SourceSans3
-wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3-Italic%5Bwght%5D.ttf -P /usr/share/fonts/SourceSans3
-chmod 644 /usr/share/fonts/SourceSans3/*
+mkdir -p /usr/local/share/fonts/SourceSans3
+wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf -P /usr/local/share/fonts/SourceSans3
+wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3-Italic%5Bwght%5D.ttf -P /usr/local/share/fonts/SourceSans3
+chmod 755 /usr/local/share/fonts/SourceSans3
+chmod 644 /usr/local/share/fonts/SourceSans3/*
 
 # Fix font rendering.
 echo -e "${CYAN}Fixing font rendering...${RESET}"
 ln -s /usr/local/etc/fonts/conf.avail/11-lcdfilter-default.conf /usr/local/etc/fonts/conf.d/
 ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts/conf.d/
+
+# Re-gererate font cache.
+fc-cache -fv
 
 # Fix micro truecolor support.
 echo -e "${CYAN}Enabling micro truecolor support...${RESET}"
