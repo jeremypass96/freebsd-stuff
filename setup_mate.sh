@@ -362,6 +362,8 @@ sed -i '' s/'#autologin-user-timeout=0'/'autologin-user-timeout=0'/g /usr/local/
 mkdir /usr/local/etc/lightdm/wallpaper
 fetch https://raw.githubusercontent.com/broozar/installDesktopFreeBSD/DarkMate13.0/files/wallpaper/centerFlat_grey-4k.png -o /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
 chown root:wheel /usr/local/etc/lightdm/wallpaper/centerFlat_grey-4k.png
+chmod 755 /usr/local/etc/lightdm/wallpaper/
+chmod 644 /usr/local/etc/lightdm/wallpaper/*
 
 # Setup slick greeter.
 cat << 'EOF' > /usr/local/etc/lightdm/slick-greeter.conf
@@ -376,6 +378,7 @@ clock-format = %I:%M %p
 theme-name = Skeuos-Blue-Light
 icon-theme-name = Papirus-Light
 EOF
+chmod 644 /usr/local/etc/lightdm/slick-greeter.conf
 
 # Setup qt5ct and fix GTK/QT antialiasing.
 mkdir -p /home/"$USER"/.config/qt5ct
