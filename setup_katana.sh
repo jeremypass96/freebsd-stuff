@@ -21,12 +21,6 @@ read -rp "Press the Enter key to continue..." resp
 
 clear
 
-# Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update
-echo ""
-
 # Add Katana desktop repo.
 cat << 'EOF' > /usr/local/etc/pkg/repos/Katana.conf
 Katana: {
@@ -90,8 +84,20 @@ fi
 
 clear
 
+# Enable the Linuxulator.
+sysrc linux_enable="YES" && service linux start
+
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji katana-workspace katana-extraapps Kvantum-qt5 ulauncher webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
+
+# Fix Linuxulator permissions.
+chmod 755 /compat
+chmod 755 /compat/linux
+chmod 755 /compat/linux/bin
+chmod 755 /compat/linux/lib64
+chmod 555 /compat/linux/lib64/ld-linux-x86-64.so.2
+chmod 751 /compat
+chmod 751 /compat/linux
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \

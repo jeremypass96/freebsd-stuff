@@ -34,11 +34,6 @@ while true; do
 done
 
 if [ "$resp" = pkg ]; then
-# Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update
-echo ""
 
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
@@ -90,8 +85,20 @@ if [ $resp -eq 0 ]; then
     sleep 3
 fi
 
+# Enable the Linuxulator.
+sysrc linux_enable="YES" && service linux start
+
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme ungoogled-chromium webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum-qt5 wcurl
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum-qt5 wcurl linux-brave
+
+# Fix Linuxulator permissions.
+chmod 755 /compat
+chmod 755 /compat/linux
+chmod 755 /compat/linux/bin
+chmod 755 /compat/linux/lib64
+chmod 555 /compat/linux/lib64/ld-linux-x86-64.so.2
+chmod 751 /compat
+chmod 751 /compat/linux
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
@@ -239,6 +246,9 @@ else
     sed -i '' '17s/$/ CUPS/' /etc/make.conf
 fi
 
+# Enable the Linuxulator.
+sysrc linux_enable="YES" && service linux start
+
 # make.conf options for KDE.
 echo "" >> /etc/make.conf
 echo "# KDE Options" >> /etc/make.conf
@@ -268,7 +278,6 @@ cd /usr/ports/audio/juk && make install clean
 cd /usr/ports/x11/sddm && make install clean
 cd /usr/ports/deskutils/plasma6-sddm-kcm && make install clean
 cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
-cd /usr/ports/www/ungoogled-chromium && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
@@ -298,7 +307,17 @@ cd /usr/ports/sysutils/lsd && make install clean
 cd /usr/ports/x11-fonts/nerd-fonts && make install clean
 cd /usr/ports/x11-themes/Kvantum && make install clean
 cd /usr/ports/ftp/wcurl && make install clean
+cd /usr/ports/www/linux-brave && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
+
+# Fix Linuxulator permissions.
+chmod 755 /compat
+chmod 755 /compat/linux
+chmod 755 /compat/linux/bin
+chmod 755 /compat/linux/lib64
+chmod 555 /compat/linux/lib64/ld-linux-x86-64.so.2
+chmod 751 /compat
+chmod 751 /compat/linux
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \

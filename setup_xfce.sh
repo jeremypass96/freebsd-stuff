@@ -34,11 +34,6 @@ while true; do
 done
 
 if [ "$resp" = pkg ]; then
-# Update repo to use latest packages.
-mkdir -p /usr/local/etc/pkg/repos
-sed -e 's|quarterly|latest|g' /etc/pkg/FreeBSD.conf > /usr/local/etc/pkg/repos/FreeBSD.conf
-pkg update
-echo ""
 
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
@@ -90,10 +85,22 @@ if [ $resp -eq 0 ]; then
     sleep 3
 fi
 
+# Enable the Linuxulator.
+sysrc linux_enable="YES" && service linux start
+
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher ungoogled-chromium webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
+
+# Fix Linuxulator permissions.
+chmod 755 /compat
+chmod 755 /compat/linux
+chmod 755 /compat/linux/bin
+chmod 755 /compat/linux/lib64
+chmod 555 /compat/linux/lib64/ld-linux-x86-64.so.2
+chmod 751 /compat
+chmod 751 /compat/linux
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
@@ -241,6 +248,9 @@ else
     sed -i '' '17s/$/ CUPS/' /etc/make.conf
 fi
 
+# Enable the Linuxulator.
+sysrc linux_enable="YES" && service linux start
+
 # make.conf options for Xfce.
 echo "# Xfce Options" >> /etc/make.conf
 echo "x11-wm_xfce4_SET=LIGHTDM" >> /etc/make.conf
@@ -273,7 +283,6 @@ cd /usr/ports/x11-fonts/font-manager && make install clean
 cd /usr/ports/misc/qt5ct && make install clean
 cd /usr/ports/x11-themes/qt5-style-plugins && make install clean
 cd /usr/ports/x11/ulauncher && make install clean
-cd /usr/ports/www/ungoogled-chromium && make install clean
 cd /usr/ports/x11-fonts/noto && make install clean
 cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/sysutils/gksu && make install clean
@@ -303,7 +312,17 @@ cd /usr/ports/sysutils/fd && make install clean
 cd /usr/ports/sysutils/lsd && make install clean
 cd /usr/ports/x11-fonts/nerd-fonts && make install clean
 cd /usr/ports/ftp/wcurl && make install clean
+cd /usr/ports/www/linux-brave && make install clean
 cd /usr/ports/ports-mgmt/portmaster && make install clean
+
+# Fix Linuxulator permissions.
+chmod 755 /compat
+chmod 755 /compat/linux
+chmod 755 /compat/linux/bin
+chmod 755 /compat/linux/lib64
+chmod 555 /compat/linux/lib64/ld-linux-x86-64.so.2
+chmod 751 /compat
+chmod 751 /compat/linux
 
 # Install CPU microcode.
 dialog --title "CPU Microcode" --menu "Which CPU do you have installed? Needed to install CPU microcode." 12 40 12 \
