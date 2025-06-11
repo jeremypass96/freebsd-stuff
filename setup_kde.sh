@@ -413,10 +413,6 @@ echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasmaengineexplorer
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.lookandfeelexplorer.desktop
 echo "Hidden=true" >> /usr/local/share/applications/org.kde.kuserfeedback-console.desktop
 
-# Fix duplicate Gnumeric menu entry.
-sed -i '' s/Science/\/g /usr/local/share/applications/gnumeric.desktop
-sed -i '' s/Math/\/g /usr/local/share/applications/gnumeric.desktop
-
 # Fix GTK/QT antialiasing
 cat << 'EOF' > /home/"$logged_in_user"/.xinitrc
 # GTK/QT Antialiasing

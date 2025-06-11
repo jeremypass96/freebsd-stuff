@@ -246,5 +246,12 @@ mixer pcm.volume=100
 echo -e "${CYAN}Setting default recording source...${RESET}"
 mixer line.recsrc=+
 
+# Change MOTD.
+cat <<EOF > /etc/motd
+Welcome to \033[1;31mBeastieBox\033[0m!
+Running FreeBSD like a boss since $(date +%m/%d/%Y).
+Don't fear the daemon, be the daemon. 😈
+EOF
+
 # Display final completion message
 dialog --title "Setup Complete" --msgbox "Post-install setup is complete. Your system is now configured." 5 70
