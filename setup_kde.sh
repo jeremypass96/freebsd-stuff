@@ -404,14 +404,10 @@ elif [ "$konsole_resp" = 3 ]; then
 fi
 
 # Hide menu items.
-echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.cuttlefish.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.themeexplorer.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasmaengineexplorer.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.kde.plasma.lookandfeelexplorer.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.kde.kuserfeedback-console.desktop
+echo "Cleaning KDE/Qt menu bloat..."
+./cleanup_menu_bloat.sh
+cp -v /home/"$logged_in_user"/freebsd-stuff/cleanup_menu_bloat.sh /root/cleanup_menu_bloat
+./install_cleanup_hooks.sh
 
 # Fix GTK/QT antialiasing
 cat << 'EOF' > /home/"$logged_in_user"/.xinitrc
