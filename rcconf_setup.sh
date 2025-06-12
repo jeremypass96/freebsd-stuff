@@ -21,8 +21,8 @@ fi
 # Function to colorize terminal output only (not rc.conf)
 add_color_output() {
   case "$1" in
-    YES) echo "\033[1;32mYES\033[0m" ;;  # Bold Green
-    NO) echo "\033[1;31mNO\033[0m" ;;    # Bold Red
+    YES) echo -e "\033[1;32mYES\033[0m" ;;  # Bold Green
+    NO) echo -e "\033[1;31mNO\033[0m" ;;    # Bold Red
     *) echo "$1" ;;
   esac
 }
