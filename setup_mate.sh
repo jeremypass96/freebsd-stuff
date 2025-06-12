@@ -129,6 +129,9 @@ if [ $resp -eq 0 ]; then
     install_bsdstats
     dialog --title "Installation Complete" --infobox "BSDstats has been installed and enabled." 5 40
     sleep 3
+else
+    dialog --title "BSDstats Skipped" --infobox "Skipping BSDstats installation." 5 30
+    sleep 2
     fi
 fi
 
