@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 # Check if dialog is installed
 if ! command -v dialog >/dev/null 2>&1; then
