@@ -137,7 +137,6 @@ if [ $resp -eq 0 ]; then
 else
     dialog --title "BSDstats Skipped" --infobox "Skipping BSDstats installation." 5 30
     sleep 2
-    fi
 fi
 
 if [ "$resp" = ports ]; then
@@ -366,7 +365,6 @@ if [ $resp -eq 0 ]; then
 else
     dialog --title "BSDstats Skipped" --infobox "Skipping BSDstats installation." 5 30
     sleep 2
-    fi
 fi
 
 clear
