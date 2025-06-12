@@ -2,7 +2,6 @@
 
 # =============================
 # KDE/Qt Desktop Entry Cleanup
-# Jeremy's BeastieBox Edition 😈
 # =============================
 
 APP_DIR="/usr/local/share/applications"
