@@ -85,7 +85,7 @@ fi
 sysrc linux_enable="YES" && service linux start
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum-qt5 wcurl linux-brave
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -268,7 +268,7 @@ cd /usr/ports/deskutils/kcharselect && make install clean
 cd /usr/ports/security/kwalletmanager && make install clean
 cd /usr/ports/archivers/ark && make install clean
 cd /usr/ports/sysutils/k3b && make install clean
-cd /usr/ports/graphics/spectacle && make install clean
+cd /usr/ports/graphics/plasma6-spectacle && make install clean
 cd /usr/ports/graphics/gwenview && make install clean
 cd /usr/ports/audio/juk && make install clean
 cd /usr/ports/x11/sddm && make install clean
