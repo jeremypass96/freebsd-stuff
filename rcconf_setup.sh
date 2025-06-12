@@ -88,7 +88,7 @@ configure_rc_conf() {
 
 # Function to install graphics driver based on selection
 install_graphics_driver() {
-  selected_driver=$(dialog --title "Install Graphics Driver" --menu "Select a graphics driver:" 15 30 6 \
+  selected_driver=$(dialog --title "Install/Enable Graphics Driver" --menu "Select a graphics driver:" 15 30 6 \
     1 "AMD GPU" \
     2 "ATI Radeon" \
     3 "NVIDIA" \
@@ -99,21 +99,34 @@ install_graphics_driver() {
 
   case "$selected_driver" in
     1)
+      if ! pkg info | grep -q "gpu-firmware-amd-kmod"; then
+      pkg install -y gpu-firmware-amd-kmod
+      fi
+      pkg install -y xf86-video-amdgpu
       sysrc kld_list+="amdgpu"
-      pkg install -y drm-kmod xf86-video-amdgpu
       ;;
     2)
+      if ! pkg info | grep -q "gpu-firmware-radeon-kmod"; then
+      pkg install -y gpu-firmware-radeon-kmod
+      fi
+      pkg install -y xf86-video-ati
       sysrc kld_list+="radeonkms"
-      pkg install -y drm-kmod xf86-video-ati
       ;;
     3)
-      pkg install -y nvidia-drm-kmod nvidia-driver nvidia-xconfig
+      if ! pkg info | grep -q "nvidia-drm-kmod"; then
+      pkg install -y nvidia-drm-kmod
+      fi
+      pkg install -y nvidia-driver nvidia-xconfig
       sysrc kld_list+="nvidia nvidia-modeset"
       nvidia-xconfig
       ;;
     4)
-      sysrc kld_list+="i915kms"
       pkg install -y drm-kmod xf86-video-intel
+      if ! pkg info | grep -q "gpu-firmware-intel-kmod"; then
+      pkg install -y gpu-firmware-intel-kmod
+      fi
+      pkg install -y xf86-video-intel
+      sysrc kld_list+="i915kms"
       ;;
     5)
       pkg install -y drm-kmod virtualbox-ose-additions xf86-video-vmware

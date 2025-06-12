@@ -101,13 +101,13 @@ install_graphics_driver() {
     1)
       sysrc kld_list+=amdgpu
       sed -i '' '16s/$/AMDGPU/' /etc/make.conf
-      cd /usr/ports/graphics/drm-kmod && make install clean
+      cd /usr/ports/graphics/gpu-firmware-radeon-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-amdgpu && make install clean
       ;;
     2)
       sysrc kld_list+=radeonkms
       sed -i '' '16s/$/ATI/' /etc/make.conf
-      cd /usr/ports/graphics/drm-kmod && make install clean
+      cd /usr/ports/graphics/gpu-firmware-radeon-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-ati && make install clean
       ;;
     3)
@@ -120,7 +120,7 @@ install_graphics_driver() {
     4)
       sysrc kld_list+=i915kms
       sed -i '' '16s/$/INTEL/' /etc/make.conf
-      cd /usr/ports/graphics/drm-kmod && make install clean
+      cd /usr/ports/graphics/gpu-firmware-intel-kmod && make install clean
       cd /usr/ports/x11-drivers/xf86-video-intel && make install clean
       ;;
     5)
