@@ -39,10 +39,6 @@ grep -q "DEFAULT_ALWAYS_YES" /usr/local/etc/pkg.conf || echo "DEFAULT_ALWAYS_YES
 grep -q "AUTOCLEAN" /usr/local/etc/pkg.conf || echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Printer support.
-dialog --title "$1" --menu "$2" 12 40 2 "$3" "$4" 2> /tmp/menu_resp
-menu_resp=$(cat /tmp/menu_resp)
-echo "$menu_resp"
-
 # Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
 resp=$?
