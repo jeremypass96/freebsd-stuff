@@ -120,29 +120,23 @@ clear
 
 # Install BSDstats.
 # Function to install BSDstats and enable it.
-    install_bsdstats() {
-        pkg install -y bsdstats
-        sysrc bsdstats_enable="YES"
-        echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
-    }
+install_bsdstats() {
+    pkg install -y bsdstats
+    sysrc bsdstats_enable="YES"
+    echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+}
 
-    # Install BSDstats with a progress bar.
-    dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
-    resp=$?
+# Install BSDstats without a progress bar.
+dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
+resp=$?
 
-    if [ $resp -eq 0 ]; then
-        (
-            install_bsdstats
-            echo "100"
-        ) | dialog --title "BSDstats Installation" --infobox "Installing BSDstats..." 10 50 0
-        result=$?
-        if [ $result -ne 0 ]; then
-            dialog --title "Error" --msgbox "An error occurred during BSDstats installation." 10 40
-            exit 1
-        else
-            dialog --title "Installation Complete" --infobox "BSDstats has been installed and enabled." 5 40
-            sleep 3
-        fi
+if [ $resp -eq 0 ]; then
+    install_bsdstats
+    dialog --title "Installation Complete" --infobox "BSDstats has been installed and enabled." 5 40
+    sleep 3
+else
+    dialog --title "BSDstats Skipped" --infobox "Skipping BSDstats installation." 5 30
+    sleep 2
     fi
 fi
 
@@ -369,6 +363,9 @@ if [ $resp -eq 0 ]; then
 
     sysrc bsdstats_enable="YES"
     echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
+else
+    dialog --title "BSDstats Skipped" --infobox "Skipping BSDstats installation." 5 30
+    sleep 2
     fi
 fi
 
