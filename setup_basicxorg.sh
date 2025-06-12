@@ -366,6 +366,8 @@ if [ $resp -eq 0 ]; then
     tar -xvf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
     rm -rf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
     dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
+else
+    dialog --title "Skipped" --msgbox "Cursor theme installation skipped." 5 40
 fi
 
 # Setup LightDM.
