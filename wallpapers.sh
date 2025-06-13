@@ -21,10 +21,6 @@ wallpaper_urls=(
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg"
     "https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg"
-    "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Field_Of_Lightning.jpg"
-    "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Lake_View.jpg"
-    "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Mountain_View.jpg"
-    "https://raw.githubusercontent.com/ghostbsd/ghostbsd-wallpapers/master/Wood_Trail.jpg"
 )
 
 # Destination directory for wallpapers.

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # =============================
-# KDE/Qt Desktop Entry Cleanup
+# Desktop Entry Cleanup
 # =============================
 
 APP_DIR="/usr/local/share/applications"
@@ -14,9 +14,18 @@ org.kde.kuserfeedback-console.desktop
 usr_local_lib_qt5_bin_assistant.desktop
 usr_local_lib_qt5_bin_designer.desktop
 usr_local_lib_qt5_bin_linguist.desktop
+org.kde.konqueror.desktop
+konqbrowser.desktop
+org.kde.iconexplorer.desktop
+org.gnome.Glade.desktop
+org.gtk.Demo4.desktop
+org.gtk.gtk4.NodeEditor.desktop
+org.gtk.PrintEditor4.desktop
+org.gtk.IconBrowser4.desktop
+org.gtk.WidgetFactory4.desktop
 "
 
-echo "🧹 Starting desktop entry cleanup..."
+echo "Starting desktop entry cleanup..."
 
 for FILE in $BLOAT_DESKTOP_FILES; do
   FULL_PATH="$APP_DIR/$FILE"
@@ -29,4 +38,4 @@ for FILE in $BLOAT_DESKTOP_FILES; do
   fi
 done
 
-echo "✅ Cleanup complete!"
+echo "Cleanup complete!"

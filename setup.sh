@@ -214,12 +214,6 @@ if [ "$resp" = Y ] || [ "$resp" = y ]; then
   zfs set atime=off zroot
 fi
 
-# Make login quieter.
-echo -e "${CYAN}Making login quieter...${RESET}"
-touch /home/"$logged_in_user"/.hushlogin
-chown "$logged_in_user" /home/"$logged_in_user"/.hushlogin
-touch /usr/share/skel/dot.hushlogin
-
 # Setup system files for desktop use.
 echo -e "${CYAN}Setting up system files for desktop use...${RESET}"
 ./sysctl_setup.sh
@@ -235,7 +229,7 @@ xdg-user-dirs-update
 
 # Update FreeBSD base.
 echo -e "${CYAN}Updating FreeBSD base...${RESET}"
-PAGER=$(cat freebsd-update fetch install)
+PAGER=cat freebsd-update fetch install
 
 # Set mixer levels.
 echo -e "${CYAN}Setting volume mixer levels...${RESET}"
@@ -247,11 +241,13 @@ echo -e "${CYAN}Setting default recording source...${RESET}"
 mixer line.recsrc=+
 
 # Change MOTD.
-cat <<EOF > /etc/motd
-Welcome to \033[1;31mBeastieBox\033[0m!
+cat <<EOF > /etc/motd.template
+
+Welcome to $(echo -e "\033[1;31mBeastieBox\033[0m")!
 Running FreeBSD like a boss since $(date +%m/%d/%Y).
 Don't fear the daemon, be the daemon. 😈
 EOF
+service motd restart
 
 # Display final completion message
 dialog --title "Setup Complete" --msgbox "Post-install setup is complete. Your system is now configured." 5 70

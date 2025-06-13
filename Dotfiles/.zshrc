@@ -121,3 +121,4 @@ setopt HIST_SAVE_NO_DUPS
 
 alias ls="lsd"
 alias cat="bat"
+fastfetch

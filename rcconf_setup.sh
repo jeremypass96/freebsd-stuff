@@ -100,43 +100,42 @@ install_graphics_driver() {
   case "$selected_driver" in
     1)
       if ! pkg info | grep -q "^gpu-firmware-amd-kmod"; then
-      pkg install -y gpu-firmware-amd-kmod
+      pkg install -y drm-kmod
       fi
-      pkg install -y xf86-video-amdgpu
+      pkg install -y xf86-video-amdgpu drm-61-kmod
       sysrc kld_list+="amdgpu"
       ;;
     2)
       if ! pkg info | grep -q "^gpu-firmware-radeon-kmod"; then
-      pkg install -y gpu-firmware-radeon-kmod
+      pkg install -y drm-kmod
       fi
-      pkg install -y xf86-video-ati
+      pkg install -y xf86-video-ati drm-61-kmod
       sysrc kld_list+="radeonkms"
       ;;
     3)
       if ! pkg info | grep -q "^nvidia-drm-kmod"; then
-      pkg install -y nvidia-drm-kmod
+      pkg install -y nvidia-drm-kmod drm-kmod
       fi
-      pkg install -y nvidia-driver nvidia-xconfig
+      pkg install -y nvidia-driver nvidia-xconfig drm-61-kmod
       sysrc kld_list+="nvidia nvidia-modeset"
       nvidia-xconfig
       ;;
     4)
-      pkg install -y drm-kmod xf86-video-intel
       if ! pkg info | grep -q "^gpu-firmware-intel-kmod"; then
-      pkg install -y gpu-firmware-intel-kmod
+      pkg install -y drm-kmod
       fi
-      pkg install -y xf86-video-intel
+      pkg install -y xf86-video-intel drm-61-kmod
       sysrc kld_list+="i915kms"
       ;;
     5)
-      pkg install -y drm-kmod virtualbox-ose-additions xf86-video-vmware
+      pkg install -y drm-61-kmod virtualbox-ose-additions xf86-video-vmware
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"
       pw groupmod vboxusers -m "$logged_in_user"
       sed -i '' 's/^hw.acpi.power_button_state=S3/#&/' /etc/sysctl.conf
       ;;
     6)
-      pkg install -y drm-kmod xf86-video-vmware xf86-input-vmmouse open-vm-tools
+      pkg install -y drm-61-kmod xf86-video-vmware xf86-input-vmmouse open-vm-tools
       sed -i '' 's/^hw.acpi.power_button_state=S3/#&/' /etc/sysctl.conf
       service smartd delete
       ;;

@@ -38,8 +38,8 @@ if [ "$resp" = pkg ]; then
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
 echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
-grep -q "DEFAULT_ALWAYS_YES" /usr/local/etc/pkg.conf || echo "DEFAULT_ALWAYS_YES=yes" >> /usr/local/etc/pkg.conf
-grep -q "AUTOCLEAN" /usr/local/etc/pkg.conf || echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
+echo "DEFAULT_ALWAYS_YES = true" >> /usr/local/etc/pkg.conf
+echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Printer support.
 # Check if the user plans to use a printer.
@@ -85,7 +85,7 @@ fi
 sysrc linux_enable="YES" && service linux start
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -251,8 +251,7 @@ clear
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
 cd /usr/ports/security/sudo && make install clean
-cd /usr/ports/editors/micro && make install clean
-cd /usr/ports/x11/xclip && make install clean
+cd /usr/ports/editors/vim && make install clean
 cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/fastfetch && make install clean
@@ -417,9 +416,10 @@ cp -v /home/"$logged_in_user"/.xinitrc /usr/share/skel/.xinitrc
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
 
 # Hide menu items.
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
+echo "Cleaning KDE/Qt menu bloat..."
+./cleanup_menu_bloat.sh
+cp -v /home/"$logged_in_user"/freebsd-stuff/cleanup_menu_bloat.sh /root/cleanup_menu_bloat
+./install_cleanup_hooks.sh
 
 # Fix user's .xinitrc permissions.
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc

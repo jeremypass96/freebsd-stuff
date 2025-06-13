@@ -35,8 +35,7 @@ EOF
 sysrc devfs_system_ruleset="devfsrules_common"
 
 # Update devfs.conf
-sed -i '' -e 's/#link cd0 cdrom/link cd0 cdrom/g' \
-       -e 's/#link cd0 dvd/link cd0 dvd/g' /etc/devfs.conf
+sed -i '' -e 's/#link/link/g' /etc/devfs.conf
 grep -q '# Allow all users to access CD/DVD drives.' /etc/devfs.conf || tee -a /etc/devfs.conf > /dev/null << EOF
 # Allow all users to access CD/DVD drives.
 perm /dev/acd* 0666
@@ -65,6 +64,5 @@ EOF
 echo "To apply changes, reboot or run: service devfs restart"
 
 # Allow users to mount and unmount CD/DVD-ROM drives.
-grep -q 'cd0' || tee -a /etc/fstab > /dev/null << EOF
-/dev/cd0   /cdrom   cd9660   ro,noauto,user   0   0
+echo "/dev/cd0   /cdrom   cd9660   ro,noauto,user   0   0" >> /etc/fstab
 EOF

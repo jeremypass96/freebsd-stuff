@@ -38,8 +38,8 @@ if [ "$resp" = pkg ]; then
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
 echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
-grep -q "DEFAULT_ALWAYS_YES" /usr/local/etc/pkg.conf || echo "DEFAULT_ALWAYS_YES=yes" >> /usr/local/etc/pkg.conf
-grep -q "AUTOCLEAN" /usr/local/etc/pkg.conf || echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
+echo "DEFAULT_ALWAYS_YES = true" >> /usr/local/etc/pkg.conf
+echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Printer support.
 # Check if the user plans to use a printer.
@@ -87,7 +87,7 @@ sysrc linux_enable="YES" && service linux start
 clear
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -260,8 +260,7 @@ clear
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
 cd /usr/ports/security/sudo && make install clean
-cd /usr/ports/editors/micro && make install clean
-cd /usr/ports/x11/xclip && make install clean
+cd /usr/ports/editors/vim && make install clean
 cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/fastfetch && make install clean
@@ -568,6 +567,7 @@ echo "Hidden=true" >> /usr/local/share/applications/org.gtk.WidgetFactory4.deskt
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
 
 # Fix user's config directory permissions.
+mkdir /home/"$logged_in_user"/.config
 chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config
 
 # Fix user's local directory permissions.

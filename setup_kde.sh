@@ -38,8 +38,8 @@ if [ "$resp" = pkg ]; then
 # Make pkg use sane defaults.
 echo "" >> /usr/local/etc/pkg.conf
 echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
-grep -q "DEFAULT_ALWAYS_YES" /usr/local/etc/pkg.conf || echo "DEFAULT_ALWAYS_YES=yes" >> /usr/local/etc/pkg.conf
-grep -q "AUTOCLEAN" /usr/local/etc/pkg.conf || echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
+echo "DEFAULT_ALWAYS_YES = true" >> /usr/local/etc/pkg.conf
+echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Printer support.
 # Check if the user plans to use a printer.
@@ -85,7 +85,7 @@ fi
 sysrc linux_enable="YES" && service linux start
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts micro xclip zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum wcurl linux-brave
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts vim zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -258,8 +258,7 @@ clear
 # Install Ports.
 cd /usr/ports/shells/bash && make install clean
 cd /usr/ports/security/sudo && make install clean
-cd /usr/ports/editors/micro && make install clean
-cd /usr/ports/x11/xclip && make install clean
+cd /usr/ports/editors/vim && make install clean
 cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/fastfetch && make install clean
@@ -355,7 +354,6 @@ if [ $resp -eq 0 ]; then
     (
         install_port_with_progress "sysutils/bsdstats" "Installing BSDstats"
     ) | dialog --title "Installing BSDstats" --infobox "Installing BSDstats..." 10 50 0
-
     sysrc bsdstats_enable="YES"
     echo 'monthly_statistics_enable="YES"' >> /etc/periodic.conf
 else
@@ -395,14 +393,17 @@ dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you wa
 konsole_resp=$(cat /tmp/konsole_resp)
 if [ "$konsole_resp" = 1 ]; then
 	wcurl https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-frappe.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-latte.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-macchiato.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-mocha.colorscheme
+	mkdir -p /usr/local/share/konsole
 	mv -v *.colorscheme /usr/local/share/konsole/*.colorscheme
 	chmod 644 /usr/local/share/konsole/*.colorscheme
 elif [ "$konsole_resp" = 2 ]; then
 	wcurl https://raw.githubusercontent.com/sonph/onehalf/master/konsole/onehalf-dark.colorscheme
+	mkdir -p /usr/local/share/konsole
 	mv -v onehalf-dark.colorscheme /usr/local/share/konsole/onehalf-dark.colorscheme
 	chmod 644 /usr/local/share/konsole/onehalf-dark.colorscheme
 elif [ "$konsole_resp" = 3 ]; then
 	wcurl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/refs/heads/master/konsole/Ayu%20Mirage.colorscheme -o AyuMirage.colorscheme
+	mkdir -p /usr/local/share/konsole
 	mv -v AyuMirage.colorscheme /usr/local/share/konsole/AyuMirage.colorscheme
 	chmod 644 /usr/local/share/konsole/AyuMirage.colorscheme
 fi
@@ -424,9 +425,11 @@ EOF
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
 
 # Fix user's config directory permissions.
+mkdir /home/"$logged_in_user"/.config
 chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config
 
 # Fix user's local directory permissions.
+mkdir /home/"$logged_in_user"/.local
 chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.local
 
 # Configure rkhunter (rootkit malware scanner).

@@ -37,15 +37,6 @@ mkdir -p /usr/share/skel/dot.config/fastfetch
 cp -v config/fastfetch/config.jsonc /usr/share/skel/dot.config/fastfetch
 chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/fastfetch
 
-# Copy over micro config.
-mkdir -p /home/"$logged_in_user"/.config/micro
-cp -v config/micro/settings.json /home/"$logged_in_user"/.config/micro
-mkdir -p /root/.config/micro
-cp -v config/micro/settings.json /root/.config/micro
-mkdir -p /usr/share/skel/dot.config/micro
-cp -v config/micro/settings.json /usr/share/skel/dot.config/micro
-chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/micro
-
 cd /home/"$logged_in_user"/freebsd-stuff || exit
 
 # Change shell to zsh.
@@ -92,21 +83,21 @@ chsh -s /usr/local/bin/zsh root
 
 # Generate initial configuration file for bat (this script is running as root, remember?)
 bat --generate-config-file
-chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/bat/config
 
 # Modify the configuration settings.
-sed -i '' 's/#--theme="TwoDark"/--theme="1337"'/g /home/"$logged_in_user"/.config/bat/config
-sed -i '' 's/#--italic-text=always/--italic-text=always'/g /home/"$logged_in_user"/.config/bat/config
-echo '--map-syntax "*.conf:INI"' >> /home/"$logged_in_user"/.config/bat/config
-echo '--map-syntax "config:INI"' >> /home/"$logged_in_user"/.config/bat/config
+sed -i '' 's/#--theme="TwoDark"/--theme="1337"'/g /root/.config/bat/config
+sed -i '' 's/#--italic-text=always/--italic-text=always'/g /root/.config/bat/config
+echo '--map-syntax "*.conf:INI"' >> /root/.config/bat/config
+echo '--map-syntax "config:INI"' >> /root/.config/bat/config
 
 # Copy the user configuration to /usr/share/skel so new users get the same setup.
 mkdir -p /usr/share/skel/dot.config/bat
-cp -v /home/"$logged_in_user"/.config/bat/config /usr/share/skel/dot.config/bat
+cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat
 
-# Copy user's configuration to the root user's configuration.
-mkdir -p "$HOME"/.config/bat
-cp -v /home/"$logged_in_user"/.config/bat/config "$HOME"/.config/bat/config
+# Copy root's configuration to the user's configuration.
+mkdir -p /home/"$logged_in_user"/.config/bat
+cp -v /root/.config/bat/config /home/"$logged_in_user"/.config/bat/config
+chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/bat/config
 
 echo "Bat syntax highlighter has been configured with the '1337' theme for both your user and root."
 
