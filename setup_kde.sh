@@ -395,15 +395,15 @@ dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you wa
 konsole_resp=$(cat /tmp/konsole_resp)
 if [ "$konsole_resp" = 1 ]; then
 	wcurl https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-frappe.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-latte.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-macchiato.colorscheme https://raw.githubusercontent.com/catppuccin/konsole/refs/heads/main/themes/catppuccin-mocha.colorscheme
-	mv -v *.colorscheme /usr/local/share/konsole
+	mv -v *.colorscheme /usr/local/share/konsole/*.colorscheme
 	chmod 644 /usr/local/share/konsole/*.colorscheme
 elif [ "$konsole_resp" = 2 ]; then
 	wcurl https://raw.githubusercontent.com/sonph/onehalf/master/konsole/onehalf-dark.colorscheme
-	mv -v onehalf-dark.colorscheme /usr/local/share/konsole
+	mv -v onehalf-dark.colorscheme /usr/local/share/konsole/onehalf-dark.colorscheme
 	chmod 644 /usr/local/share/konsole/onehalf-dark.colorscheme
 elif [ "$konsole_resp" = 3 ]; then
 	wcurl https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/refs/heads/master/konsole/Ayu%20Mirage.colorscheme -o AyuMirage.colorscheme
-	mv -v AyuMirage.colorscheme /usr/local/share/konsole
+	mv -v AyuMirage.colorscheme /usr/local/share/konsole/AyuMirage.colorscheme
 	chmod 644 /usr/local/share/konsole/AyuMirage.colorscheme
 fi
 
