@@ -56,14 +56,6 @@ if [ -n "$selected_descriptions" ]; then
         esac
     }
 
-#    selected_packages=""
-#    for description in $selected_descriptions; do
-#        package=$(map_descriptions_to_packages "$description")
-#        if [ -n "$package" ]; then
-#            selected_packages="$selected_packages $package"
-#        fi
-#    done
-
     selected_packages=""
     for desc in $(echo "$selected_descriptions" | tr -d '"'); do
         pkgname=$(map_descriptions_to_packages "$desc")
@@ -74,14 +66,9 @@ if [ -n "$selected_descriptions" ]; then
         fi
     done
 
-#    # Install the selected packages
-#    for package in $selected_packages; do
-#        pkg install -y "$package"
-#    done
-
     # Execute post-install commands for specific packages
-    for package in $selected_packages; do
-        case "$package" in
+    for pkgname in $selected_packages; do
+        case "$pkgname" in
         "virtualbox-ose")
             # Post-install commands for VirtualBox.
             echo "Running post-install commands for VirtualBox..."
@@ -101,7 +88,7 @@ if [ -n "$selected_descriptions" ]; then
             echo machdep.max_ldt_segment=2048 >> /boot/loader.conf
             ;;
         *)
-            echo "No post-install commands for package: $package"
+            echo "No post-install commands for package: $pkgname"
             ;;
         esac
     done
