@@ -178,11 +178,6 @@ ln -s /usr/local/etc/fonts/conf.avail/10-sub-pixel-rgb.conf /usr/local/etc/fonts
 # Re-gererate font cache.
 fc-cache -fv
 
-# Fix micro truecolor support.
-echo -e "${CYAN}Enabling micro truecolor support...${RESET}"
-echo "# Micro truecolor support." >> /root/.profile
-echo "MICRO_TRUECOLOR=1;	export MICRO_TRUECOLOR" >> /root/.profile
-
 # Cleanup boot process/adjust ZFS options for desktop useage.
 echo -e "${CYAN}Cleaning up boot process and adjusting ZFS options for desktop useage...${RESET}"
 sed -i '' s/'*.err;kern.warning;auth.notice;mail.crit'/'# *.err;kern.warning;auth.notice;mail.crit'/g /etc/syslog.conf

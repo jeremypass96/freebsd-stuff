@@ -522,7 +522,7 @@ cp -v /home/"$logged_in_user"/.xinitrc /usr/share/skel/dot.xinitrc
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
 
 # Hide menu items.
-echo "Cleaning KDE/Qt menu bloat..."
+echo "Cleaning menu bloat..."
 ./cleanup_menu_bloat.sh
 cp -v /home/"$logged_in_user"/freebsd-stuff/cleanup_menu_bloat.sh /root/cleanup_menu_bloat
 ./install_cleanup_hooks.sh

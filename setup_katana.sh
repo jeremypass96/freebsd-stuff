@@ -147,7 +147,7 @@ export GDK_USE_XFT=1
 EOF
 
 # Hide menu items.
-echo "Cleaning KDE/Qt menu bloat..."
+echo "Cleaning menu bloat..."
 ./cleanup_menu_bloat.sh
 cp -v /home/"$logged_in_user"/freebsd-stuff/cleanup_menu_bloat.sh /root/cleanup_menu_bloat
 ./install_cleanup_hooks.sh

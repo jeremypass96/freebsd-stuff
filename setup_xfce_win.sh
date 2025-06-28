@@ -540,14 +540,10 @@ cp -v /home/"$logged_in_user"/.xinitrc /usr/share/skel/dot.xinitrc
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
 
 # Hide menu items.
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_assistant.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_designer.desktop
-echo "Hidden=true" >> /usr/local/share/applications/usr_local_lib_qt5_bin_linguist.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.gnome.Glade.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.gtk.Demo4.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.gtk.IconBrowser4.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.gtk.PrintEditor.desktop
-echo "Hidden=true" >> /usr/local/share/applications/org.gtk.WidgetFactory4.desktop
+echo "Cleaning menu bloat..."
+./cleanup_menu_bloat.sh
+cp -v /home/"$logged_in_user"/freebsd-stuff/cleanup_menu_bloat.sh /root/cleanup_menu_bloat
+./install_cleanup_hooks.sh
 
 # Fix user's .xinitrc permissions.
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.xinitrc
