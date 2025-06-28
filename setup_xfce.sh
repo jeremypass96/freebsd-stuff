@@ -425,6 +425,13 @@ EOF
 #####
 pw group mod operator -m "$logged_in_user"
 
+# Install cursor theme.
+dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
+fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
+tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
+dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
+
 # Setup Xfce preferences.
 #####
 mkdir -p /home/"$logged_in_user"/.config/xfce4/xfconf/xfce-perchannel-xml
