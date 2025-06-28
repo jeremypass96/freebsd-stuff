@@ -40,16 +40,23 @@ configure_rc_conf() {
   echo ""
 
   # --- Mail ---
+  echo "# --- Mail ---" >> /etc/rc.conf
   set_rc sendmail_msp_queueenable NO
   set_rc sendmail_outbound_enable NO
   set_rc sendmail_submit_enable NO
 
+  echo "" >> /etc/rc.conf
+
   # --- Time Sync ---
+  echo "# --- Time Sync ---" >> /etc/rc.conf
   set_rc ntpd_enable YES
   set_rc ntpd_sync_on_start YES
   set_rc ntpd_oomprotect YES
 
+  echo "" >> /etc/rc.conf
+
   # --- Networking ---
+  echo "# --- Networking ---" >> /etc/rc.conf
   set_rc inetd_enable NO
   set_rc icmp_drop_redirect YES
   set_rc icmp_log_redirect YES
@@ -58,7 +65,10 @@ configure_rc_conf() {
   set_rc sshd_enable NO
   set_rc portmap_enable NO
 
+  echo "" >> /etc/rc.conf
+
   # --- Desktop / Services ---
+  echo "# --- Desktop / Services ---" >> /etc/rc.conf
   set_rc mixer_enable YES
   set_rc allscreens_flags "-f vgarom-8x16.fnt"
   set_rc keyrate fast
@@ -101,31 +111,35 @@ install_graphics_driver() {
     1)
       if ! pkg info | grep -q "^gpu-firmware-amd-kmod"; then
       pkg install -y drm-kmod
-      fi
+      else
       pkg install -y xf86-video-amdgpu drm-61-kmod
       sysrc kld_list+="amdgpu"
+      fi
       ;;
     2)
       if ! pkg info | grep -q "^gpu-firmware-radeon-kmod"; then
       pkg install -y drm-kmod
-      fi
+      else
       pkg install -y xf86-video-ati drm-61-kmod
       sysrc kld_list+="radeonkms"
+      fi
       ;;
     3)
       if ! pkg info | grep -q "^nvidia-drm-kmod"; then
       pkg install -y nvidia-drm-kmod drm-kmod
-      fi
+      else
       pkg install -y nvidia-driver nvidia-xconfig drm-61-kmod
       sysrc kld_list+="nvidia nvidia-modeset"
       nvidia-xconfig
+      fi
       ;;
     4)
       if ! pkg info | grep -q "^gpu-firmware-intel-kmod"; then
       pkg install -y drm-kmod
-      fi
+      else
       pkg install -y xf86-video-intel drm-61-kmod
       sysrc kld_list+="i915kms"
+      fi
       ;;
     5)
       pkg install -y drm-61-kmod virtualbox-ose-additions xf86-video-vmware
@@ -150,5 +164,3 @@ install_graphics_driver
 
 # Automatically configure rc.conf variables
 clear & configure_rc_conf
-
-# End of script.

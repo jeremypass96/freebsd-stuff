@@ -14,16 +14,16 @@ if [ ! -f "$CLEANUP_SCRIPT" ]; then
 fi
 
 # --- Install rc.local for boot-time cleanup ---
-echo "⚙️ Installing boot-time cleanup to $BOOT_SCRIPT..."
+echo "Installing boot-time cleanup to $BOOT_SCRIPT..."
 cat <<EOF > "$BOOT_SCRIPT"
 #!/bin/sh
 $CLEANUP_SCRIPT
 EOF
 chmod +x "$BOOT_SCRIPT"
-echo "✅ Boot cleanup installed."
+echo "Boot cleanup installed."
 
 # --- Install shutdown rc.d script ---
-echo "⚙️ Installing shutdown-time cleanup to $SHUTDOWN_SCRIPT..."
+echo "Installing shutdown-time cleanup to $SHUTDOWN_SCRIPT..."
 cat <<EOF > "$SHUTDOWN_SCRIPT"
 #!/bin/sh
 
@@ -44,6 +44,6 @@ run_rc_command "\$1"
 EOF
 
 chmod +x "$SHUTDOWN_SCRIPT"
-echo "✅ Shutdown cleanup installed."
+echo "Shutdown cleanup installed."
 
-echo "🎉 All set! cleanup_menu_bloat will now run at boot and shutdown."
+echo "All set! cleanup_menu_bloat will now run at boot and shutdown."

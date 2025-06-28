@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# =============================
+# =====================
 # Desktop Entry Cleanup
-# =============================
+# =====================
 
 APP_DIR="/usr/local/share/applications"
 BLOAT_DESKTOP_FILES="

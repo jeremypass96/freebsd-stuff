@@ -40,16 +40,23 @@ configure_rc_conf() {
   echo ""
 
   # --- Mail ---
+  echo "# --- Mail ---" >> /etc/rc.conf
   set_rc sendmail_msp_queueenable NO
   set_rc sendmail_outbound_enable NO
   set_rc sendmail_submit_enable NO
 
+  echo "" >> /etc/rc.conf
+
   # --- Time Sync ---
+  echo "# --- Time Sync ---" >> /etc/rc.conf
   set_rc ntpd_enable YES
   set_rc ntpd_sync_on_start YES
   set_rc ntpd_oomprotect YES
 
+  echo "" >> /etc/rc.conf
+
   # --- Networking ---
+  echo "# --- Networking ---" >> /etc/rc.conf
   set_rc inetd_enable NO
   set_rc icmp_drop_redirect YES
   set_rc icmp_log_redirect YES
@@ -58,7 +65,10 @@ configure_rc_conf() {
   set_rc sshd_enable NO
   set_rc portmap_enable NO
 
+  echo "" >> /etc/rc.conf
+
   # --- Desktop / Services ---
+  echo "# --- Desktop / Services ---" >> /etc/rc.conf
   set_rc mixer_enable YES
   set_rc allscreens_flags "-f vgarom-8x16.fnt"
   set_rc keyrate fast
@@ -156,5 +166,3 @@ install_graphics_driver
 
 # Automatically configure rc.conf variables
 clear & configure_rc_conf
-
-# End of script.

@@ -15,11 +15,10 @@ cd Dotfiles/ || exit
 
 # Export options to system and user profile files.
 for profile in /etc/profile /home/$logged_in_user/.profile /usr/share/skel/dot.profile; do
-    sed -i '' 's/EDITOR=vi/EDITOR=micro/g' "$profile"
+    sed -i '' 's/EDITOR=vi/EDITOR=vim/g' "$profile"
     echo "" >> "$profile"
     echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> "$profile"
     echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> "$profile"
-    echo "MICRO_TRUECOLOR=1;  export MICRO_TRUECOLOR" >> "$profile"
 done
 
 # Copy over zsh config.
