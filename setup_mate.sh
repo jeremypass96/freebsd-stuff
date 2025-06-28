@@ -359,20 +359,6 @@ fi
 
 clear
 
-# Install cursor theme.
-dialog --title "Cursor Theme Installation" --yesno "Would you like to install the 'Bibata Modern Ice' cursor theme?" 8 40
-resp=$?
-
-if [ $resp -eq 0 ]; then
-    dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-    fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.3/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
-    tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-    rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
-    dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
-else
-    dialog --title "Skipped" --msgbox "Cursor theme installation skipped." 5 40
-fi
-
 # Setup LightDM.
 sysrc lightdm_enable="YES"
 sed -i '' s/'#pam-autologin-service=lightdm-autologin'/'pam-autologin-service=lightdm-autologin'/g /usr/local/etc/lightdm/lightdm.conf
