@@ -373,9 +373,9 @@ sed -i '' s/User=/User="$logged_in_user"/g /usr/local/etc/sddm.conf
 
 # Install cursor theme.
 dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
+fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.xz
+tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.xz -C /usr/local/share/icons
+rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.xz
 dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 
 # Download Konsole colors.
