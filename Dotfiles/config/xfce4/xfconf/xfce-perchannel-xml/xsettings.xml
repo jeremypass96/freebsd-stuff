@@ -24,7 +24,7 @@
     <property name="CanChangeAccels" type="empty"/>
     <property name="ColorPalette" type="empty"/>
     <property name="FontName" type="string" value="Source Sans 3 10"/>
-    <property name="MonospaceFontName" type="string" value="JetBrainsMono Nerd Font Mono 14"/>
+    <property name="MonospaceFontName" type="string" value="Hurmit Nerd Font Propo Regular 14"/>
     <property name="IconSizes" type="empty"/>
     <property name="KeyThemeName" type="empty"/>
     <property name="ToolbarStyle" type="empty"/>

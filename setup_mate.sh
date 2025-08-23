@@ -82,7 +82,7 @@ fi
 sysrc linux_enable="YES" && service linux start
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf plex-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
+pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji mate parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -279,7 +279,6 @@ cd /usr/ports/x11-fonts/webfonts && make install clean
 cd /usr/ports/x11-fonts/droid-fonts-ttf && make install clean
 cd /usr/ports/x11-fonts/materialdesign-ttf && make install clean
 cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
-cd /usr/ports/x11-fonts/plex-ttf && make install clean
 cd /usr/ports/devel/xdg-user-dirs && make install clean
 cd /usr/ports/sysutils/duf && make install clean
 cd /usr/ports/sysutils/btop && make install clean
