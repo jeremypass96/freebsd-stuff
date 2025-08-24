@@ -30,7 +30,7 @@ resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a d
   2 "Xfce" \
   3 "Xfce (Windows-esque)" \
   4 "Katana (fork of KDE4)" \
-  5 "KDE Plasma 5" \
+  5 "KDE Plasma 6" \
   6 "Basic Xorg (no desktop)" \
   2>&1 >/dev/tty)
 
