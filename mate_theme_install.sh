@@ -18,7 +18,7 @@ mate_settings=(
     "gsettings set org.mate.Marco.general action-middle-click-titlebar none"
     "gsettings set org.mate.interface gtk-theme 'Skeuos-Blue-Dark'"
     "gsettings set org.mate.interface icon-theme Papirus-Dark"
-    "gsettings set org.mate.interface monospace-font-name 'Hermit Nerd Font Propo Regular 14'"
+    "gsettings set org.mate.interface monospace-font-name 'Hurmit Nerd Font Propo Regular 14'"
     "gsettings set org.mate.interface font-name 'Source Sans 3 10'"
     "gsettings set org.mate.caja.desktop font 'Roboto 10'"
     "gsettings set org.mate.interface show-input-method-menu false"
