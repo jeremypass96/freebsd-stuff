@@ -70,7 +70,7 @@ configure_rc_conf() {
   # --- Desktop / Services ---
   echo "# --- Desktop / Services ---" >> /etc/rc.conf
   set_rc mixer_enable YES
-  set_rc allscreens_flags "-f vgarom-8x16.fnt"
+  set_rc allscreens_flags "-f spleen-8x16.fnt"
   set_rc keyrate fast
   set_rc service_delete_empty YES
   set_rc firewall_enable YES
