@@ -239,7 +239,7 @@ mixer line.recsrc=+
 cat <<EOF > /etc/motd.template
 
 Welcome to $(echo -e "\033[1;31mBeastieBox\033[0m")!
-Running FreeBSD like a boss since $(date +%m/%d/%Y).
+Running FreeBSD like a boss since $(date -r /var/log/bsdinstall_log +%m/%d/%Y).
 Don't fear the daemon, be the daemon. 😈
 EOF
 service motd restart
