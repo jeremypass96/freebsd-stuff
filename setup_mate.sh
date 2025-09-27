@@ -38,6 +38,12 @@ echo "# Make pkg use sane defaults." >> /usr/local/etc/pkg.conf
 echo "DEFAULT_ALWAYS_YES = true" >> /usr/local/etc/pkg.conf
 echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
+# Update pkg repo use latest instead of quarterly.
+mkdir -p /usr/local/etc/pkg/repos
+cp -v /etc/pkg/FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
+sed -i '' -e 's/quarterly/latest/g' /usr/local/etc/pkg/repos/FreeBSD.conf
+pkg update -f && pkg upgrade
+
 # Printer support.
 # Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
