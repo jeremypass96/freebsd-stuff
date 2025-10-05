@@ -40,8 +40,7 @@ echo "AUTOCLEAN=yes" >> /usr/local/etc/pkg.conf
 
 # Update pkg repo use latest instead of quarterly.
 mkdir -p /usr/local/etc/pkg/repos
-cp -v /etc/pkg/FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
-sed -i '' -e 's/quarterly/latest/g' /usr/local/etc/pkg/repos/FreeBSD.conf
+echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update -f && pkg upgrade
 
 # Printer support.
