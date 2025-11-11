@@ -109,37 +109,21 @@ install_graphics_driver() {
 
   case "$selected_driver" in
     1)
-      if ! pkg info | grep -q "^gpu-firmware-amd-kmod"; then
-      pkg install -y drm-kmod
-      else
-      pkg install -y xf86-video-amdgpu drm-61-kmod
+      pkg install -y xf86-video-amdgpu
       sysrc kld_list+="amdgpu"
-      fi
       ;;
     2)
-      if ! pkg info | grep -q "^gpu-firmware-radeon-kmod"; then
-      pkg install -y drm-kmod
-      else
-      pkg install -y xf86-video-ati drm-61-kmod
+      pkg install -y xf86-video-ati
       sysrc kld_list+="radeonkms"
-      fi
       ;;
     3)
-      if ! pkg info | grep -q "^nvidia-drm-kmod"; then
-      pkg install -y nvidia-drm-kmod drm-kmod
-      else
-      pkg install -y nvidia-driver nvidia-xconfig drm-61-kmod
+      pkg install -y nvidia-driver nvidia-xconfig
       sysrc kld_list+="nvidia nvidia-modeset"
       nvidia-xconfig
-      fi
       ;;
     4)
-      if ! pkg info | grep -q "^gpu-firmware-intel-kmod"; then
-      pkg install -y drm-kmod
-      else
-      pkg install -y xf86-video-intel drm-61-kmod
+      pkg install -y xf86-video-intel
       sysrc kld_list+="i915kms"
-      fi
       ;;
     5)
       pkg install -y drm-61-kmod virtualbox-ose-additions xf86-video-vmware
