@@ -241,7 +241,7 @@ hp_resp=$?
 
 if [ $hp_resp -eq 0 ]; then
     (
-        sed -i '' '27s/$/print_hplip_UNSET=X11/' /etc/make.conf
+        sed -i '' '29s/$/print_hplip_UNSET=X11/' /etc/make.conf
         dialog --title "Installing HPLIP" --infobox "Installing HPLIP..." 5 40
         cd /usr/ports/print/hplip && make install clean
         echo "100"
@@ -252,11 +252,6 @@ fi
 
 # Enable the Linuxulator.
 sysrc linux_enable="YES" && service linux start
-
-# make.conf options for KDE.
-echo "" >> /etc/make.conf
-echo "# KDE Options" >> /etc/make.conf
-echo "x11_kde5_UNSET=KDEEDU KDEGRAPHICS KDEMULTIMEDIA KDENETWORK KDEPIM KDEUTILS" >> /etc/make.conf
 
 clear
 
