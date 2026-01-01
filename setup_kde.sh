@@ -15,7 +15,7 @@ logged_in_user=$(logname)
 clear
 
 echo "Welcome to the FreeBSD KDE setup script."
-echo "This script will setup Xorg, KDE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo "This script will setup XLibre Xserver, KDE, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
 read -rp "Press the Enter key to continue..." resp
 
@@ -90,7 +90,7 @@ fi
 sysrc linux_enable="YES" && service linux start
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts vim zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum wcurl linux-brave
+pkg install -y bash sudo xlibre-minimal xlibre-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts vim zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts Kvantum wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -263,7 +263,7 @@ cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/fastfetch && make install clean
 cd /usr/ports/sysutils/pfetch && make install clean
-cd /usr/ports/x11/xorg && make install clean
+cd /usr/ports/x11/xlibre && make install clean
 cd /usr/ports/x11/kde6 && make install clean
 cd /usr/ports/math/kcalc && make install clean
 cd /usr/ports/deskutils/kcharselect && make install clean

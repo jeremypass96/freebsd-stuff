@@ -113,14 +113,14 @@ install_graphics_driver() {
       sed -i '' '19s/$/AMDGPU/' /etc/make.conf
       cd /usr/ports/graphics/gpu-firmware-radeon-kmod && make install clean
       cd /usr/ports/graphics/drm-61-kmod && make install clean
-      cd /usr/ports/x11-drivers/xf86-video-amdgpu && make install clean
+      cd /usr/ports/x11-drivers/xlibre-xf86-video-amdgpu && make install clean
       ;;
     2)
       sysrc kld_list+=radeonkms
       sed -i '' '19s/$/ATI/' /etc/make.conf
       cd /usr/ports/graphics/gpu-firmware-radeon-kmod && make install clean
       cd /usr/ports/graphics/drm-61-kmod && make install clean
-      cd /usr/ports/x11-drivers/xf86-video-ati && make install clean
+      cd /usr/ports/x11-drivers/xlibre-xf86-video-ati && make install clean
       ;;
     3)
       cd /usr/ports/graphics/nvidia-drm-kmod && make install clean
@@ -134,13 +134,13 @@ install_graphics_driver() {
       sed -i '' '19s/$/INTEL/' /etc/make.conf
       cd /usr/ports/graphics/gpu-firmware-intel-kmod && make install clean
       cd /usr/ports/graphics/drm-61-kmod && make install clean
-      cd /usr/ports/x11-drivers/xf86-video-intel && make install clean
+      cd /usr/ports/x11-drivers/xlibre-xf86-video-intel && make install clean
       ;;
     5)
       sed -i '' '19s/$/VMWARE/' /etc/make.conf
       cd /usr/ports/graphics/drm-61-kmod && make install clean
       cd /usr/ports/emulators/virtualbox-ose-additions && make install clean
-      cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
+      cd /usr/ports/x11-drivers/xlibre-xf86-video-vmware && make install clean
       service vboxguest enable && service vboxservice enable
       sysrc kldload_vbox="vboxdrv"
       pw groupmod vboxusers -m "$logged_in_user"
@@ -149,8 +149,8 @@ install_graphics_driver() {
     6)
       sed -i '' '19s/$/VMWARE VMMOUSE/' /etc/make.conf
       cd /usr/ports/graphics/drm-61-kmod && make install clean
-      cd /usr/ports/x11-drivers/xf86-video-vmware && make install clean
-      cd /usr/ports/x11-drivers/xf86-input-vmmouse && make install clean
+      cd /usr/ports/x11-drivers/xlibre-xf86-video-vmware && make install clean
+      cd /usr/ports/x11-drivers/xlibre-xf86-input-vmmouse && make install clean
       cd /usr/ports/emulators/open-vm-tools && make install clean
       sed -i '' 's/^hw.acpi.power_button_state=S3/#&/' /etc/sysctl.conf
       service smartd delete

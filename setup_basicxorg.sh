@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# This script will set up a baisc FreeBSD Xorg install for you, ready to go when you reboot.
+# This script will set up a baisc FreeBSD XLibre Xserver install for you, ready to go when you reboot.
 
 # Checking to see if we're running as root.
 if [ "$(id -u)" -ne 0 ]; then
@@ -14,8 +14,8 @@ logged_in_user=$(logname)
 
 clear
 
-echo "Welcome to the FreeBSD basic Xorg setup script."
-echo "This script will setup Xorg, some useful software for you, along with the rc.conf file being tweaked for desktop use."
+echo "Welcome to the FreeBSD basic XLibre Xserver setup script."
+echo "This script will setup XLibre Xserver, some useful software for you, along with the rc.conf file being tweaked for desktop use."
 echo ""
 read -rp "Press the Enter key to continue..." resp
 
@@ -90,7 +90,7 @@ fi
 sysrc linux_enable="YES" && service linux start
 
 # Install packages.
-pkg install -y bash sudo xorg-minimal xorg-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
+pkg install -y bash sudo xlibre-minimal xlibre-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts wcurl linux-brave
 
 # Fix Linuxulator permissions.
 chmod 755 /compat
@@ -260,8 +260,7 @@ cd /usr/ports/editors/vim && make install clean
 cd /usr/ports/shells/zsh && make install clean
 cd /usr/ports/shells/ohmyzsh && make install clean
 cd /usr/ports/sysutils/fastfetch && make install clean
-cd /usr/ports/sysutils/pfetch && make install clean
-cd /usr/ports/x11/xorg && make install clean
+cd /usr/ports/x11/xlibre && make install clean
 cd /usr/ports/math/galculator && make install clean
 cd /usr/ports/multimedia/parole && make install clean
 cd /usr/ports/sysutils/xfburn && make install clean
