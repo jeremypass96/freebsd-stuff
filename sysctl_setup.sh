@@ -3,12 +3,12 @@
 
 # Checking to see if we're running as root.
 if [ "$(id -u)" -ne 0 ]; then
-    echo "Please run this script as root! Thanks."
-    exit
+	echo "Please run this script as root! Thanks."
+	exit
 fi
 
 if ! grep -q 'desktop sysctl script' /etc/sysctl.conf; then
-  cat << 'EOF' >> /etc/sysctl.conf
+	cat <<'EOF' >>/etc/sysctl.conf
 # ---- Added by FreeBSD desktop sysctl script ----
 # Enable users to mount drives.
 vfs.usermount=1
