@@ -150,8 +150,16 @@ if [ "$resp" = ports ]; then
 	# Copying over make.conf file.
 	cp -v make.conf /etc/
 
-	# Configure the MAKE_JOBS_NUMBER line in make.conf
-	sed -i '' s/MAKE_JOBS_NUMBER=/MAKE_JOBS_NUMBER="$(sysctl -n hw.ncpu)"/g /etc/make.conf
+	# Set MAKE_JOBS_NUMBER based on CPU cores (nproc + 1, like 9 on 8 cores).
+	CORES=$(nproc 2>/dev/null)
+	JOBS=$((CORES + 1))
+
+	echo ">>> Setting MAKE_JOBS_NUMBER to ${JOBS} (detected ${CORES} cores)..."
+	if grep -q '^MAKE_JOBS_NUMBER=' /etc/make.conf; then
+		sed -i '' -e "s|^MAKE_JOBS_NUMBER=.*|MAKE_JOBS_NUMBER=${JOBS}|" /etc/make.conf
+	else
+		echo "MAKE_JOBS_NUMBER=${JOBS}" >> /etc/make.conf
+	fi
 
 	# Pull in Ports tree with git.
 	git clone https://git.FreeBSD.org/ports.git /usr/ports
@@ -164,15 +172,14 @@ if [ "$resp" = ports ]; then
 	install_port_with_progress() {
 		port_name="$1"
 		title="$2"
-		dialog --title "$title" --infobox "Installing $port_name..." 5 40
+		dialog --title "$title" --gauge "Installing $port_name..." 5 40
 		cd /usr/ports/print/"$port_name" && make install clean
 		echo "100"
 	}
 
 	# Function to install printer-related ports.
 	install_printer_ports() {
-		sed -i '' '16s/$/ CUPS/' /etc/make.conf
-		echo "" >>/etc/make.conf
+		sed -i '' '17s/$/ CUPS/' /etc/make.conf
 
 		dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
 
@@ -181,7 +188,6 @@ if [ "$resp" = ports ]; then
 		for port in $ports_to_install; do
 			port_name=$(basename "$port")
 			(
-				dialog --title "Installing $port_name" --infobox "Installing $port_name..." 5 40
 				cd /usr/ports/"$port" && make install clean
 				echo "100"
 			) | dialog --title "Installing $port_name" --infobox "Installing $port_name..." 10 50 0
@@ -200,7 +206,6 @@ if [ "$resp" = ports ]; then
 	if [ $resp -eq 0 ]; then
 		(
 			install_printer_ports
-			echo "100"
 		) | dialog --title "Printer Setup" --infobox "Setting up printer support..." 10 50 0
 		result=$?
 		if [ $result -ne 0 ]; then
@@ -243,13 +248,12 @@ if [ "$resp" = ports ]; then
 
 	if [ $hp_resp -eq 0 ]; then
 		(
-			sed -i '' '27s/$/print_hplip_UNSET=X11/' /etc/make.conf
-			dialog --title "Installing HPLIP" --infobox "Installing HPLIP..." 5 40
+			echo print_hplip_UNSET=X11 /etc/make.conf
 			cd /usr/ports/print/hplip && make install clean
 			echo "100"
-		) | dialog --title "Installing HPLIP" --infobox "Installing HPLIP..." 10 50 0
+		) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
 	else
-		sed -i '' '17s/$/ CUPS/' /etc/make.conf
+		sed -i '' '18s/$/ CUPS/' /etc/make.conf
 	fi
 
 	# Enable the Linuxulator.
