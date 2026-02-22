@@ -163,32 +163,27 @@ if [ "$resp" = ports ]; then
 	git clone https://git.FreeBSD.org/ports.git /usr/ports
 	git -C /usr/ports pull
 
+	# Function to install a port.
+	install_port() {
+		port_name=$1
+		cd /usr/ports/"$port_name" && make install clean
+		echo "100" | dialog --gauge "Installing ${port_name}..." 7 45 0
+	}
+
 	clear
 
 	# Printer support.
-	# Function to install a port with progress bar.
-	install_port_with_progress() {
-		port_name="$1"
-		title="$2"
-		dialog --title "$title" --gauge "Installing $port_name..." 5 40
-		cd /usr/ports/print/"$port_name" && make install clean
-		echo "100"
-	}
-
 	# Function to install printer-related ports.
 	install_printer_ports() {
 		sed -i '' '17s/$/ CUPS/' /etc/make.conf
-
-		dialog --title "Installing Print Software" --infobox "Installing print software..." 5 40
-
 		ports_to_install="print/cups print/cups-filters print/cups-pk-helper print/gutenprint print/system-config-printer"
 
 		for port in $ports_to_install; do
-			port_name=$(basename "$port")
+			printer_port_name=$(basename "$port")
 			(
 				cd /usr/ports/"$port" && make install clean
 				echo "100"
-			) | dialog --title "Installing $port_name" --gauge "Installing $port_name..." 10 50 0
+			) | dialog --title "Installing $printer_port_name" --gauge "Installing $printer_port_name..." 10 50 0
 			result=$?
 			if [ $result -ne 0 ]; then
 				dialog --title "Error" --msgbox "An error occurred during $port_name installation." 10 40
@@ -232,12 +227,12 @@ if [ "$resp" = ports ]; then
 
 	if [ "$papersize_resp" = 1 ]; then
 		(
-			install_port_with_progress "papersize-default-letter" "Installing Letter Paper Size"
-		) | dialog --title "Installing Letter Paper Size" --infobox "Installing Letter Paper Size..." 10 50 0
+			install_port "papersize-default-letter" "Installing Letter Paper Size"
+		) | dialog --title "$title" --gauge "Installing $port_name..." 5 40
 	elif [ "$papersize_resp" = 2 ]; then
 		(
-			install_port_with_progress "papersize-default-a4" "Installing A4 Paper Size"
-		) | dialog --title "Installing A4 Paper Size" --infobox "Installing A4 Paper Size..." 10 50 0
+			install_port "papersize-default-a4" "Installing A4 Paper Size"
+		) | dialog --title "$title" --gauge "Installing $port_name..." 5 40
 	fi
 
 	# HP Printer Setup
@@ -245,75 +240,81 @@ if [ "$resp" = ports ]; then
 	hp_resp=$?
 
 	if [ $hp_resp -eq 0 ]; then
-		(
-			echo print_hplip_UNSET=X11 /etc/make.conf
-			cd /usr/ports/print/hplip && make install clean
-			echo "100"
-		) | dialog --title "Installing HPLIP" --gauge "Installing HPLIP..." 10 50 0
+		echo print_hplip_UNSET=X11 /etc/make.conf
+		install_port print/hplip
 	else
-		sed -i '' '17s/$/ CUPS/' /etc/make.conf
+		sed -i '' '18s/$/ CUPS/' /etc/make.conf
 	fi
 
 	# Enable the Linuxulator.
 	sysrc linux_enable="YES" && service linux start
 
+	# Install Portmaster.
+	install_port ports-mgmt/portmaster
+
+	# Function to install a port w/ portmaster.
+	install_port_pm() {
+		port_name_pm=$1
+		portmaster --no-confirm "$port_name_pm"
+		echo "100" | dialog --gauge "Installing ${port_name_pm}..." 7 45 0
+	}
+
 	clear
 
 	# Install Ports.
-	cd /usr/ports/shells/bash && make install clean
-	cd /usr/ports/security/sudo && make install clean
-	cd /usr/ports/editors/vim && make install clean
-	cd /usr/ports/shells/zsh && make install clean
-	cd /usr/ports/shells/ohmyzsh && make install clean
-	cd /usr/ports/sysutils/fastfetch && make install clean
-	cd /usr/ports/sysutils/pfetch && make install clean
-	cd /usr/ports/x11/xlibre-minimal && make install clean
-	cd /usr/ports/x11/xlibre-drivers && make install clean
-	cd /usr/ports/x11/xbitmaps && make install clean
-	cd /usr/ports/x11-fonts/xorg-fonts && make install clean
-	cd /usr/ports/x11/xorg-libraries && make install clean
-	cd /usr/ports/x11/kde6 && make install clean
-	cd /usr/ports/math/kcalc && make install clean
-	cd /usr/ports/deskutils/kcharselect && make install clean
-	cd /usr/ports/security/kwalletmanager && make install clean
-	cd /usr/ports/archivers/ark && make install clean
-	cd /usr/ports/sysutils/k3b && make install clean
-	cd /usr/ports/graphics/plasma6-spectacle && make install clean
-	cd /usr/ports/graphics/gwenview && make install clean
-	cd /usr/ports/audio/juk && make install clean
-	cd /usr/ports/x11/sddm && make install clean
-	cd /usr/ports/deskutils/plasma6-sddm-kcm && make install clean
-	cd /usr/ports/x11-themes/papirus-icon-theme && make install clean
-	cd /usr/ports/x11-fonts/noto && make install clean
-	cd /usr/ports/x11-fonts/webfonts && make install clean
-	cd /usr/ports/sysutils/gksu && make install clean
-	cd /usr/ports/multimedia/mp4v2 && make install clean
-	cd /usr/ports/x11/numlockx && make install clean
-	cd /usr/ports/sysutils/automount && make install clean
-	cd /usr/ports/sysutils/fusefs-simple-mtpfs && make install clean
-	cd /usr/ports/converters/unix2dos && make install clean
-	cd /usr/ports/sysutils/smartmontools && make install clean
-	cd /usr/ports/x11-fonts/ubuntu-font && make install clean
-	cd /usr/ports/x11-fonts/webfonts && make install clean
-	cd /usr/ports/x11-fonts/droid-fonts-ttf && make install clean
-	cd /usr/ports/x11-fonts/materialdesign-ttf && make install clean
-	cd /usr/ports/x11-fonts/roboto-fonts-ttf && make install clean
-	cd /usr/ports/devel/xdg-user-dirs && make install clean
-	cd /usr/ports/sysutils/duf && make install clean
-	cd /usr/ports/sysutils/btop && make install clean
-	cd /usr/ports/sysutils/colorize && make install clean
-	cd /usr/ports/audio/freedesktop-sound-theme && make install clean
-	cd /usr/ports/security/rkhunter && make install clean
-	cd /usr/ports/security/chkrootkit && make install clean
-	cd /usr/ports/sysutils/topgrade && make install clean
-	cd /usr/ports/textproc/bat && make install clean
-	cd /usr/ports/sysutils/fd && make install clean
-	cd /usr/ports/sysutils/lsd && make install clean
-	cd /usr/ports/x11-fonts/nerd-fonts-hurmit && make install clean
-	cd /usr/ports/x11-themes/Kvantum && make install clean
-	cd /usr/ports/ftp/wcurl && make install clean
-	cd /usr/ports/www/linux-brave && make install clean
-	cd /usr/ports/ports-mgmt/portmaster && make install clean
+	install_port_pm shells/bash
+	install_port_pm security/sudo
+	install_port_pm editors/vim
+	install_port_pm shells/zsh
+	install_port_pm shells/ohmyzsh
+	install_port_pm sysutils/fastfetch
+	install_port_pm sysutils/pfetch
+	install_port_pm x11/xlibre-minimal
+	install_port_pm x11/xlibre-drivers
+	install_port_pm x11/xbitmaps
+	install_port_pm x11-fonts/xorg-fonts
+	install_port_pm x11/xorg-libraries
+	install_port_pm x11/kde6
+	install_port_pm math/kcalc
+	install_port_pm deskutils/kcharselect
+	install_port_pm security/kwalletmanager
+	install_port_pm archivers/ark
+	install_port_pm sysutils/k3b
+	install_port_pm graphics/plasma6-spectacle
+	install_port_pm graphics/gwenview
+	install_port_pm audio/juk
+	install_port_pm x11/sddm
+	install_port_pm deskutils/plasma6-sddm-kcm
+	install_port_pm x11-themes/papirus-icon-theme
+	install_port_pm x11-fonts/noto
+	install_port_pm x11-fonts/webfonts
+	install_port_pm sysutils/gksu
+	install_port_pm multimedia/mp4v2
+	install_port_pm x11/numlockx
+	install_port_pm sysutils/automount
+	install_port_pm sysutils/fusefs-simple-mtpfs
+	install_port_pm converters/unix2dos
+	install_port_pm sysutils/smartmontools
+	install_port_pm x11-fonts/ubuntu-font
+	install_port_pm x11-fonts/webfonts
+	install_port_pm x11-fonts/droid-fonts-ttf
+	install_port_pm x11-fonts/materialdesign-ttf
+	install_port_pm x11-fonts/roboto-fonts-ttf
+	install_port_pm devel/xdg-user-dirs
+	install_port_pm sysutils/duf
+	install_port_pm sysutils/btop
+	install_port_pm sysutils/colorize
+	install_port_pm audio/freedesktop-sound-theme
+	install_port_pm security/rkhunter
+	install_port_pm security/chkrootkit
+	install_port_pm sysutils/topgrade
+	install_port_pm textproc/bat
+	install_port_pm sysutils/fd
+	install_port_pm sysutils/lsd
+	install_port_pm x11-fonts/nerd-fonts-hurmit
+	install_port_pm x11-themes/Kvantum
+	install_port_pm ftp/wcurl
+	install_port_pm www/linux-brave
 
 	# Fix Linuxulator permissions.
 	chmod 755 /compat
@@ -331,10 +332,12 @@ if [ "$resp" = ports ]; then
 
 	microcode_resp=$(cat /tmp/microcode_resp)
 	if [ "$microcode_resp" = 1 ]; then
-		cd /usr/ports/sysutils/cpu-microcode-amd && make install clean
+		install_port_pm sysutils/cpu-microcode-amd
 	elif [ "$microcode_resp" = 2 ]; then
-		cd /usr/ports/sysutils/cpu-microcode-intel && make install clean
+		install_port_pm sysutils/cpu-microcode-intel
 	fi
+
+	clear
 
 	# Setup rc.conf file.
 	cd /home/"$logged_in_user"/freebsd-setup-scripts || exit
@@ -343,24 +346,12 @@ if [ "$resp" = ports ]; then
 	# Install 3rd party software.
 	./software_dialog_ports.sh
 
-	# Install BSDstats.
-	# Function to install a port with progress bar.
-	install_port_with_progress() {
-		port_name="$1"
-		title="$2"
-		dialog --title "$title" --infobox "Installing $port_name..." 5 40
-		portmaster --no-confirm "$port_name"
-		echo "100"
-	}
-
 	# Install BSDstats
 	dialog --title "BSDstats Setup" --yesno "Would you like to enable BSDstats?" 8 40
 	resp=$?
 
 	if [ $resp -eq 0 ]; then
-		(
-			install_port_with_progress "sysutils/bsdstats" "Installing BSDstats"
-		) | dialog --title "Installing BSDstats" --infobox "Installing BSDstats..." 10 50 0
+		install_port_pm sysutils/bsdstats
 		sysrc bsdstats_enable="YES"
 		echo 'monthly_statistics_enable="YES"' >>/etc/periodic.conf
 	else
