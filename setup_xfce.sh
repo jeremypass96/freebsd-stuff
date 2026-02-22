@@ -92,7 +92,7 @@ if [ "$resp" = pkg ]; then
 	clear
 
 	# Install packages.
-	pkg install -y bash sudo xlibre-minimal xlibre-drivers xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts-hurmit wcurl linux-brave
+	pkg install -y bash sudo xlibre-minimal xlibre-drivers xbitmaps xorg-fonts xorg-libraries noto-basic noto-emoji xfce xfce4-goodies xfburn skeuos-gtk-themes papirus-icon-theme epdfview catfish galculator xarchiver xfce4-docklike-plugin xfce4-pulseaudio-plugin font-manager qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts-hurmit wcurl linux-brave
 
 	# Fix Linuxulator permissions.
 	chmod 755 /compat
@@ -270,7 +270,11 @@ if [ "$resp" = ports ]; then
 	cd /usr/ports/shells/ohmyzsh && make install clean
 	cd /usr/ports/sysutils/fastfetch && make install clean
 	cd /usr/ports/sysutils/pfetch && make install clean
-	cd /usr/ports/x11/xlibre && make install clean
+	cd /usr/ports/x11/xlibre-minimal && make install clean
+	cd /usr/ports/x11/xlibre-drivers && make install clean
+	cd /usr/ports/x11/xbitmaps && make install clean
+	cd /usr/ports/x11-fonts/xorg-fonts && make install clean
+	cd /usr/ports/x11/xorg-libraries && make install clean
 	cd /usr/ports/x11-wm/xfce4 && make install clean
 	cd /usr/ports/x11/xfce4-goodies && make install clean
 	cd /usr/ports/sysutils/xfburn && make install clean

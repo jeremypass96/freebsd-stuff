@@ -90,7 +90,7 @@ if [ "$resp" = pkg ]; then
 	sysrc linux_enable="YES" && service linux start
 
 	# Install packages.
-	pkg install -y bash sudo xlibre-minimal xlibre-drivers xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts-hurmit wcurl linux-brave
+	pkg install -y bash sudo xlibre-minimal xlibre-drivers xbitmaps xorg-fonts xorg-libraries noto-basic noto-emoji parole xfburn qt5ct qt5-style-plugins ulauncher webfonts vim zsh ohmyzsh fastfetch pfetch octopkg lightdm slick-greeter mp4v2 skeuos-gtk-themes papirus-icon-theme numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts-hurmit wcurl linux-brave
 
 	# Fix Linuxulator permissions.
 	chmod 755 /compat
@@ -260,7 +260,11 @@ if [ "$resp" = ports ]; then
 	cd /usr/ports/shells/zsh && make install clean
 	cd /usr/ports/shells/ohmyzsh && make install clean
 	cd /usr/ports/sysutils/fastfetch && make install clean
-	cd /usr/ports/x11/xlibre && make install clean
+	cd /usr/ports/x11/xlibre-minimal && make install clean
+	cd /usr/ports/x11/xlibre-drivers && make install clean
+	cd /usr/ports/x11/xbitmaps && make install clean
+	cd /usr/ports/x11-fonts/xorg-fonts && make install clean
+	cd /usr/ports/x11/xorg-libraries && make install clean
 	cd /usr/ports/math/galculator && make install clean
 	cd /usr/ports/multimedia/parole && make install clean
 	cd /usr/ports/sysutils/xfburn && make install clean

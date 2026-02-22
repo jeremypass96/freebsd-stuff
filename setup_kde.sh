@@ -90,7 +90,7 @@ if [ "$resp" = pkg ]; then
 	sysrc linux_enable="YES" && service linux start
 
 	# Install packages.
-	pkg install -y bash sudo xlibre-minimal xlibre-drivers xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts vim zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts-hurmit Kvantum wcurl linux-brave
+	pkg install -y bash sudo xlibre-minimal xlibre-drivers xbitmaps xorg-fonts xorg-libraries noto-basic noto-emoji plasma6-plasma kde-baseapps kdeadmin kcalc kcharselect kwalletmanager ark k3b plasma6-spectacle gwenview juk sddm plasma6-sddm-kcm papirus-icon-theme webfonts vim zsh ohmyzsh fastfetch pfetch octopkg mp4v2 numlockx automount fusefs-simple-mtpfs unix2dos smartmontools ubuntu-font webfonts droid-fonts-ttf materialdesign-ttf roboto-fonts-ttf xdg-user-dirs duf btop colorize freedesktop-sound-theme rkhunter chkrootkit topgrade bat fd-find lsd nerd-fonts-hurmit Kvantum wcurl linux-brave
 
 	# Fix Linuxulator permissions.
 	chmod 755 /compat
@@ -263,7 +263,11 @@ if [ "$resp" = ports ]; then
 	cd /usr/ports/shells/ohmyzsh && make install clean
 	cd /usr/ports/sysutils/fastfetch && make install clean
 	cd /usr/ports/sysutils/pfetch && make install clean
-	cd /usr/ports/x11/xlibre && make install clean
+	cd /usr/ports/x11/xlibre-minimal && make install clean
+	cd /usr/ports/x11/xlibre-drivers && make install clean
+	cd /usr/ports/x11/xbitmaps && make install clean
+	cd /usr/ports/x11-fonts/xorg-fonts && make install clean
+	cd /usr/ports/x11/xorg-libraries && make install clean
 	cd /usr/ports/x11/kde6 && make install clean
 	cd /usr/ports/math/kcalc && make install clean
 	cd /usr/ports/deskutils/kcharselect && make install clean
