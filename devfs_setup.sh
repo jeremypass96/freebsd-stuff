@@ -2,7 +2,7 @@
 # Sets up a devfs.rules/.conf file on FreeBSD for FreeBSD desktop use.
 
 # Write the devfs.rules file
-cat << 'EOF' > /etc/devfs.rules
+cat <<'EOF' >/etc/devfs.rules
 [devfsrules_common=7]
 add path 'acd[0-9]*' mode 0666
 add path 'ad[0-9]*' mode 0666
@@ -36,20 +36,20 @@ sysrc devfs_system_ruleset="devfsrules_common"
 
 # Update devfs.conf
 sed -i '' -e 's/#link/link/g' /etc/devfs.conf
-grep -q '# Allow all users to access CD/DVD drives.' /etc/devfs.conf || tee -a /etc/devfs.conf > /dev/null << EOF
+grep -q '# Allow all users to access CD/DVD drives.' /etc/devfs.conf || tee -a /etc/devfs.conf >/dev/null <<EOF
 # Allow all users to access CD/DVD drives.
 perm /dev/acd* 0666
 perm /dev/cd* 0666
 EOF
 
 # Allow all users to access USB devices
-grep -q '# Allow all users to access USB devices.' /etc/devfs.conf || tee -a /etc/devfs.conf > /dev/null << EOF
+grep -q '# Allow all users to access USB devices.' /etc/devfs.conf || tee -a /etc/devfs.conf >/dev/null <<EOF
 # Allow all users to access USB devices.
 perm /dev/da* 0666
 EOF
 
 # Misc. other devices
-grep -q '# Misc. other devices.' /etc/devfs.conf || tee -a /etc/devfs.conf > /dev/null << EOF
+grep -q '# Misc. other devices.' /etc/devfs.conf || tee -a /etc/devfs.conf >/dev/null <<EOF
 # Misc. other devices.
 perm /dev/pass* 0666
 perm /dev/xpt0 0666
@@ -61,8 +61,8 @@ perm /dev/dvb/adapter0/dvr 0666
 perm /dev/dvb/adapter0/frontend0 0666
 EOF
 
-echo "To apply changes, reboot or run: service devfs restart"
+service devfs restart
 
 # Allow users to mount and unmount CD/DVD-ROM drives.
-echo "/dev/cd0   /cdrom   cd9660   ro,noauto,user   0   0" >> /etc/fstab
+echo "/dev/cd0   /cdrom   cd9660   ro,noauto,user   0   0" >>/etc/fstab
 EOF
