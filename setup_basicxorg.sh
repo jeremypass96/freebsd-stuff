@@ -46,6 +46,10 @@ if [ "$resp" = pkg ]; then
 	echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' >/usr/local/etc/pkg/repos/FreeBSD.conf
 	pkg update -f && pkg upgrade
 
+	if ! command -v dialog >/dev/null 2>&1; then
+		pkg install -y dialog
+	fi
+
 	# Printer support.
 	# Check if the user plans to use a printer.
 	dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
@@ -352,7 +356,7 @@ if [ "$resp" = ports ]; then
 
 	if [ $resp -eq 0 ]; then
 		(
-			install_port_portmaster "sysutils/bsdstats" "Installing BSDstats"
+			install_port_pm "sysutils/bsdstats" "Installing BSDstats"
 		) | dialog --title --infobox "Installing $port_name..." 5 40
 
 		sysrc bsdstats_enable="YES"
@@ -367,9 +371,9 @@ clear
 
 # Install cursor theme.
 dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
+fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
+tar -xvf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+rm -rf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
 dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 
 # Setup LightDM.

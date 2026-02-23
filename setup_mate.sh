@@ -9,6 +9,9 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
+# Use logname instead of $USER to get the actual invoking user when run as root.
+logged_in_user=$(logname)
+
 clear
 
 echo "Welcome to the FreeBSD MATE setup script."
@@ -363,9 +366,9 @@ clear
 
 # Install cursor theme.
 dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
+fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
+tar -xvf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
+rm -rf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
 dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
 
 # Setup LightDM.

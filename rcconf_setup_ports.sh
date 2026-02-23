@@ -12,12 +12,6 @@ logged_in_user=$(logname)
 
 clear
 
-# Check if dialog is installed
-if ! command -v dialog >/dev/null 2>&1; then
-  echo "Error: dialog not found. Please install dialog first."
-  exit 1
-fi
-
 # Function to colorize terminal output only (not rc.conf)
 add_color_output() {
   case "$1" in
