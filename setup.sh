@@ -23,7 +23,7 @@ clear
 dialog --title "FreeBSD Post-Install Setup" --msgbox "Welcome to the FreeBSD post-install setup script.\n\nThis script helps you configure your system and choose a desktop environment." 8 85
 
 # Menu to select a desktop environment
-resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a desktop environment:" 15 40 5 \
+resp=$(dialog --clear --title "Desktop Environment Selection" --menu "Choose a desktop environment:" 13 40 5 \
   1 "MATE" \
   2 "Xfce" \
   3 "Xfce (Windows-esque)" \
