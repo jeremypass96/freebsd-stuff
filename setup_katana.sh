@@ -118,11 +118,7 @@ clear
 ./rcconf_setup.sh
 
 # Install cursor theme.
-dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$USER"/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/"$USER"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-rm -rf /home/"$USER"/Bibata-Modern-Ice.tar.gz
-dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
+./posy-cursors-bsdinstall.sh
 
 # Enable KDM (KDE4 display manager) on boot.
 sysrc kdm_enable="YES"

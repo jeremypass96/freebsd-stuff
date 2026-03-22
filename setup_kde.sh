@@ -156,7 +156,7 @@ if [ "$resp" = ports ]; then
 	if grep -q '^MAKE_JOBS_NUMBER=' /etc/make.conf; then
 		sed -i '' -e "s|^MAKE_JOBS_NUMBER=.*|MAKE_JOBS_NUMBER=${JOBS}|" /etc/make.conf
 	else
-		echo "MAKE_JOBS_NUMBER=${JOBS}" >> /etc/make.conf
+		echo "MAKE_JOBS_NUMBER=${JOBS}" >>/etc/make.conf
 	fi
 
 	# Pull in Ports tree with git.
@@ -370,11 +370,7 @@ sed -i '' s/Relogin=false/Relogin=true/g /usr/local/etc/sddm.conf
 sed -i '' s/User=/User="$logged_in_user"/g /usr/local/etc/sddm.conf
 
 # Install cursor theme.
-dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$logged_in_user"/Bibata-Modern-Ice.tar.xz
-tar -xvf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.xz -C /usr/local/share/icons
-rm -rf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.xz
-dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
+./posy-cursors-bsdinstall.sh
 
 # Download Konsole colors.
 dialog --title "Konsole Colorscheme" --menu "Which Konsole colorscheme do you want?" 10 42 10 \

@@ -160,7 +160,7 @@ if [ "$resp" = ports ]; then
 	if grep -q '^MAKE_JOBS_NUMBER=' /etc/make.conf; then
 		sed -i '' -e "s|^MAKE_JOBS_NUMBER=.*|MAKE_JOBS_NUMBER=${JOBS}|" /etc/make.conf
 	else
-		echo "MAKE_JOBS_NUMBER=${JOBS}" >> /etc/make.conf
+		echo "MAKE_JOBS_NUMBER=${JOBS}" >>/etc/make.conf
 	fi
 
 	# Pull in Ports tree with git.
@@ -370,11 +370,7 @@ fi
 clear
 
 # Install cursor theme.
-dialog --title "Installing Cursor Theme" --infobox "Installing the 'Bibata Modern Ice' cursor theme..." 5 40
-fetch https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Ice.tar.gz -o /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
-tar -xvf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz -C /usr/local/share/icons
-rm -rf /home/"$logged_in_user"/Bibata-Modern-Ice.tar.gz
-dialog --title "Installation Complete" --msgbox "'Bibata Modern Ice' cursor theme has been installed." 8 40
+./posy-cursors-bsdinstall.sh
 
 # Setup LightDM.
 sysrc lightdm_enable="YES"
