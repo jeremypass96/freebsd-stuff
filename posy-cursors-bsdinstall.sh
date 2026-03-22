@@ -1,9 +1,11 @@
 #!/bin/bash
 # Script to install Posy's cursors on *BSD.
+# Use logname instead of $USER to get the actual invoking user when run as root.
+logged_in_user=$(logname)
 
 echo ">>> Installing Posy cursors..."
 echo ">>> Cloning Posy cursors GitHub repo..."
-git clone https://github.com/Icelk/posy-cursors.git
+git -C /home/"$logged_in_user" clone https://github.com/Icelk/posy-cursors.git
 
 echo ">>> Copying cursors to /usr/local/share/icons..."
 sudo cp -rp posy-cursors/themes/posy-white /usr/local/share/icons/posy-cursors
@@ -15,6 +17,6 @@ sudo find /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursor
 sudo find /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursors-black -type f -exec chmod 644 {} \;
 
 echo ">>> Removing GitHub repo directory from current directory..."
-cd && rm -rf posy-cursors
+rm -rf /home/"$logged_in_user"/posy-cursors
 
 echo ">>> Done. Posy cursors are now installed."
