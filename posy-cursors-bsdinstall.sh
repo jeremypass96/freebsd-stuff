@@ -5,7 +5,7 @@ echo ">>> Installing Posy cursors..."
 echo ">>> Cloning Posy cursors GitHub repo..."
 git clone https://github.com/Icelk/posy-cursors.git
 
-echo ">>> Copying cursors to /usr/share/icons..."
+echo ">>> Copying cursors to /usr/local/share/icons..."
 sudo cp -rp posy-cursors/themes/posy-white /usr/local/share/icons/posy-cursors
 sudo cp -rp posy-cursors/themes/posy-black /usr/local/share/icons/posy-cursors-black
 
