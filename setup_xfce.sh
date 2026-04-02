@@ -161,10 +161,6 @@ if [ "$resp" = ports ]; then
 		echo "MAKE_JOBS_NUMBER=${JOBS}" >>/etc/make.conf
 	fi
 
-	# Pull in Ports tree with git.
-	git clone https://git.FreeBSD.org/ports.git /usr/ports
-	git -C /usr/ports pull
-
 	# Function to install a port.
 	install_port() {
 		port_name=$1
@@ -229,11 +225,11 @@ if [ "$resp" = ports ]; then
 
 	if [ "$papersize_resp" = 1 ]; then
 		(
-			install_port "papersize-default-letter" "Installing Letter Paper Size"
+			install_port "print/papersize-default-letter" "Installing Letter Paper Size"
 		) | dialog --title "$title" --gauge "Installing $port_name..." 5 40
 	elif [ "$papersize_resp" = 2 ]; then
 		(
-			install_port "papersize-default-a4" "Installing A4 Paper Size"
+			install_port "print/papersize-default-a4" "Installing A4 Paper Size"
 		) | dialog --title "$title" --gauge "Installing $port_name..." 5 40
 	fi
 
