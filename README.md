@@ -11,3 +11,5 @@ For a minimal "git-lite" package "flavor" build, deselect the following configur
 <code>GITWEB</code>
 <code>PERL</code>
 <code>SEND_EMAIL</code>
+
+These scripts use 'dialog' for dialog boxes, and for **some stupid idiotic reason**, the FreeBSD developers decided to remove dialog from the FreeBSD 15 base (why?). So, unfortunately, these scripts can only be used with FreeBSD *14.x* releases for now.
