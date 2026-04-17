@@ -2,25 +2,27 @@
 
 # Checking if the script is running as root.
 if [ "$(id -u)" -ne 0 ]; then
-    dialog --title "Permission Denied" --msgbox "Please run this script as root via 'sudo' or 'su'. Thanks." 5 65
-    exit 1
+	dialog --title "Permission Denied" --msgbox "Please run this script as root via 'sudo' or 'su'. Thanks." 5 65
+	exit 1
 fi
 
 # Define an array of wallpaper URLs.
 wallpaper_urls=(
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0011.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0023.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0036.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0037.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0042.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0057.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0058.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0065.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0076.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg"
-    "https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0011.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0023.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0036.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0037.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0042.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0057.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0058.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0065.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0076.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0188.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg"
+	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg"
+	"https://w.wallhaven.cc/full/9d/wallhaven-9d83x1.png"
+	"https://w.wallhaven.cc/full/x8/wallhaven-x82g5l.png"
 )
 
 # Destination directory for wallpapers.
@@ -35,24 +37,24 @@ total_wallpapers=${#wallpaper_urls[@]}
 
 # Create a function to download wallpapers and update the progress bar.
 download_wallpapers() {
-    for url in "${wallpaper_urls[@]}"; do
-        filename="$(basename "$url")"
-        curl -s -L "$url" -o "$wallpaper_dir/$filename"
-        count=$((count + 1))
-        percent=$((count * 100 / total_wallpapers))
-        echo "$percent"
-    done
+	for url in "${wallpaper_urls[@]}"; do
+		filename="$(basename "$url")"
+		curl -s -L "$url" -o "$wallpaper_dir/$filename"
+		count=$((count + 1))
+		percent=$((count * 100 / total_wallpapers))
+		echo "$percent"
+	done
 }
 
 # Use dialog to create a progress bar.
 dialog --title "Downloading Wallpapers" --gauge "Downloading wallpapers..." 10 50 < <(
-    download_wallpapers
+	download_wallpapers
 )
 
 # Check if any errors occurred during the download.
 if [ $? -ne 0 ]; then
-    dialog --title "Error" --msgbox "An error occurred while downloading wallpapers." 10 40
-    exit 1
+	dialog --title "Error" --msgbox "An error occurred while downloading wallpapers." 10 40
+	exit 1
 fi
 
 # Download and extract some FreeBSD-based wallpapers.
@@ -60,16 +62,16 @@ cd && fetch -q -o "$HOME/wallpapers-freebsd.tar.gz" "https://github.com/vermaden
 
 # Extract tar.gz archive.
 extract() {
-destdir="$(basename "$1" .tar.gz)"
-mkdir "$destdir"
-tar -C "$destdir" -xf "$1"
+	destdir="$(basename "$1" .tar.gz)"
+	mkdir "$destdir"
+	tar -C "$destdir" -xf "$1"
 }
 extract wallpapers-freebsd.tar.gz
 
 # Check if any errors occurred during the extraction.
 if [ $? -ne 0 ]; then
-    dialog --title "Error" --msgbox "An error occurred while extracting wallpapers-freebsd.tar.gz." 10 40
-    exit 1
+	dialog --title "Error" --msgbox "An error occurred while extracting wallpapers-freebsd.tar.gz." 10 40
+	exit 1
 fi
 
 # Fix permissions and copy the specified wallpapers to /usr/local/share/backgrounds.
