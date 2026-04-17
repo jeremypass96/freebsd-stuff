@@ -21,7 +21,6 @@ wallpaper_urls=(
 	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0230.jpg"
 	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0256.jpg"
 	"https://gitlab.com/dwt1/wallpapers/-/raw/master/0257.jpg"
-	"https://w.wallhaven.cc/full/9d/wallhaven-9d83x1.png"
 	"https://w.wallhaven.cc/full/x8/wallhaven-x82g5l.png"
 )
 
