@@ -12,7 +12,7 @@ sudo cp -rp /home/"$logged_in_user"/posy-cursors/themes/posy-white /usr/local/sh
 sudo cp -rp /home/"$logged_in_user"/posy-cursors/themes/posy-black /usr/local/share/icons/posy-cursors-black
 
 echo ">>> Applying correct user permissions..."
-sudo chown -R root:root /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursors-black
+sudo chown -R root:wheel /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursors-black
 sudo find /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursors-black -type d -exec chmod 755 {} \;
 sudo find /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursors-black -type f -exec chmod 644 {} \;
 
