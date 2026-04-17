@@ -4,8 +4,8 @@ set -e
 
 # Checking to see if we're running as root.
 if [ "$(id -u)" -ne 0 ]; then
-    echo "Please run this setup script as root via 'su'! Thanks."
-    exit
+	echo "Please run this setup script as root via 'su'! Thanks."
+	exit
 fi
 
 # Use logname instead of $USER to get the actual invoking user when run as root.
@@ -15,10 +15,10 @@ cd Dotfiles/ || exit
 
 # Export options to system and user profile files.
 for profile in /etc/profile /home/$logged_in_user/.profile /usr/share/skel/dot.profile; do
-    sed -i '' 's/EDITOR=vi/EDITOR=vim/g' "$profile"
-    echo "" >> "$profile"
-    echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >> "$profile"
-    echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >> "$profile"
+	sed -i '' 's/EDITOR=vi/EDITOR=vim/g' "$profile"
+	echo "" >>"$profile"
+	echo "QT_QPA_PLATFORMTHEME=qt5ct;  export QT_QPA_PLATFORMTHEME" >>"$profile"
+	echo 'PF_INFO="ascii os kernel uptime pkgs shell editor de";  export PF_INFO' >>"$profile"
 done
 
 # Copy over zsh config.
@@ -51,14 +51,14 @@ unset ZSH_CUSTOM
 
 read -rp "Installing Zsh syntax highlighting plugin... do you want the FreeBSD binary packge or the ports tree port? (pkg/port) " zsh_resp
 if [ "$zsh_resp" = pkg ]; then
-    pkg install -y zsh-fast-syntax-highlighting
+	pkg install -y zsh-fast-syntax-highlighting
 elif [ "$zsh_resp" = port ]; then
-    cd /usr/ports/shells/zsh-fast-syntax-highlighting && make install clean
+	cd /usr/ports/shells/zsh-fast-syntax-highlighting && make install clean
 fi
 chmod 755 /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> /home/"$logged_in_user"/.zshrc
-echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> "$HOME"/.zshrc
-echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> /usr/share/skel/dot.zshrc
+echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >>/home/"$logged_in_user"/.zshrc
+echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >>"$HOME"/.zshrc
+echo "source /usr/local/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >>/usr/share/skel/dot.zshrc
 
 cd /home/"$logged_in_user"/freebsd-stuff || exit
 
@@ -86,8 +86,8 @@ bat --generate-config-file
 # Modify the configuration settings.
 sed -i '' 's/#--theme="TwoDark"/--theme="1337"'/g /root/.config/bat/config
 sed -i '' 's/#--italic-text=always/--italic-text=always'/g /root/.config/bat/config
-echo '--map-syntax "*.conf:INI"' >> /root/.config/bat/config
-echo '--map-syntax "config:INI"' >> /root/.config/bat/config
+echo '--map-syntax "*.conf:INI"' >>/root/.config/bat/config
+echo '--map-syntax "config:INI"' >>/root/.config/bat/config
 
 # Copy the user configuration to /usr/share/skel so new users get the same setup.
 mkdir -p /usr/share/skel/dot.config/bat
@@ -100,57 +100,20 @@ chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/bat
 
 echo "Bat syntax highlighter has been configured with the '1337' theme for both your user and root."
 
-# Vim setup.
-# Install vim-plug.
-curl -fLo /home/"$logged_in_user"/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-mkdir -p /usr/share/skel/dot.vim/autoload
-cp -v /home/"$logged_in_user"/.vim/autoload/plug.vim /usr/share/skel/dot.vim/autoload/plug.vim
-mkdir -p "$HOME"/.vim/autoload
-cp -v /usr/share/skel/dot.vim/autoload/plug.vim "$HOME"/.vim/autoload/plug.vim
+# Configure Helix text editor.
+mkdir -p /usr/share/skel/dot.config/helix
+cp -rv /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/helix/*.toml /usr/share/skel/dot.config/helix
+mkdir -p /root/.config/helix
+cp -rv /usr/share/skel/dot.config/helix/*.toml /root/.config/helix
+mkdir /home/"$logged_in_user"/.config/helix
+cp -rv /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/helix/*.toml /home/"$logged_in_user"/.config/helix
+chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/helix
 
-# Configure the vimrc file.
-vimrc_path=/home/"$logged_in_user"/.vim/vimrc
-root_vimrc="$HOME"/.vim/vimrc
-tee "$vimrc_path" > /dev/null << EOF
-set number
-set cursorline
-set linebreak
-set incsearch
-set hlsearch
-set spell
-set smoothscroll
-set termguicolors
-
-call plug#begin('~/.vim/plugged')
-Plug 'itchyny/lightline.vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'jiangmiao/auto-pairs'
-call plug#end()
-
-let g:lightline = {'colorscheme': 'ayu_mirage'}
-let g:one_allow_italics = 1
-let ayucolor="mirage"
-colorscheme ayu
-set laststatus=2
-set noshowmode
-set guifont=JetBrainsMonoNL\ NFM:h12:cDEFAULT
-set backspace=indent,eol,start
-EOF
-
-# Configure Vim for standard user.
-vim -es -u "$vimrc_path" -i NONE -c "PlugInstall" -c "qa"
-cp -r /home/"$logged_in_user"/.vim/plugged /usr/share/skel/dot.vim/plugged
-
-# Copy vimrc to root's home directory.
-mkdir -p "$HOME"/.vim
-cp -rv /home/"$logged_in_user"/.vim/vimrc "$HOME"/.vim/vimrc
-
-# Configure Vim for root.
-vim -es -u "$root_vimrc" -i NONE -c "PlugInstall" -c "qa"
-
-# Copy vimrc to /usr/share/skel directory.
-cp -rv /home/"$logged_in_user"/.vim/vimrc /usr/share/skel/dot.vim/
-
-# Fix vim folder permissions.
-chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.vim
+# Configure Alacritty.
+mkdir -p /usr/share/skel/dot.config/alacritty
+cp -rv /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/alacritty/alacritty.toml /usr/share/skel/dot.config/alacritty
+mkdir -p /root/.config/alacritty
+cp -rv /usr/share/skel/dot.config/alacritty/alacritty.toml /root/.config/alacritty
+mkdir /home/"$logged_in_user"/.config/alacritty
+cp -rv /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/alacritty/alacritty.toml /home/"$logged_in_user"/.config/alacritty
+chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/alacritty

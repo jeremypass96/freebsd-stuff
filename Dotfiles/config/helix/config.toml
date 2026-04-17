@@ -1,0 +1,53 @@
+theme = "catppuccin_mocha"
+
+[editor]
+cursorline = true
+continue-comments = false
+completion-replace = true
+color-modes = true
+trim-trailing-whitespace = true
+popup-border = "all"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = [
+  "mode",
+  "spinner",
+  "file-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+  "version-control"
+]
+right = [
+  "diagnostics",
+  "position",
+  "position-percentage",
+  "file-encoding",
+  "file-type",
+  "total-line-numbers",
+]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+C-s = ":w"
+C-q = ":q"
+C-x = ":q!"
+C-S-o = ":config-open"
+C-S-r = ":config-reload"
+C-A-n = ":n"
+C-A-h = ":hnew"
+C-A-v = ":vnew"
+C-S-c = ":bc"
+S-del = "@x<A-d>"
+del = "@<A-d>"
+ins = "insert_mode"
+C-o = "file_picker_in_current_directory"

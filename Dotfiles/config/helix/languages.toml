@@ -1,0 +1,21 @@
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server"]
+formatter = { command = "shfmt" }
+auto-format = true
+grammar = "bash"
+
+[[language]]
+name = "toml"
+language-servers = ["taplo"]
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
+grammar = "toml"
+roots = ["."]
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
+auto-format = true
+grammar = "markdown"
