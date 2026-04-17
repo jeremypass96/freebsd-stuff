@@ -8,8 +8,8 @@ echo ">>> Cloning Posy cursors GitHub repo..."
 git -C /home/"$logged_in_user" clone https://github.com/Icelk/posy-cursors.git
 
 echo ">>> Copying cursors to /usr/local/share/icons..."
-sudo cp -rp posy-cursors/themes/posy-white /usr/local/share/icons/posy-cursors
-sudo cp -rp posy-cursors/themes/posy-black /usr/local/share/icons/posy-cursors-black
+sudo cp -rp /home/"$logged_in_user"/posy-cursors/themes/posy-white /usr/local/share/icons/posy-cursors
+sudo cp -rp /home/"$logged_in_user"/posy-cursors/themes/posy-black /usr/local/share/icons/posy-cursors-black
 
 echo ">>> Applying correct user permissions..."
 sudo chown -R root:root /usr/local/share/icons/posy-cursors /usr/local/share/icons/posy-cursors-black
