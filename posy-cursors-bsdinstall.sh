@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to install Posy's cursors on *BSD.
+# Script to install Posy's cursors on FreeBSD.
 # Use logname instead of $USER to get the actual invoking user when run as root.
 logged_in_user=$(logname)
 
