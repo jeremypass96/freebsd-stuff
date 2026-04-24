@@ -46,6 +46,16 @@ if [ "$resp" = pkg ]; then
 	echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' >/usr/local/etc/pkg/repos/FreeBSD.conf
 	pkg update -f && pkg upgrade
 
+	# Add XLibre repository.
+	cat > /usr/local/etc/pkg/repos/XLibre.conf <<'EOF'
+XLibre: {
+        url: "https://api.cirrus-ci.com/v1/artifact/github/b-aaz/xlibre-ports/bins/bins/${ABI}",
+        mirror_type: "http",
+        enabled: yes
+}
+EOF
+	pkg update -f
+
 	# Printer support.
 	# Check if the user plans to use a printer.
 	dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
@@ -160,6 +170,14 @@ if [ "$resp" = ports ]; then
 	else
 		echo "MAKE_JOBS_NUMBER=${JOBS}" >>/etc/make.conf
 	fi
+
+	# Add XLibre overlay.
+	git -C /usr/local/ports-overlays clone https://github.com/b-aaz/xlibre-ports.git
+	cd /usr/local/ports-overlays/xlibre-ports
+	echo "OVERLAYS=$(pwd)/" >> /etc/make.conf
+
+	# Update ports tree.
+	git clone --depth 1 https://git.FreeBSD.org/ports.git -b 2026Q2 /usr/ports
 
 	clear
 

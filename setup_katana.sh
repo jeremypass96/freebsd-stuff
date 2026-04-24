@@ -43,6 +43,15 @@ mkdir -p /usr/local/etc/pkg/repos
 echo 'FreeBSD: { url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest" }' >/usr/local/etc/pkg/repos/FreeBSD.conf
 pkg update -f && pkg upgrade
 
+# Add XLibre repository.
+cat > /usr/local/etc/pkg/repos/XLibre.conf <<'EOF'
+XLibre: {
+        url: "https://api.cirrus-ci.com/v1/artifact/github/b-aaz/xlibre-ports/bins/bins/${ABI}",
+        mirror_type: "http",
+        enabled: yes
+}
+EOF
+
 # Printer support.
 # Check if the user plans to use a printer.
 dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
