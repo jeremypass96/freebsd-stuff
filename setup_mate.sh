@@ -56,6 +56,12 @@ XLibre: {
 EOF
 	pkg update -f
 
+	chmod -R 755 /usr/local/etc/pkg
+	chmod a-x /usr/local/etc/pkg/repos/FreeBSD.conf
+	chmod a-x /usr/local/etc/pkg/repos/XLibre.conf
+	chmod go+r /usr/local/etc/pkg/repos/FreeBSD.conf
+	chmod go+r /usr/local/etc/pkg/repos/XLibre.conf
+
 	# Printer support.
 	# Check if the user plans to use a printer.
 	dialog --title "Printer Setup" --yesno "Do you plan to use a printer?" 8 40
