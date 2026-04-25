@@ -5,26 +5,22 @@
     },
     "display": {
         "separator": "  ",
-        "size": {
-            "ndigits": 0,
-            "maxPrefix": "GB"
-        },
         "key": {
             "type": "icon"
         }
     },
     "modules": [
 	    {
-		    "type": "os",
-		    "keyColor": "yellow"
-	    },
-	    {
 		    "type": "kernel",
-		    "keyColor": "yellow" 
+		    "keyColor": "red"
 	    },
 	    {
 		    "type": "packages",
-		    "keyColor": "yellow"
+		    "keyColor": "red"
+	    },
+	    {
+		    "type": "uptime",
+		    "keyColor": "red"
 	    },
 	    {
 		    "type": "editor",
@@ -36,15 +32,12 @@
 	    },
 	    {
 		    "type": "disk",
+		    "folders": "/",
 		    "keyColor": "green"
 	    },
 	    {
 		    "type": "memory",
 		    "keyColor": "green"
-	    },
-	    {
-		    "type": "uptime",
-		    "keyColor": "green"
-	    } 
+	    }
     ]
 }
