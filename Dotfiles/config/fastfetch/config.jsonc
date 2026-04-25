@@ -31,6 +31,10 @@
 		    "keyColor": "yellow"
 	    },
 	    {
+	    	"type": "terminal",
+	    	"keyColor": "yellow"
+	    },
+	    {
 		    "type": "disk",
 		    "folders": "/",
 		    "keyColor": "green"
