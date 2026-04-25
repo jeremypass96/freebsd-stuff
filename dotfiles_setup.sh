@@ -23,6 +23,7 @@ done
 # Copy over zsh config.
 cp -v .zshrc /home/"$logged_in_user"
 cp -v .zshrc /usr/share/skel/dot.zshrc
+chmod go+r /usr/share/skel/dot.zshrc
 cp -v /usr/share/skel/dot.zshrc /root/.zshrc
 chown "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.zshrc
 
@@ -32,7 +33,9 @@ cp -v config/fastfetch/config.jsonc /home/"$logged_in_user"/.config/fastfetch
 mkdir -p /root/.config/fastfetch
 cp -v config/fastfetch/config.jsonc /root/.config/fastfetch
 mkdir -p /usr/share/skel/dot.config/fastfetch
+chmod 755 /usr/share/skel/dot.config/fastfetch
 cp -v config/fastfetch/config.jsonc /usr/share/skel/dot.config/fastfetch
+chmod go+r /usr/share/skel/dot.config/fastfetch
 chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/fastfetch
 
 cd /home/"$logged_in_user"/freebsd-stuff || exit
@@ -67,12 +70,14 @@ cp -v /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/lsd/config.yaml /hom
 mkdir -p /root/.config/lsd
 cp -v /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/lsd/config.yaml /root/.config/lsd
 mkdir -p /usr/share/skel/dot.config/lsd
+chmod 755 /usr/share/skel/dot.config/lsd
 cp -v /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/lsd/config.yaml /usr/share/skel/dot.config/lsd
+chmod go+r /usr/share/skel/dot.config/lsd
 chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/lsd
 
 # Copy over custom Oh My Zsh theme.
 cp -v /home/"$logged_in_user"/freebsd-stuff/jpassarelli.zsh-theme /usr/local/share/ohmyzsh/custom/themes
-chmod og+r /usr/local/share/ohmyzsh/custom/themes/jpassarelli.zsh-theme
+chmod go+r /usr/local/share/ohmyzsh/custom/themes/jpassarelli.zsh-theme
 
 # Change root shell to use "zsh" instead of "csh."
 chsh -s /usr/local/bin/zsh root
@@ -91,6 +96,7 @@ echo '--map-syntax "config:INI"' >>/root/.config/bat/config
 # Copy the user configuration to /usr/share/skel so new users get the same setup.
 mkdir -p /usr/share/skel/dot.config/bat
 cp -v /root/.config/bat/config /usr/share/skel/dot.config/bat
+chmod go+r /usr/share/skel/dot.config/bat
 
 # Copy root's configuration to the user's configuration.
 mkdir -p /home/"$logged_in_user"/.config/bat
@@ -101,7 +107,9 @@ echo "Bat syntax highlighter has been configured with the '1337' theme for both 
 
 # Configure Helix text editor.
 mkdir -p /usr/share/skel/dot.config/helix
+chmood 755 /usr/share/skel/dot.config/helix
 cp -rv /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/helix/*.toml /usr/share/skel/dot.config/helix
+chmod go+r /usr/share/skel/dot.config/helix/*.toml
 mkdir -p /root/.config/helix
 cp -rv /usr/share/skel/dot.config/helix/*.toml /root/.config/helix
 mkdir /home/"$logged_in_user"/.config/helix
@@ -110,7 +118,9 @@ chown -R "$logged_in_user":"$logged_in_user" /home/"$logged_in_user"/.config/hel
 
 # Configure Alacritty.
 mkdir -p /usr/share/skel/dot.config/alacritty
+chmod 755 /usr/share/skel/dot.config/alacritty
 cp -rv /home/"$logged_in_user"/freebsd-stuff/Dotfiles/config/alacritty/alacritty.toml /usr/share/skel/dot.config/alacritty
+chmod go+r /usr/share/skel/dot.config/alacritty
 mkdir -p /root/.config/alacritty
 cp -rv /usr/share/skel/dot.config/alacritty/alacritty.toml /root/.config/alacritty
 mkdir /home/"$logged_in_user"/.config/alacritty
