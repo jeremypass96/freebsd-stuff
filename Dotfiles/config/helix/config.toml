@@ -52,3 +52,7 @@ del = "@<A-d>"
 ins = "insert_mode"
 C-o = "file_picker_in_current_directory"
 C-L = "@miw*%s<ret>c"                     # Change all occurrences of the word under cursor like in VSCode/VSCodium.
+esc = [
+  "collapse_selection",
+  "keep_primary_selection",
+] # Make Esc collapse multi-selections first, then go back to normal mode.
